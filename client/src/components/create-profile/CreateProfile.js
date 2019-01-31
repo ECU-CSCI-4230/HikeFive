@@ -123,16 +123,26 @@ class CreateProfile extends Component {
 
     // Select options for status
     const options = [
-      { label: '* Select Professional Status', value: 0 },
-      { label: 'Developer', value: 'Developer' },
-      { label: 'Junior Developer', value: 'Junior Developer' },
-      { label: 'Senior Developer', value: 'Senior Developer' },
-      { label: 'Manager', value: 'Manager' },
-      { label: 'Student or Learning', value: 'Student or Learning' },
-      { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
-      { label: 'Intern', value: 'Intern' },
-      { label: 'Other', value: 'Other' }
+      { label: '* Select', value: 0 },
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' }
     ];
+
+    const Skilloptions = [
+      { label: '* Select', value: 0 },
+      { label: '1', value: 1 },
+      { label: '2', value: 2 },
+      { label: '3', value: 3 },
+      { label: '4', value: 4 },
+      { label: '5', value: 5 }
+    ];
+
+    const Genderoptions = [
+      { label: '* Select', value: 0 },
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female' }
+    ];
+    
 
     return (
       <div className="create-profile">
@@ -145,13 +155,63 @@ class CreateProfile extends Component {
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
+              <TextFieldGroup
                   placeholder="* Profile Handle"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="website"
+                  value={this.state.website}
+                  onChange={this.onChange}
+                  error={errors.website}
+                  info="What is your zip code?"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="company"
+                  value={this.state.company}
+                  onChange={this.onChange}
+                  error={errors.company}
+                  info="What country are you living in?"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="company"
+                  value={this.state.company}
+                  onChange={this.onChange}
+                  error={errors.company}
+                  info="What is your age?"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={Genderoptions}
+                  error={errors.status}
+                  info="Gender"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={Skilloptions}
+                  error={errors.status}
+                  info="What is skill level?"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="company"
+                  value={this.state.company}
+                  onChange={this.onChange}
+                  error={errors.company}
+                  info="What prior trips/hikes have you done?"
                 />
                 <SelectListGroup
                   placeholder="Status"
@@ -160,15 +220,60 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   options={options}
                   error={errors.status}
-                  info="Give us an idea of where you are at in your career"
+                  info="Are you a Climber?"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Are you a Criminal?"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Are you willing to travel to other countries?"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Are you willing to purchase gear or do your already have gear?"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Are you willing to hike overnight?"
+                />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Are you willing to camp?"
                 />
                 <TextFieldGroup
-                  placeholder="Company"
-                  name="company"
-                  value={this.state.company}
+                  placeholder=""
+                  name="location"
+                  value={this.state.location}
                   onChange={this.onChange}
-                  error={errors.company}
-                  info="Could be your own company or one you work for"
+                  error={errors.location}
+                  info="When are you avaliable to hike?"
                 />
                 <TextFieldGroup
                   placeholder="Website"
