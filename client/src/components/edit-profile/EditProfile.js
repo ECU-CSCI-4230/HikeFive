@@ -15,18 +15,30 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: '',
+      zip: '',
+      skillstatus: '',
+      priortrip:'',
+      climber:'',
+      criminal:'',
+      travel:'',
+      purchase:'',
+      overnight:'',
+      camp:'',
+      time:'',
+      bio: '',
+
+      /*
       company: '',
-      website: '',
       location: '',
       status: '',
       skills: '',
       githubusername: '',
-      bio: '',
       twitter: '',
       facebook: '',
       linkedin: '',
       youtube: '',
       instagram: '',
+      */
       errors: {}
     };
 
@@ -47,16 +59,27 @@ class CreateProfile extends Component {
       const profile = nextProps.profile.profile;
 
       // Bring skills array back to CSV
-      const skillsCSV = profile.skills.join(',');
+      //const skillsCSV = profile.skills.join(',');
 
       // If profile field doesnt exist, make empty string
       profile.company = !isEmpty(profile.company) ? profile.company : '';
-      profile.website = !isEmpty(profile.website) ? profile.website : '';
+      profile.zip = !isEmpty(profile.zip) ? profile.zip : '';
+      profile.skillstatus = !isEmpty(profile.skillstatus) ? profile.skillstatus : '';
+      profile.priortrip = !isEmpty(profile.priortrip) ? profile.priortrip : '';
+      profile.climber = !isEmpty(profile.climber) ? profile.climber : '';
+      profile.criminal = !isEmpty(profile.criminal) ? profile.criminal : '';
+      profile.travel = !isEmpty(profile.travel) ? profile.travel : '';
+      profile.purchase = !isEmpty(profile.purchase) ? profile.purchase : '';
+      profile.overnight = !isEmpty(profile.overnight) ? profile.overnight : '';
+      profile.camp = !isEmpty(profile.camp) ? profile.camp : '';
+      profile.time = !isEmpty(profile.time) ? profile.time : '';
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
+      
+      /*
       profile.location = !isEmpty(profile.location) ? profile.location : '';
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
         : '';
-      profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
       profile.twitter = !isEmpty(profile.social.twitter)
         ? profile.social.twitter
@@ -73,22 +96,35 @@ class CreateProfile extends Component {
       profile.instagram = !isEmpty(profile.social.instagram)
         ? profile.social.instagram
         : '';
+        */
 
       // Set component fields state
       this.setState({
         handle: profile.handle,
+        zip: profile.zip,
+        skillstatus: profile.skillstatus,
+        priortrip: profile.priortrip,
+        climber: profile.climber,
+        criminal:profile.criminal,
+        travel:profile.travel,
+        purchase:profile.purchase,
+        overnight:profile.overnight,
+        camp:profile.camp,
+        time:profile.time,
+        bio: profile.bio,
+
+        /*
         company: profile.company,
-        website: profile.website,
         location: profile.location,
         status: profile.status,
         skills: skillsCSV,
         githubusername: profile.githubusername,
-        bio: profile.bio,
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
         youtube: profile.youtube,
         instagram: profile.instagram
+        */
       });
     }
   }
@@ -98,20 +134,30 @@ class CreateProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
+      zip: this.state.zip,
+      skillstatus: this.state.skillstatus,
+      priortrip:this.state.priortrip,
+      climber:this.state.climber,
+      criminal:this.state.criminal,
+      travel:this.state.travel,
+      purchase:this.state.purchase,
+      overnight:this.state.overnight,
+      camp:this.state.camp,
+      time:this.state.time,
+      bio: this.state.bio,
+      /*
       company: this.state.company,
-      website: this.state.website,
       location: this.state.location,
-      status: this.state.status,
+      status: this.state.status,     
       skills: this.state.skills,
       githubusername: this.state.githubusername,
-      bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
       instagram: this.state.instagram
+      */
     };
-
     this.props.createProfile(profileData, this.props.history);
   }
 
@@ -176,12 +222,6 @@ class CreateProfile extends Component {
     }
 
     // Select options for status
-    const options = [
-      { label: '* Select', value: 0 },
-      { label: 'Yes', value: 'Yes' },
-      { label: 'No', value: 'No' }
-    ];
-
     const Skilloptions = [
       { label: '* Select', value: 0 },
       { label: '1', value: 1 },
@@ -191,6 +231,31 @@ class CreateProfile extends Component {
       { label: '5', value: 5 }
     ];
 
+    const options = [
+      { label: '* Select', value: 0 },
+      { label: 'Yes', value: 'Yes' },
+      { label: 'No', value: 'No' }
+    ];   
+
+    /*
+    <TextFieldGroup
+                  placeholder="* Skills"
+                  name="skills"
+                  value={this.state.skills}
+                  onChange={this.onChange}
+                  error={errors.skills}
+                  info="Please use comma separated values (eg.
+                    HTML,CSS,JavaScript,PHP"
+                />
+                <TextFieldGroup
+                  placeholder="Github Username"
+                  name="githubusername"
+                  value={this.state.githubusername}
+                  onChange={this.onChange}
+                  error={errors.githubusername}
+                  info="If you want your latest repos and a Github link, include your username"
+                />
+    */
     return (
       <div className="create-profile">
         <div className="container">
@@ -212,110 +277,90 @@ class CreateProfile extends Component {
                 />
                 <TextFieldGroup
                   placeholder=""
-                  name="website"
-                  value={this.state.website}
+                  name="zip"
+                  value={this.state.zip}
                   onChange={this.onChange}
-                  error={errors.website}
+                  error={errors.zip}
                   info="What is your zip code?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="skillstatus"
+                  name="skillstatus"
+                  value={this.state.skillstatus}
                   onChange={this.onChange}
                   options={Skilloptions}
-                  error={errors.status}
+                  error={errors.skillstatus}
                   info="What is skill level?"
                 />
                 <TextFieldGroup
-                  placeholder=""
-                  name="company"
-                  value={this.state.company}
+                  placeholder="priortrip"
+                  name="priortrip"
+                  value={this.state.priortrip}
                   onChange={this.onChange}
-                  error={errors.company}
+                  error={errors.priortrip}
                   info="What prior trips/hikes have you done?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="climber"
+                  name="climber"
+                  value={this.state.climber}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.climber}
                   info="Are you a Climber?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="criminal"
+                  name="criminal"
+                  value={this.state.criminal}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.criminal}
                   info="Are you a Criminal?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="travel"
+                  name="travel"
+                  value={this.state.travel}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.travel}
                   info="Are you willing to travel to other countries?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="purchase"
+                  name="purchase"
+                  value={this.state.purchase}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.purchase}
                   info="Are you willing to purchase gear or do your already have gear?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="overnight"
+                  name="overnight"
+                  value={this.state.overnight}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.overnight}
                   info="Are you willing to hike overnight?"
                 />
                 <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
+                  placeholder="camp"
+                  name="camp"
+                  value={this.state.camp}
                   onChange={this.onChange}
                   options={options}
-                  error={errors.status}
+                  error={errors.camp}
                   info="Are you willing to camp?"
                 />
                 <TextFieldGroup
                   placeholder=""
-                  name="location"
-                  value={this.state.location}
+                  name="time"
+                  value={this.state.time}
                   onChange={this.onChange}
-                  error={errors.location}
+                  error={errors.time}
                   info="When are you avaliable to hike?"
-                />
-                
-
-
-                <TextFieldGroup
-                  placeholder="* Skills"
-                  name="skills"
-                  value={this.state.skills}
-                  onChange={this.onChange}
-                  error={errors.skills}
-                  info="Please use comma separated values (eg.
-                    HTML,CSS,JavaScript,PHP"
-                />
-                <TextFieldGroup
-                  placeholder="Github Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="If you want your latest repos and a Github link, include your username"
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"

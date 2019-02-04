@@ -5,6 +5,8 @@ module.exports = function validateProfileInput(data) {
   let errors = {};
 
   data.handle = !isEmpty(data.handle) ? data.handle : '';
+  data.skillstatus = !isEmpty(data.skillstatus) ? data.skillstatus : '';
+
   data.status = !isEmpty(data.status) ? data.status : '';
   data.skills = !isEmpty(data.skills) ? data.skills : '';
 
@@ -16,18 +18,57 @@ module.exports = function validateProfileInput(data) {
     errors.handle = 'Profile handle is required';
   }
 
+  if (Validator.isEmpty(data.zip)) {
+    errors.zip = 'zip field is required';
+  }
+
+  if (Validator.isEmpty(data.skillstatus)) {
+    errors.skillstatus = 'skill level field is required';
+  }
+
+  if (Validator.isEmpty(data.priortrip)){
+    errors.priortrip = 'trips field is required'
+  }
+
+  if (Validator.isEmpty(data.climber)) {
+    errors.climber = 'climber field is required';
+  }
+
+  if (Validator.isEmpty(data.criminal)) {
+    errors.criminal = 'criminal field is required';
+  }
+
+  if (Validator.isEmpty(data.travel)) {
+    errors.travel = 'travel field is required';
+  }
+
+  if (Validator.isEmpty(data.purchase)) {
+    errors.purchase = 'purchase field is required';
+  }
+
+  if (Validator.isEmpty(data.travel)) {
+    errors.travel = 'travel field is required';
+  }
+
+  if (Validator.isEmpty(data.overnight)) {
+    errors.overnight = 'overnight field is required';
+  }
+
+  if (Validator.isEmpty(data.camp)) {
+    errors.camp = 'camp field is required';
+  }
+
+  if (Validator.isEmpty(data.time)) {
+    errors.time = 'time field is required';
+  }
+
+  /*
   if (Validator.isEmpty(data.status)) {
     errors.status = 'Status field is required';
   }
 
   if (Validator.isEmpty(data.skills)) {
     errors.skills = 'Skills field is required';
-  }
-
-  if (!isEmpty(data.website)) {
-    if (!Validator.isURL(data.website)) {
-      errors.website = 'Not a valid URL';
-    }
   }
 
   if (!isEmpty(data.youtube)) {
@@ -59,6 +100,7 @@ module.exports = function validateProfileInput(data) {
       errors.instagram = 'Not a valid URL';
     }
   }
+  */
 
   return {
     errors,

@@ -12,12 +12,53 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
+  zip: {
+    type: String
+  },
+  skillstatus: {
+    type: String,
+    required: true
+  },
+  priortrip: {
+    type: String,
+    required: true
+  },
+  climber: {
+    type: String,
+    required: true
+  },
+  criminal: {
+    type:String,
+    required:true
+  },
+  travel: {
+    type:String,
+    required:true
+  },
+  purchase: {
+    type:String,
+    required:true
+  },
+  overnight: {
+    type:String,
+    required:true
+  },
+  camp:{
+    type:String,
+    required:true
+  },
+  time:{
+    type:String,
+    required:true
+  },
+  bio: {
+    type: String
+  },
+  /*
   company: {
     type: String
   },
-  website: {
-    type: String
-  },
+  
   location: {
     type: String
   },
@@ -29,12 +70,9 @@ const ProfileSchema = new Schema({
     type: [String],
     required: true
   },
-  bio: {
-    type: String
-  },
   githubusername: {
     type: String
-  },
+  },*/
   experience: [
     {
       title: {
