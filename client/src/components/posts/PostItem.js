@@ -4,8 +4,24 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import CommentWindow from '../post/CommentWindow';
 
-class PostItem extends Component {
+
+class PostItem extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      showReply: false
+    }
+  }
+
+  onCommentsClick(id) {
+    //e.preventDefault();
+    this.setState({showReply: !this.state.showReply})
+  }
+
+
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -30,7 +46,16 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props;
 
+    const showHide = {
+      'display': this.state.showStatus ? 'block' : 'none'
+    };
+
+    const showReplyForm = () => {
+      this.setState({showForm: true});
+    };
+
     return (
+
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
@@ -48,6 +73,7 @@ class PostItem extends Component {
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>
+
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
@@ -60,6 +86,7 @@ class PostItem extends Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
+
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
                   type="button"
@@ -67,10 +94,25 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
+
+                <div>
+                  <button 
+                    onClick={this.onCommentsClick.bind(this, post._id)} 
+                    type="button"
+                    className="btn btn-info mr-1"
+                    href='#'>Comments
+                  </button>
+                  {this.state.showReply && < CommentWindow / >}
+                </div>
+
+
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Comments
+                  Make a comment
                 </Link>
+
+              
                 {post.user === auth.user.id ? (
+                  
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
@@ -79,6 +121,7 @@ class PostItem extends Component {
                     <i className="fas fa-times" />
                   </button>
                 ) : null}
+                
               </span>
             ) : null}
           </div>
@@ -87,6 +130,7 @@ class PostItem extends Component {
     );
   }
 }
+
 
 PostItem.defaultProps = {
   showActions: true
@@ -104,6 +148,9 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
+//React.render(<CommentWindow />, document.getElementById('app'))
+
 export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
-  PostItem
+  PostItem, CommentWindow
 );
+
