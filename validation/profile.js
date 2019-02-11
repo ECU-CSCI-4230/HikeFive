@@ -13,7 +13,6 @@ module.exports = function validateProfileInput(data) {
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
     errors.handle = 'Handle needs to between 2 and 4 characters';
   }
-
   if (Validator.isEmpty(data.handle)) {
     errors.handle = 'Profile handle is required';
   }
@@ -26,51 +25,19 @@ module.exports = function validateProfileInput(data) {
     errors.skillstatus = 'skill level field is required';
   }
 
-  if (Validator.isEmpty(data.priortrip)){
-    errors.priortrip = 'trips field is required'
-  }
-
   if (Validator.isEmpty(data.climber)) {
     errors.climber = 'climber field is required';
   }
 
-  if (Validator.isEmpty(data.criminal)) {
-    errors.criminal = 'criminal field is required';
-  }
-
   if (Validator.isEmpty(data.travel)) {
     errors.travel = 'travel field is required';
-  }
-
-  if (Validator.isEmpty(data.purchase)) {
-    errors.purchase = 'purchase field is required';
-  }
-
-  if (Validator.isEmpty(data.travel)) {
-    errors.travel = 'travel field is required';
-  }
-
-  if (Validator.isEmpty(data.overnight)) {
-    errors.overnight = 'overnight field is required';
   }
 
   if (Validator.isEmpty(data.camp)) {
     errors.camp = 'camp field is required';
   }
 
-  if (Validator.isEmpty(data.time)) {
-    errors.time = 'time field is required';
-  }
-
   /*
-  if (Validator.isEmpty(data.status)) {
-    errors.status = 'Status field is required';
-  }
-
-  if (Validator.isEmpty(data.skills)) {
-    errors.skills = 'Skills field is required';
-  }
-
   if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
       errors.youtube = 'Not a valid URL';
@@ -86,12 +53,6 @@ module.exports = function validateProfileInput(data) {
   if (!isEmpty(data.facebook)) {
     if (!Validator.isURL(data.facebook)) {
       errors.facebook = 'Not a valid URL';
-    }
-  }
-
-  if (!isEmpty(data.linkedin)) {
-    if (!Validator.isURL(data.linkedin)) {
-      errors.linkedin = 'Not a valid URL';
     }
   }
 

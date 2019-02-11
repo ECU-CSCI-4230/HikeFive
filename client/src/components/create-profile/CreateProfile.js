@@ -16,26 +16,14 @@ class CreateProfile extends Component {
       handle: '',
       zip: '',
       skillstatus: '',
-      priortrip:'',
       climber:'',
-      criminal:'',
       travel:'',
       camp:'',
-      time:'',
       bio: '',
-
-      /*
-      company: '',
-      location: '',
-      status: '',
-      skills: '',
-      githubusername: '',
       twitter: '',
       facebook: '',
-      linkedin: '',
       youtube: '',
       instagram: '',
-      */
       errors: {}
     };
 
@@ -56,25 +44,14 @@ class CreateProfile extends Component {
       handle: this.state.handle,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
-      priortrip:this.state.priortrip,
       climber:this.state.climber,
-      criminal:this.state.criminal,
       travel:this.state.travel,
       camp:this.state.camp,
-      time:this.state.time,
       bio: this.state.bio,
-      /*
-      company: this.state.company,
-      location: this.state.location,
-      status: this.state.status,     
-      skills: this.state.skills,
-      githubusername: this.state.githubusername,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
       youtube: this.state.youtube,
       instagram: this.state.instagram
-      */
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -108,15 +85,6 @@ class CreateProfile extends Component {
             value={this.state.facebook}
             onChange={this.onChange}
             error={errors.facebook}
-          />
-
-          <InputGroup
-            placeholder="Linkedin Profile URL"
-            name="linkedin"
-            icon="fab fa-linkedin"
-            value={this.state.linkedin}
-            onChange={this.onChange}
-            error={errors.linkedin}
           />
 
           <InputGroup
@@ -211,14 +179,6 @@ class CreateProfile extends Component {
                   error={errors.skillstatus}
                   info="What is skill level?"
                 />
-                <TextFieldGroup
-                  placeholder="priortrip"
-                  name="priortrip"
-                  value={this.state.priortrip}
-                  onChange={this.onChange}
-                  error={errors.priortrip}
-                  info="What prior trips/hikes have you done?"
-                />
                 <SelectListGroup
                   placeholder="climber"
                   name="climber"
@@ -227,15 +187,6 @@ class CreateProfile extends Component {
                   options={options}
                   error={errors.climber}
                   info="Are you a Climber?"
-                />
-                <SelectListGroup
-                  placeholder="criminal"
-                  name="criminal"
-                  value={this.state.criminal}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.criminal}
-                  info="Are you a Felon?"
                 />
                 <SelectListGroup
                   placeholder="travel"
@@ -255,14 +206,6 @@ class CreateProfile extends Component {
                   error={errors.camp}
                   info="Are you willing to camp?"
                 />
-                <TextFieldGroup
-                  placeholder=""
-                  name="time"
-                  value={this.state.time}
-                  onChange={this.onChange}
-                  error={errors.time}
-                  info="When are you avaliable to hike?(This information is kept confidential)"
-                />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"
                   name="bio"
@@ -271,7 +214,6 @@ class CreateProfile extends Component {
                   error={errors.bio}
                   info="Tell us a little about yourself"
                 />
-
                 <div className="mb-3">
                   <button
                     type="button"
@@ -300,17 +242,14 @@ class CreateProfile extends Component {
     );
   }
 }
-
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
-
 const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
 });
-
 export default connect(mapStateToProps, { createProfile })(
   withRouter(CreateProfile)
 );

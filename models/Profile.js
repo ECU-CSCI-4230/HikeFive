@@ -19,17 +19,9 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
-  priortrip: {
-    type: String,
-    required: true
-  },
   climber: {
     type: String,
     required: true
-  },
-  criminal: {
-    type:String,
-    required:true
   },
   travel: {
     type:String,
@@ -39,36 +31,9 @@ const ProfileSchema = new Schema({
     type:String,
     required:true
   },
-  time:{
-    type:String,
-    required:true
-  },
   bio: {
     type: String
   },
-  skills: {
-    type: [String],
-    required: true
-  },
-  /*
-  company: {
-    type: String
-  },
-  
-  location: {
-    type: String
-  },
-  status: {
-    type: String,
-    required: true
-  },
-  skills: {
-    type: [String],
-    required: true
-  },
-  githubusername: {
-    type: String
-  },*/
 
   trip: [
     {
@@ -93,6 +58,7 @@ const ProfileSchema = new Schema({
       }
     }
   ],
+
   experience: [
     {
       title: {
