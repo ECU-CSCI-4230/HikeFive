@@ -20,8 +20,6 @@ class CreateProfile extends Component {
       climber:'',
       criminal:'',
       travel:'',
-      purchase:'',
-      overnight:'',
       camp:'',
       time:'',
       bio: '',
@@ -62,8 +60,6 @@ class CreateProfile extends Component {
       climber:this.state.climber,
       criminal:this.state.criminal,
       travel:this.state.travel,
-      purchase:this.state.purchase,
-      overnight:this.state.overnight,
       camp:this.state.camp,
       time:this.state.time,
       bio: this.state.bio,
@@ -239,7 +235,7 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   options={options}
                   error={errors.criminal}
-                  info="Are you a Criminal?"
+                  info="Are you a Felon?"
                 />
                 <SelectListGroup
                   placeholder="travel"
@@ -249,24 +245,6 @@ class CreateProfile extends Component {
                   options={options}
                   error={errors.travel}
                   info="Are you willing to travel to other countries?"
-                />
-                <SelectListGroup
-                  placeholder="purchase"
-                  name="purchase"
-                  value={this.state.purchase}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.purchase}
-                  info="Are you willing to purchase gear or do your already have gear?"
-                />
-                <SelectListGroup
-                  placeholder="overnight"
-                  name="overnight"
-                  value={this.state.overnight}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.overnight}
-                  info="Are you willing to hike overnight?"
                 />
                 <SelectListGroup
                   placeholder="camp"
@@ -283,7 +261,7 @@ class CreateProfile extends Component {
                   value={this.state.time}
                   onChange={this.onChange}
                   error={errors.time}
-                  info="When are you avaliable to hike?"
+                  info="When are you avaliable to hike?(This information is kept confidential)"
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"

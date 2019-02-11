@@ -10,6 +10,9 @@ import { createProfile, getCurrentProfile } from '../../actions/profileActions';
 import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -19,10 +22,7 @@ class CreateProfile extends Component {
       skillstatus: '',
       priortrip:'',
       climber:'',
-      criminal:'',
       travel:'',
-      purchase:'',
-      overnight:'',
       camp:'',
       time:'',
       bio: '',
@@ -67,10 +67,7 @@ class CreateProfile extends Component {
       profile.skillstatus = !isEmpty(profile.skillstatus) ? profile.skillstatus : '';
       profile.priortrip = !isEmpty(profile.priortrip) ? profile.priortrip : '';
       profile.climber = !isEmpty(profile.climber) ? profile.climber : '';
-      profile.criminal = !isEmpty(profile.criminal) ? profile.criminal : '';
       profile.travel = !isEmpty(profile.travel) ? profile.travel : '';
-      profile.purchase = !isEmpty(profile.purchase) ? profile.purchase : '';
-      profile.overnight = !isEmpty(profile.overnight) ? profile.overnight : '';
       profile.camp = !isEmpty(profile.camp) ? profile.camp : '';
       profile.time = !isEmpty(profile.time) ? profile.time : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
@@ -105,10 +102,7 @@ class CreateProfile extends Component {
         skillstatus: profile.skillstatus,
         priortrip: profile.priortrip,
         climber: profile.climber,
-        criminal:profile.criminal,
         travel:profile.travel,
-        purchase:profile.purchase,
-        overnight:profile.overnight,
         camp:profile.camp,
         time:profile.time,
         bio: profile.bio,
@@ -138,10 +132,7 @@ class CreateProfile extends Component {
       skillstatus: this.state.skillstatus,
       priortrip:this.state.priortrip,
       climber:this.state.climber,
-      criminal:this.state.criminal,
       travel:this.state.travel,
-      purchase:this.state.purchase,
-      overnight:this.state.overnight,
       camp:this.state.camp,
       time:this.state.time,
       bio: this.state.bio,
@@ -166,6 +157,7 @@ class CreateProfile extends Component {
   }
 
   render() {
+    const { profile } = this.props.profile;
     const { errors, displaySocialInputs } = this.state;
 
     let socialInputs;
@@ -261,7 +253,7 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+              <Link to={`/profile/${profile.handle}`} className="btn btn-light">
                 Go Back
               </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
@@ -310,15 +302,6 @@ class CreateProfile extends Component {
                   info="Are you a Climber?"
                 />
                 <SelectListGroup
-                  placeholder="criminal"
-                  name="criminal"
-                  value={this.state.criminal}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.criminal}
-                  info="Are you a Criminal?"
-                />
-                <SelectListGroup
                   placeholder="travel"
                   name="travel"
                   value={this.state.travel}
@@ -326,24 +309,6 @@ class CreateProfile extends Component {
                   options={options}
                   error={errors.travel}
                   info="Are you willing to travel to other countries?"
-                />
-                <SelectListGroup
-                  placeholder="purchase"
-                  name="purchase"
-                  value={this.state.purchase}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.purchase}
-                  info="Are you willing to purchase gear or do your already have gear?"
-                />
-                <SelectListGroup
-                  placeholder="overnight"
-                  name="overnight"
-                  value={this.state.overnight}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.overnight}
-                  info="Are you willing to hike overnight?"
                 />
                 <SelectListGroup
                   placeholder="camp"
@@ -360,7 +325,7 @@ class CreateProfile extends Component {
                   value={this.state.time}
                   onChange={this.onChange}
                   error={errors.time}
-                  info="When are you avaliable to hike?"
+                  info="When are you avaliable to hike? (This information is kept confidential)"
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"

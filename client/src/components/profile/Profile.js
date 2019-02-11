@@ -33,8 +33,8 @@ class Profile extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
+              <Link to="/edit-profile" className="btn btn-light mb-3 float-left">
+                Edit
               </Link>
             </div>
             <div className="col-md-6" />
@@ -42,7 +42,7 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
           <ProfileCreds
-            education={profile.education}
+            trip={profile.trip}
             experience={profile.experience}
           />
           {profile.githubusername ? (

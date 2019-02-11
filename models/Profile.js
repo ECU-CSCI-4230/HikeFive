@@ -35,14 +35,6 @@ const ProfileSchema = new Schema({
     type:String,
     required:true
   },
-  purchase: {
-    type:String,
-    required:true
-  },
-  overnight: {
-    type:String,
-    required:true
-  },
   camp:{
     type:String,
     required:true
@@ -77,6 +69,30 @@ const ProfileSchema = new Schema({
   githubusername: {
     type: String
   },*/
+
+  trip: [
+    {
+      name: {
+        type: String,
+        required: true
+      },
+      date: {
+        type: Date,
+        required: true
+      },
+      location: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String
+      },
+      difficulty: {
+        type: String,
+        required: true
+      }
+    }
+  ],
   experience: [
     {
       title: {
@@ -106,6 +122,7 @@ const ProfileSchema = new Schema({
       }
     }
   ],
+  //This needs to be deleted
   education: [
     {
       school: {
@@ -144,9 +161,6 @@ const ProfileSchema = new Schema({
       type: String
     },
     facebook: {
-      type: String
-    },
-    linkedin: {
       type: String
     },
     instagram: {
