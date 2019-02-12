@@ -105,8 +105,8 @@ class PostItem extends React.Component {
                     className="btn btn-info mr-1"
                     href='#'>Comments
                   </button>
-                  {this.state.showReply && <CommentForm postId={post._id} />}
                   {this.state.showReply && <CommentFeed postId={post._id} comments={post.comments} />}
+                  {this.state.showReply && <CommentForm postId={post._id} />}
                 </div>
 
 
