@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
-import Experience from './Experience';
-import Education from './Education';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -16,10 +14,14 @@ class Dashboard extends Component {
   onDeleteClick(e) {
     this.props.deleteAccount();
   }
+   onChangePassword(e){
+    this.props.changePassword();
+}
 
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
+
     let dashboardContent;
 
     if (profile === null || loading) {
@@ -27,22 +29,19 @@ class Dashboard extends Component {
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
-        //console.log("IM HERE");
-        //console.log(profile.handle);
         dashboardContent = (
           <div>
             <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+              Welcome <Link to={`/profile/${profile.handle}`} >{user.name}</Link>
             </p>
             <p className="lead text-muted">
-              <Link to={`/personfeed/${profile.handle}`}>Person Wall</Link>
+              <Link to={`/personfeed/${profile.handle}`} >Person Wall</Link>
             </p>
+
             <ProfileActions />
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
-            <div style={{ marginBottom: '60px' }} />
+            <div style={{  marginBottom: '60px' }} />
             <button
-              onClick={this.onDeleteClick.bind(this)}
+              onClick={ this.onDeleteClick.bind(this)}
               className="btn btn-danger"
             >
               Delete My Account
@@ -68,7 +67,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
+              <h1 className="display-4">Account Settings</h1>
               {dashboardContent}
             </div>
           </div>
@@ -83,13 +82,14 @@ Dashboard.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
-};
+} ;
 
 const mapStateToProps = state => ({
   profile: state.profile,
   auth: state.auth
-});
+} );
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
   Dashboard
 );
+
