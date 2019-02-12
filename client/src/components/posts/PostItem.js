@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
-import CommentWindow from '../post/CommentWindow';
 import CommentFeed from '../post/CommentFeed';
 
 
@@ -152,6 +151,6 @@ const mapStateToProps = state => ({
 //React.render(<CommentWindow />, document.getElementById('app'))
 
 export default connect(mapStateToProps, { deletePost, addLike, removeLike })(
-  PostItem, CommentWindow
+  PostItem
 );
 
