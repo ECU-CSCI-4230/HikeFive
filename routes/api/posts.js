@@ -7,6 +7,8 @@ const passport = require('passport');
 const Post = require('../../models/Post');
 // Profile model
 const Profile = require('../../models/Profile');
+// Personal Post model
+const PersonPost = require('../../models/PersonPost');
 
 // Validation
 const validatePostInput = require('../../validation/post');
@@ -25,6 +27,18 @@ router.get('/', (req, res) => {
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 });
+
+// @route   GET api/posts/getpersonal
+// @desc    Get personal posts
+// @access  Public
+router.post('/getpersonal',(req,res) => {
+  PersonPost.find({ handle: req.body.handle})
+    .sort({date: -1})
+    .then(posts => {
+      res.json(posts);
+    })
+    .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
+})
 
 // @route   GET api/posts/:id
 // @desc    Get post by id
@@ -59,6 +73,31 @@ router.post(
       user: req.user.id
     });
 
+    newPost.save().then(post => res.json(post));
+  }
+);
+
+// @route   POST api/posts/personal
+// @desc    Create personal post
+// @access  Private
+router.post(
+  '/personal',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // If any errors, send 400 with errors object
+      return res.status(400).json(errors);
+    }
+    const newPost = new PersonPost({
+      text: req.body.text,
+      handle: req.body.handle,
+      name: req.body.name,
+      avatar: req.body.avatar,
+      user: req.user.id
+    });
     newPost.save().then(post => res.json(post));
   }
 );

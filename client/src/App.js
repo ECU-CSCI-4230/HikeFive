@@ -25,6 +25,7 @@ import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
+import personfeed from './components/posts/PersonPosts';
 
 import './App.css';
 
@@ -48,7 +49,11 @@ if (localStorage.jwtToken) {
     window.location.href = '/login';
   }
 }
-
+/*
+<Switch>
+                <PrivateRoute exact path="/personfeed:handle" component={personfeed} />
+              </Switch>
+*/
 class App extends Component {
   render() {
     return (
@@ -62,6 +67,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/personfeed/:handle" component={personfeed} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

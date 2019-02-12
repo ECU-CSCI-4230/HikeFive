@@ -20,7 +20,6 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-
     let dashboardContent;
 
     if (profile === null || loading) {
@@ -28,10 +27,15 @@ class Dashboard extends Component {
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
+        //console.log("IM HERE");
+        //console.log(profile.handle);
         dashboardContent = (
           <div>
             <p className="lead text-muted">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+            </p>
+            <p className="lead text-muted">
+              <Link to={`/personfeed/${profile.handle}`}>Person Wall</Link>
             </p>
             <ProfileActions />
             <Experience experience={profile.experience} />

@@ -48,6 +48,44 @@ export const getPosts = () => dispatch => {
     );
 };
 
+// Add Personal Posts
+export const addPersonalPost = postData => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post('/api/posts/personal', postData)
+    .then(res =>
+      dispatch({
+        type: ADD_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Get Personal Posts
+export const getPersonalPost = handle => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .post('/api/posts/getpersonal',handle = {handle})
+    .then(res =>
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POSTS,
+        payload: null
+      })
+    );
+};
+
 // Get Post
 export const getPost = id => dispatch => {
   dispatch(setPostLoading());
