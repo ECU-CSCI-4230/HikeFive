@@ -51,7 +51,8 @@ class Dashboard extends Component {
                 <i className="fas fa-key text-info mr-1" /> Change Password
               </Link>
               <br></br>
-              <button onClick={ this.onDeleteClick.bind(this)} className="btn btn-danger">Delete My Account </button>
+              <button onClick={ this.onDeleteClick.bind(this)} className="btn btn-danger">
+                <i class="fas fa-trash-alt" /> Delete My Account </button>
             </div>          
           </div>
         );
