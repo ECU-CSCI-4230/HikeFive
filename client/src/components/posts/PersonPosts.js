@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import PersonPostForm from './PersonPostForm';
-import PostFeed from './PostFeed';
+import PersonPostFeed from './PersonPostFeed';
 import Spinner from '../common/Spinner';
 import {getPersonalPost, getPosts } from '../../actions/postActions';
 
@@ -18,11 +18,12 @@ class PersonPosts extends Component {
     const { posts, loading } = this.props.post;
     let postContent;
     const handle = this.props.match.params.handle;
+    //console.log(handle);
     //console.log(posts);
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      postContent = <PostFeed posts={posts} />;
+      postContent = <PersonPostFeed posts={posts} />;
     }
 
     return (

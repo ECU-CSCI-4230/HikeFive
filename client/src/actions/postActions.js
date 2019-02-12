@@ -10,44 +10,6 @@ import {
   DELETE_POST
 } from './types';
 
-// Add Post
-export const addPost = postData => dispatch => {
-  dispatch(clearErrors());
-  axios
-    .post('/api/posts', postData)
-    .then(res =>
-      dispatch({
-        type: ADD_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-
-// Get Posts
-export const getPosts = () => dispatch => {
-  dispatch(setPostLoading());
-  axios
-    .get('/api/posts')
-    .then(res =>
-      dispatch({
-        type: GET_POSTS,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_POSTS,
-        payload: null
-      })
-    );
-};
-
 // Add Personal Posts
 export const addPersonalPost = postData => dispatch => {
   dispatch(clearErrors());
@@ -72,6 +34,45 @@ export const getPersonalPost = handle => dispatch => {
   dispatch(setPostLoading());
   axios
     .post('/api/posts/getpersonal',handle = {handle})
+    .then(res =>
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POSTS,
+        payload: null
+      })
+    );
+};
+
+//=======================================================================================
+// Add Post
+export const addPost = postData => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post('/api/posts', postData)
+    .then(res =>
+      dispatch({
+        type: ADD_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Get Posts
+export const getPosts = () => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get('/api/posts')
     .then(res =>
       dispatch({
         type: GET_POSTS,
