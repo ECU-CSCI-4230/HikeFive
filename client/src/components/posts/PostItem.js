@@ -5,6 +5,8 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import CommentFeed from '../post/CommentFeed';
+import CommentForm from '../post/CommentForm';
+
 
 
 class PostItem extends React.Component {
@@ -102,6 +104,7 @@ class PostItem extends React.Component {
                     className="btn btn-info mr-1"
                     href='#'>Comments
                   </button>
+                  {this.state.showReply && <CommentForm postId={post._id} />}
                   {this.state.showReply && <CommentFeed postId={post._id} comments={post.comments} />}
                 </div>
 
