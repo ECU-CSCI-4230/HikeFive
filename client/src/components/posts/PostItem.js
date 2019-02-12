@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike} from '../../actions/postActions';
-import CommentFeed from '../post/CommentFeed';
+import CommentWindow from '../post/CommentWindow';
 import CommentForm from '../post/CommentForm';
 
 
@@ -86,21 +86,22 @@ class PostItem extends React.Component {
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
 
-                <div>
+
                   <button 
                     onClick={this.onCommentsClick.bind(this, post._id)} 
                     type="button"
-                    className="btn btn-info mr-1"
+                    className="btn btn-light mr-1"
                     href='#'>Comments
                   </button>
-                  {this.state.showReply && <CommentFeed postId={post._id} comments={post.comments} />}
+                  {this.state.showReply && <CommentWindow postId={post._id} comments={post.comments} />}
                   {this.state.showReply && <CommentForm postId={post._id} />}
-                </div>
 
 
+                <div>
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
                   Make a comment
                 </Link>
+                </div>
 
               
                 {post.user === auth.user.id ? (
