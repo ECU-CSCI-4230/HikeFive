@@ -18,12 +18,13 @@ class PostItem extends React.Component {
     }
   }
 
-  onCommentsClick(id) {
+
+  onCommentsClick() {
     //e.preventDefault();
     this.setState({showReply: !this.state.showReply})
   }
 
-
+  
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
