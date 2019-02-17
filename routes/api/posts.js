@@ -141,10 +141,17 @@ router.post(
             post.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
           ) {
-            return res
-              .status(400)
-              .json({ alreadyliked: 'User already liked this post' });
-          }
+            // Get remove index
+          const removeIndex = post.likes
+          .map(item => item.user.toString())
+          .indexOf(req.user.id);
+
+        // Splice out of array
+        post.likes.splice(removeIndex, 1);
+
+        // Save
+        post.save().then(post => res.json(post));
+          }else
 
           // Add user id to likes array
           post.likes.unshift({ user: req.user.id });
