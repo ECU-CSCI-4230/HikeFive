@@ -121,6 +121,7 @@ router.post(
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.zip) profileFields.zip = req.body.zip;
+    if (req.body.gender) profileFields.gender = req.body.gender;
     if (req.body.skillstatus) profileFields.skillstatus = req.body.skillstatus;
     //DELETE LINE BELOW
     if (req.body.priortrip) profileFields.priortrip = req.body.priortrip;
