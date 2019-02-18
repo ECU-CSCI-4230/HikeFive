@@ -14,6 +14,7 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: '',
+      gender: '',
       zip: '',
       skillstatus: '',
       climber:'',
@@ -42,6 +43,7 @@ class CreateProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
+      gender: this.state.gender,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
       climber:this.state.climber,
@@ -124,6 +126,13 @@ class CreateProfile extends Component {
       { label: 'No', value: 'No' }
     ];
 
+    const genderOptions = [
+      { label: '* Select', value: 0 },
+      { label: 'Male', value: 'male' },
+      { label: 'Female', value: 'female'}, 
+      { label: 'Other', value: 'other;'}
+    ];
+
     /*
     <TextFieldGroup
                   placeholder="* Skills"
@@ -161,6 +170,15 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL. Your full name, company name, nickname"
+                />
+                 <SelectListGroup
+                  placeholder="gender"
+                  name="gender"
+                  value={this.state.gender}
+                  onChange={this.onChange}
+                  options={genderOptions}
+                  error={errors.gender}
+                  info="Gender"
                 />
                 <TextFieldGroup
                   placeholder=""

@@ -12,6 +12,10 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
+  gender: {
+    type:String,
+    required: true
+  },
   zip: {
     type: String
   },

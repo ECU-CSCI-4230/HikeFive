@@ -37,7 +37,6 @@ module.exports = function validateProfileInput(data) {
     errors.camp = 'camp field is required';
   }
 
-  /*
   if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
       errors.youtube = 'Not a valid URL';
@@ -61,7 +60,6 @@ module.exports = function validateProfileInput(data) {
       errors.instagram = 'Not a valid URL';
     }
   }
-  */
 
   return {
     errors,
