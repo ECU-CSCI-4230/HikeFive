@@ -30,7 +30,7 @@ export const addPersonalPost = postData => dispatch => {
 };
 
 // Get Personal Posts
-export const getPersonalPost = handle => dispatch => {
+export const getPersonalPosts = handle => dispatch => {
   dispatch(setPostLoading());
   axios
     .post('/api/posts/getpersonal',handle = {handle})
@@ -48,6 +48,89 @@ export const getPersonalPost = handle => dispatch => {
     );
 };
 
+// Get Post
+export const getPersonalPost = id => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/getpersonal/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_POST,
+        payload: null
+      })
+    );
+};
+
+/*
+// Delete Post
+export const deletePost = id => dispatch => {
+  axios
+    .delete(`/api/posts/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_POST,
+        payload: id
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Add Like
+export const addLike = id => dispatch => {
+  axios
+    .post(`/api/posts/like/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Add Comment
+export const addComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/${postId}`, commentData)
+    .then(res =>
+      dispatch(getPosts())
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
+// Delete Comment
+export const deleteComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res =>
+      dispatch(getPosts())
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+*/
 //=======================================================================================
 // Add Post
 export const addPost = postData => dispatch => {

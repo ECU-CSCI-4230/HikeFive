@@ -18,17 +18,8 @@ const validatePostInput = require('../../validation/post');
 // @access  Public
 router.get('/test', (req, res) => res.json({ msg: 'Posts Works' }));
 
-// @route   GET api/posts
-// @desc    Get posts
-// @access  Public
-router.get('/', (req, res) => {
-  Post.find()
-    .sort({ date: -1 })
-    .then(posts => res.json(posts))
-    .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
-});
-
-// @route   GET api/posts/getpersonal
+//=============================================================================================
+// @route   POST api/posts/getpersonal
 // @desc    Get personal posts
 // @access  Public
 router.post('/getpersonal',(req,res) => {
@@ -39,6 +30,53 @@ router.post('/getpersonal',(req,res) => {
     })
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 })
+
+// @route   GET api/posts/getpersonal/:id
+// @desc    Get post by id
+// @access  Public
+router.get('/getpersonal/:id', (req, res) => {
+  PersonPost.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err =>
+      res.status(404).json({ nopostfound: 'No post found with that ID' })
+    );
+});
+
+// @route   POST api/posts/personal
+// @desc    Create personal post
+// @access  Private
+router.post(
+  '/personal',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // If any errors, send 400 with errors object
+      return res.status(400).json(errors);
+    }
+    const newPost = new PersonPost({
+      text: req.body.text,
+      handle: req.body.handle,
+      name: req.body.name,
+      avatar: req.body.avatar,
+      user: req.user.id
+    });
+    newPost.save().then(post => res.json(post));
+  }
+);
+
+//====================================================================================
+// @route   GET api/posts
+// @desc    Get posts
+// @access  Public
+router.get('/', (req, res) => {
+  Post.find()
+    .sort({ date: -1 })
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
+});
 
 // @route   GET api/posts/:id
 // @desc    Get post by id
@@ -73,31 +111,6 @@ router.post(
       user: req.user.id
     });
 
-    newPost.save().then(post => res.json(post));
-  }
-);
-
-// @route   POST api/posts/personal
-// @desc    Create personal post
-// @access  Private
-router.post(
-  '/personal',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      // If any errors, send 400 with errors object
-      return res.status(400).json(errors);
-    }
-    const newPost = new PersonPost({
-      text: req.body.text,
-      handle: req.body.handle,
-      name: req.body.name,
-      avatar: req.body.avatar,
-      user: req.user.id
-    });
     newPost.save().then(post => res.json(post));
   }
 );

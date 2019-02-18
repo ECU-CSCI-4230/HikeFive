@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import PersonPostForm from './PersonPostForm';
 import PersonPostFeed from './PersonPostFeed';
 import Spinner from '../common/Spinner';
-import {getPersonalPost, getPosts } from '../../actions/postActions';
+import {getPersonalPosts, getPosts } from '../../actions/postActions';
 
 
 class PersonPosts extends Component {
     componentDidMount() {
-        this.props.getPersonalPost(this.props.match.params.handle);
+        this.props.getPersonalPosts(this.props.match.params.handle);
       }
 
   render() {
@@ -42,7 +42,7 @@ class PersonPosts extends Component {
 }
 
 PersonPosts.propTypes = {
-    getPersonalPost: PropTypes.func.isRequired,
+    getPersonalPosts: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired
   };
 
@@ -50,4 +50,4 @@ PersonPosts.propTypes = {
     post: state.post
   });
 
-export default connect(mapStateToProps, {getPersonalPost})(PersonPosts);
+export default connect(mapStateToProps, {getPersonalPosts})(PersonPosts);
