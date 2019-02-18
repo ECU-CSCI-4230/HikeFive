@@ -54,14 +54,23 @@ class EditProfile extends Component {
       profile.camp = !isEmpty(profile.camp) ? profile.camp : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook: '';
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter: '';
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube: '';
-      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram: '';
+      profile.facebook = !isEmpty(profile.social.facebook) 
+        ? profile.social.facebook: 
+        '';
+      profile.twitter = !isEmpty(profile.social.twitter) 
+        ? profile.social.twitter: 
+        '';
+      profile.youtube = !isEmpty(profile.social.youtube) 
+        ? profile.social.youtube: 
+        '';
+      profile.instagram = !isEmpty(profile.social.instagram) 
+        ? profile.social.instagram: 
+        '';
       
       // Set component fields state
       this.setState({
         handle: profile.handle,
+        gender: profile.gender,
         zip: profile.zip,
         skillstatus: profile.skillstatus,
         climber: profile.climber,
@@ -81,6 +90,7 @@ class EditProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
+      gender: this.state.gender,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
       climber:this.state.climber,
@@ -179,13 +189,18 @@ class EditProfile extends Component {
                   error={errors.githubusername}
                   info="If you want your latest repos and a Github link, include your username"
                 />
+
+                    //Link to take you to profile 
+                <Link to={`/profile/${this.state.handle}`} className="btn btn-light">
+                Go Back
+            </Link>
     */
    return (
     <div className="edit-profile">
       <div className="container">
         <div className="row">
           <div className="col-md-8 m-auto">
-            <Link to={`/profile/${this.state.handle}`} className="btn btn-light">
+            <Link to={`/dashboard`} className="btn btn-light">
                 Go Back
             </Link>
             <h1 className="display-4 text-center">Edit Profile</h1>

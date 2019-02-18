@@ -13,8 +13,13 @@ module.exports = function validateProfileInput(data) {
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
     errors.handle = 'Handle needs to between 2 and 4 characters';
   }
+  
   if (Validator.isEmpty(data.handle)) {
     errors.handle = 'Profile handle is required';
+  }
+
+  if (Validator.isEmpty(data.gender)) {
+    errors.gender = 'gender field is required';
   }
 
   if (Validator.isEmpty(data.zip)) {
@@ -37,7 +42,6 @@ module.exports = function validateProfileInput(data) {
     errors.camp = 'camp field is required';
   }
 
-  /*
   if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
       errors.youtube = 'Not a valid URL';
@@ -61,7 +65,6 @@ module.exports = function validateProfileInput(data) {
       errors.instagram = 'Not a valid URL';
     }
   }
-  */
 
   return {
     errors,
