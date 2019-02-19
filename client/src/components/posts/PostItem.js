@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike} from '../../actions/postActions';
 import CommentWindow from '../post/CommentWindow';
-import CommentForm from '../post/CommentForm';
+import CommentWindowForm from '../post/CommentWindowForm';
 
 
 
@@ -86,7 +86,7 @@ class PostItem extends React.Component {
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
 
-
+                
                   <button 
                     onClick={this.onCommentsClick.bind(this, post._id)} 
                     type="button"
@@ -94,7 +94,7 @@ class PostItem extends React.Component {
                     href='#'>Comments
                   </button>
                   {this.state.showReply && <CommentWindow postId={post._id} comments={post.comments} />}
-                  {this.state.showReply && <CommentForm postId={post._id} />}
+                  {this.state.showReply && <CommentWindowForm postId={post._id} />}
 
 
                 <div>

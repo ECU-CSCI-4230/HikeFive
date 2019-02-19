@@ -252,6 +252,44 @@ export const deleteComment = (postId, commentId) => dispatch => {
     );
 };
 
+// Add Nonrefresh Comment
+export const addNEWComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/${postId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Nonrefresh Comment
+export const deleteNEWComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
 // Set loading state
 export const setPostLoading = () => {
   return {
