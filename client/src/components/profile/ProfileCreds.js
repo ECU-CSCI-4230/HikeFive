@@ -41,14 +41,14 @@ class ProfileCreds extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-6">
-          <Link to="/add-trip" className="btn btn-light">
-            Add Trip
-          </Link>
-        </div>
         <div className="col-md-12">
         <div className="card card-body bg-light mb-3">
           <h3 className="text-center text-info">Trips/Hikes</h3>
+          <div className="col-md-12 text-center">
+            <Link to="/add-trip" className="btn btn-light">
+              <u>Add Trip</u>
+            </Link>
+          </div>
           {tripItems.length > 0 ? (
             <ul className="list-group list-group-flush">{tripItems}</ul>
           ) : (
