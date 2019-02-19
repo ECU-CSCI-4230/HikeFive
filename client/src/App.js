@@ -24,6 +24,7 @@ import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
+import personPost from './components/post/PersonPost';
 import NotFound from './components/not-found/NotFound';
 import personfeed from './components/posts/PersonPosts';
 
@@ -67,7 +68,12 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
-              <Route exact path="/personfeed/:handle" component={personfeed} />
+              <Switch>
+                <PrivateRoute exact path="/personfeed/:handle" component={personfeed} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:handle/:id" component={personPost}/>
+              </Switch>
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

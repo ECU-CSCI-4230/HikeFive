@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, addLike} from '../../actions/postActions';
-import CommentWindow from '../post/CommentWindow';
-import CommentForm from '../post/CommentForm';
+import { deletePersonalPost, addPersonalLike} from '../../actions/postActions';
+import PersonCommentWindow from '../post/PersonCommentWindow';
+import PersonCommentForm from '../post/PersonCommentForm';
 
 
 
@@ -26,11 +26,11 @@ class PersonPostItem extends React.Component {
 
   
   onDeleteClick(id) {
-    this.props.deletePost(id);
+    this.props.deletePersonalPost(id);
   }
 
   onLikeClick(id) {
-    this.props.addLike(id);
+    this.props.addPersonalLike(id);
   }
 
   findUserLike(likes) {
@@ -44,7 +44,8 @@ class PersonPostItem extends React.Component {
 
   render() {
     const { post, auth, showActions } = this.props;
-
+    const handle = this.props.handle;
+  
     const showHide = {
       'display': this.state.showStatus ? 'block' : 'none'
     };
@@ -93,12 +94,12 @@ class PersonPostItem extends React.Component {
                     className="btn btn-light mr-1"
                     href='#'>Comments
                   </button>
-                  {this.state.showReply && <CommentWindow postId={post._id} comments={post.comments} />}
-                  {this.state.showReply && <CommentForm postId={post._id} />}
+                  {this.state.showReply && <PersonCommentWindow postId={post._id} comments={post.comments} />}
+                  {this.state.showReply && <PersonCommentForm postId={post._id} />}
 
 
                 <div>
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                <Link to={`/post/${handle}/${post._id}`} className="btn btn-info mr-1">
                   Make a comment
                 </Link>
                 </div>
@@ -130,8 +131,8 @@ PersonPostItem.defaultProps = {
 };
 
 PersonPostItem.propTypes = {
-  deletePost: PropTypes.func.isRequired,
-  addLike: PropTypes.func.isRequired,
+  deletePersonalPost: PropTypes.func.isRequired,
+  addPersonalLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -142,7 +143,7 @@ const mapStateToProps = state => ({
 
 //React.render(<CommentWindow />, document.getElementById('app'))
 
-export default connect(mapStateToProps, { deletePost, addLike})(
+export default connect(mapStateToProps, { deletePersonalPost, addPersonalLike})(
   PersonPostItem
 );
 

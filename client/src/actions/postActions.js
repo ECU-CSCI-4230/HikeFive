@@ -67,11 +67,10 @@ export const getPersonalPost = id => dispatch => {
     );
 };
 
-/*
 // Delete Post
-export const deletePost = id => dispatch => {
+export const deletePersonalPost = id => dispatch => {
   axios
-    .delete(`/api/posts/${id}`)
+    .delete(`/api/posts/delete/${id}`)
     .then(res =>
       dispatch({
         type: DELETE_POST,
@@ -87,9 +86,9 @@ export const deletePost = id => dispatch => {
 };
 
 // Add Like
-export const addLike = id => dispatch => {
+export const addPersonalLike = id => dispatch => {
   axios
-    .post(`/api/posts/like/${id}`)
+    .post(`/api/posts/like/personal/${id}`)
     .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
@@ -100,10 +99,10 @@ export const addLike = id => dispatch => {
 };
 
 // Add Comment
-export const addComment = (postId, commentData) => dispatch => {
+export const addPersonalComment = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
-    .post(`/api/posts/comment/${postId}`, commentData)
+    .post(`/api/posts/comment/personal/${postId}`, commentData)
     .then(res =>
       dispatch(getPosts())
     )
@@ -117,9 +116,9 @@ export const addComment = (postId, commentData) => dispatch => {
 
 
 // Delete Comment
-export const deleteComment = (postId, commentId) => dispatch => {
+export const deletePersonalComment = (postId, commentId) => dispatch => {
   axios
-    .delete(`/api/posts/comment/${postId}/${commentId}`)
+    .delete(`/api/posts/comment/personal/${postId}/${commentId}`)
     .then(res =>
       dispatch(getPosts())
     )
@@ -130,7 +129,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
       })
     );
 };
-*/
+
 //=======================================================================================
 // Add Post
 export const addPost = postData => dispatch => {

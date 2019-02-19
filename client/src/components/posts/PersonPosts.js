@@ -23,7 +23,7 @@ class PersonPosts extends Component {
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      postContent = <PersonPostFeed posts={posts} />;
+      postContent = <PersonPostFeed handle = {handle} posts={posts} />;
     }
 
     return (
