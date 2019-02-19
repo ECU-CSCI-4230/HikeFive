@@ -99,7 +99,7 @@ class PostItem extends React.Component {
 
                 <div>
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                  Make a comment
+                  Go to Current Post
                 </Link>
                 </div>
 

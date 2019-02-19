@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePersonalPost, addPersonalLike} from '../../actions/postActions';
 import PersonCommentWindow from '../post/PersonCommentWindow';
-import PersonCommentForm from '../post/PersonCommentForm';
+import PersonCommentWindowForm from '../post/PersonCommentWindowForm';
 
 
 
@@ -95,12 +95,12 @@ class PersonPostItem extends React.Component {
                     href='#'>Comments
                   </button>
                   {this.state.showReply && <PersonCommentWindow postId={post._id} comments={post.comments} />}
-                  {this.state.showReply && <PersonCommentForm postId={post._id} />}
+                  {this.state.showReply && <PersonCommentWindowForm postId={post._id} />}
 
 
                 <div>
                 <Link to={`/post/${handle}/${post._id}`} className="btn btn-info mr-1">
-                  Make a comment
+                  Go to Current Post
                 </Link>
                 </div>
 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deletePersonalComment } from '../../actions/postActions';
+import { deletePersonaNEWComment } from '../../actions/postActions';
 
 class PersonCommentItem extends Component {
   onDeleteClick(postId, commentId) {
-    this.props.deletePersonalComment(postId, commentId);
+    this.props.deletePersonaNEWComment(postId, commentId);
   }
 
   render() {
@@ -44,7 +44,7 @@ class PersonCommentItem extends Component {
 }
 
 PersonCommentItem.propTypes = {
-  deletePersonalComment: PropTypes.func.isRequired,
+  deletePersonaNEWComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -54,4 +54,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deletePersonalComment })(PersonCommentItem);
+export default connect(mapStateToProps, { deletePersonaNEWComment })(PersonCommentItem);

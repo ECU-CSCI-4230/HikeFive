@@ -89,7 +89,7 @@ export const deletePersonalPost = id => dispatch => {
 export const addPersonalLike = id => dispatch => {
   axios
     .post(`/api/posts/like/personal/${id}`)
-    .then(res => dispatch(getPosts()))
+    .then(res => dispatch(getPersonalPosts()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -104,7 +104,7 @@ export const addPersonalComment = (postId, commentData) => dispatch => {
   axios
     .post(`/api/posts/comment/personal/${postId}`, commentData)
     .then(res =>
-      dispatch(getPosts())
+      dispatch(getPersonalPosts())
     )
     .catch(err =>
       dispatch({
@@ -120,7 +120,44 @@ export const deletePersonalComment = (postId, commentId) => dispatch => {
   axios
     .delete(`/api/posts/comment/personal/${postId}/${commentId}`)
     .then(res =>
-      dispatch(getPosts())
+      dispatch(getPersonalPosts())
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Add Nonrefresh Comment
+export const addPersonalNEWComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/personal/${postId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Comment
+export const deletePersonaNEWComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/personal/${postId}/${commentId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
     )
     .catch(err =>
       dispatch({

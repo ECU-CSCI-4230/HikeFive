@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addPersonalNEWComment } from '../../actions/postActions';
+import { addPersonalComment } from '../../actions/postActions';
 
-class PersonCommentForm extends Component {
+class PersonCommentWindowForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,7 @@ class PersonCommentForm extends Component {
       avatar: user.avatar
     };
 
-    this.props.addPersonalNEWComment(postId, newComment);
+    this.props.addPersonalComment(postId, newComment);
     this.setState({ text: '' });
   }
 
@@ -73,7 +73,7 @@ class PersonCommentForm extends Component {
   }
 }
 
-PersonCommentForm.propTypes = {
+PersonCommentWindowForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
@@ -85,4 +85,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPersonalNEWComment })(PersonCommentForm);
+export default connect(mapStateToProps, { addPersonalComment })(PersonCommentWindowForm);
