@@ -14,7 +14,6 @@ const ProfileSchema = new Schema({
   },
   gender: {
     type:String,
-    required: true
   },
   zip: {
     type: String
@@ -47,7 +46,6 @@ const ProfileSchema = new Schema({
       },
       date: {
         type: Date,
-        required: true
       },
       location: {
         type: String,
@@ -58,7 +56,6 @@ const ProfileSchema = new Schema({
       },
       difficulty: {
         type: String,
-        required: true
       }
     }
   ],

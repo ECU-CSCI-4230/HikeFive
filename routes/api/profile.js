@@ -6,7 +6,7 @@ const passport = require('passport');
 // Load Validation
 const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
-const validateEducationInput = require('../../validation/education');
+const validateTripInput = require('../../validation/trip');
 
 // Load Profile Model
 const Profile = require('../../models/Profile');
@@ -206,14 +206,14 @@ router.post(
   }
 );
 
-// @route   POST api/profile/education
-// @desc    Add education to profile
+// @route   POST api/profile/trips
+// @desc    Add trip to profile
 // @access  Private
 router.post(
-  '/education',
+  '/trips',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateEducationInput(req.body);
+    const { errors, isValid } = validateTripInput(req.body);
 
     // Check Validation
     if (!isValid) {
@@ -222,18 +222,16 @@ router.post(
     }
 
     Profile.findOne({ user: req.user.id }).then(profile => {
-      const newEdu = {
-        school: req.body.school,
-        degree: req.body.degree,
-        fieldofstudy: req.body.fieldofstudy,
-        from: req.body.from,
-        to: req.body.to,
-        current: req.body.current,
-        description: req.body.description
+      const newTrip = {
+        name: req.body.name,
+        date: req.body.date,
+        location: req.body.location,
+        description: req.body.description,
+        difficulty: req.body.difficulty,
       };
 
       // Add to exp array
-      profile.education.unshift(newEdu);
+      profile.trip.unshift(newTrip);
 
       profile.save().then(profile => res.json(profile));
     });
@@ -264,22 +262,22 @@ router.delete(
   }
 );
 
-// @route   DELETE api/profile/education/:edu_id
-// @desc    Delete education from profile
+// @route   DELETE api/profile/trips/:trip_id
+// @desc    Delete trip from profile
 // @access  Private
 router.delete(
-  '/education/:edu_id',
+  '/trips/:trip_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
         // Get remove index
-        const removeIndex = profile.education
+        const removeIndex = profile.trips
           .map(item => item.id)
-          .indexOf(req.params.edu_id);
+          .indexOf(req.params.trip_id);
 
         // Splice out of array
-        profile.education.splice(removeIndex, 1);
+        profile.trips.splice(removeIndex, 1);
 
         // Save
         profile.save().then(profile => res.json(profile));

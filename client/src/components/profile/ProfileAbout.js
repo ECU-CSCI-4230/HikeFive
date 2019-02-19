@@ -42,20 +42,20 @@ class ProfileAbout extends Component {
               <div class="col-md">
                 <div className="d-flex flex-wrap justify-content-center align-items-center">
                   {isEmpty(profile.social && profile.social.facebook) ? null : (
-                    <p>Facebook: <a href={profile.social.facebook}>{profile.social.facebook} </a></p>
+                    <a href={profile.social.facebook}>Facebook</a>
                   )}<br></br>
                   {isEmpty(profile.social && profile.social.twitter) ? null : (
-                    <p>Twitter: <a href={profile.social.twitter}>{profile.social.twitter} </a></p>
+                    <a href={profile.social.twitter}>Twitter</a>
                   )}
                 </div>
               </div>
               <div class="col-md">
                 <div className="d-flex flex-wrap justify-content-center align-items-center">
                   {isEmpty(profile.social && profile.social.instagram) ? null : (
-                      <p>Instagram: <a href={profile.social.instagram}>{profile.social.instagram} </a></p>
+                      <a href={profile.social.instagram}>Instagram</a>
                   )}<br></br>
                   {isEmpty(profile.social && profile.social.youtube) ? null : (
-                    <p>YouTube: <a href={profile.social.youtube}>{profile.social.youtube} </a></p>
+                    <a href={profile.social.youtube}>YouTube</a>
                   )}
                 </div>
               </div>

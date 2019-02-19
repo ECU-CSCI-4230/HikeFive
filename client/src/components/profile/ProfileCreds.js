@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 class ProfileCreds extends Component {
   render() {
     const {trip} = this.props;
 
     const tripItems = trip.map(trp => (
-      <li key={trp._id} className="list-group-item">
+      <li key={trp._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4>{trp.name}</h4>
         <p>
-          <Moment format="YYYY/MM">{trp.date}</Moment>
+          <a>Date: <Moment format="MM/YY">{trp.date}</Moment> </a>
         </p>
         <p>
           {trp.location === '' ? null : (
             <span>
-              <strong>Location: </strong> {trp.location}
-            </span>
-          )}
-        </p>
-        <p>
-          {trp.description === '' ? null : (
-            <span>
-              <strong>About: </strong> {trp.description}
+              <a>Location: {trp.location} </a>
             </span>
           )}
         </p>
         <p>
           {trp.difficulty === '' ? null : (
             <span>
-                <strong>Difficulty: </strong> {trp.difficulty}
+                <a>Difficulty: {trp.difficulty}</a>
+            </span>
+          )}
+        </p>
+        <p>
+          About:
+        </p>
+        <p>
+          {trp.description === '' ? null : (
+            <span>
+              {trp.description}
             </span>
           )}
         </p>
@@ -37,13 +41,20 @@ class ProfileCreds extends Component {
 
     return (
       <div className="row">
+        <div className="col-md-6">
+          <Link to="/add-trip" className="btn btn-light">
+            Add Trip
+          </Link>
+        </div>
         <div className="col-md-12">
+        <div className="card card-body bg-light mb-3">
           <h3 className="text-center text-info">Trips/Hikes</h3>
           {tripItems.length > 0 ? (
-            <ul className="list-group">{tripItems}</ul>
+            <ul className="list-group list-group-flush">{tripItems}</ul>
           ) : (
-            <p className="text-center">No Experience Listed</p>
+            <p className="d-flex flex-wrap justify-content-center align-items-center">No Experience Listed</p>
           )}
+        </div>
         </div>
       </div>
     );

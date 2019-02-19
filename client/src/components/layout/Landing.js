@@ -20,7 +20,8 @@ class Landing extends Component {
                 <h1 className="display-3 mb-4">PikaHike</h1>
                 <p className="lead">
                   {' '}
-                  PikaHike is a social network that connects hikers. Join groups, and meet new friends to hike with. 
+                  PikaHike is a social network that connects hikers. <br/>
+                  Join groups, and meet new friends to hike with. <br/>
                   So will you come hike with us?
                 </p>
                 <hr />
