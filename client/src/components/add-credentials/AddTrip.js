@@ -76,9 +76,9 @@ class AddTrip extends Component {
               </Link>
               <h1 className="display-4 text-center">Add Trip</h1>
               <p className="lead text-center">
-                Add any trip you have taken
+                Add a trip you have taken
               </p>
-              <small className="d-block pb-3">* = required fields</small>
+              <small className="d-block pb-3">All fields are required</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="* Name"
@@ -87,7 +87,7 @@ class AddTrip extends Component {
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  placeholder="Date of trip"
+                  placeholder="* Date of trip MM/DD/YYYY"
                   name="date"
                   value={this.state.date}
                   onChange={this.onChange}
@@ -105,7 +105,7 @@ class AddTrip extends Component {
                   onChange={this.onChange}
                 />
                 <SelectListGroup
-                  placeholder="Difficulty"
+                  placeholder="* Difficulty"
                   name="difficulty"
                   value={this.state.difficulty}
                   onChange={this.onChange}
