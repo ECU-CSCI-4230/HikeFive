@@ -54,6 +54,9 @@ class PostItem extends React.Component {
       this.setState({showForm: true});
     };
 
+    var moment = require('moment');
+    var fomatted_date = moment(post.date).format('LLL');
+
     let commentsContent;
     if(post.comments.length <= 3)
     {
@@ -114,7 +117,7 @@ class PostItem extends React.Component {
                 </Link>
                 </div>
 
-              
+           
                 {post.user === auth.user.id ? (
                   
                   <button
@@ -125,6 +128,8 @@ class PostItem extends React.Component {
                     <i className="fas fa-times" />
                   </button>
                 ) : null}
+
+                <div class="bottomcorner" >{fomatted_date}</div>
                 
               </span>
             ) : null}

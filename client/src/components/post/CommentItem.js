@@ -11,6 +11,9 @@ class CommentItem extends Component {
   render() {
     const { comment, postId, auth } = this.props;
 
+    var moment = require('moment');
+    var fomatted_date = moment(comment.date).format('LLL');
+
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -37,6 +40,7 @@ class CommentItem extends Component {
               </button>
             ) : null}
           </div>
+          <div class="bottomcorner" >{fomatted_date}</div>
         </div>
       </div>
     );
