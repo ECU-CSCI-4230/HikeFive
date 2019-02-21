@@ -104,7 +104,7 @@ export const addPersonalComment = (postId, commentData) => dispatch => {
   axios
     .post(`/api/posts/comment/personal/${postId}`, commentData)
     .then(res =>
-      dispatch(getPersonalPosts())
+      dispatch(getPersonalPost())
     )
     .catch(err =>
       dispatch({
@@ -120,7 +120,7 @@ export const deletePersonalComment = (postId, commentId) => dispatch => {
   axios
     .delete(`/api/posts/comment/personal/${postId}/${commentId}`)
     .then(res =>
-      dispatch(getPersonalPosts())
+      dispatch(getPersonalPost())
     )
     .catch(err =>
       dispatch({
@@ -262,7 +262,7 @@ export const addComment = (postId, commentData) => dispatch => {
   axios
     .post(`/api/posts/comment/${postId}`, commentData)
     .then(res =>
-      dispatch(getPosts())
+      dispatch(getPost())
     )
     .catch(err =>
       dispatch({
@@ -279,7 +279,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
   axios
     .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res =>
-      dispatch(getPosts())
+      dispatch(getPost())
     )
     .catch(err =>
       dispatch({

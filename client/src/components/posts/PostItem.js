@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { deletePost, addLike} from '../../actions/postActions';
 import CommentWindow from '../post/CommentWindow';
+import CommentFeed from '../post/CommentFeed';
 import CommentWindowForm from '../post/CommentWindowForm';
 
 
@@ -53,6 +54,15 @@ class PostItem extends React.Component {
       this.setState({showForm: true});
     };
 
+    let commentsContent;
+    if(post.comments.length <= 3)
+    {
+        commentsContent = <CommentFeed postId={post._id} comments={post.comments} />;
+    } else {
+        commentsContent = <CommentWindow postId={post._id} comments={post.comments} />;
+    }
+
+
     return (
 
       <div className="card card-body mb-3">
@@ -93,7 +103,8 @@ class PostItem extends React.Component {
                     className="btn btn-light mr-1"
                     href='#'>Comments
                   </button>
-                  {this.state.showReply && <CommentWindow postId={post._id} comments={post.comments} />}
+
+                  {this.state.showReply && commentsContent}
                   {this.state.showReply && <CommentWindowForm postId={post._id} />}
 
 

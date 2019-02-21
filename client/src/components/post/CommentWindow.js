@@ -16,7 +16,7 @@ class CommentWindow extends Component {
 
   showMore() {
 
-  	const { comments, postId } = this.props;
+    const { comments, postId } = this.props;
     const commentsInverse = comments.reverse();
 
 
@@ -32,9 +32,9 @@ class CommentWindow extends Component {
     const commentsInverse = comments.reverse();
 
     return(
-    	<div className="container">
+      <div className="container">
                  {commentsInverse.slice(0,this.state.itemsToShow).map((comment,i) => 
-    		<CommentItem key={comment._id} comment={comment} postId={postId} /> 
+        <CommentItem key={comment._id} comment={comment} postId={postId} /> 
           )}
       
       <p>
