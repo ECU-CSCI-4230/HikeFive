@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
+import { loginUser,getProfileCreted } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
@@ -42,6 +42,8 @@ class Login extends Component {
     };
 
     this.props.loginUser(userData);
+    this.props.getProfileCreted(userData);
+    console.log(this.props);
   }
 
   onChange(e) {
@@ -90,13 +92,16 @@ class Login extends Component {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  getProfileCreted:PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  first: state.first
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser ,getProfileCreted})(Login);

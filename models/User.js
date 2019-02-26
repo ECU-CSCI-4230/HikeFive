@@ -18,6 +18,9 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
+  create_profile : {
+    type: Boolean
+  },
   date: {
     type: Date,
     default: Date.now
