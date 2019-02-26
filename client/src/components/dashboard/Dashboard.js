@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
+import Forgot from './Forgot';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -47,7 +48,7 @@ class Dashboard extends Component {
                 <i className="fas fa-exclamation text-info mr-1" /> Notification Settings
               </Link>
               <br></br>
-              <Link to="change-password" className="btn btn-light">
+              <Link to="/Forgot" className="btn btn-light">
                 <i className="fas fa-key text-info mr-1" /> Change Password
               </Link>
               <br></br>
