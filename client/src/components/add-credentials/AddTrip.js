@@ -1,3 +1,7 @@
+/*
+  NEED TO FIX THE BUTTON SO THAT IT WILL DIRECT TO THE USERS PROFILE PAGE.
+*/
+
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -19,9 +23,9 @@ class AddTrip extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onCheck = this.onCheck.bind(this);
   }
 
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -46,19 +50,10 @@ class AddTrip extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onCheck(e) {
-    this.setState({
-      disabled: !this.state.disabled,
-      current: !this.state.current
-    });
-  }
-
   render() {
-    const { errors } = this.state;
-    
     // Select options for difficulty
     const diffOptions = [
-      { label: 'Select', value: 0 },
+      { label: '* Difficulty Level', value: 0 },
       { label: '1', value: 1 },
       { label: '2', value: 2 },
       { label: '3', value: 3 },
@@ -71,14 +66,13 @@ class AddTrip extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
-                Go Back
+              <Link to="/dashboard/" className="btn btn-light">
+               Back
               </Link>
-              <h1 className="display-4 text-center">Add Trip</h1>
+              <h1 className="display-4 text-center">Add A Trip</h1>
               <p className="lead text-center">
-                Add a trip you have taken
+                *All fields are required*
               </p>
-              <small className="d-block pb-3">All fields are required</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="* Name"
@@ -110,7 +104,6 @@ class AddTrip extends Component {
                   value={this.state.difficulty}
                   onChange={this.onChange}
                   options={diffOptions}
-                  info="What was the difficulty level?"
                 />
                 <input
                   type="submit"

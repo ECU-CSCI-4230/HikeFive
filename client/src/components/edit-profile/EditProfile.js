@@ -43,9 +43,6 @@ class EditProfile extends Component {
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
-      // Bring skills array back to CSV
-      //const skillsCSV = profile.skills.join(',');
-
       // If profile field doesnt exist, make empty string
       profile.zip = !isEmpty(profile.zip) ? profile.zip : '';
       profile.skillstatus = !isEmpty(profile.skillstatus) ? profile.skillstatus : '';
@@ -54,18 +51,10 @@ class EditProfile extends Component {
       profile.camp = !isEmpty(profile.camp) ? profile.camp : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.facebook = !isEmpty(profile.social.facebook) 
-        ? profile.social.facebook: 
-        '';
-      profile.twitter = !isEmpty(profile.social.twitter) 
-        ? profile.social.twitter: 
-        '';
-      profile.youtube = !isEmpty(profile.social.youtube) 
-        ? profile.social.youtube: 
-        '';
-      profile.instagram = !isEmpty(profile.social.instagram) 
-        ? profile.social.instagram: 
-        '';
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook: '';
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter: '';
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube: '';
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram: '';
       
       // Set component fields state
       this.setState({
@@ -110,7 +99,6 @@ class EditProfile extends Component {
   }
 
   render() {
-    const { profile } = this.props.profile;
     const { errors, displaySocialInputs } = this.state;
 
     let socialInputs;
@@ -171,30 +159,6 @@ class EditProfile extends Component {
       { label: 'No', value: 'No' }
     ];   
 
-    /*
-    <TextFieldGroup
-                  placeholder="* Skills"
-                  name="skills"
-                  value={this.state.skills}
-                  onChange={this.onChange}
-                  error={errors.skills}
-                  info="Please use comma separated values (eg.
-                    HTML,CSS,JavaScript,PHP"
-                />
-                <TextFieldGroup
-                  placeholder="Github Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="If you want your latest repos and a Github link, include your username"
-                />
-
-                    //Link to take you to profile 
-                <Link to={`/profile/${this.state.handle}`} className="btn btn-light">
-                Go Back
-            </Link>
-    */
    return (
     <div className="edit-profile">
       <div className="container">
@@ -221,7 +185,7 @@ class EditProfile extends Component {
                 onChange={this.onChange}
                 options={Skilloptions}
                 error={errors.skillstatus}
-                info="What is skill level?"
+                info="What is your skill level?"
               />
               <SelectListGroup
                 placeholder="climber"

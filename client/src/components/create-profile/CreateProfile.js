@@ -132,26 +132,7 @@ class CreateProfile extends Component {
       { label: 'Female', value: 'female'}, 
       { label: 'Other', value: 'other;'}
     ];
-
-    /*
-    <TextFieldGroup
-                  placeholder="* Skills"
-                  name="skills"
-                  value={this.state.skills}
-                  onChange={this.onChange}
-                  error={errors.skills}
-                  info="Please use comma separated values (eg.
-                    HTML,CSS,JavaScript,PHP"
-                />
-                <TextFieldGroup
-                  placeholder="Github Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="If you want your latest repos and a Github link, include your username"
-                />
-    */
+    
     return (
       <div className="create-profile">
         <div className="container">
