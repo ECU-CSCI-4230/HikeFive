@@ -16,6 +16,7 @@ class Navbar extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
+    // What the user will see on the Navbar when they're logged in.
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -26,6 +27,11 @@ class Navbar extends Component {
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
             Settings
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/my-profile">
+            My Profile
           </Link>
         </li>
         
@@ -47,7 +53,8 @@ class Navbar extends Component {
         </li>
       </ul>
     );
-
+    
+    // What the user will see on the Navbar when they're not logged in.
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
