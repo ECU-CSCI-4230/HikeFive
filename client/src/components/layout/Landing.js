@@ -20,16 +20,13 @@ class Landing extends Component {
                 <h1 className="display-3 mb-4">PikaHike</h1>
                 <p className="lead">
                   {' '}
-                  PikaHike is a social network that connects hikers. <br/>
-                  Join groups, and meet new friends to hike with. <br/>
-                  So will you come hike with us?
+                  Welcome to PikaHike, a social media site built for hikers and climbers. <br/>
+                  You can join groups, create events, and most importantly meet new friends. <br/>
+                  Try out our matchmaking and let us do the hard work finding you a hiking or climbing buddy. 
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
+                <Link to="/register" className="btn btn-lg btn-dark mr-2">
                   Sign Up
-                </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
-                  Login
                 </Link>
               </div>
             </div>

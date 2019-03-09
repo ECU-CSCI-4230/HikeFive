@@ -2,6 +2,21 @@ img {
   width: 100%;
 }
 
+.main-container {
+  min-height: 0vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+}
+
 .landing {
   position: relative;
   background: url('./img/showcase.jpg') no-repeat;
@@ -36,4 +51,17 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.wrapper {
+  position: relative;
+  background: transparent  url('./img/profile.jpg') no-repeat center center;
+  background-size: cover;
+  background-color: LightGray;
+  z-index: -1;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
 }

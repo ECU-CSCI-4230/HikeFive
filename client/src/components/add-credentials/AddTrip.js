@@ -1,6 +1,3 @@
-/*
-  NEED TO FIX THE BUTTON SO THAT IT WILL DIRECT TO THE USERS PROFILE PAGE.
-*/
 
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
@@ -66,7 +63,7 @@ class AddTrip extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard/" className="btn btn-light">
+              <Link to="/EditTrip/" className="btn btn-secondary">
                Back
               </Link>
               <h1 className="display-4 text-center">Add A Trip</h1>
@@ -108,7 +105,7 @@ class AddTrip extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-secondary btn-block mt-4"
                 />
               </form>
             </div>

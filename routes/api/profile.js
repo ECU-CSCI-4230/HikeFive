@@ -79,6 +79,31 @@ router.get('/handle/:handle', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+// @route   GET api/search-handles
+// @desc    Get all profiles containing search handle
+// @access  Public
+
+router.get('/:searchHandles', (req, res) => {
+  const errors = {};
+
+  Profile.find(
+    { $text: {$search: req.params.searchHandles} }, 
+    {score: {$meta: "textScore"}}
+    ).sort({score: {$meta: "textScore"}})
+
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
 // @route   GET api/profile/user/:user_id
 // @desc    Get profile by user ID
 // @access  Public
@@ -230,7 +255,7 @@ router.post(
         difficulty: req.body.difficulty,
       };
 
-      // Add to exp array
+      // Add to trip array
       profile.trip.unshift(newTrip);
 
       profile.save().then(profile => res.json(profile));
@@ -272,12 +297,12 @@ router.delete(
     Profile.findOne({ user: req.user.id })
       .then(profile => {
         // Get remove index
-        const removeIndex = profile.trips
+        const removeIndex = profile.trip
           .map(item => item.id)
           .indexOf(req.params.trip_id);
 
         // Splice out of array
-        profile.trips.splice(removeIndex, 1);
+        profile.trip.splice(removeIndex, 1);
 
         // Save
         profile.save().then(profile => res.json(profile));

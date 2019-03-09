@@ -4,12 +4,9 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
-
 import { Provider } from 'react-redux';
 import store from './store';
-
 import PrivateRoute from './components/common/PrivateRoute';
-
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
@@ -28,9 +25,13 @@ import personPost from './components/post/PersonPost';
 import NotFound from './components/not-found/NotFound';
 import personfeed from './components/posts/PersonPosts';
 import Forgot from './components/dashboard/Forgot';
-
+import EditTrip from './components/dashboard/EditTrip';
+import Trip from './components/dashboard/Trip';
 import './App.css';
 import myProfile from './components/profile/myProfile';
+import About from './components/profile/About';
+import Trips from './components/profile/Trips';
+import Wall from './components/profile/Wall';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -65,7 +66,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <div className="main-container container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
@@ -89,6 +90,18 @@ class App extends Component {
 
               <Switch>
                 <PrivateRoute exact path="/my-profile" component={myProfile} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/about/:handle" component={About} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/trips/:handle" component={Trips} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/wall/:handle" component={Wall} />
               </Switch>
 
               <Switch>
@@ -117,6 +130,12 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />
+              </Switch>
+              <Switch>
+                  <PrivateRoute exact path="/EditTrip" component={EditTrip} />
+              </Switch>
+              <Switch>
+                  <PrivateRoute exact path="/Trip" component={Trip} />
               </Switch>
               <Switch>
                   <PrivateRoute exact path="/Forgot" component={Forgot} />

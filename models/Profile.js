@@ -139,5 +139,6 @@ const ProfileSchema = new Schema({
     default: Date.now
   }
 });
+ProfileSchema.index({handle: 'text'});
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

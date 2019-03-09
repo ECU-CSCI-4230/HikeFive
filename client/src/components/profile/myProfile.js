@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
 import ProfileCreds from './ProfileCreds';
-import ProfileGithub from './ProfileGithub';
 import Spinner from '../common/Spinner';
 import { getProfileByHandle, getCurrentProfile } from '../../actions/profileActions';
 
@@ -23,6 +22,7 @@ class myProfile extends Component {
     }
   }
 
+
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
@@ -36,14 +36,21 @@ class myProfile extends Component {
           profileContent = (
         <div>
           <ProfileHeader profile={profile} />
+          <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div className="navbar-nav">
+                  <Link className="nav-item nav-link" to={`/wall/${profile.handle}`}>Wall</Link>
+                  <Link className="nav-item nav-link" to={`/about/${profile.handle}`}>About</Link>
+                  <Link className="nav-item nav-link" to={`/trips/${profile.handle}`}>Trips</Link>
+                </div>
+              </div>
+            </nav>
+            <br/>
           <ProfileAbout profile={profile} />
-          <ProfileCreds
-            trip={profile.trip}
-            experience={profile.experience}
-          />
-          {profile.githubusername ? (
-            <ProfileGithub username={profile.githubusername} />
-          ) : null}
+          <ProfileCreds trip={profile.trip} />
         </div>
           );
     }else{

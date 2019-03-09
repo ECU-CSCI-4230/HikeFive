@@ -6,7 +6,8 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  SEARCH_HANDLES
 } from './types';
 
 // Get current profile
@@ -47,6 +48,26 @@ export const getProfileByHandle = handle => dispatch => {
     );
 };
 
+// Search Profiles
+export const searchProfiles = query => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/${query}`)
+    .then(res =>
+      dispatch({
+        type: SEARCH_HANDLES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: SEARCH_HANDLES,
+        payload: null
+      })
+    );
+};
+
+
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
@@ -77,7 +98,7 @@ export const addExperience = (expData, history) => dispatch => {
 export const addTrip = (tripData, history) => dispatch => {
   axios
     .post('/api/profile/trips', tripData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push('/EditTrip'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -104,7 +125,7 @@ export const deleteExperience = id => dispatch => {
     );
 };
 
-// Delete Education
+// Delete Trip
 export const deleteTrip = id => dispatch => {
   axios
     .delete(`/api/profile/trips/${id}`)
