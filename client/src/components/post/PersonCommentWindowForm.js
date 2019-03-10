@@ -48,7 +48,7 @@ class PersonCommentWindowForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">
+          <div className="card-header bg-dark text-white">
             Make a comment...
           </div>
           <div className="card-body">
@@ -62,8 +62,8 @@ class PersonCommentWindowForm extends Component {
                   error={errors.text}
                 />
               </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
+              <button type="submit" className="btn btn-sm btn-dark">
+                Post
               </button>
             </form>
           </div>

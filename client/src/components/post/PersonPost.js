@@ -19,7 +19,7 @@ class PersonPost extends Component {
     let postContent;
     const currenturl =window.location.href;
     const splitUrl = currenturl.split("/");
-    const backToFeedUrl = "personfeed"+"/"+splitUrl[4];
+    const backToFeedUrl = "Wall"+"/"+splitUrl[4];
 
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
@@ -27,8 +27,8 @@ class PersonPost extends Component {
       postContent = (
         <div>
           <PersonPostItem post={post} showActions={false} />
-          <PersonCommentForm postId={post._id} />
           <PersonCommentFeed postId={post._id} comments={post.comments} />
+          <PersonCommentForm postId={post._id} />
         </div>
       );
     }
@@ -45,7 +45,7 @@ class PersonPost extends Component {
                 data-order-by="reverse_time">
             </div>
               <Link to={`/${backToFeedUrl}`}className="btn btn-light mb-3">
-                Back To Feed
+                Back To Wall
               </Link>
               {postContent}
             </div>

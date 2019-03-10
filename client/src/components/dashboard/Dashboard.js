@@ -30,10 +30,6 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">
-              <Link to={`/personfeed/${profile.handle}`} >Person Wall</Link>
-            </p>
-
             <div className="btn-group-vertical d-flex flex-wrap justify-content-center align-items-center " role="group">
               <Link to="/edit-profile" className="btn btn-light">
                <i className="fas fa-user-circle text-dark mr-1" /> Edit Profile

@@ -34,7 +34,7 @@ class CommentWindow extends Component {
     return(
     	<div className="container">
                  {commentsInverse.slice(0,this.state.itemsToShow).map((comment,i) => 
-    		<li key={i}> <PersonCommentItem key={comment._id} comment={comment} postId={postId} /> </li>
+    		<p key={i}> <PersonCommentItem key={comment._id} comment={comment} postId={postId} /> </p>
           )}
       
       <p>

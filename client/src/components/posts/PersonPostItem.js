@@ -68,28 +68,41 @@ class PersonPostItem extends React.Component {
 
     return (
 
-      <div className="card card-body mb-3">
+      <div className="d-flex card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
+            <a>
               <img
-                className="rounded-circle d-none d-md-block"
+                style={{width: '75px'}}
+                className="rounded-circle d-none d-md-block center"
                 src={post.avatar}
                 alt=""
-              />
-            </a>
-            <br />
-            <p className="text-center">{post.name}</p>
+              /></a>
+            <a className="d-flex justify-content-center">{post.name}</a>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>
+                <a>{post.user === auth.user.id ? (
+                  <button
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                    type="button"
+                    className="btn btn-sm btn-danger mr-1"
+                  >
+                    Delete
+                  </button>
+                ) : null} {" "}
+                </a> 
+
+                <Link to={`/post/${handle}/${post._id}`} className="btn btn-sm btn-light mr-1">
+                  View
+                </Link>
 
                 <button
                   onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn btn-sm btn-light mr-1"
                 >
                   <i
                     className={classnames('fas fa-thumbs-up', {
@@ -99,36 +112,17 @@ class PersonPostItem extends React.Component {
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
 
-
                   <button 
                     onClick={this.onCommentsClick.bind(this, post._id)} 
                     type="button"
-                    className="btn btn-light mr-1"
+                    className="btn btn-sm btn-light mr-1"
                     href='#'>Comments
                   </button>
+
                   {this.state.showReply && commentsContent}
-                  {this.state.showReply && <PersonCommentWindowForm postId={post._id} />}
+                  {this.state.showReply && <PersonCommentWindowForm postId={post._id} />}                 
 
-
-                <div>
-                <Link to={`/post/${handle}/${post._id}`} className="btn btn-info mr-1">
-                  Go to Current Post
-                </Link>
-                </div>
-
-              
-                {post.user === auth.user.id ? (
-                  
-                  <button
-                    onClick={this.onDeleteClick.bind(this, post._id)}
-                    type="button"
-                    className="btn btn-danger mr-1"
-                  >
-                    <i className="fas fa-times" />
-                  </button>
-                ) : null}
-
-                <div class="bottomcorner" >{fomatted_date}</div>
+                <div className="blockquote-footer bottomcorner" >{fomatted_date}</div>
                 
               </span>
             ) : null}

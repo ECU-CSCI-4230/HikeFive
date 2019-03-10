@@ -12,21 +12,21 @@ class CommentItem extends Component {
     const { comment, postId, auth } = this.props;
 
     var moment = require('moment');
-    var fomatted_date = moment(comment.date).format('LLL');
+    var formatted_date = moment(comment.date).format('LLL');
 
     return (
-      <div className="card card-body mb-3">
+      <div className="card card-body border-light mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
+            <a>
               <img
-                className="rounded-circle d-none d-md-block"
+                style={{width: '50px'}}
+                className="rounded-circle d-none d-md-block center"
                 src={comment.avatar}
                 alt=""
               />
             </a>
-            <br />
-            <p className="text-center">{comment.name}</p>
+            <a className="d-flex justify-content-center">{comment.name}</a>
           </div>
           <div className="col-md-10">
             <p className="lead">{comment.text}</p>
@@ -34,13 +34,13 @@ class CommentItem extends Component {
               <button
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}
                 type="button"
-                className="btn btn-danger mr-1"
+                className="btn btn-sm btn-danger mr-1"
               >
-                <i className="fas fa-times" />
+               Delete
               </button>
             ) : null}
           </div>
-          <div class="bottomcorner" >{fomatted_date}</div>
+          <div class="blockquote-footer bottomcorner" >{formatted_date}</div>
         </div>
       </div>
     );

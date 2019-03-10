@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ProfileHeader from './ProfileHeader';
 import Spinner from '../common/Spinner';
 import { getProfileByHandle } from '../../actions/profileActions';
-import PersonPosts from '../posts/PersonPosts';
+import ProfileFeed from './ProfileFeed';
 import { Link } from 'react-router-dom';
 
 class Wall extends Component {
@@ -22,15 +22,12 @@ class Wall extends Component {
 
 
   render() {
-    console.log(this.props.match.params.handle);
     const { profile, loading } = this.props.profile;
-
     let WallContent;
 
     if (profile === null || loading) {
       WallContent = <Spinner />;
-    } 
-    else {
+    } else {
       WallContent = (
         <div>
           <ProfileHeader profile={profile} />
@@ -47,11 +44,10 @@ class Wall extends Component {
               </div>
             </nav>
             <br/>
-          <PersonPosts profile={profile.handle} />
+            <ProfileFeed profile={profile.handle} />
         </div>
       );
     }
-
 
     return (
       <div className="profile">

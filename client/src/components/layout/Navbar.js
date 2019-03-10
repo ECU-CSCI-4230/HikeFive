@@ -27,7 +27,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto ">
         <form className="form-inline md-form mr-auto ">
           <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="query" />
-          <button className="btn btn-elegant btn-rounded btn-sm my-0" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
+          <button className="btn btn-elegant btn-rounded btn-sm my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
         </form>
         <li className="nav-item">
           <Link className="nav-link" to="/profiles">
@@ -50,7 +50,6 @@ class Navbar extends Component {
             Profile
           </Link>
         </li>
-
         
         <li className="nav-item">
           <a
@@ -86,9 +85,8 @@ class Navbar extends Component {
         </li>
       </ul>
     );
-
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4 ">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
         <div className="container">
           <a className="navbar-brand" href="feed">
             <img className="rounded-circle logo" src="https://i.imgur.com/gfra7Eh.jpg" title="source: imgur.com" alt=""/>{' '}
@@ -115,11 +113,11 @@ class Navbar extends Component {
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   searchProfiles: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { searchProfiles, logoutUser, clearCurrentProfile })(

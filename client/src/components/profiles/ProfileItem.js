@@ -17,7 +17,7 @@ class ProfileItem extends Component {
             <p>
               {profile.status}{' '}
             </p>
-            <Link to={`/profile/${profile.handle}`} className="btn btn-dark">
+            <Link to={`/wall/${profile.handle}`} className="btn btn-dark">
               View Profile
             </Link>
           </div>

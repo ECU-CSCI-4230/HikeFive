@@ -48,12 +48,12 @@ class PersonPostForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Somthing...</div>
+          <div className="card-header bg-dark text-white">Say Something...</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  placeholder="Create a post"
+                  placeholder="Post Something..."
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
@@ -61,7 +61,7 @@ class PersonPostForm extends Component {
                 />
               </div>
               <button type="submit" className="btn btn-dark">
-                Submit
+                Post
               </button>
             </form>
           </div>
