@@ -68,6 +68,15 @@ img {
   z-index: -1;
 }
 
+.group-wrapper {
+  position: relative;
+  height: 25vh;
+  background: transparent  url('./img/profile.jpg') no-repeat center center;
+  background-size: cover;
+  background-color: LightGray;
+  z-index: -1;
+}
+
 .logo {
   width: 35px;
   height: 35px;

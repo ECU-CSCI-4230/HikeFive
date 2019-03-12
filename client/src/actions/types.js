@@ -13,3 +13,7 @@ export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const CHECK_PRO = 'CHECK_PRO';
 export const SEARCH_HANDLES = 'SEARCH_HANDLES';
+export const GET_GROUP = 'GET_GROUP';
+export const GET_GROUPS = 'GET_GROUPS';
+export const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP';
+export const GROUP_LOADING = 'GROUP_LOADING';

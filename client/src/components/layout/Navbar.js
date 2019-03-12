@@ -16,12 +16,11 @@ class Navbar extends Component {
   onSearchClick() {
     var searchString = document.getElementById("query").value;
     console.log(searchString);
-    console.log(this.props.searchProfiles(searchString));
+    //console.log(this.props.searchProfiles(searchString));
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-
     // What the user will see on the Navbar when they're logged in.
     const authLinks = (
       <ul className="navbar-nav ml-auto ">
@@ -29,6 +28,12 @@ class Navbar extends Component {
           <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="query" />
           <button className="btn btn-elegant btn-rounded btn-sm my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
         </form>
+        <li className="nav-item">
+          <Link className="nav-link" to="/groups-landing">
+            {' '}
+            Groups
+          </Link>
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/profiles">
             {' '}

@@ -18,6 +18,8 @@ import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddTrip from './components/add-credentials/AddTrip';
 import Profiles from './components/profiles/Profiles';
+import Groups from './components/groups/Groups';
+import Group from './components/group/Group';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
@@ -32,6 +34,13 @@ import myProfile from './components/profile/myProfile';
 import About from './components/profile/About';
 import Trips from './components/profile/Trips';
 import Wall from './components/profile/Wall';
+import GroupWall from './components/group/Wall';
+import GroupAbout from './components/group/About';
+import GroupSettings from './components/group/GroupSettings';
+import GroupTrips from './components/group/Trips';
+import CreateGroup from './components/create-group/CreateGroup';
+import EditGroup from './components/group/EditGroup';
+import GroupsLanding from './components/groups/GroupsLanding';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -70,10 +79,16 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/groups" component={Groups} />
               <Route exact path="/profile/:handle" component={Profile} />
-
+              <Route exact path="/group/:handle" component={Group} />
+              
               <Switch>
                 <PrivateRoute exact path="/personfeed/:handle" component={personfeed} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/edit-group/:handle" component={EditGroup} />
               </Switch>
 
               <Switch>
@@ -85,7 +100,15 @@ class App extends Component {
               </Switch>
 
               <Switch>
+                <PrivateRoute exact path="/groups-landing" component={GroupsLanding} />
+              </Switch>
+
+              <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/create-group" component={CreateGroup} />
               </Switch>
 
               <Switch>
@@ -97,11 +120,27 @@ class App extends Component {
               </Switch>
 
               <Switch>
+                <PrivateRoute exact path="/groupabout/:handle" component={GroupAbout} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/groupsettings/:handle" component={GroupSettings} />
+              </Switch>
+
+              <Switch>
                 <PrivateRoute exact path="/trips/:handle" component={Trips} />
               </Switch>
 
               <Switch>
+                <PrivateRoute exact path="/grouptrips/:handle" component={GroupTrips} />
+              </Switch>
+
+              <Switch>
                 <PrivateRoute exact path="/wall/:handle" component={Wall} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/groupwall/:handle" component={GroupWall} />
               </Switch>
 
               <Switch>
