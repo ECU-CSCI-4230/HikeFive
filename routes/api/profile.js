@@ -97,7 +97,7 @@ router.get('/:searchHandles', (req, res) => {
         errors.noprofile = 'No profiles were found';
         res.status(404).json(errors);
       }
-
+      console.log('success');
       res.json(profiles);
     })
     .catch(err => res.status(404).json(err));
