@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginUser,getProfileCreted } from '../../actions/authActions';
+import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+//getProfileCreted
 
 class Login extends Component {
   constructor() {
@@ -24,6 +25,7 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const first = localStorage.getItem("first");
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/feed');
     }
@@ -42,8 +44,6 @@ class Login extends Component {
     };
 
     this.props.loginUser(userData);
-    this.props.getProfileCreted(userData);
-    console.log(this.props);
   }
 
   onChange(e) {
@@ -92,7 +92,6 @@ class Login extends Component {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  getProfileCreted:PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -104,4 +103,4 @@ const mapStateToProps = state => ({
   first: state.first
 });
 
-export default connect(mapStateToProps, { loginUser ,getProfileCreted})(Login);
+export default connect(mapStateToProps, { loginUser})(Login);

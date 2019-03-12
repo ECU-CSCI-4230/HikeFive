@@ -44,7 +44,8 @@ router.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         avatar,
-        password: req.body.password
+        password: req.body.password,
+        create_profile: req.body.created
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -60,6 +61,18 @@ router.post('/register', (req, res) => {
     }
   });
 });
+
+// @route POST api/users/updateFirst
+// @desc  update first field
+// @access  Public
+router.post('/updateFirst', (req, res) => {
+    User.findOneAndUpdate(
+      { email: req.body.email},
+      { $set: {create_profile: req.body.first}},
+      { new: true}
+    )
+  }
+);
 
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token
@@ -87,8 +100,7 @@ router.post('/login', (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         // User Matched
-        const payload = { id: user.id, name: user.name, avatar: user.avatar }; // Create JWT Payload
-
+        const payload = { id: user.id, name: user.name, avatar: user.avatar}; // Create JWT Payload
         // Sign Token
         jwt.sign(
           payload,

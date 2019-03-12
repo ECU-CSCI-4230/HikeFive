@@ -7,6 +7,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile } from '../../actions/profileActions';
+import { updateFirst } from '../../actions/authActions';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -56,7 +57,12 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
+    const updatedFirst = {
+        first: true
+    };
+
     this.props.createProfile(profileData, this.props.history);
+    this.props.updateFirst(updatedFirst);
   }
 
   onChange(e) {
@@ -249,6 +255,6 @@ const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
 });
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(CreateProfile)
+export default connect(mapStateToProps, { createProfile,updateFirst })(
+  withRouter(CreateProfile,updateFirst)
 );
