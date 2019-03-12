@@ -20,7 +20,7 @@ class Groups extends Component {
         } else {
             if (groups.length > 0) {
                 groupItems = groups.map(group => (
-                    <GroupItem group={group} />
+                    <GroupItem key={group._id} group={group} />
                 ));
             } else {
                 groupItems = <h4>No groups found...</h4>;

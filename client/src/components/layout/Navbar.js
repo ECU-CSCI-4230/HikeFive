@@ -93,10 +93,10 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
         <div className="container">
-          <a className="navbar-brand" href="feed">
+          <Link className="navbar-brand" to="/feed">
             <img className="rounded-circle logo" src="https://i.imgur.com/gfra7Eh.jpg" title="source: imgur.com" alt=""/>{' '}
               PikaHike
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

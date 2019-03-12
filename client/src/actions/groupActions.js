@@ -32,7 +32,7 @@ export const getGroupByHandle = handle => dispatch => {
 export const createGroup = (groupData, history) => dispatch => {
   axios
     .post('/api/group', groupData)
-    .then(res => history.push('/dashboard'))
+    .then(history.push('/dashboard'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

@@ -77,24 +77,18 @@ router.post(
         errors.handle = 'That handle already exists';
         res.status(400).json(errors);
         }
-        // Save Group
-        //new Group(groupFields).save().then(group => res.json(group));
-        const temp = new Group(groupFields);
-        temp.save((error) => {
-          if(error) {
-            console.log('Error has occurred');
-          }
-          //console.log(temp);
-        });
-        //console.log(groupFields);
-        
-        //console.log('Group saved successfully');
+        else{
+          // Save Group
+          const temp = new Group(groupFields);
+          temp.save((error) => {
+            if(error) {
+              console.log('Error has occurred');
+            }
+          });
+        }
     });
   }
 );
-
-//EDIT GROUP GOES HERE
-
 
 // @route   POST api/group/edit
 // @desc    Create group 
