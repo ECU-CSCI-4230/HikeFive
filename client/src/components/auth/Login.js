@@ -26,7 +26,6 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     const first = localStorage.getItem("first");
-    console.log(first)
     if (nextProps.auth.isAuthenticated) {
       if (first == "false")
       {

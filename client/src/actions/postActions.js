@@ -86,10 +86,10 @@ export const deletePersonalPost = id => dispatch => {
 };
 
 // Add Like
-export const addPersonalLike = id => dispatch => {
+export const addPersonalLike = object => dispatch => {
   axios
-    .post(`/api/posts/like/personal/${id}`)
-    .then(res => dispatch(getPersonalPosts()))
+    .post(`/api/posts/like/personal/${object.uid}`)
+    .then(res => dispatch(getPersonalPosts(object.uhandle)))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -97,6 +97,7 @@ export const addPersonalLike = id => dispatch => {
       })
     );
 };
+
 
 // Add Comment
 export const addPersonalComment = (postId, commentData) => dispatch => {

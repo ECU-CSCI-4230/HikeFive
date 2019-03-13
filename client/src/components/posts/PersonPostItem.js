@@ -30,8 +30,9 @@ class PersonPostItem extends React.Component {
     this.props.deletePersonalPost(id);
   }
 
-  onLikeClick(id) {
-    this.props.addPersonalLike(id);
+  onLikeClick(id,handle) {
+    const object = {uid: id,uhandle: handle};
+    this.props.addPersonalLike(object);
   }
 
   findUserLike(likes) {
@@ -100,7 +101,7 @@ class PersonPostItem extends React.Component {
                 </Link>
 
                 <button
-                  onClick={this.onLikeClick.bind(this, post._id)}
+                  onClick={this.onLikeClick.bind(this, post._id,handle)}
                   type="button"
                   className="btn btn-sm btn-light mr-1"
                 >
@@ -151,7 +152,7 @@ const mapStateToProps = state => ({
 
 //React.render(<CommentWindow />, document.getElementById('app'))
 
-export default connect(mapStateToProps, { deletePersonalPost, addPersonalLike})(
+export default connect(mapStateToProps, {deletePersonalPost, addPersonalLike})(
   PersonPostItem
 );
 
