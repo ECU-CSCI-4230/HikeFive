@@ -66,13 +66,18 @@ router.post('/register', (req, res) => {
 // @desc  update first field
 // @access  Public
 router.post('/updateFirst', (req, res) => {
+    //console.log(req.body.email)
     User.findOneAndUpdate(
       { email: req.body.email},
       { $set: {create_profile: req.body.first}},
-      { new: true}
-    )
+      { new: true},
+      (err, doc) => {
+        if (err) {
+            console.log("Something wrong when updating first!");
+        }
+        console.log(doc);
   }
-);
+)});
 
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token

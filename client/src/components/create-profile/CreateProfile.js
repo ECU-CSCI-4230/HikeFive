@@ -58,6 +58,7 @@ class CreateProfile extends Component {
     };
 
     const updatedFirst = {
+        email: this.props.location.state.email,
         first: true
     };
 
