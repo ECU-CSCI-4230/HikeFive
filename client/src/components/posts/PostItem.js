@@ -55,7 +55,7 @@ class PostItem extends React.Component {
           };
         });
       } else {
-       //this.props.removeLike(id);
+       this.props.removeLike(id);
         post.likes.length = post.likes.length - 1;
         this.setState((props) => {
           return {

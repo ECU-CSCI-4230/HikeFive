@@ -85,11 +85,35 @@ export const deletePersonalPost = id => dispatch => {
     );
 };
 
-// Add Like
-export const addPersonalLike = object => dispatch => {
+
+// Add like
+export const addPersonalLike = postId => dispatch => {
   axios
-    .post(`/api/posts/like/personal/${object.uid}`)
-    .then(res => dispatch(getPersonalPosts(object.uhandle)))
+    .post(`/api/posts/like/personal/${postId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Remove like
+export const removePersonalLike = postId => dispatch => {
+  axios
+    .post(`api/posts/unlike/personal/${postId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -114,6 +138,7 @@ export const addPersonalComment = (postId, commentData) => dispatch => {
       })
     );
 };
+
 
 
 // Delete Comment
@@ -246,7 +271,6 @@ export const deletePost = id => dispatch => {
 
 // Add Like
 export const addLike = postId => dispatch => {
-  dispatch(clearErrors());
   axios
     .post(`/api/posts/like/${postId}`)
     .then(res =>
@@ -264,9 +288,9 @@ export const addLike = postId => dispatch => {
 };
 
 // Remove Like
-export const removeLike = id => dispatch => {
+export const removeLike = postId => dispatch => {
   axios
-    .post(`/api/posts/unlike/${id}`)
+    .post(`/api/posts/unlike/${postId}`)
     .then(res =>
       dispatch({
         type: GET_POST,

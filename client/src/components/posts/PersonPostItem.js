@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePersonalPost, addPersonalLike} from '../../actions/postActions';
+import { deletePersonalPost, addPersonalLike, removePersonalLike} from '../../actions/postActions';
 import PersonCommentWindow from '../post/PersonCommentWindow';
 import PersonCommentFeed from '../post/PersonCommentFeed';
 import PersonCommentWindowForm from '../post/PersonCommentWindowForm';
@@ -15,7 +15,54 @@ class PersonPostItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      showReply: false
+      showReply: false,
+      updated: false
+    }
+    this.updateLikes = this.updateLikes.bind(this);
+    this.findUserLike = this.findUserLike.bind(this);
+  }
+
+  updateLikes(id) {
+
+    const { post } = this.props;
+    if(this.findUserLike(post.likes))
+    {
+      if(!this.state.updated) {
+        post.likes.length = post.likes.length - 1;
+        this.props.removePersonalLike(id);
+        this.setState((props) => {
+          return {
+            updated: true
+          };
+        });
+      } else {
+        this.props.addPersonalLike(id);
+        post.likes.length = post.likes.length + 1;
+        this.setState((props) => {
+          return {
+            updated: false
+          };
+        });
+      }
+    }
+    else {
+      if(!this.state.updated) {
+        post.likes.length = post.likes.length + 1;
+        this.props.addPersonalLike(id);
+        this.setState((props) => {
+         return {
+           updated: true
+          };
+        });
+      } else {
+        this.props.removePersonalLike(id);
+        post.likes.length = post.likes.length - 1;
+        this.setState((props) => {
+          return {
+          updated: false
+          };
+        });
+      }
     }
   }
 
@@ -101,13 +148,12 @@ class PersonPostItem extends React.Component {
                 </Link>
 
                 <button
-                  onClick={this.onLikeClick.bind(this, post._id,handle)}
+                  onClick={this.updateLikes.bind(this, post._id,handle)}
                   type="button"
                   className="btn btn-sm btn-light mr-1"
                 >
                   <i
                     className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes)
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
@@ -142,6 +188,7 @@ PersonPostItem.defaultProps = {
 PersonPostItem.propTypes = {
   deletePersonalPost: PropTypes.func.isRequired,
   addPersonalLike: PropTypes.func.isRequired,
+  removerPersonalLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -152,7 +199,7 @@ const mapStateToProps = state => ({
 
 //React.render(<CommentWindow />, document.getElementById('app'))
 
-export default connect(mapStateToProps, {deletePersonalPost, addPersonalLike})(
+export default connect(mapStateToProps, {deletePersonalPost, addPersonalLike, removePersonalLike})(
   PersonPostItem
 );
 
