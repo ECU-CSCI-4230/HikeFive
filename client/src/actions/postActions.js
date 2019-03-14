@@ -263,11 +263,10 @@ export const addLike = postId => dispatch => {
     );
 };
 
-// Add Nonrefresh Comment
-export const addNEWComment = (postId, commentData) => dispatch => {
-  dispatch(clearErrors());
+// Remove Like
+export const removeLike = id => dispatch => {
   axios
-    .post(`/api/posts/comment/${postId}`, commentData)
+    .post(`/api/posts/unlike/${id}`)
     .then(res =>
       dispatch({
         type: GET_POST,
@@ -281,6 +280,7 @@ export const addNEWComment = (postId, commentData) => dispatch => {
       })
     );
 };
+
 
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
@@ -315,7 +315,24 @@ export const deleteComment = (postId, commentId) => dispatch => {
     );
 };
 
-
+// Add Nonrefresh Comment
+export const addNEWComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/${postId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // Delete Nonrefresh Comment
 export const deleteNEWComment = (postId, commentId) => dispatch => {

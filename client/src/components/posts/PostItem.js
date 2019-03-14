@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, addLike} from '../../actions/postActions';
+import { deletePost, addLike, removeLike} from '../../actions/postActions';
 import CommentWindow from '../post/CommentWindow';
 import CommentFeed from '../post/CommentFeed';
 import CommentWindowForm from '../post/CommentWindowForm';
@@ -19,29 +19,53 @@ class PostItem extends React.Component {
       updated: false
     }
     this.updateLikes = this.updateLikes.bind(this);
+    this.findUserLike = this.findUserLike.bind(this);
   }
 
-  updateLikes() {
+  updateLikes(id) {
 
     const { post } = this.props;
-
-    if(!this.state.updated) {
-      post.likes.length = post.likes.length + 1;
-      this.setState((props) => {
-        return {
-          updated: true
-        };
-      });
-    } else {
-
-      this.setState((props) => {
+    if(this.findUserLike(post.likes))
+    {
+      if(!this.state.updated) {
         post.likes.length = post.likes.length - 1;
-        return {
+        this.props.removeLike(id);
+        this.setState((props) => {
+          return {
+            updated: true
+          };
+        });
+      } else {
+        this.props.addLike(id);
+        post.likes.length = post.likes.length + 1;
+        this.setState((props) => {
+          return {
+            updated: false
+          };
+        });
+      }
+    }
+    else {
+      if(!this.state.updated) {
+        post.likes.length = post.likes.length + 1;
+        this.props.addLike(id);
+        this.setState((props) => {
+         return {
+           updated: true
+          };
+        });
+      } else {
+       //this.props.removeLike(id);
+        post.likes.length = post.likes.length - 1;
+        this.setState((props) => {
+          return {
           updated: false
-        };
-      });
+          };
+        });
+      }
     }
   }
+
 
   onCommentsClick() {
     //e.preventDefault();
@@ -164,6 +188,7 @@ PostItem.defaultProps = {
 PostItem.propTypes = {
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -174,7 +199,6 @@ const mapStateToProps = state => ({
 
 //React.render(<CommentWindow />, document.getElementById('app'))
 
-export default connect(mapStateToProps, { deletePost, addLike})(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike})(
   PostItem
 );
-
