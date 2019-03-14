@@ -15,10 +15,33 @@ class PostItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      showReply: false
+      showReply: false,
+      updated: false
     }
+    this.updateLikes = this.updateLikes.bind(this);
   }
 
+  updateLikes() {
+
+    const { post } = this.props;
+
+    if(!this.state.updated) {
+      post.likes.length = post.likes.length + 1;
+      this.setState((props) => {
+        return {
+          updated: true
+        };
+      });
+    } else {
+
+      this.setState((props) => {
+        post.likes.length = post.likes.length - 1;
+        return {
+          updated: false
+        };
+      });
+    }
+  }
 
   onCommentsClick() {
     //e.preventDefault();
@@ -101,13 +124,12 @@ class PostItem extends React.Component {
                 </Link>
 
                 <button
-                  onClick={this.onLikeClick.bind(this, post._id)}
+                  onClick={this.updateLikes.bind(this, post._id)}
                   type="button"
                   className="btn btn-sm btn-light mr-1"
                 >
                   <i
                     className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes)
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
