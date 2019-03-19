@@ -15,6 +15,7 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: '',
+      avatar: '',
       gender: '',
       zip: '',
       skillstatus: '',
@@ -44,6 +45,7 @@ class CreateProfile extends Component {
 
     const profileData = {
       handle: this.state.handle,
+      avatar: this.state.avatar,
       gender: this.state.gender,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
@@ -175,6 +177,14 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.zip}
                   info="What is your zip code?"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="avatar"
+                  value={this.state.avatar}
+                  onChange={this.onChange}
+                  error={errors.avatar}
+                  info="What is your avatar image address?"
                 />
                 <SelectListGroup
                   placeholder="skillstatus"

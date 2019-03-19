@@ -42,7 +42,7 @@ export const getPersonalPosts = handle => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_POSTS,
+        type: GET_ERRORS,
         payload: null
       })
     );
@@ -61,7 +61,7 @@ export const getPersonalPost = id => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_POST,
+        type: GET_ERRORS,
         payload: null
       })
     );
