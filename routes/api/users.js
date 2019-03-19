@@ -69,7 +69,6 @@ router.post('/updateFirst', (req, res) => {
         if (err) {
             console.log("Something wrong when updating first!");
         }
-        console.log(doc);
   }
 )});
 
