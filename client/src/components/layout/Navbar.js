@@ -91,7 +91,7 @@ class Navbar extends Component {
         <div className="container">
           <Link className="navbar-brand" to="/feed">
             <img className="rounded-circle logo" src="https://i.imgur.com/gfra7Eh.jpg" title="source: imgur.com" alt=""/>{' '}
-              PikaHike
+            HikeFive
           </Link>
           <button
             className="navbar-toggler"
