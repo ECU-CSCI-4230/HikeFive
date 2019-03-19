@@ -37,10 +37,12 @@ import Wall from './components/profile/Wall';
 import GroupWall from './components/group/Wall';
 import GroupAbout from './components/group/About';
 import GroupSettings from './components/group/GroupSettings';
+import Calendar from './components/group/Calendar';
 import GroupTrips from './components/group/Trips';
 import CreateGroup from './components/create-group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
 import GroupsLanding from './components/groups/GroupsLanding';
+import SearchP from './components/search/searchP';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -104,6 +106,10 @@ class App extends Component {
               </Switch>
 
               <Switch>
+                <PrivateRoute exact path="/searchP/:searchString" component={SearchP}/>
+              </Switch>
+
+              <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
               </Switch>
 
@@ -141,6 +147,10 @@ class App extends Component {
 
               <Switch>
                 <PrivateRoute exact path="/groupwall/:handle" component={GroupWall} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/groupCalendar/:handle" component={Calendar} />
               </Switch>
 
               <Switch>

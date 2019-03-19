@@ -8,13 +8,15 @@ import { searchProfiles } from '../../actions/profileActions';
 class Profiles extends Component {
   componentDidMount(query) {
     this.props.searchProfiles(query);
+    console.log('here');
   }
 
   render() {
     const { profiles, loading } = this.props.profile;
     const currentUrl = window.location.href.split("/");
     const query = currentUrl[4];
-    
+    console.log('here');
+    console.log(profiles);
     let searchItems;
 
     if (profiles === null || loading) {

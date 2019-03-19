@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import {clearCurrentProfile } from '../../actions/profileActions';
-import { searchProfiles } from '../../actions/profileActions';
 
 class Navbar extends Component {
 
@@ -16,11 +15,14 @@ class Navbar extends Component {
   onSearchClick() {
     var searchString = document.getElementById("query").value;
     console.log(searchString);
-    //console.log(this.props.searchProfiles(searchString));
+    window.location.replace(`/searchP/${searchString}`);
+    console.log('here');
   }
+
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+
     // What the user will see on the Navbar when they're logged in.
     const authLinks = (
       <ul className="navbar-nav ml-auto ">
@@ -117,7 +119,6 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  searchProfiles: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
@@ -125,6 +126,6 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { searchProfiles, logoutUser, clearCurrentProfile })(
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
   Navbar
 );

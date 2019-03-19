@@ -13,12 +13,11 @@ class Dashboard extends Component {
   onDeleteClick(e) {
     this.props.deleteAccount();
   }
-   onChangePassword(e){
+  onChangePassword(e) {
     this.props.changePassword();
-}
+  }
 
   render() {
-    const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
 
     let dashboardContent;
@@ -26,44 +25,85 @@ class Dashboard extends Component {
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
-      // Check if logged in user has profile data
-      if (Object.keys(profile).length > 0) {
-        dashboardContent = (
-          <div>
-            <div className="btn-group-vertical d-flex flex-wrap justify-content-center align-items-center " role="group">
-              <Link to="/edit-profile" className="btn btn-light">
-               <i className="fas fa-user-circle text-dark mr-1" /> Edit Profile
+      dashboardContent = (
+        <div>
+          {/* This is only visible on small screens  */}
+          <div className="btn-group-vertical d-flex flex-wrap justify-content-center align-items-center d-none d-md-none" role="group">
+            <Link to="/edit-profile" className="btn btn-light">
+              <i className="fas fa-user-circle text-dark mr-1" /> Edit Profile
               </Link>
-              <br></br>
-              <Link to="/EditTrip" className="btn btn-light">
-               <i className="fas fa-user-circle text-dark mr-1" /> Edit Trips
+            <br></br>
+            <Link to="/EditTrip" className="btn btn-light">
+              <i className="fas fa-user-circle text-dark mr-1" /> Edit Trips
               </Link>
-              <br></br>
-              <Link to="/Notification-Settings" className="btn btn-light">
-                <i className="fas fa-exclamation text-dark mr-1" /> Notification Settings
+            <br></br>
+            <Link to="/Notification-Settings" className="btn btn-light">
+              <i className="fas fa-exclamation text-dark mr-1" /> Notification Settings
               </Link>
-              <br></br>
-              <Link to="/Forgot" className="btn btn-light">
-                <i className="fas fa-key text-dark mr-1" /> Change Password
+            <br></br>
+            <Link to="/Forgot" className="btn btn-light">
+              <i className="fas fa-key text-dark mr-1" /> Change Password
               </Link>
-              <br></br>
-              <button onClick={ this.onDeleteClick.bind(this)} className="btn btn-danger">
-                <i className="fas fa-trash-alt" /> Delete My Account </button>
-            </div>          
+            <br></br>
+            <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
+              <i className="fas fa-trash-alt" /> Delete My Account </button>
           </div>
-        );
-      } else {
-        // User is logged in but has no profile
-        dashboardContent = (
-          <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
-            </Link>
+
+          {/* This is only visible on screens larger than size small */}
+          <div className="d-none d-md-block " role="group">
+            <div className="card-deck d-flex justify-content-center">
+              <div className="card bg-light text-center" >
+                <div className="card-body">
+                  <h5 className="card-title">Edit Profile</h5>
+                  <p className="card-text">Use this to edit your profile information.</p>
+                  <Link to="/edit-profile" className="btn btn-secondary">Edit Profile</Link>
+                </div>
+              </div>
+              <div className="card bg-light text-center" >
+                <div className="card-body">
+                  <h5 className="card-title">Edit Trips</h5>
+                  <p className="card-text">Use this to edit your trips information.</p>
+                  <Link to="/EditTrip" className="btn btn-secondary">Edit Trips</Link>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div className="card-deck d-flex justify-content-center">
+              <div className="card bg-light text-center" >
+                <div className="card-body">
+                  <h5 className="card-title">Notification Settings</h5>
+                  <p className="card-text">Use this to change your notification preferences.</p>
+                  <Link to="/Notification-Settings" className="btn btn-secondary">Notification Settings</Link>
+                </div>
+              </div>
+              <div className="card bg-light text-center" >
+                <div className="card-body">
+                  <h5 className="card-title">EMPTY CARD</h5>
+                  <p className="card-text">THIS IS AN EMPTY CARD.</p>
+                  <Link to="#" className="btn btn-secondary">EMPTY CARD</Link>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div className="card-deck d-flex justify-content-center">
+            <div className="card bg-light text-center" >
+                <div className="card-body">
+                  <h5 className="card-title">Change Password</h5>
+                  <p className="card-text">Use this to change your password.</p>
+                  <Link to="/Forgot" className="btn btn-secondary">Change Password</Link>
+                </div>
+              </div>
+              <div className="card bg-light text-center" >
+                <div className="card-body">
+                  <h5 className="card-title">Delete Account</h5>
+                  <p className="card-text">This will delete your account and all data.</p>
+                  <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete Account</button>
+                </div>
+              </div>
+            </div>
           </div>
-        );
-      }
+        </div>
+      );
     }
 
     return (
@@ -84,14 +124,12 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
-} ;
+};
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
-} );
+  profile: state.profile
+});
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
   Dashboard

@@ -6,7 +6,7 @@ import ProfileHeader from './ProfileHeader';
 import ProfileAbout from './ProfileAbout';
 import ProfileCreds from './ProfileCreds';
 import Spinner from '../common/Spinner';
-import { getProfileByHandle } from '../../actions/profileActions';
+import { getProfileByHandle, getCurrentProfile } from '../../actions/profileActions';
 
 class Profile extends Component {
   componentDidMount() {
@@ -22,9 +22,12 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.handle);
     const { profile, loading } = this.props.profile;
     let profileContent;
+    console.log(this.checkIfCurrent());
+    if (this.checkIfCurrent()) {
+      console.log('User is the current user');
+    }
 
     if (profile === null || loading) {
       profileContent = <Spinner />;
