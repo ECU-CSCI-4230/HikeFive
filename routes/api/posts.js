@@ -139,7 +139,6 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       PersonPost.findById(req.params.id)
         .then(post => {
-          console.log(post);
           if (
             post.likes.filter(like => like.user.toString() === req.user.id)
               .length === 0
