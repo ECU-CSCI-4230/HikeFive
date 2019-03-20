@@ -27,6 +27,7 @@ class myProfile extends Component {
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
+      console.log(profile);
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
           profileContent = (

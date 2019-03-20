@@ -58,5 +58,8 @@ const GroupSchema = new Schema({
     default: Date.now
   }
 });
+GroupSchema.index({
+  handle: 'text'
+});
 
 module.exports = Group = mongoose.model('group', GroupSchema);

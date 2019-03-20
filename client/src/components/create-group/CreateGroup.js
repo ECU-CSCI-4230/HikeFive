@@ -46,8 +46,9 @@ class CreateGroup extends Component {
       camp:this.state.camp,
       bio: this.state.bio
     };
-
+    console.log(groupData.handle);
     this.props.createGroup(groupData, this.props.history);
+    this.props.history.push(`/groupwall/${groupData.handle}`);
   }
 
   onChange(e) {

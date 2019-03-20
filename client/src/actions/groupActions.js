@@ -29,14 +29,21 @@ export const getGroupByHandle = handle => dispatch => {
 };
 
 // Create Group 
+//Getting a background error where the network connection is lost.
 export const createGroup = (groupData, history) => dispatch => {
+  {console.log(groupData.handle)}
   axios
     .post('/api/group', groupData)
-    .then(history.push('/dashboard'))
+    .then(res =>
+      dispatch({
+        type: GET_GROUP,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: null
       })
     );
 };
@@ -74,16 +81,11 @@ export const getGroups = () => dispatch => {
 };
 
 // Delete group
-export const deleteGroup = handle => dispatch => {
+export const deleteGroup = (id, history) => dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     axios
-      .delete(`/api/group/${handle}`)
-      .then(res =>
-        dispatch({
-          type: SET_CURRENT_GROUP,
-          payload: {}
-        })
-      )
+      .delete(`/api/group/${id}`)
+      .then(res => history.push('/feed'))
       .catch(err =>
         dispatch({
           type: GET_ERRORS,

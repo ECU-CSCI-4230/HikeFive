@@ -69,23 +69,23 @@ router.post(
     if (req.body.travel) groupFields.travel = req.body.travel;
     if (req.body.camp) groupFields.camp = req.body.camp;
     if (req.body.bio) groupFields.bio = req.body.bio;
-    
+
     // Check if handle exists
     Group.findOne({ handle: groupFields.handle }).then(group => {
-        //console.log(group);
-        if (group) {
+      //console.log(group);
+      if (group) {
         errors.handle = 'That handle already exists';
         res.status(400).json(errors);
-        }
-        else{
-          // Save Group
-          const temp = new Group(groupFields);
-          temp.save((error) => {
-            if(error) {
-              console.log('Error has occurred');
-            }
-          });
-        }
+      }
+      else {
+        // Save Group
+        const temp = new Group(groupFields);
+        temp.save((error) => {
+          if (error) {
+            console.log('Error has occurred');
+          }
+        });
+      }
     });
   }
 );
@@ -113,7 +113,7 @@ router.post(
     if (req.body.travel) groupFields.travel = req.body.travel;
     if (req.body.camp) groupFields.camp = req.body.camp;
     if (req.body.bio) groupFields.bio = req.body.bio;
-    
+
     Group.findOne({ handle: groupFields.handle }).then(group => {
       if (group) {
         // Update
@@ -122,8 +122,8 @@ router.post(
           { new: true }
         ).then(group => res.json(group));
       }
-  });
-}
+    });
+  }
 );
 
 
@@ -131,10 +131,11 @@ router.post(
 // @desc    Delete group
 // @access  Private
 router.delete(
-  '/:handle',
+  '/:id',
   (req, res) => {
-    Group.findOneAndRemove({ handle: req.handle }).then(() => {
-        res.json({ success: true })
+    {console.log(req.params.id)}
+    Group.findOneAndRemove({ _id: req.params.id }).then(() => {
+      res.json({ success: true })
     });
   }
 );

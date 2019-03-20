@@ -11,7 +11,8 @@ class Dashboard extends Component {
   }
 
   onDeleteClick(e) {
-    this.props.deleteGroup(this.props.match.params.handle);
+    console.log(this.props.group.group._id);
+    this.props.deleteGroup(this.props.group.group._id, this.props.history);
   }
 
 
@@ -23,6 +24,7 @@ class Dashboard extends Component {
     if (group === null || loading) {
       dashboardContent = <Spinner />;
     } else {
+      //console.log(group._id);
       if (Object.keys(group).length > 0) {
         dashboardContent = (
           <div>
