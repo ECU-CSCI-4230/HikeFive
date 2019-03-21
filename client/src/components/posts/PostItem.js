@@ -77,10 +77,6 @@ class PostItem extends React.Component {
     this.props.deletePost(id);
   }
 
-  onLikeClick(id) {
-    this.props.addLike(id);
-  }
-
   findUserLike(likes) {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user.id).length > 0) {
