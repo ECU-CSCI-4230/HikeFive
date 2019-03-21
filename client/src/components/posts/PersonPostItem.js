@@ -32,7 +32,7 @@ class PersonPostItem extends React.Component {
         this.props.removePersonalLike(id);
         this.setState((props) => {
           return {
-            updated: true
+            updated: false
           };
         });
       } else {
