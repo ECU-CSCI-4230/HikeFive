@@ -17,6 +17,7 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddTrip from './components/add-credentials/AddTrip';
+import AddEvent from './components/add-credentials/AddEvent';
 import Profiles from './components/profiles/Profiles';
 import Groups from './components/groups/Groups';
 import Group from './components/group/Group';
@@ -172,6 +173,13 @@ class App extends Component {
                   exact
                   path="/add-trip"
                   component={AddTrip}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/addevent/:handle"
+                  component={AddEvent}
                 />
               </Switch>
               <Switch>

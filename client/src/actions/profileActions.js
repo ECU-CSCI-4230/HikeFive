@@ -50,23 +50,45 @@ export const getProfileByHandle = handle => dispatch => {
 
 // Search Profiles
 export const searchProfiles = query => dispatch => {
+  { console.log(query) }
   dispatch(setProfileLoading());
   axios
     .get(`/api/profile/${query}`)
     .then(res =>
       dispatch({
-        type: SEARCH_HANDLES,
+        type: GET_PROFILES,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: SEARCH_HANDLES,
+        type: GET_PROFILES,
         payload: null
       })
     );
 };
 
+/*
+//Match Making
+export const matchMake = matchData => dispatch => {
+  { console.log(matchData) }
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/match`, matchData)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null
+      })
+    );
+};
+*/
 
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {

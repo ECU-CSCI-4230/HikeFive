@@ -79,26 +79,31 @@ router.get('/handle/:handle', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/search-handles
-// @desc    Get all profiles containing search handle
+// @route   GET api/:query
+// @desc    Get all profiles that match search string
 // @access  Public
 
-router.get('/:searchHandles', (req, res) => {
-  const errors = {};
-
-  Profile.find(
-    { $text: {$search: req.params.searchHandles} }, 
+/*
+{ $text: {$search: req.params.query} }, 
     {score: {$meta: "textScore"}}
     ).sort({score: {$meta: "textScore"}})
+*/
 
+router.get('/:query', (req, res) => {
+  const errors = {};
+
+  User.find( {name: { '$regex': req.params.query, '$options': "ix" } } ) 
+  .then(users => {
+    Profile.find( { $or: [ { user: {'$in': users } }, { handle: new RegExp(req.params.query, 'i') } ] } )
     .populate('user', ['name', 'avatar'])
-    .then(profiles => {
+    .then( profiles => {
       if (!profiles) {
         errors.noprofile = 'No profiles were found';
         res.status(404).json(errors);
       }
-      console.log('success');
       res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
     })
     .catch(err => res.status(404).json(err));
 });
@@ -163,14 +168,14 @@ router.post(
     //DELETE LINE BELOW
     if (req.body.time) profileFields.time = req.body.time;
     if (req.body.bio) profileFields.bio = req.body.bio;
-    
+
     // Social
     profileFields.social = {};
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
     if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
-    
+
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {

@@ -5,6 +5,7 @@ const passport = require('passport');
 
 // Load Validation
 const validateGroupInput = require('../../validation/group');
+const validateEventInput = require('../../validation/event');
 
 // Load Group Model
 const Group = require('../../models/Group');
@@ -26,6 +27,33 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(404).json({ group: 'There are no profiles' }));
 });
 
+// @route   GET api/group/search/:query
+// @desc    Get all groups where handle or name matches query
+// @access  Public
+
+router.get('/search/:query', (req, res) => {
+  const errors = {};
+  //console.log(req.params);
+
+  Group.find({
+    $or: [
+      { name: new RegExp(req.params.query, 'i') },
+      { handle: new RegExp(req.params.query, 'i') }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log('success');
+      //console.log(profiles);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
 // @route   GET api/group/handle/:handle
 // @desc    Get group by handle
 // @access  Public
@@ -44,6 +72,25 @@ router.get('/handle/:handle', (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
+
+
+// @route   GET api/group/event/:event_id
+// @desc    Get specific event for group
+// @access  Public
+
+router.get('/event/:event_id', (req, res) => {
+  const errors = {};
+
+  Group.find({ _id: req.params.id }, { events: { $elemMatch: { _id: req.params.event_id}}})
+  .then(event => {
+    if (!event) {
+      errors.noevent = 'There is no event matching query';
+      res.status(404).json(errors);
+    }
+  })
+    .catch(err => res.status(404).json(err));
+});
+
 
 
 // @route   POST api/group
@@ -123,6 +170,58 @@ router.post(
         ).then(group => res.json(group));
       }
     });
+  }
+);
+
+// @route   POST api/group/event
+// @desc    Add event to group
+// @access  Private
+router.post(
+  '/event',
+  //authentication here
+  (req, res) => {
+    //const { errors, isValid } = validateEventInput(req.body);
+    //check valid input
+    //if(!isValid) {
+    //  return res.status(400).json(errors);
+    //}
+  console.log(req.user);
+    Group.findOne({ handle: req.body.handle }).then(group => {
+      const newEvent = {
+        name: req.body.name,
+        start: req.body.start,
+        end: req.body.end,
+        location: req.body.location,
+        info: req.body.info,
+      };
+      //Add event to events array
+      group.events.unshift(newEvent);
+      group.save().then(group => res.json(group));
+    });
+  }
+);
+
+// @route   DELETE api/group/event/:event_id
+// @desc    Delete trip from group
+// @access  Private
+router.delete(
+  '/event/:event_id',
+  //passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Group.findOne({ _id: req.group.id })
+      .then(group => {
+        // Get remove index
+        const removeIndex = group.events
+          .map(item => item.id)
+          .indexOf(req.params.event_id);
+
+        // Splice out of array
+        group.events.splice(removeIndex, 1);
+
+        // Save
+        group.save().then(group => res.json(group));
+      })
+      .catch(err => res.status(404).json(err));
   }
 );
 

@@ -1,59 +1,121 @@
-import React from 'react';
-import BigCalendar from 'react-big-calendar'
-import events from './events'
-import ControlSlot from './ControlSlot'
-import moment from 'moment'
+import React from "react";
+import dateFns from "date-fns";
 
-const propTypes = {}
+class Calendar extends React.Component {
+  state = {
+    currentMonth: new Date(),
+    selectedDate: new Date()
+  };
 
-class Selectable extends React.Component {
-  constructor(...args) {
-    super(...args)
+  renderHeader() {
+    const dateFormat = "MMMM YYYY";
 
-    this.state = { events }
+    return (
+      <div className="header row flex-middle">
+        <div className="col col-start">
+          <div className="icon" onClick={this.prevMonth}>
+            Previous Month
+          </div>
+        </div>
+        <div className="col col-center">
+          <span>{dateFns.format(this.state.currentMonth, dateFormat)}</span>
+        </div>
+        <div className="col col-end" onClick={this.nextMonth}>
+          <div className="icon">Next Month</div>
+        </div>
+      </div>
+    );
   }
 
-  handleSelect = ({ start, end }) => {
-    const title = window.prompt('New Event name')
-    if (title)
-      this.setState({
-        events: [
-          ...this.state.events,
-          {
-            start,
-            end,
-            title,
-          },
-        ],
-      })
+  renderDays() {
+    const dateFormat = "dddd";
+    const days = [];
+
+    let startDate = dateFns.startOfWeek(this.state.currentMonth);
+
+    for (let i = 0; i < 7; i++) {
+      days.push(
+        <div className="col col-center" key={i}>
+          {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+        </div>
+      );
+    }
+
+    return <div className="days row">{days}</div>;
   }
+
+  renderCells() {
+    const { currentMonth, selectedDate } = this.state;
+    const monthStart = dateFns.startOfMonth(currentMonth);
+    const monthEnd = dateFns.endOfMonth(monthStart);
+    const startDate = dateFns.startOfWeek(monthStart);
+    const endDate = dateFns.endOfWeek(monthEnd);
+
+    const dateFormat = "D";
+    const rows = [];
+
+    let days = [];
+    let day = startDate;
+    let formattedDate = "";
+
+    while (day <= endDate) {
+      for (let i = 0; i < 7; i++) {
+        formattedDate = dateFns.format(day, dateFormat);
+        const cloneDay = day;
+        days.push(
+          <div
+            className={`col cell ${
+              !dateFns.isSameMonth(day, monthStart)
+                ? "disabled"
+                : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+            }`}
+            key={day}
+            onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+          >
+            <span className="number">{formattedDate}</span>
+            <span className="bg">{formattedDate}</span>
+          </div>
+        );
+        day = dateFns.addDays(day, 1);
+      }
+      rows.push(
+        <div className="row" key={day}>
+          {days}
+        </div>
+      );
+      days = [];
+    }
+    return <div className="body">{rows}</div>;
+  }
+
+  onDateClick = day => {
+    this.setState({
+      selectedDate: day
+    });
+    alert('Testing this');
+  };
+
+  nextMonth = () => {
+    this.setState({
+      currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
+    });
+  };
+
+  prevMonth = () => {
+    this.setState({
+      currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
+    });
+  };
 
   render() {
-    //const { localizer } = this.props
-    const localizer = BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
     return (
-      <>
-        <ControlSlot.Entry waitForOutlet>
-          <strong>
-            Click an event to see more info, or drag the mouse over the calendar
-            to select a date/time range.
-          </strong>
-        </ControlSlot.Entry>
-        <BigCalendar
-          selectable
-          localizer={localizer}
-          events={this.state.events}
-          defaultView={BigCalendar.Views.WEEK}
-          scrollToTime={new Date(1970, 1, 1, 6)}
-          defaultDate={new Date(2015, 3, 12)}
-          onSelectEvent={event => alert(event.title)}
-          onSelectSlot={this.handleSelect}
-        />
-      </>
-    )
+      <div className="calendar">
+        {this.renderHeader()}
+        {this.renderDays()}
+        {this.renderCells()}
+      </div>
+    );
   }
 }
 
-Selectable.propTypes = propTypes
-
-export default Selectable
+export default Calendar;

@@ -17,3 +17,5 @@ export const GET_GROUP = 'GET_GROUP';
 export const GET_GROUPS = 'GET_GROUPS';
 export const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP';
 export const GROUP_LOADING = 'GROUP_LOADING';
+export const CALENDAR_LOADING = 'CALENDAR_LOADING';
+export const GET_EVENT = 'GET_EVENT';

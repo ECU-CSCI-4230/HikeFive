@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
@@ -12,13 +12,13 @@ class Navbar extends Component {
     this.props.clearCurrentProfile();
     this.props.logoutUser();
   }
-  onSearchClick() {
+  onSearchClick = () => {
     var searchString = document.getElementById("query").value;
     console.log(searchString);
-    window.location.replace(`/searchP/${searchString}`);
-    console.log('here');
+    this.props.history.push(`/searchP/${searchString}`);
+    //window.location.replace(`/searchP/${searchString}`);
+    console.log('End of onSearchClick');
   }
-
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -27,7 +27,7 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto ">
         <form className="form-inline md-form mr-auto ">
-          <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="query" />
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query" />
           <button className="btn btn-elegant btn-rounded btn-sm my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
         </form>
         <li className="nav-item">
@@ -120,6 +120,5 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
-  Navbar
-);
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })
+(withRouter(Navbar));

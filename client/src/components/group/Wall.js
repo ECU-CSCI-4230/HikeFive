@@ -42,6 +42,7 @@ class Wall extends Component {
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>
+                  <Link className="nav-item nav-link" to={`/addevent/${group.handle}`}>Add Event</Link>
                 </div>
               </div>
             </nav>
