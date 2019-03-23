@@ -32,12 +32,12 @@ class PostItem extends React.Component {
         this.props.removeLike(id);
         this.setState((props) => {
           return {
-            updated: true
+            updated: false
           };
         });
       } else {
-        this.props.addLike(id);
         post.likes.length = post.likes.length + 1;
+        this.props.addLike(id);
         this.setState((props) => {
           return {
             updated: false
@@ -55,8 +55,8 @@ class PostItem extends React.Component {
           };
         });
       } else {
-       this.props.removeLike(id);
         post.likes.length = post.likes.length - 1;
+        this.props.removeLike(id);
         this.setState((props) => {
           return {
           updated: false
@@ -75,10 +75,6 @@ class PostItem extends React.Component {
   
   onDeleteClick(id) {
     this.props.deletePost(id);
-  }
-
-  onLikeClick(id) {
-    this.props.addLike(id);
   }
 
   findUserLike(likes) {
