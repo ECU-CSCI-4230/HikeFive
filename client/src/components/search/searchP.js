@@ -50,9 +50,24 @@ class Search extends Component {
             <div className="col-md-12">
               <h1 className="display-4 text-center">Search Results</h1>
               <p className="lead text-center">
-                Number of Results: 
+               Searched For: {this.props.match.params.searchString}
               </p>
-              {searchItems} {groupItems}
+
+              <ul className="nav nav-pills justify-content-center" id="searchResults" role="tablist">
+                <li className="nav-item nav-li active">
+                  <a className="nav-link text-white tab-color active" id="user-tab" data-toggle="pill" href="#users" role= "tab" aria-controls="users" aria-selected="true">Users</a>
+                </li>
+                <li className="nav-item nav-li">
+                  <a className="nav-link text-white tab-color" id="group-tab" data-toggle="pill" href="#groups" role= "tab" aria-controls="groups" aria-selected="false">Groups</a>
+                </li>
+              </ul>
+
+              <div className="tab-content" id="searchResultsContent">
+                <div className="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="user-tab"> <br/>{ searchItems}</div>
+                <div className="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="group-tab">< br/> {groupItems}</div>
+              </div>
+
+
             </div>
           </div>
         </div>
