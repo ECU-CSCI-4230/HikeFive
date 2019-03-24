@@ -14,6 +14,7 @@ class EditGroup extends Component {
     super(props);
     this.state = {
       name: '',
+      avatar: '',
       zip: '',
       skillstatus: '',
       climber: '',
@@ -42,7 +43,9 @@ class EditGroup extends Component {
 
     if (nextProps.group.group) {
       const group = nextProps.group.group;
+      
       group.name = !isEmpty(group.name) ? group.name : '';
+      group.avatar = !isEmpty(group.avatar) ? group.avatar : '';
       group.zip = !isEmpty(group.zip) ? group.zip : '';
       group.skillstatus = !isEmpty(group.skillstatus) ? group.skillstatus : '';
       group.climber = !isEmpty(group.climber) ? group.climber : '';
@@ -60,6 +63,7 @@ class EditGroup extends Component {
       this.setState({
         handle: group.handle,
         name: group.name,
+        avatar: group.avatar,
         zip: group.zip,
         skillstatus: group.skillstatus,
         climber: group.climber,
@@ -81,6 +85,7 @@ class EditGroup extends Component {
     const groupData = {
       handle: this.state.handle,
       name: this.state.name,
+      avatar: this.state.avatar,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
       climber: this.state.climber,
@@ -182,6 +187,14 @@ class EditGroup extends Component {
                   info="What is the name of your group?"
                 />
                 <TextFieldGroup
+                  placeholder="* Enter URL Image Address"
+                  name="avatar"
+                  value={this.state.avatar}
+                  onChange={this.onChange}
+                  error={errors.avatar}
+                  info="Enter the URL image address for the group picture"
+                />
+                <TextFieldGroup
                   placeholder="* Required"
                   name="zip"
                   value={this.state.zip}
@@ -261,16 +274,19 @@ class EditGroup extends Component {
     );
   }
 }
+
 EditGroup.propTypes = {
   editGroup: PropTypes.func.isRequired,
   getGroupByHandle: PropTypes.func.isRequired,
   group: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
   group: state.group,
   errors: state.errors
 });
+
 export default connect(mapStateToProps, { editGroup, getGroupByHandle })(
   withRouter(EditGroup)
 );

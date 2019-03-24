@@ -111,6 +111,7 @@ router.post(
     const groupFields = {};
     if (req.body.handle) groupFields.handle = req.body.handle;
     if (req.body.name) groupFields.name = req.body.name;
+    if (req.body.avatar) groupFields.avatar = req.body.avatar;
     if (req.body.zip) groupFields.zip = req.body.zip;
     if (req.body.skillstatus) groupFields.skillstatus = req.body.skillstatus;
     if (req.body.climber) groupFields.climber = req.body.climber;
@@ -161,6 +162,7 @@ router.post(
     const groupFields = {};
     if (req.body.handle) groupFields.handle = req.body.handle;
     if (req.body.name) groupFields.name = req.body.name;
+    if (req.body.avatar) groupFields.avatar = req.body.avatar;
     if (req.body.zip) groupFields.zip = req.body.zip;
     if (req.body.skillstatus) groupFields.skillstatus = req.body.skillstatus;
     if (req.body.climber) groupFields.climber = req.body.climber;

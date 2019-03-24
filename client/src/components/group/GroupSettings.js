@@ -88,7 +88,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="d-flex flex-wrap justify-content-center align-items-center display-4">Settings</h1>
+              <h1 className="d-flex flex-wrap justify-content-center align-items-center display-4">Group Settings</h1>
               {dashboardContent}
             </div>
           </div>

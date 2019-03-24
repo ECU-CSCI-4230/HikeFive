@@ -6,9 +6,12 @@ import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import GroupFeed from './GroupFeed';
 import { Link } from 'react-router-dom';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class Wall extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
+
     if (this.props.match.params.handle) {
       this.props.getGroupByHandle(this.props.match.params.handle);
     }
@@ -66,6 +69,7 @@ class Wall extends Component {
 
 Wall.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   group: PropTypes.object.isRequired
 };
 
@@ -73,4 +77,4 @@ const mapStateToProps = state => ({
     group: state.group,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Wall);
+export default connect(mapStateToProps, { getGroupByHandle, getCurrentProfile })(Wall);

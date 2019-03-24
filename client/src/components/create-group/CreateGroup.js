@@ -14,6 +14,7 @@ class CreateGroup extends Component {
     this.state = {
       handle: '',
       name: '',
+      avatar: '',
       zip: '',
       skillstatus: '',
       climber: '',
@@ -43,6 +44,7 @@ class CreateGroup extends Component {
     const groupData = {
       handle: this.state.handle,
       name: this.state.name,
+      avatar: this.state.avatar,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
       climber: this.state.climber,
@@ -153,6 +155,14 @@ class CreateGroup extends Component {
                   onChange={this.onChange}
                   error={errors.name}
                   info="What is the name of your group?"
+                />
+                <TextFieldGroup
+                  placeholder="* Enter a URL Image Address"
+                  name="avatar"
+                  value={this.state.avatar}
+                  onChange={this.onChange}
+                  error={errors.avatar}
+                  info="Enter a URL image address for the group picture"
                 />
                 <TextFieldGroup
                   placeholder="* Required"
