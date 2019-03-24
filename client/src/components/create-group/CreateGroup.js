@@ -68,7 +68,7 @@ class CreateGroup extends Component {
     };
     this.props.createGroup(groupData, this.props.history);
     //this.props.history.push(`/groupwall/${groupData.handle}`);
-    this.props.history.push("/feed");
+    this.props.history.push(`/groupwall/${groupData.handle}`);
   }
 
   onChange(e) {
@@ -77,15 +77,6 @@ class CreateGroup extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state;
-    //const {profile} = this.props.profile;
-    //const obj = JSON.parse(JSON.stringify(profile));
-    //console.log(profile);
-    /*{"_id":"5c9154f0416bc437447befa6",
-    "user":{"_id":"5c9154d7416bc437447befa5","name":"Oliver Chen",
-    "avatar":"//www.gravatar.com/avatar/6f69901ed9ec04c0dec908207d48a35a?s=200&r=pg&d=mm"}
-    ,"handle":"chenh15","zip":"123456","gender":"male","skillstatus":"5","climber":"Yes","travel":"Yes","camp":"Yes","trip":[],"experience":[],"education":[],
-    "date":"2019-03-19T20:45:36.283Z","__v":0}*/
-
     let socialInputs;
 
     if (displaySocialInputs) {

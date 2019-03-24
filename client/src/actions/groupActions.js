@@ -37,6 +37,7 @@ export const createGroup = (groupData, history) => dispatch => {
   axios
     .post('/api/group', groupData)
     .then(res =>
+      //history.push('/feed')
       dispatch({
         type: GET_GROUP,
         payload: res.data
