@@ -190,11 +190,13 @@ PersonPostItem.propTypes = {
   addPersonalLike: PropTypes.func.isRequired,
   removerPersonalLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
 //React.render(<CommentWindow />, document.getElementById('app'))

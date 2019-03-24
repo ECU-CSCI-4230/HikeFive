@@ -27,11 +27,12 @@ class CommentWindowForm extends Component {
 
     const { user } = this.props.auth;
     const { postId } = this.props;
+    const { profile } = this.props.profile;
 
     const newComment = {
       text: this.state.text,
       name: user.name,
-      avatar: user.avatar
+      avatar: profile.avatar
     };
 
     this.props.addComment(postId, newComment);
@@ -76,12 +77,14 @@ class CommentWindowForm extends Component {
 CommentWindowForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  profile: state.profile,
   errors: state.errors
 });
 

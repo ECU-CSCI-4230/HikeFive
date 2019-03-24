@@ -87,8 +87,8 @@ class PostItem extends React.Component {
   }
 
   render() {
-    const { post, auth, showActions } = this.props;
-
+    const { post, auth, showActions} = this.props;
+    console.log(this.props);
     const showHide = {
       'display': this.state.showStatus ? 'block' : 'none'
     };

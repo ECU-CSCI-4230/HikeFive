@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class PostForm extends Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class PostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
@@ -26,11 +31,12 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
+    const { profile } = this.props.profile;
 
     const newPost = {
       text: this.state.text,
       name: user.name,
-      avatar: user.avatar
+      avatar: profile.avatar
     };
 
     this.props.addPost(newPost);
@@ -73,12 +79,15 @@ class PostForm extends Component {
 PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  profile: state.profile,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPost })(PostForm);
+export default connect(mapStateToProps, { addPost, getCurrentProfile })(PostForm);
