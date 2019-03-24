@@ -16,10 +16,14 @@ class CreateGroup extends Component {
       name: '',
       zip: '',
       skillstatus: '',
-      climber:'',
-      travel:'',
-      camp:'',
+      climber: '',
+      travel: '',
+      camp: '',
       bio: '',
+      twitter: '',
+      facebook: '',
+      youtube: '',
+      instagram: '',
       errors: {}
     };
 
@@ -41,10 +45,14 @@ class CreateGroup extends Component {
       name: this.state.name,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
-      climber:this.state.climber,
-      travel:this.state.travel,
-      camp:this.state.camp,
-      bio: this.state.bio
+      climber: this.state.climber,
+      travel: this.state.travel,
+      camp: this.state.camp,
+      bio: this.state.bio,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram
     };
     console.log(groupData.handle);
     this.props.createGroup(groupData, this.props.history);
@@ -56,7 +64,51 @@ class CreateGroup extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, displaySocialInputs } = this.state;
+
+    let socialInputs;
+
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <InputGroup
+            placeholder="Twitter Profile URL"
+            name="twitter"
+            icon="fab fa-twitter"
+            value={this.state.twitter}
+            onChange={this.onChange}
+            error={errors.twitter}
+          />
+
+          <InputGroup
+            placeholder="Facebook Page URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
+          />
+
+          <InputGroup
+            placeholder="YouTube Channel URL"
+            name="youtube"
+            icon="fab fa-youtube"
+            value={this.state.youtube}
+            onChange={this.onChange}
+            error={errors.youtube}
+          />
+
+          <InputGroup
+            placeholder="Instagram Page URL"
+            name="instagram"
+            icon="fab fa-instagram"
+            value={this.state.instagram}
+            onChange={this.onChange}
+            error={errors.instagram}
+          />
+        </div>
+      );
+    }
 
     // Select options for status
     const Skilloptions = [
@@ -74,7 +126,7 @@ class CreateGroup extends Component {
       { label: 'No', value: 'No' }
     ];
 
-    
+
     return (
       <div className="create-group">
         <div className="container">
@@ -86,7 +138,7 @@ class CreateGroup extends Component {
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
-              <TextFieldGroup
+                <TextFieldGroup
                   placeholder="* Group Handle"
                   name="handle"
                   value={this.state.handle}
@@ -154,7 +206,24 @@ class CreateGroup extends Component {
                   error={errors.bio}
                   info="Tell us a little about your group"
                 />
-                  
+
+                <div className="mb-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.setState(prevState => ({
+                        displaySocialInputs: !prevState.displaySocialInputs
+                      }));
+                    }}
+                    className="btn btn-light"
+                  >
+                    Add Social Network Links
+                  </button>{" "}
+                  <span className="text-muted">Optional</span>
+                </div>
+                {socialInputs}
+
+
                 <input
                   type="submit"
                   value="Submit"

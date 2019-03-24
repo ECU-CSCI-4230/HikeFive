@@ -54,7 +54,7 @@ export const createGroup = (groupData, history) => dispatch => {
 export const editGroup = (groupData, history) => dispatch => {
   axios
     .post('/api/group/edit', groupData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push(`/groupsettings/${groupData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -78,6 +78,38 @@ export const getGroups = () => dispatch => {
       dispatch({
         type: GET_GROUPS,
         payload: null
+      })
+    );
+};
+
+// Add Trip
+export const addTrip = (tripData, history) => dispatch => {
+  {console.log(tripData.handle)}
+  axios
+    .post('/api/group/trips', tripData)
+    .then(res => history.push('/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Trip
+export const deleteTrip = id => dispatch => {
+  axios
+    .delete(`/api/group/trips/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_GROUP,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
     );
 };

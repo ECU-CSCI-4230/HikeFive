@@ -6,7 +6,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SelectListGroup from '../common/SelectListGroup';
-import { addTrip } from '../../actions/profileActions';
+import { addTrip, getGroupByHandle } from '../../actions/groupActions';
 
 class AddTrip extends Component {
   constructor(props) {
@@ -23,10 +23,18 @@ class AddTrip extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getGroupByHandle(this.props.match.params.handle);
+  }
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    if(nextProps.group.group) {
+      this.setState({
+        handle: nextProps.group.group.handle
+      });
     }
   }
 
@@ -34,6 +42,7 @@ class AddTrip extends Component {
     e.preventDefault();
 
     const tripData = {
+      handle: this.state.handle,
       name: this.state.name,
       date: this.state.date,
       location: this.state.location,
@@ -119,15 +128,16 @@ class AddTrip extends Component {
 
 AddTrip.propTypes = {
   addTrip: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  group: PropTypes.object.isRequired,
+  getGroupByHandle: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  group: state.group,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addTrip })(
+export default connect(mapStateToProps, { addTrip, getGroupByHandle })(
   withRouter(AddTrip)
 );

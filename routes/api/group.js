@@ -6,6 +6,7 @@ const passport = require('passport');
 // Load Validation
 const validateGroupInput = require('../../validation/group');
 const validateEventInput = require('../../validation/event');
+const validateTripInput = require('../../validation/trip');
 
 // Load Group Model
 const Group = require('../../models/Group');
@@ -116,6 +117,12 @@ router.post(
     if (req.body.travel) groupFields.travel = req.body.travel;
     if (req.body.camp) groupFields.camp = req.body.camp;
     if (req.body.bio) groupFields.bio = req.body.bio;
+    // Social
+    groupFields.social = {};
+    if (req.body.youtube) groupFields.social.youtube = req.body.youtube;
+    if (req.body.twitter) groupFields.social.twitter = req.body.twitter;
+    if (req.body.facebook) groupFields.social.facebook = req.body.facebook;
+    if (req.body.instagram) groupFields.social.instagram = req.body.instagram;
 
     // Check if handle exists
     Group.findOne({ handle: groupFields.handle }).then(group => {
@@ -160,11 +167,18 @@ router.post(
     if (req.body.travel) groupFields.travel = req.body.travel;
     if (req.body.camp) groupFields.camp = req.body.camp;
     if (req.body.bio) groupFields.bio = req.body.bio;
+    // Social
+    groupFields.social = {};
+    if (req.body.youtube) groupFields.social.youtube = req.body.youtube;
+    if (req.body.twitter) groupFields.social.twitter = req.body.twitter;
+    if (req.body.facebook) groupFields.social.facebook = req.body.facebook;
+    if (req.body.instagram) groupFields.social.instagram = req.body.instagram;
 
     Group.findOne({ handle: groupFields.handle }).then(group => {
       if (group) {
         // Update
         Group.findOneAndUpdate(
+          { handle: groupFields.handle }, 
           { $set: groupFields },
           { new: true }
         ).then(group => res.json(group));
@@ -225,6 +239,62 @@ router.delete(
   }
 );
 
+
+// @route   POST api/profile/trips
+// @desc    Add trip to profile
+// @access  Private
+router.post(
+  '/trips',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateTripInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    Group.findOne({ handle: req.body.handle }).then(group => {
+      const newTrip = {
+        name: req.body.name,
+        date: req.body.date,
+        location: req.body.location,
+        description: req.body.description,
+        difficulty: req.body.difficulty,
+      };
+
+      // Add to trip array
+      group.trip.unshift(newTrip);
+
+      group.save().then(group => res.json(group));
+    });
+  }
+);
+
+// @route   DELETE api/profile/trips/:trip_id
+// @desc    Delete trip from profile
+// @access  Private
+router.delete(
+  '/trips/:trip_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Group.findOne({ handle: req.params.handle })
+      .then(group => {
+        // Get remove index
+        const removeIndex = group.trip
+          .map(item => item.id)
+          .indexOf(req.params.trip_id);
+
+        // Splice out of array
+        group.trip.splice(removeIndex, 1);
+
+        // Save
+        group.save().then(group => res.json(group));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
 
 // @route   DELETE api/group
 // @desc    Delete group

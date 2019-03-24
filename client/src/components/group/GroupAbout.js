@@ -6,31 +6,6 @@ class GroupAbout extends Component {
   render() {
     const { group } = this.props;
 
-/*
-            <div className="row">
-              <div className="col-md">
-                <div className="d-flex flex-wrap justify-content-center align-items-center">
-                  {isEmpty(group.social && group.social.facebook) ? null : (
-                    <a href={group.social.facebook}>Facebook</a>
-                  )}<br></br>
-                  {isEmpty(group.social && group.social.twitter) ? null : (
-                    <a href={group.social.twitter}>Twitter</a>
-                  )}
-                </div>
-              </div>
-              <div className="col-md">
-                <div className="d-flex flex-wrap justify-content-center align-items-center">
-                  {isEmpty(group.social && group.social.instagram) ? null : (
-                      <a href={group.social.instagram}>Instagram</a>
-                  )}<br></br>
-                  {isEmpty(group.social && group.social.youtube) ? null : (
-                    <a href={group.social.youtube}>YouTube</a>
-                  )}
-                </div>
-              </div>
-            </div> 
-        */
-
     return (
       <div className="row">
         <div className="col-md-12">
@@ -40,8 +15,8 @@ class GroupAbout extends Component {
               {isEmpty(group.bio) ? (
                 <span className="d-flex flex-wrap justify-content-center align-items-center">No Bio</span>
               ) : (
-                <span className="d-flex flex-wrap justify-content-center align-items-center">{group.bio}</span>
-              )}
+                  <span className="d-flex flex-wrap justify-content-center align-items-center">{group.bio}</span>
+                )}
             </p>
             <hr />
             <div className="row">
@@ -58,7 +33,29 @@ class GroupAbout extends Component {
                   Traveler: {group.travel}<br></br>
                 </div>
               </div>
-            </div>    
+            </div>
+            <div className="row">
+                <div className="col-md">
+                  <div className="d-flex flex-wrap justify-content-center align-items-center">
+                    {isEmpty(group.social && group.social.facebook) ? null : (
+                      <a href={group.social.facebook}>Facebook</a>
+                    )}<br></br>
+                    {isEmpty(group.social && group.social.twitter) ? null : (
+                      <a href={group.social.twitter}>Twitter</a>
+                    )}
+                  </div>
+                </div>
+                <div className="col-md">
+                  <div className="d-flex flex-wrap justify-content-center align-items-center">
+                    {isEmpty(group.social && group.social.instagram) ? null : (
+                      <a href={group.social.instagram}>Instagram</a>
+                    )}<br></br>
+                    {isEmpty(group.social && group.social.youtube) ? null : (
+                      <a href={group.social.youtube}>YouTube</a>
+                    )}
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>

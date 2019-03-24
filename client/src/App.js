@@ -44,6 +44,8 @@ import CreateGroup from './components/create-group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
 import GroupsLanding from './components/groups/GroupsLanding';
 import SearchP from './components/search/searchP';
+import EditTrips from './components/group/Edit-Trips';
+import AddGroupTrip from './components/group/AddTrip.js';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -65,11 +67,7 @@ if (localStorage.jwtToken) {
     window.location.href = '/login';
   }
 }
-/*
-<Switch>
-                <PrivateRoute exact path="/personfeed:handle" component={personfeed} />
-              </Switch>
-*/
+
 class App extends Component {
   render() {
     return (
@@ -155,48 +153,49 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
+                <PrivateRoute exact path="/edit-trips/:handle" component={EditTrips} />
               </Switch>
+
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/add-experience"
-                  component={AddExperience}
-                />
+                <PrivateRoute exact path="/edit-profile" component={EditProfile}/>
               </Switch>
+
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/add-trip"
-                  component={AddTrip}
-                />
+                <PrivateRoute exact path="/add-experience" component={AddExperience}/>
               </Switch>
+
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/addevent/:handle"
-                  component={AddEvent}
-                />
+                <PrivateRoute exact path="/add-trip" component={AddTrip}/>
               </Switch>
+  
+              <Switch>
+                <PrivateRoute exact path="/addTrip/:handle" component={AddGroupTrip}/>
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/addevent/:handle" component={AddEvent}/>
+              </Switch>
+
               <Switch>
                 <PrivateRoute exact path="/feed" component={Posts} />
               </Switch>
+
               <Switch>
                 <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
+
               <Switch>
                   <PrivateRoute exact path="/EditTrip" component={EditTrip} />
               </Switch>
+
               <Switch>
                   <PrivateRoute exact path="/Trip" component={Trip} />
               </Switch>
+
               <Switch>
                   <PrivateRoute exact path="/Forgot" component={Forgot} />
               </Switch>
+
               <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
