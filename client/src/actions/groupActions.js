@@ -33,7 +33,7 @@ export const getGroupByHandle = handle => dispatch => {
 // Create Group 
 //Getting a background error where the network connection is lost.
 export const createGroup = (groupData, history) => dispatch => {
-  {console.log(groupData.handle)}
+  //{console.log(groupData.handle)}
   axios
     .post('/api/group', groupData)
     .then(res =>

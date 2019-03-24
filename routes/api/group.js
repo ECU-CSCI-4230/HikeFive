@@ -118,6 +118,7 @@ router.post(
     if (req.body.travel) groupFields.travel = req.body.travel;
     if (req.body.camp) groupFields.camp = req.body.camp;
     if (req.body.bio) groupFields.bio = req.body.bio;
+    if (req.body.ownerid) groupFields.ownerid = req.body.ownerid;
     // Social
     groupFields.social = {};
     if (req.body.youtube) groupFields.social.youtube = req.body.youtube;
@@ -132,15 +133,16 @@ router.post(
         errors.handle = 'That handle already exists';
         res.status(400).json(errors);
       }
-      else {
-        // Save Group
-        const temp = new Group(groupFields);
-        temp.save((error) => {
-          if (error) {
-            console.log('Error has occurred');
-          }
-        });
-      }
+
+      // Save Group
+      console.log("Group created");
+      const temp = new Group(groupFields);
+      temp.save((error) => {
+        if (error) {
+          console.log('Error has occurred');
+        }
+      });
+      
     });
   }
 );

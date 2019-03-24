@@ -7,11 +7,13 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createGroup } from '../../actions/groupActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class CreateGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      test:'',
       handle: '',
       name: '',
       avatar: '',
@@ -25,11 +27,16 @@ class CreateGroup extends Component {
       facebook: '',
       youtube: '',
       instagram: '',
+      ownerid:'',
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,6 +47,8 @@ class CreateGroup extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const {profile} = this.props.profile;
+    //console.log(profile.user._id);
 
     const groupData = {
       handle: this.state.handle,
@@ -54,11 +63,12 @@ class CreateGroup extends Component {
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       youtube: this.state.youtube,
-      instagram: this.state.instagram
+      instagram: this.state.instagram,
+      ownerid: profile.user._id
     };
-    console.log(groupData.handle);
     this.props.createGroup(groupData, this.props.history);
-    this.props.history.push(`/groupwall/${groupData.handle}`);
+    //this.props.history.push(`/groupwall/${groupData.handle}`);
+    this.props.history.push("/feed");
   }
 
   onChange(e) {
@@ -67,6 +77,14 @@ class CreateGroup extends Component {
 
   render() {
     const { errors, displaySocialInputs } = this.state;
+    //const {profile} = this.props.profile;
+    //const obj = JSON.parse(JSON.stringify(profile));
+    //console.log(profile);
+    /*{"_id":"5c9154f0416bc437447befa6",
+    "user":{"_id":"5c9154d7416bc437447befa5","name":"Oliver Chen",
+    "avatar":"//www.gravatar.com/avatar/6f69901ed9ec04c0dec908207d48a35a?s=200&r=pg&d=mm"}
+    ,"handle":"chenh15","zip":"123456","gender":"male","skillstatus":"5","climber":"Yes","travel":"Yes","camp":"Yes","trip":[],"experience":[],"education":[],
+    "date":"2019-03-19T20:45:36.283Z","__v":0}*/
 
     let socialInputs;
 
@@ -127,7 +145,6 @@ class CreateGroup extends Component {
       { label: 'Yes', value: 'Yes' },
       { label: 'No', value: 'No' }
     ];
-
 
     return (
       <div className="create-group">
@@ -248,13 +265,16 @@ class CreateGroup extends Component {
   }
 }
 CreateGroup.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
+  profile: state.profile,
   group: state.group,
   errors: state.errors
 });
-export default connect(mapStateToProps, { createGroup })(
+export default connect(mapStateToProps, { getCurrentProfile, createGroup })(
   withRouter(CreateGroup)
 );

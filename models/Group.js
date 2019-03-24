@@ -39,6 +39,10 @@ const GroupSchema = new Schema({
   bio: {
     type: String
   },
+  ownerid: {
+    type:String,
+    required:true
+  },
   social: {
     youtube: {
       type: String

@@ -31,9 +31,11 @@ router.get(
       .populate('user', ['name', 'avatar'])
       .then(profile => {
         if (!profile) {
+          //console.log("Can't find the profile");
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
+        //console.log("Profile found");
         res.json(profile);
       })
       .catch(err => res.status(404).json(err));
