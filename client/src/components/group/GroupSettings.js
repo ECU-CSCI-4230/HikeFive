@@ -11,7 +11,7 @@ class Dashboard extends Component {
   }
 
   onDeleteClick(e) {
-    console.log(this.props.group.group._id);
+    //console.log(this.props.group.group._id);
     this.props.deleteGroup(this.props.group.group._id, this.props.history);
   }
 

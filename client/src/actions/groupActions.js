@@ -85,7 +85,7 @@ export const getGroups = () => dispatch => {
 
 // Add Trip
 export const addTrip = (tripData, history) => dispatch => {
-  {console.log(tripData.handle)}
+  //{console.log(tripData.handle)}
   axios
     .post('/api/group/trips', tripData)
     .then(res => history.push('/dashboard'))

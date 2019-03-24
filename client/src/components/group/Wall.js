@@ -33,7 +33,6 @@ class Wall extends Component {
       WallContent = (
         <div>
           <GroupHeader group={group} />
-          {console.log(group)}
           <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
                 <span className="navbar-toggler-icon"></span>

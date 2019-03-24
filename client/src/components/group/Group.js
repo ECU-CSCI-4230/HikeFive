@@ -6,9 +6,11 @@ import GroupHeader from './GroupHeader';
 import GroupFeed from './GroupFeed';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class Group extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
     if (this.props.match.params.handle) {
       this.props.getGroupByHandle(this.props.match.params.handle);
     }
@@ -21,6 +23,7 @@ class Group extends Component {
   }
 
   render() {
+    //console.log(this.props.group);
     //console.log(this.props.match.params.handle);
     const { group, loading } = this.props.group;
     let groupContent;
@@ -64,12 +67,15 @@ class Group extends Component {
 }
 
 Group.propTypes = {
+    getCurrentProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
     getGroupByHandle: PropTypes.func.isRequired,
     group: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   group: state.group
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Group);
+export default connect(mapStateToProps, { getCurrentProfile, getGroupByHandle })(Group);
