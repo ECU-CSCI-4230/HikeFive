@@ -23,7 +23,6 @@ class Group extends Component {
   }
 
   render() {
-    //console.log(this.props.group);
     //console.log(this.props.match.params.handle);
     const { group, loading } = this.props.group;
     let groupContent;
