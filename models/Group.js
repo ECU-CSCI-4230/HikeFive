@@ -81,7 +81,10 @@ const GroupSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  teammember: [{
+    type: String
+  }]
 });
 GroupSchema.index({
   handle: 'text'
