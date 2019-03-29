@@ -97,7 +97,7 @@ class EditGroup extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     };
-
+    
     this.props.editGroup(groupData, this.props.history);
   }
 

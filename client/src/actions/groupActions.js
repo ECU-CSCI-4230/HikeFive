@@ -136,6 +136,35 @@ export const searchGroups = query => dispatch => {
 };
 
 
+// Match groups
+export const matchGroups = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  //{console.log(matchData)}
+  axios
+    .get(`/api/group/match`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax,
+        camp: matchData.camp,
+        climber: matchData.climber,
+        travel: matchData.travel
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+
 
 //Create a new event
 export const addEvent = (eventData, history) => dispatch => {

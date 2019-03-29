@@ -55,6 +55,108 @@ router.get('/search/:query', (req, res) => {
 });
 
 
+// @route   GET api/group/match
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/match', (req, res) => {
+  const errors = {};
+  //console.log(req.query);
+
+  //Need to handle travel part before
+  /*
+  if (req.query.camp === 'Yes') {
+    if (req.query.climber === 'Yes') { //If wants to climb and camp
+      Group.find({
+        $and: [
+          { climber: 'Yes' },
+          { camp: 'Yes' },
+          { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+        ]
+      })
+        .then(groups => {
+          if (!groups) {
+            errors.nogroup = 'No groups were found';
+            res.status(404).json(errors);
+          }
+          //console.log('success');
+          //console.log(profiles);
+          res.json(groups);
+        })
+        .catch(err => res.status(404).json(err));
+    }
+    else { //if wants to camp
+      Group.find({
+        $and: [
+          { camp: 'Yes' },
+          { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+        ]
+      })
+        .then(groups => {
+          if (!groups) {
+            errors.nogroup = 'No groups were found';
+            res.status(404).json(errors);
+          }
+          //console.log('success');
+          //console.log(profiles);
+          res.json(groups);
+        })
+        .catch(err => res.status(404).json(err));
+    }
+  }
+  else {
+    if (req.query.climber === 'Yes') { //if wants to climb but not camp
+      Group.find({
+        $and: [
+          { climber: 'Yes' },
+          { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+        ]
+      })
+        .then(groups => {
+          if (!groups) {
+            errors.nogroup = 'No groups were found';
+            res.status(404).json(errors);
+          }
+          //console.log('success');
+          //console.log(profiles);
+          res.json(groups);
+        })
+        .catch(err => res.status(404).json(err));
+    }
+    else { //else only search for skill levels.
+      Group.find({
+        $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }]
+      })
+        .then(groups => {
+          if (!groups) {
+            errors.nogroup = 'No groups were found';
+            res.status(404).json(errors);
+          }
+          //console.log('success');
+          //console.log(profiles);
+          res.json(groups);
+        })
+        .catch(err => res.status(404).json(err));
+    }
+  }
+  */
+
+  Group.find({
+    $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log('success');
+      //console.log(profiles);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
 // @route   GET api/group/handle/:handle
 // @desc    Get group by handle
 // @access  Public
@@ -82,13 +184,13 @@ router.get('/handle/:handle', (req, res) => {
 router.get('/event/:event_id', (req, res) => {
   const errors = {};
 
-  Group.find({ _id: req.params.id }, { events: { $elemMatch: { _id: req.params.event_id}}})
-  .then(event => {
-    if (!event) {
-      errors.noevent = 'There is no event matching query';
-      res.status(404).json(errors);
-    }
-  })
+  Group.find({ _id: req.params.id }, { events: { $elemMatch: { _id: req.params.event_id } } })
+    .then(event => {
+      if (!event) {
+        errors.noevent = 'There is no event matching query';
+        res.status(404).json(errors);
+      }
+    })
     .catch(err => res.status(404).json(err));
 });
 
@@ -142,7 +244,7 @@ router.post(
           console.log('Error has occurred');
         }
       });
-      
+
     });
   }
 );
@@ -182,7 +284,7 @@ router.post(
       if (group) {
         // Update
         Group.findOneAndUpdate(
-          { handle: groupFields.handle }, 
+          { handle: groupFields.handle },
           { $set: groupFields },
           { new: true }
         ).then(group => res.json(group));
@@ -203,7 +305,7 @@ router.post(
     //if(!isValid) {
     //  return res.status(400).json(errors);
     //}
-  console.log(req.user);
+    console.log(req.user);
     Group.findOne({ handle: req.body.handle }).then(group => {
       const newEvent = {
         name: req.body.name,
@@ -306,7 +408,7 @@ router.delete(
 router.delete(
   '/:id',
   (req, res) => {
-    {console.log(req.params.id)}
+    { console.log(req.params.id) }
     Group.findOneAndRemove({ _id: req.params.id }).then(() => {
       res.json({ success: true })
     });

@@ -46,6 +46,7 @@ import GroupsLanding from './components/groups/GroupsLanding';
 import SearchP from './components/search/searchP';
 import EditTrips from './components/group/Edit-Trips';
 import AddGroupTrip from './components/group/AddTrip.js';
+import MatchForm from './components/matchmaking/MatchForm.js';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -194,6 +195,10 @@ class App extends Component {
 
               <Switch>
                   <PrivateRoute exact path="/Forgot" component={Forgot} />
+              </Switch>
+
+              <Switch>
+                  <PrivateRoute exact path="/match" component={MatchForm} />
               </Switch>
 
               <Route exact path="/not-found" component={NotFound} />
