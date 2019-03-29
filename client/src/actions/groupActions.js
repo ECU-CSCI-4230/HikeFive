@@ -7,7 +7,8 @@ import {
   GET_GROUPS,
   CALENDAR_LOADING,
   GET_EVENT,
-  SET_CURRENT_GROUP
+  SET_CURRENT_GROUP,
+  ADD_MEMBER
 } from './types';
 
 
@@ -250,3 +251,21 @@ export const setGroupLoading = () => {
   };
 };
 
+/*
+// Add Members
+export const addMember = () => {
+  axios
+      .post(`/api/group/event/${event_id}`)
+      .then(res =>
+          dispatch({
+              type: ADD_MEMBER,
+              payload: res.data
+          })
+      )
+      .catch(err =>
+          dispatch({
+              type: ADD_MEMBER,
+              payload: null
+          })
+      );
+};*/

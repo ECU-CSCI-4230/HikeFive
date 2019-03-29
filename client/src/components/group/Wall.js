@@ -30,6 +30,10 @@ class Wall extends Component {
     }
   }
 
+  Testfunction(){
+    alert("hello world");
+  }
+
   render() {
     const { group, loading } = this.props.group;
     const {profile} = this.props.profile;
@@ -70,6 +74,8 @@ class Wall extends Component {
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   {groupSetting}
                   <Link className="nav-item nav-link" to={`/addevent/${group.handle}`}>Add Event</Link>
+                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
+                  <button className="btn btn-dark" onClick={this.Testfunction}> Join Group </button>
                 </div>
               </div>
             </nav>
