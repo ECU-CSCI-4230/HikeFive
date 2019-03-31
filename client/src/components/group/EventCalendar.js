@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GroupHeader from './GroupHeader';
-import GroupTrips from './GroupTrips';
+import Calendar from './Calendar';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
 
-class Trips extends Component {
+class EventCalendar extends Component {
   componentDidMount() {
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
@@ -22,13 +22,14 @@ class Trips extends Component {
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
 
-    let TripsContent;
+    let CalendarContent;
 
     if (group === null || loading) {
-        TripsContent = <Spinner />;
+        CalendarContent = <Spinner />;
     } 
     else {
         if (Object.keys(group).length > 0) {
+
           const groupownerId = group.ownerid;
           const currentuserId = user.id;
     
@@ -36,9 +37,9 @@ class Trips extends Component {
     
           if (groupownerId===currentuserId){
             groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
-          }  
-          
-          TripsContent = (
+          }
+
+            CalendarContent = (
             <div>
                 <GroupHeader group={group} />
                 <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
@@ -49,14 +50,14 @@ class Trips extends Component {
                     <div className="navbar-nav">
                     <Link className="nav-item nav-link" to={`/groupwall/${group.handle}`}>Wall</Link>
                     <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
-                    <Link className="nav-item nav-link active" to={`/grouptrips/${group.handle}`}>Trips</Link>
-                    <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
+                    <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
+                    <Link className="nav-item nav-link active" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                     {groupSetting}
                     </div>
                   </div>
                 </nav>
                 <br/>
-                <GroupTrips trip={group.trip} />
+                <Calendar />
             </div>
             );
         }
@@ -66,7 +67,7 @@ class Trips extends Component {
       <div className="group">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">{TripsContent}</div>
+            <div className="col-md-12">{CalendarContent}</div>
           </div>
         </div>
       </div>
@@ -74,7 +75,7 @@ class Trips extends Component {
   }
 }
 
-Trips.propTypes = {
+EventCalendar.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired
@@ -85,4 +86,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Trips);
+export default connect(mapStateToProps, { getGroupByHandle })(EventCalendar);

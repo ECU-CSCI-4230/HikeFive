@@ -43,6 +43,25 @@ const GroupSchema = new Schema({
     type:String,
     required:true
   },
+  trip: [{
+    name: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+    },
+    location: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String
+    },
+    difficulty: {
+      type: String,
+    }
+  }],
   social: {
     youtube: {
       type: String

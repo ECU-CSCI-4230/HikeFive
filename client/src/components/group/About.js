@@ -9,10 +9,8 @@ import { getGroupByHandle } from '../../actions/groupActions';
 
 class About extends Component {
   componentDidMount() {
-    if (this.props.match.params.handle) {
-      this.props.getGroupByHandle(this.props.match.params.handle);
-    }
-  }
+    this.props.getGroupByHandle(this.props.match.params.handle);
+}
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.group.group === null && this.props.group.loading) {
@@ -21,12 +19,26 @@ class About extends Component {
   }
 
   render() {
+    //console.log(this.props.match.params.handle);
+    //console.log(this.props.group);
     const { group, loading } = this.props.group;
+    const { user } = this.props.auth;
+
     let groupContent;
 
     if (group === null || loading) {
         groupContent = <Spinner />;
     } else {
+      const groupownerId = group.ownerid;
+      const currentuserId = user.id;
+
+      let groupSetting;
+
+      if (groupownerId===currentuserId){
+        groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
+      }
+
+
         groupContent = (
         <div>
           <GroupHeader group={group} />
@@ -40,7 +52,7 @@ class About extends Component {
                   <Link className="nav-item nav-link active" to={`/groupabout/${group.handle}`}>About</Link>
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
-                  <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>
+                  {groupSetting}
                 </div>
               </div>
             </nav>
@@ -63,12 +75,13 @@ class About extends Component {
 }
 
 About.propTypes = {
-    getGroupByHandle: PropTypes.func.isRequired,
-    group: PropTypes.object.isRequired
+    group: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  group: state.group
+  group: state.group,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { getGroupByHandle })(About);

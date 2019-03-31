@@ -38,12 +38,13 @@ import Wall from './components/profile/Wall';
 import GroupWall from './components/group/Wall';
 import GroupAbout from './components/group/About';
 import GroupSettings from './components/group/GroupSettings';
-import Calendar from './components/group/Calendar';
+import EventCalendar from './components/group/EventCalendar';
 import GroupTrips from './components/group/Trips';
 import CreateGroup from './components/create-group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
 import GroupsLanding from './components/groups/GroupsLanding';
 import SearchP from './components/search/searchP';
+import SearchGroups from './components/search/searchGroups';
 import EditTrips from './components/group/Edit-Trips';
 import AddGroupTrip from './components/group/AddTrip.js';
 import MatchForm from './components/matchmaking/MatchForm.js';
@@ -110,6 +111,10 @@ class App extends Component {
               </Switch>
 
               <Switch>
+                <PrivateRoute exact path="/searchGroups/:searchString" component={SearchGroups}/>
+              </Switch>
+
+              <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
               </Switch>
 
@@ -150,7 +155,7 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/groupCalendar/:handle" component={Calendar} />
+                <PrivateRoute exact path="/groupCalendar/:handle" component={EventCalendar} />
               </Switch>
 
               <Switch>

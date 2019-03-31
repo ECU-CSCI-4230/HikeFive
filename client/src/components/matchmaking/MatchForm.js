@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { getCurrentProfile } from '../../actions/profileActions';
-import { matchGroups } from '../../actions/groupActions';
+import { matchGroups, matchGroupsCombo, matchGroupsCamper, matchGroupsClimber } from '../../actions/groupActions';
 
 class MatchForm extends Component {
   constructor(props) {
@@ -18,8 +18,6 @@ class MatchForm extends Component {
       climber: '',
       group: '',
       destination: '',
-      distance: '',
-      coed: '',
       errors: {}
     };
 
@@ -57,14 +55,12 @@ class MatchForm extends Component {
       camp: this.state.camp,
       climber: this.state.climber,
       destination: this.state.destination,
-      distance: this.state.distance,
-      coed: this.state.coed,
       handle: this.state.handle,
       gender: this.state.gender,
       zip: this.state.zip
     };
 
-    this.props.matchGroups(matchData); //group match
+    //this.props.matchGroups(matchData); //group match
     //this.props.matchMake(matchData, this.props.history); //Profile match
   }
 
@@ -107,33 +103,35 @@ class MatchForm extends Component {
               <small className="d-block pb-3">* = required fields</small>
 
               <form onSubmit={this.onSubmit}>
-                <div className="row">
-                  <h4>What skill level are you looking for?</h4>
+                <div className="text-center">
+                  <h4 className="text-center">What skill level are you looking for?</h4>
                   <div className="row">
-                    <SelectListGroup
-                      placeholder="skillMin"
-                      name="skillMin"
-                      value={this.state.skillMin}
-                      onChange={this.onChange}
-                      options={Skilloptions}
-                      error={errors.skillMin}
-                      info="*Minimum Skill Level?"
-                    />
-                  </div>
-                  <div className="row">
-                    <SelectListGroup
-                      placeholder="skillMax"
-                      name="skillMax"
-                      value={this.state.skillMax}
-                      onChange={this.onChange}
-                      options={Skilloptions}
-                      error={errors.skillMax}
-                      info="*Maximum Skill Level?"
-                    />
+                    <div className="col-6 ">
+                      <SelectListGroup
+                        placeholder="skillMin"
+                        name="skillMin"
+                        value={this.state.skillMin}
+                        onChange={this.onChange}
+                        options={Skilloptions}
+                        error={errors.skillMin}
+                        info="*Minimum Skill Level?"
+                      />
+                    </div>
+                    <div className="col-6">
+                      <SelectListGroup
+                        placeholder="skillMax"
+                        name="skillMax"
+                        value={this.state.skillMax}
+                        onChange={this.onChange}
+                        options={Skilloptions}
+                        error={errors.skillMax}
+                        info="*Maximum Skill Level?"
+                      />
+                    </div>
                   </div>
                 </div>
-
-                <div className="row">
+                <div>
+                  <h4 className="text-center">Are you looking to Travel?</h4>
                   <SelectListGroup
                     placeholder="travel"
                     name="travel"
@@ -141,31 +139,21 @@ class MatchForm extends Component {
                     onChange={this.onChange}
                     options={options}
                     error={errors.travel}
-                    info="*Are you looking to travel?"
                   />
                 </div>
-                <div className="row">
-                  <TextFieldGroup
-                    placeholder="destination"
-                    name="destination"
-                    value={this.state.destination}
-                    onChange={this.onChange}
-                    error={errors.destination}
-                    info="If Yes: Where do you want to go? (Country, Landmark, State/Province, City, Any)"
-                  />
-                </div>
-                <div className="row">
-                  <TextFieldGroup
-                    placeholder="distance"
-                    name="distance"
-                    value={this.state.distance}
-                    onChange={this.onChange}
-                    error={errors.distance}
-                    info="If No: How close do you want to stay? (in miles)"
-                  />
+                <div>
+                  <h4 className="text-center">If Yes, Where do you want to go? (Country, Landmark, City)</h4>
+                <TextFieldGroup
+                  placeholder="destination"
+                  name="destination"
+                  value={this.state.destination}
+                  onChange={this.onChange}
+                  error={errors.destination}
+                />
                 </div>
 
-                <div className="row">
+                <div>
+                  <h4 className="text-center">Are you looking for a camping trip?</h4>
                   <SelectListGroup
                     placeholder="camp"
                     name="camp"
@@ -173,10 +161,10 @@ class MatchForm extends Component {
                     onChange={this.onChange}
                     options={options}
                     error={errors.camp}
-                    info="*Are you looking for a camping trip?"
                   />
                 </div>
-                <div className="row">
+                <div>
+                  <h4 className="text-center">Do you want to go climbing?</h4>
                   <SelectListGroup
                     placeholder="climber"
                     name="climber"
@@ -184,20 +172,9 @@ class MatchForm extends Component {
                     onChange={this.onChange}
                     options={options}
                     error={errors.climber}
-                    info="*Do you want to go climbing?"
                   />
                 </div>
-                <div className="row">
-                  <SelectListGroup
-                    placeholder="coed"
-                    name="coed"
-                    value={this.state.coed}
-                    onChange={this.onChange}
-                    options={options}
-                    error={errors.coed}
-                    info="If no, are you comfortable meeting up with people of the opposite sex?"
-                  />
-                </div>
+
                 <input
                   type="submit"
                   value="Submit"
@@ -224,6 +201,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { matchGroups, getCurrentProfile })(
+export default connect(mapStateToProps, { matchGroups, matchGroupsCamper, matchGroupsClimber, matchGroupsCombo, getCurrentProfile })(
   withRouter(MatchForm)
 );

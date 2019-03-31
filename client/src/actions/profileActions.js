@@ -68,27 +68,6 @@ export const searchProfiles = query => dispatch => {
     );
 };
 
-/*
-//Match Making
-export const matchMake = matchData => dispatch => {
-  { console.log(matchData) }
-  dispatch(setProfileLoading());
-  axios
-    .get(`/api/profile/match`, matchData)
-    .then(res =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: null
-      })
-    );
-};
-*/
 
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {

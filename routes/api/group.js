@@ -61,85 +61,6 @@ router.get('/search/:query', (req, res) => {
 
 router.get('/match', (req, res) => {
   const errors = {};
-  //console.log(req.query);
-
-  //Need to handle travel part before
-  /*
-  if (req.query.camp === 'Yes') {
-    if (req.query.climber === 'Yes') { //If wants to climb and camp
-      Group.find({
-        $and: [
-          { climber: 'Yes' },
-          { camp: 'Yes' },
-          { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
-        ]
-      })
-        .then(groups => {
-          if (!groups) {
-            errors.nogroup = 'No groups were found';
-            res.status(404).json(errors);
-          }
-          //console.log('success');
-          //console.log(profiles);
-          res.json(groups);
-        })
-        .catch(err => res.status(404).json(err));
-    }
-    else { //if wants to camp
-      Group.find({
-        $and: [
-          { camp: 'Yes' },
-          { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
-        ]
-      })
-        .then(groups => {
-          if (!groups) {
-            errors.nogroup = 'No groups were found';
-            res.status(404).json(errors);
-          }
-          //console.log('success');
-          //console.log(profiles);
-          res.json(groups);
-        })
-        .catch(err => res.status(404).json(err));
-    }
-  }
-  else {
-    if (req.query.climber === 'Yes') { //if wants to climb but not camp
-      Group.find({
-        $and: [
-          { climber: 'Yes' },
-          { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
-        ]
-      })
-        .then(groups => {
-          if (!groups) {
-            errors.nogroup = 'No groups were found';
-            res.status(404).json(errors);
-          }
-          //console.log('success');
-          //console.log(profiles);
-          res.json(groups);
-        })
-        .catch(err => res.status(404).json(err));
-    }
-    else { //else only search for skill levels.
-      Group.find({
-        $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }]
-      })
-        .then(groups => {
-          if (!groups) {
-            errors.nogroup = 'No groups were found';
-            res.status(404).json(errors);
-          }
-          //console.log('success');
-          //console.log(profiles);
-          res.json(groups);
-        })
-        .catch(err => res.status(404).json(err));
-    }
-  }
-  */
 
   Group.find({
     $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }]
@@ -149,8 +70,80 @@ router.get('/match', (req, res) => {
         errors.nogroup = 'No groups were found';
         res.status(404).json(errors);
       }
-      //console.log('success');
-      //console.log(profiles);
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchCombo
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchCombo', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchCamper
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchCamper', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { camp: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchClimber
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchClimber', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { climber: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
       res.json(groups);
     })
     .catch(err => res.status(404).json(err));

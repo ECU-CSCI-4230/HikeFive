@@ -55,7 +55,7 @@ EditTrip.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    group: state.profile,
+    group: state.group,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle  })(EditTrip);
+export default connect(mapStateToProps, { getGroupByHandle })(EditTrip);

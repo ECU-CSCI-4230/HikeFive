@@ -140,9 +140,32 @@ export const searchGroups = query => dispatch => {
 // Match groups
 export const matchGroups = matchData => dispatch => {
   dispatch(setGroupLoading());
-  //{console.log(matchData)}
   axios
     .get(`/api/group/match`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+// Match groups
+export const matchGroupsCombo = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/matchCombo`, {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
@@ -164,6 +187,59 @@ export const matchGroups = matchData => dispatch => {
       })
     );
 };
+
+// Match groups
+export const matchGroupsCamper = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/matchCamper`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax,
+        camp: matchData.camp,
+        travel: matchData.travel
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+// Match groups
+export const matchGroupsClimber = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/matchClimber`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax,
+        climber: matchData.climber,
+        travel: matchData.travel
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
 
 
 
