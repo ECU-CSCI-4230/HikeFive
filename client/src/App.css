@@ -60,6 +60,7 @@ img {
   color: #bbb !important;
 }
 
+/** Old CSS class for reference **/
 .wrapper {
   position: relative;
   background: transparent  url('./img/profile.jpg') no-repeat center center;
@@ -69,7 +70,7 @@ img {
 }
 
 
-
+/** Old CSS class for reference **/
 .group-wrapper {
   position: relative;
   height: 25vh;

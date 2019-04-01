@@ -17,6 +17,7 @@ class CreateGroup extends Component {
       handle: '',
       name: '',
       avatar: '',
+      background: '',
       zip: '',
       skillstatus: '',
       climber: '',
@@ -54,6 +55,7 @@ class CreateGroup extends Component {
       handle: this.state.handle,
       name: this.state.name,
       avatar: this.state.avatar,
+      background: this.state.background,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
       climber: this.state.climber,
@@ -165,12 +167,20 @@ class CreateGroup extends Component {
                   info="What is the name of your group?"
                 />
                 <TextFieldGroup
-                  placeholder="* Enter a URL Image Address"
+                  placeholder="* Enter an URL Image Address"
                   name="avatar"
                   value={this.state.avatar}
                   onChange={this.onChange}
                   error={errors.avatar}
                   info="Enter a URL image address for the group picture"
+                />
+                <TextFieldGroup
+                  placeholder="* Enter an URL Image Address"
+                  name="background"
+                  value={this.state.background}
+                  onChange={this.onChange}
+                  error={errors.background}
+                  info="Enter a URL image address for the group background"
                 />
                 <TextFieldGroup
                   placeholder="* Required"

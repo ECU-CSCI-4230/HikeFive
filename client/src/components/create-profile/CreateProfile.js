@@ -16,6 +16,7 @@ class CreateProfile extends Component {
       displaySocialInputs: false,
       handle: '',
       avatar: '',
+      background: '',
       gender: '',
       zip: '',
       skillstatus: '',
@@ -46,6 +47,7 @@ class CreateProfile extends Component {
     const profileData = {
       handle: this.state.handle,
       avatar: this.state.avatar,
+      background: this.state.background,
       gender: this.state.gender,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
@@ -185,6 +187,14 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.avatar}
                   info="What is your avatar image address?"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="background"
+                  value={this.state.background}
+                  onChange={this.onChange}
+                  error={errors.background}
+                  info="What is your profile background image address?"
                 />
                 <SelectListGroup
                   placeholder="skillstatus"

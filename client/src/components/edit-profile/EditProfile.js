@@ -16,6 +16,7 @@ class EditProfile extends Component {
       displaySocialInputs: false,
       zip: '',
       avatar: '',
+      background: '',
       skillstatus: '',
       climber:'',
       travel:'',
@@ -47,6 +48,7 @@ class EditProfile extends Component {
       // If profile field doesnt exist, make empty string
       profile.zip = !isEmpty(profile.zip) ? profile.zip : '';
       profile.avatar = !isEmpty(profile.avatar) ? profile.avatar : '';
+      profile.background = !isEmpty(profile.background) ? profile.background : '';
       profile.skillstatus = !isEmpty(profile.skillstatus) ? profile.skillstatus : '';
       profile.climber = !isEmpty(profile.climber) ? profile.climber : '';
       profile.travel = !isEmpty(profile.travel) ? profile.travel : '';
@@ -64,6 +66,7 @@ class EditProfile extends Component {
         gender: profile.gender,
         zip: profile.zip,
         avatar: profile.avatar,
+        background: profile.background,
         skillstatus: profile.skillstatus,
         climber: profile.climber,
         travel:profile.travel,
@@ -85,6 +88,7 @@ class EditProfile extends Component {
       gender: this.state.gender,
       zip: this.state.zip,
       avatar: this.state.avatar,
+      background: this.state.background,
       skillstatus: this.state.skillstatus,
       climber:this.state.climber,
       travel:this.state.travel,
@@ -189,6 +193,14 @@ class EditProfile extends Component {
                   onChange={this.onChange}
                   error={errors.avatar}
                   info="What is your avatar image address?"
+                />
+                <TextFieldGroup
+                  placeholder=""
+                  name="background"
+                  value={this.state.background}
+                  onChange={this.onChange}
+                  error={errors.background}
+                  info="What is your profile background image address?"
                 />
               <SelectListGroup
                 placeholder="skillstatus"

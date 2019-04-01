@@ -15,6 +15,9 @@ const ProfileSchema = new Schema({
   avatar: {
     type: String
   },
+  background: {
+    type: String
+  },
   gender: {
     type: String
   },

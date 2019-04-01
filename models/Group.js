@@ -17,6 +17,9 @@ const GroupSchema = new Schema({
   avatar: {
     type: String
   },
+  background: {
+    type: String
+  },
   zip: {
     type: String
   },

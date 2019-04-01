@@ -15,6 +15,7 @@ class EditGroup extends Component {
     this.state = {
       name: '',
       avatar: '',
+      background: '',
       zip: '',
       skillstatus: '',
       climber: '',
@@ -46,6 +47,7 @@ class EditGroup extends Component {
       
       group.name = !isEmpty(group.name) ? group.name : '';
       group.avatar = !isEmpty(group.avatar) ? group.avatar : '';
+      group.background = !isEmpty(group.background) ? group.background : '';
       group.zip = !isEmpty(group.zip) ? group.zip : '';
       group.skillstatus = !isEmpty(group.skillstatus) ? group.skillstatus : '';
       group.climber = !isEmpty(group.climber) ? group.climber : '';
@@ -64,6 +66,7 @@ class EditGroup extends Component {
         handle: group.handle,
         name: group.name,
         avatar: group.avatar,
+        background: group.background,
         zip: group.zip,
         skillstatus: group.skillstatus,
         climber: group.climber,
@@ -86,6 +89,7 @@ class EditGroup extends Component {
       handle: this.state.handle,
       name: this.state.name,
       avatar: this.state.avatar,
+      background: this.state.background,
       zip: this.state.zip,
       skillstatus: this.state.skillstatus,
       climber: this.state.climber,
@@ -187,12 +191,20 @@ class EditGroup extends Component {
                   info="What is the name of your group?"
                 />
                 <TextFieldGroup
-                  placeholder="* Enter URL Image Address"
+                  placeholder="* Enter an URL Image Address"
                   name="avatar"
                   value={this.state.avatar}
                   onChange={this.onChange}
                   error={errors.avatar}
                   info="Enter the URL image address for the group picture"
+                />
+                <TextFieldGroup
+                  placeholder="* Enter an URL Image Address"
+                  name="background"
+                  value={this.state.background}
+                  onChange={this.onChange}
+                  error={errors.background}
+                  info="Enter the URL image address for the group background"
                 />
                 <TextFieldGroup
                   placeholder="* Required"
