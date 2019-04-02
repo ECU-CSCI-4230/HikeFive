@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addComment } from '../../actions/postActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class CommentWindowForm extends Component {
   constructor(props) {
@@ -16,11 +17,16 @@ class CommentWindowForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     }
   }
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -42,6 +48,7 @@ class CommentWindowForm extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
 
   render() {
     const { errors } = this.state;
@@ -79,6 +86,7 @@ CommentWindowForm.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -88,4 +96,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addComment })(CommentWindowForm);
+export default connect(mapStateToProps, { addComment, getCurrentProfile })(CommentWindowForm);

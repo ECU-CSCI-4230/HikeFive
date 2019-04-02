@@ -44,6 +44,7 @@ class Group extends Component {
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>
+                  
                 </div>
               </div>
             </nav>

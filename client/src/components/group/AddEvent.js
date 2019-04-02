@@ -2,9 +2,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addEvent } from '../../actions/groupActions';
+import SelectListGroup from '../common/SelectListGroup';
+import { addEvent, getGroupByHandle } from '../../actions/groupActions';
 
 class AddEvent extends Component {
   constructor(props) {
@@ -14,17 +16,25 @@ class AddEvent extends Component {
       start: '',
       end: '',
       location: '',
-      info: ''
+      description: ''
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getGroupByHandle(this.props.match.params.handle);
+  }
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    if(nextProps.group.group) {
+      this.setState({
+        handle: nextProps.group.group.handle
+      });
     }
   }
 
@@ -32,14 +42,15 @@ class AddEvent extends Component {
     e.preventDefault();
 
     const eventData = {
+      handle: this.state.handle,
       name: this.state.name,
-      start: this.state.start,
+      start: this.state.date,
       end: this.state.end,
       location: this.state.location,
-      info: this.state.info,
+      description: this.state.description,
     };
-    //console.log(this.props.match.params.handle);
-    this.props.addEvent(this.props.match.params.handle, eventData, this.props.history);
+
+    this.props.addEvent(eventData, this.props.history);
   }
 
   onChange(e) {
@@ -47,12 +58,16 @@ class AddEvent extends Component {
   }
 
   render() {
+    const { group } = this.props.group;
 
     return (
-      <div className="add-event">
+      <div className="add-trip">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link to={`/edit-events/${group.handle}`}className="btn btn-secondary">
+               Back
+              </Link>
               <h1 className="display-4 text-center">Add An Event</h1>
               <p className="lead text-center">
                 *All fields are required*
@@ -83,8 +98,8 @@ class AddEvent extends Component {
                   onChange={this.onChange}
                 />
                 <TextFieldGroup
-                  placeholder="* Info"
-                  name="info"
+                  placeholder="* Description"
+                  name="description"
                   value={this.state.info}
                   onChange={this.onChange}
                 />
@@ -105,6 +120,7 @@ class AddEvent extends Component {
 AddEvent.propTypes = {
   addEvent: PropTypes.func.isRequired,
   group: PropTypes.object.isRequired,
+  getGroupByHandle: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -113,6 +129,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addEvent })(
+export default connect(mapStateToProps, { addEvent, getGroupByHandle })(
   withRouter(AddEvent)
 );

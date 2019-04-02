@@ -58,6 +58,8 @@ class AddTrip extends Component {
   }
 
   render() {
+    const { group } = this.props.group;
+
     // Select options for difficulty
     const diffOptions = [
       { label: '* Difficulty Level', value: 0 },
@@ -73,7 +75,7 @@ class AddTrip extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/EditTrip/" className="btn btn-secondary">
+              <Link to={`/edit-trips/${group.handle}`}className="btn btn-secondary">
                Back
               </Link>
               <h1 className="display-4 text-center">Add A Trip</h1>

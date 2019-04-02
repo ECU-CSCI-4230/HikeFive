@@ -4,34 +4,34 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
-import GroupTrips from './GroupTrips';
+import Event from '../group/GroupEvents';
 
-class EditTrip extends Component {
+class EditEvent extends Component {
     componentDidMount() {
         this.props.getGroupByHandle(this.props.match.params.handle);
     }
 
     render() {
         const { group, loading } = this.props.group;
-        let TripContent;
+        let EventContent;
         if (group === null || loading) {
-            TripContent = <Spinner />;
+            EventContent = <Spinner />;
         }
         else {
             if (Object.keys(group).length > 0) {
-                TripContent = (
+                EventContent = (
                     <div>
                         <div className="row">
                             <div className="d-flex justify-content-end col">
                                 <Link to={`/groupsettings/${group.handle}`} className="btn btn-secondary">Go Back</Link>
                             </div>
                             <div className="d-flex justify-content-start col">
-                                <Link to={`/addTrip/${group.handle}`} className="btn btn-secondary">Add Trip</Link>
+                                <Link to={`/addEvent/${group.handle}`} className="btn btn-secondary">Add Event</Link>
                             </div>
                         </div>
                         <div className="col-md-12 text-center">
                         </div><br />
-                        <GroupTrips trip={group.trip} />
+                        <Event events={group.events} />
                     </div>
                 );
             }
@@ -41,7 +41,7 @@ class EditTrip extends Component {
             <div className="edit trips">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-12">{TripContent}</div>
+                        <div className="col-md-12">{EventContent}</div>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@ class EditTrip extends Component {
     }
 }
 
-EditTrip.propTypes = {
+EditEvent.propTypes = {
     getGroupByHandle: PropTypes.func.isRequired,
     group: PropTypes.object.isRequired
 };
@@ -58,4 +58,4 @@ const mapStateToProps = state => ({
     group: state.group,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(EditTrip);
+export default connect(mapStateToProps, { getGroupByHandle })(EditEvent);

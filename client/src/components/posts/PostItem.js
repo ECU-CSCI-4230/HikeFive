@@ -7,7 +7,7 @@ import { deletePost, addLike, removeLike} from '../../actions/postActions';
 import CommentWindow from '../post/CommentWindow';
 import CommentFeed from '../post/CommentFeed';
 import CommentWindowForm from '../post/CommentWindowForm';
-
+import { getPost } from '../../actions/postActions';
 
 
 class PostItem extends React.Component {
@@ -20,6 +20,7 @@ class PostItem extends React.Component {
     }
     this.updateLikes = this.updateLikes.bind(this);
     this.findUserLike = this.findUserLike.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
   }
 
   updateLikes(id) {
@@ -67,6 +68,7 @@ class PostItem extends React.Component {
   }
 
 
+
   onCommentsClick() {
     //e.preventDefault();
     this.setState({showReply: !this.state.showReply})
@@ -85,6 +87,11 @@ class PostItem extends React.Component {
       return false;
     }
   }
+
+  refreshPage(){ 
+    window.location.reload();
+  }
+
 
   render() {
     const { post, auth, showActions} = this.props;
@@ -150,11 +157,14 @@ class PostItem extends React.Component {
                 >
                   <i
                     className={classnames('fas fa-thumbs-up', {
+                      'text-info': this.findUserLike(post.likes)
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
 
+                  <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button> 
+ 
                   <button 
                     onClick={this.onCommentsClick.bind(this, post._id)} 
                     type="button"
@@ -164,6 +174,7 @@ class PostItem extends React.Component {
 
                   {this.state.showReply && commentsContent}
                   {this.state.showReply && <CommentWindowForm postId={post._id} />}
+
 
                 <div class="blockquote-footer bottomcorner" >{fomatted_date}</div>
                 
@@ -175,6 +186,7 @@ class PostItem extends React.Component {
     );
   }
 }
+
 
 
 PostItem.defaultProps = {
@@ -190,11 +202,10 @@ PostItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
-//React.render(<CommentWindow />, document.getElementById('app'))
 
-export default connect(mapStateToProps, { deletePost, addLike, removeLike})(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, getPost})(
   PostItem
 );

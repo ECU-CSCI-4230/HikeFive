@@ -89,13 +89,27 @@ export const addTrip = (tripData, history) => dispatch => {
   //{console.log(tripData.handle)}
   axios
     .post('/api/group/trips', tripData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push(`/groupsettings/${tripData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
     );
+};
+
+//Add Event
+export const addEvent = (eventData, history) => dispatch => {
+  axios
+      .post('/api/group/events', eventData)
+      .then(res => history.push(`/groupsettings/${eventData.handle}`))
+      .catch(err =>
+          dispatch({
+              type: GET_ERRORS,
+              payload: err.response.data
+          })
+      );
+
 };
 
 // Delete Trip
@@ -115,6 +129,27 @@ export const deleteTrip = id => dispatch => {
       })
     );
 };
+
+
+// Delete Event
+export const deleteEvent = id => dispatch => {
+  axios
+    .delete(`/api/group/events/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_GROUP,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+
 
 
 // Search groups
@@ -243,20 +278,6 @@ export const matchGroupsClimber = matchData => dispatch => {
 
 
 
-//Create a new event
-export const addEvent = (eventData, history) => dispatch => {
-  axios
-      .post('/api/group/event', eventData)
-      .then(res => history.push('/Dashboard'))
-      .catch(err =>
-          dispatch({
-              type: GET_ERRORS,
-              payload: err.response.data
-          })
-      );
-
-};
-
 //retrieve specific event
 export const getEvent = (handle, event_id) => dispatch => {
   dispatch(setCalendarLoading());
@@ -276,24 +297,6 @@ export const getEvent = (handle, event_id) => dispatch => {
       );
 };
 
-
-// Delete specific event
-export const deleteEvent = event_id => dispatch => {
-  axios
-    .delete(`/api/group/event/${event_id}`)
-    .then(res =>
-      dispatch({
-        type: GET_GROUP,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
 
 
 // Calendar Loading

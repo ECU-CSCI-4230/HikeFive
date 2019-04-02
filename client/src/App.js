@@ -17,7 +17,6 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddTrip from './components/add-credentials/AddTrip';
-import AddEvent from './components/add-credentials/AddEvent';
 import Profiles from './components/profiles/Profiles';
 import Groups from './components/groups/Groups';
 import Group from './components/group/Group';
@@ -35,19 +34,24 @@ import myProfile from './components/profile/myProfile';
 import About from './components/profile/About';
 import Trips from './components/profile/Trips';
 import Wall from './components/profile/Wall';
+
 import GroupWall from './components/group/Wall';
 import GroupAbout from './components/group/About';
 import GroupSettings from './components/group/GroupSettings';
 import EventCalendar from './components/group/EventCalendar';
 import GroupTrips from './components/group/Trips';
+import GroupEvents from './components/group/Events';
 import CreateGroup from './components/create-group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
 import GroupsLanding from './components/groups/GroupsLanding';
 import SearchP from './components/search/searchP';
 import SearchGroups from './components/search/searchGroups';
 import EditTrips from './components/group/Edit-Trips';
+import EditEvents from './components/group/Edit-Events';
 import AddGroupTrip from './components/group/AddTrip.js';
+import AddGroupEvent from './components/group/AddEvent.js';
 import MatchForm from './components/matchmaking/MatchForm.js';
+
 import Notifications from './components/dashboard/Notifications';
 
 // Check for token
@@ -148,6 +152,10 @@ class App extends Component {
               </Switch>
 
               <Switch>
+                <PrivateRoute exact path="/groupevents/:handle" component={GroupEvents} />
+              </Switch>
+
+              <Switch>
                 <PrivateRoute exact path="/wall/:handle" component={Wall} />
               </Switch>
 
@@ -161,6 +169,10 @@ class App extends Component {
 
               <Switch>
                 <PrivateRoute exact path="/edit-trips/:handle" component={EditTrips} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/edit-events/:handle" component={EditEvents} />
               </Switch>
 
               <Switch>
@@ -180,7 +192,7 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/addevent/:handle" component={AddEvent}/>
+                <PrivateRoute exact path="/addEvent/:handle" component={AddGroupEvent}/>
               </Switch>
 
               <Switch>
@@ -194,6 +206,7 @@ class App extends Component {
               <Switch>
                   <PrivateRoute exact path="/EditTrip" component={EditTrip} />
               </Switch>
+
 
               <Switch>
                   <PrivateRoute exact path="/Trip" component={Trip} />
@@ -222,3 +235,4 @@ class App extends Component {
 }
 
 export default App;
+
