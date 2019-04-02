@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GroupHeader from './GroupHeader';
 import Spinner from '../common/Spinner';
-import { getGroupByHandle } from '../../actions/groupActions';
+import { addMember, getGroupByHandle } from '../../actions/groupActions';
 import GroupFeed from './GroupFeed';
 import { Link } from 'react-router-dom';
 
@@ -19,15 +19,15 @@ class Wall extends Component {
     }
   }
 
-  Testfunction(){
-    alert("hello world");
+  Testfunction(addMemberData){
+    //alert(addMemberData);
+    this.props.addMember(addMemberData);
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
-    
     let WallContent;
 
     if ((group && user) === null || loading) {
@@ -35,6 +35,7 @@ class Wall extends Component {
     } else {
       const groupownerId = group.ownerid;
       const currentuserId = user.id;
+      const addMemberData = {userId:currentuserId,groupHandle:group.handle};
 
       let groupSetting;
 
@@ -58,7 +59,7 @@ class Wall extends Component {
                   {groupSetting}
                   <Link className="nav-item nav-link" to={`/addevent/${group.handle}`}>Add Event</Link>
                   <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
-                  <button className="btn btn-dark" onClick={this.Testfunction}> Join Group </button>
+                  <button className="btn btn-dark" onClick={() => this.Testfunction(addMemberData)}> Join Group </button>
                 </div>
               </div>
             </nav>
@@ -82,7 +83,8 @@ class Wall extends Component {
 
 Wall.propTypes = {
   auth: PropTypes.object.isRequired,
-  group: PropTypes.object.isRequired
+  group: PropTypes.object.isRequired,
+  addMember: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -90,4 +92,4 @@ const mapStateToProps = state => ({
     group: state.group,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Wall);
+export default connect(mapStateToProps, { addMember,getGroupByHandle })(Wall);

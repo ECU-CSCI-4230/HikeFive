@@ -327,21 +327,15 @@ export const setGroupLoading = () => {
   };
 };
 
-/*
+
 // Add Members
-export const addMember = () => {
+export const addMember = (userID) => dispatch =>{
   axios
-      .post(`/api/group/event/${event_id}`)
-      .then(res =>
-          dispatch({
-              type: ADD_MEMBER,
-              payload: res.data
-          })
-      )
+      .post(`/api/group/addmember`,userID)
       .catch(err =>
           dispatch({
               type: ADD_MEMBER,
               payload: null
           })
       );
-};*/
+};
