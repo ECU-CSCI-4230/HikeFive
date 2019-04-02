@@ -37,10 +37,6 @@ class Dashboard extends Component {
               <i className="fas fa-user-circle text-dark mr-1" /> Edit Trips
               </Link>
             <br></br>
-            <Link to="/Notifications" className="btn btn-light">
-              <i className="fas fa-exclamation text-dark mr-1" /> Notification Settings
-              </Link>
-            <br></br>
             <Link to="/Forgot" className="btn btn-light">
               <i className="fas fa-key text-dark mr-1" /> Change Password
               </Link>
@@ -64,23 +60,6 @@ class Dashboard extends Component {
                   <h5 className="card-title">Edit Trips</h5>
                   <p className="card-text">Use this to edit your trips information.</p>
                   <Link to="/EditTrip" className="btn btn-secondary">Edit Trips</Link>
-                </div>
-              </div>
-            </div>
-            <br/>
-            <div className="card-deck d-flex justify-content-center">
-              <div className="card bg-light text-center" >
-                <div className="card-body">
-                  <h5 className="card-title">Notification Settings</h5>
-                  <p className="card-text">Use this to change your notification preferences.</p>
-                  <Link to="/Notifications" className="btn btn-secondary">Notification Settings</Link>
-                </div>
-              </div>
-              <div className="card bg-light text-center" >
-                <div className="card-body">
-                  <h5 className="card-title">EMPTY CARD</h5>
-                  <p className="card-text">THIS IS AN EMPTY CARD.</p>
-                  <Link to="#" className="btn btn-secondary">EMPTY CARD</Link>
                 </div>
               </div>
             </div>
