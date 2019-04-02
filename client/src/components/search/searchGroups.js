@@ -14,10 +14,9 @@ class Search extends Component {
 
     onSearchClick = () => {
         var searchString = document.getElementById("query3").value;
-        if (searchString === '') {
-            searchString = ' ';
+        if (searchString !== '') {
+            this.props.history.push(`/searchGroups/${searchString}`);
         }
-        this.props.history.push(`/searchGroups/${searchString}`);
     }
 
     render() {
