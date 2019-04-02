@@ -45,6 +45,7 @@ class Settings extends Component {
                   <Link className="nav-item nav-link" to={`/groupwall/${group.handle}`}>Wall</Link>
                   <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
+                  <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Events</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link active" to={`/groupsettings/${group.handle}`}>Settings</Link>
                 </div>
@@ -59,6 +60,10 @@ class Settings extends Component {
                 <br></br>
                 <Link to={`/edit-trips/${group.handle}`} className="btn btn-light">
                   <i className="fas fa-user-circle text-dark mr-1" /> Edit Trips
+              </Link>
+              <br></br>
+                <Link to={`/edit-events/${group.handle}`} className="btn btn-light">
+                  <i className="fas fa-user-circle text-dark mr-1" /> Edit Events
               </Link>
                 <br></br>
                 <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
@@ -87,9 +92,9 @@ class Settings extends Component {
                 <div className="card-deck d-flex justify-content-center">
                   <div className="card bg-light text-center" >
                     <div className="card-body">
-                      <h5 className="card-title">EMPTY CARD</h5>
-                      <p className="card-text">THIS IS AN EMPTY CARD.</p>
-                      <Link to="#" className="btn btn-secondary">EMPTY CARD</Link>
+                      <h5 className="card-title">Edit Events</h5>
+                      <p className="card-text">Use this to edit the group events information.</p>
+                      <Link to={`/edit-events/${group.handle}`} className="btn btn-secondary">Edit Events</Link>
                     </div>
                   </div>
                   <div className="card bg-light text-center" >
@@ -118,6 +123,7 @@ class Settings extends Component {
                   <Link className="nav-item nav-link" to={`/groupwall/${group.handle}`}>Wall</Link>
                   <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
+                  <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Eventss</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link active" to={`/groupsettings/${group.handle}`}>Settings</Link>
                 </div>

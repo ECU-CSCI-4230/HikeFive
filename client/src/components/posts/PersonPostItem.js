@@ -20,6 +20,7 @@ class PersonPostItem extends React.Component {
     }
     this.updateLikes = this.updateLikes.bind(this);
     this.findUserLike = this.findUserLike.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
   }
 
   updateLikes(id) {
@@ -91,6 +92,10 @@ class PersonPostItem extends React.Component {
     }
   }
 
+  refreshPage(){ 
+    window.location.reload();
+  }
+
   render() {
     const { post, auth, showActions } = this.props;
     const handle = this.props.handle;
@@ -158,6 +163,9 @@ class PersonPostItem extends React.Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
+
+                <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button> 
+
 
                   <button 
                     onClick={this.onCommentsClick.bind(this, post._id)} 

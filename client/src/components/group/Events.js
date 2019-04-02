@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GroupHeader from './GroupHeader';
-import GroupTrips from './GroupTrips';
+import GroupEvents from './GroupEvents';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
 
-class Trips extends Component {
+class Events extends Component {
   componentDidMount() {
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
@@ -18,14 +18,14 @@ class Trips extends Component {
   }
 
   render() {
-    //console.log(this.props.match.params.handle);
+
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
 
-    let TripsContent;
+    let EventsContent;
 
     if (group === null || loading) {
-        TripsContent = <Spinner />;
+        EventsContent = <Spinner />;
     } 
     else {
         if (Object.keys(group).length > 0) {
@@ -38,7 +38,7 @@ class Trips extends Component {
             groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
           }  
           
-          TripsContent = (
+          EventsContent = (
             <div>
                 <GroupHeader group={group} />
                 <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
@@ -51,12 +51,13 @@ class Trips extends Component {
                     <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
                     <Link className="nav-item nav-link active" to={`/grouptrips/${group.handle}`}>Trips</Link>
                     <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
+                    <Link className="nav-item nav-link" to={`/groupEvents/${group.handle}`}>Events</Link>
                     {groupSetting}
                     </div>
                   </div>
                 </nav>
                 <br/>
-                <GroupTrips trip={group.trip} />
+                <GroupEvents events={group.events} />
             </div>
             );
         }
@@ -66,7 +67,7 @@ class Trips extends Component {
       <div className="group">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">{TripsContent}</div>
+            <div className="col-md-12">{EventsContent}</div>
           </div>
         </div>
       </div>
@@ -74,7 +75,7 @@ class Trips extends Component {
   }
 }
 
-Trips.propTypes = {
+Events.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired
@@ -85,4 +86,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Trips);
+export default connect(mapStateToProps, { getGroupByHandle })(Events);

@@ -35,7 +35,7 @@ class PersonPostForm extends Component {
       name: user.name,
       avatar: profile.avatar
     };
-    //console.log(this.props.handle);
+    //console.log(this.props.);
     this.props.addPersonalPost(newPost);
     this.setState({ text: '' });
   }

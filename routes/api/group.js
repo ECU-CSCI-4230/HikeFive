@@ -288,47 +288,21 @@ router.post(
   }
 );
 
-// @route   POST api/group/event
-// @desc    Add event to group
-// @access  Private
-router.post(
-  '/event',
-  //authentication here
-  (req, res) => {
-    //const { errors, isValid } = validateEventInput(req.body);
-    //check valid input
-    //if(!isValid) {
-    //  return res.status(400).json(errors);
-    //}
-    console.log(req.user);
-    Group.findOne({ handle: req.body.handle }).then(group => {
-      const newEvent = {
-        name: req.body.name,
-        start: req.body.start,
-        end: req.body.end,
-        location: req.body.location,
-        info: req.body.info,
-      };
-      //Add event to events array
-      group.events.unshift(newEvent);
-      group.save().then(group => res.json(group));
-    });
-  }
-);
 
-// @route   DELETE api/group/event/:event_id
-// @desc    Delete trip from group
+
+// @route   DELETE api/group/events/:event_id
+// @desc    Delete event from group
 // @access  Private
 router.delete(
-  '/event/:event_id',
-  //passport.authenticate('jwt', { session: false }),
+  '/events/:event_id',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Group.findOne({ _id: req.group.id })
+    Group.findOne({ handle: req.params.handle})
       .then(group => {
         // Get remove index
         const removeIndex = group.events
           .map(item => item.id)
-          .indexOf(req.params.event_id);
+          .indexOf(req.params.events_id);
 
         // Splice out of array
         group.events.splice(removeIndex, 1);
@@ -341,8 +315,8 @@ router.delete(
 );
 
 
-// @route   POST api/profile/trips
-// @desc    Add trip to profile
+// @route   POST api/group/trips
+// @desc    Add trip to group
 // @access  Private
 router.post(
   '/trips',
@@ -396,6 +370,9 @@ router.delete(
       .catch(err => res.status(404).json(err));
   }
 );
+
+
+
 
 // @route   DELETE api/group
 // @desc    Delete group
