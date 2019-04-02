@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
-import Trip from '../dashboard/Trip';
+import GroupTrips from './GroupTrips';
 
 class EditTrip extends Component {
     componentDidMount() {
@@ -31,7 +31,7 @@ class EditTrip extends Component {
                         </div>
                         <div className="col-md-12 text-center">
                         </div><br />
-                        <Trip trip={group.trip} />
+                        <GroupTrips group={group} />
                     </div>
                 );
             }

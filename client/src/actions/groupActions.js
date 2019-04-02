@@ -99,9 +99,9 @@ export const addTrip = (tripData, history) => dispatch => {
 };
 
 // Delete Trip
-export const deleteTrip = id => dispatch => {
+export const deleteTrip = (group, id) => dispatch => {
   axios
-    .delete(`/api/group/trips/${id}`)
+    .delete(`/api/group/trips/${id}`, { params: { handle: group.handle } })
     .then(res =>
       dispatch({
         type: GET_GROUP,

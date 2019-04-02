@@ -374,13 +374,13 @@ router.post(
 );
 
 // @route   DELETE api/profile/trips/:trip_id
-// @desc    Delete trip from profile
+// @desc    Delete trip from group
 // @access  Private
 router.delete(
   '/trips/:trip_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Group.findOne({ handle: req.params.handle })
+    Group.findOne({ handle: req.query.handle })
       .then(group => {
         // Get remove index
         const removeIndex = group.trip

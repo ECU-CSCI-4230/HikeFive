@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { deleteTrip } from '../../actions/groupActions';
 
 class GroupTrips extends Component {
+  onDeleteClick(id) {
+    this.props.deleteTrip(this.props.group, id);
+  }
+  
   render() {
-    const tripItems = this.props.trip.map(trp => (
+    const tripItems = this.props.group.trip.map(trp => (
       <li key={trp._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4 >{trp.name}</h4>
         <p>
@@ -34,6 +40,14 @@ class GroupTrips extends Component {
             </span>
           )}
         </p>
+        <p>
+          <button
+            onClick={this.onDeleteClick.bind(this, trp._id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+        </p>
       </li>
     ));
 
@@ -54,4 +68,8 @@ class GroupTrips extends Component {
   }
 }
 
-export default GroupTrips;
+GroupTrips.propTypes = {
+  deleteTrip: PropTypes.func.isRequired
+};
+
+export default connect(null, { deleteTrip })(GroupTrips);
