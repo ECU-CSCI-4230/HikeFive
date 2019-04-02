@@ -105,7 +105,10 @@ const GroupSchema = new Schema({
     default: Date.now
   },
   teammember: [{
-    type: String
+    ids: {
+      type: String,
+      required: true
+    }
   }]
 });
 GroupSchema.index({
