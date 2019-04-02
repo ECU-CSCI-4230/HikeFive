@@ -56,7 +56,7 @@ class Trips extends Component {
                   </div>
                 </nav>
                 <br/>
-                <GroupTrips trip={group.trip} />
+                <GroupTrips group={group} />
             </div>
             );
         }
