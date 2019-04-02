@@ -52,7 +52,10 @@ class About extends Component {
                   <Link className="nav-item nav-link active" to={`/groupabout/${group.handle}`}>About</Link>
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
+                  <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Events</Link>
+                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
                   {groupSetting}
+                  
                 </div>
               </div>
             </nav>

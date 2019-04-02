@@ -10,12 +10,10 @@ class GroupHeader extends Component {
     // Reference: The CSS class in App.css 'Group-Wrapper' does the same thing, but for group bg pics.
 
     const groupBG = {
-      backgroundColor: 'red',
       background: 'url(' + backgroundURL + ') no-repeat center center',
       backgroundSize:'cover',
       zIndex: '-1',
       position: 'relative',
-      height: '25vh',
     };
 
     return (

@@ -9,7 +9,6 @@ class ProfileHeader extends Component {
     // Reference: The CSS class in App.css 'Group-Wrapper' does the same thing, but for group bg pics.
 
     const profileBG = {
-      backgroundColor: 'white',
       background: 'url(' + backgroundURL + ') no-repeat center center',
       backgroundSize:'cover',
       zIndex: '-1',

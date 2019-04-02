@@ -48,11 +48,13 @@ class Events extends Component {
                   <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                     <Link className="nav-item nav-link" to={`/groupwall/${group.handle}`}>Wall</Link>
-                    <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
-                    <Link className="nav-item nav-link active" to={`/grouptrips/${group.handle}`}>Trips</Link>
-                    <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
-                    <Link className="nav-item nav-link" to={`/groupEvents/${group.handle}`}>Events</Link>
-                    {groupSetting}
+                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
+                  <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
+                  <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
+                  <Link className="nav-item nav-link active" to={`/groupevents/${group.handle}`}>Events</Link>
+                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
+                  {groupSetting}
+                  ]
                     </div>
                   </div>
                 </nav>
