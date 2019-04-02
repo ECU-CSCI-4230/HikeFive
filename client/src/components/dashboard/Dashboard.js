@@ -37,7 +37,7 @@ class Dashboard extends Component {
               <i className="fas fa-user-circle text-dark mr-1" /> Edit Trips
               </Link>
             <br></br>
-            <Link to="/Notification-Settings" className="btn btn-light">
+            <Link to="/Notifications" className="btn btn-light">
               <i className="fas fa-exclamation text-dark mr-1" /> Notification Settings
               </Link>
             <br></br>
@@ -73,7 +73,7 @@ class Dashboard extends Component {
                 <div className="card-body">
                   <h5 className="card-title">Notification Settings</h5>
                   <p className="card-text">Use this to change your notification preferences.</p>
-                  <Link to="/Notification-Settings" className="btn btn-secondary">Notification Settings</Link>
+                  <Link to="/Notifications" className="btn btn-secondary">Notification Settings</Link>
                 </div>
               </div>
               <div className="card bg-light text-center" >

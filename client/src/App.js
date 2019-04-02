@@ -48,6 +48,7 @@ import SearchGroups from './components/search/searchGroups';
 import EditTrips from './components/group/Edit-Trips';
 import AddGroupTrip from './components/group/AddTrip.js';
 import MatchForm from './components/matchmaking/MatchForm.js';
+import Notifications from './components/dashboard/Notifications';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -204,6 +205,10 @@ class App extends Component {
 
               <Switch>
                   <PrivateRoute exact path="/match" component={MatchForm} />
+              </Switch>
+
+              <Switch>
+                  <PrivateRoute exact path="/Notifications" component={Notifications} />
               </Switch>
 
               <Route exact path="/not-found" component={NotFound} />
