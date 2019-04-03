@@ -19,8 +19,8 @@ class Wall extends Component {
     }
   }
 
-  Testfunction(addMemberData){
-    //alert(addMemberData);
+  joinGroup(addMemberData){
+    //console.log(this.props.group);
     this.props.addMember(addMemberData);
   }
 
@@ -36,8 +36,21 @@ class Wall extends Component {
       const groupownerId = group.ownerid;
       const currentuserId = user.id;
       const addMemberData = {userId:currentuserId,groupHandle:group.handle};
+      var hideornot = false;
 
       let groupSetting;
+      let joinMem;
+      if(group.ownerid == currentuserId){hideornot = true}
+      const arrayLength = group.teammember.length;
+      for (var i = 0; i < arrayLength; i++) {
+        if(group.teammember[i].ids == currentuserId){hideornot = true}
+      }
+      if (hideornot == false){
+        joinMem = <button className="btn btn-dark" onClick={() => this.joinGroup(addMemberData) }> Join Group </button>
+      }
+      else{
+        joinMem = null;
+      }
 
       if (groupownerId===currentuserId){
         groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
@@ -59,8 +72,7 @@ class Wall extends Component {
                   <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Events</Link>
                   <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
                   {groupSetting}
-                  
-                  <button className="btn btn-dark" onClick={() => this.Testfunction(addMemberData)}> Join Group </button>
+                  {joinMem}
                 </div>
               </div>
             </nav>

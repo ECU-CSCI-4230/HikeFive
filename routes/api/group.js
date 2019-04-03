@@ -395,15 +395,22 @@ router.post(
   (req, res) => {
     //userId, groupHandle
     Group.findOne({ handle: req.body.groupHandle }).then(group => {
-    console.log(group);
-
     const userID = {ids: req.body.userId};
-    console.log("group member:");
-    console.log(group.teammember);
+    
+    if(group.ownerid == req.body.userId)
+    {console.log("member already exists");return res.status(400);}
+    var arrayLength = group.teammember.length;
+    for (var i = 0; i < arrayLength; i++) {
+      if(group.teammember[i].ids == req.body.userId)
+      {
+        console.log("member already exists"); 
+        return res.status(400);
+      }
+    }
+
     // Add to teammember array
     group.teammember.unshift(userID);
     group.save();
-    //.then(group => res.json(group));
     });
   }
 );
