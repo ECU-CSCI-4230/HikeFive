@@ -9,6 +9,14 @@ import { Link } from 'react-router-dom';
 
 class Wall extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = { show: true }
+
+    this.joinGroup= this.joinGroup.bind(this)
+  }
+
+
   componentDidMount() {
       this.props.getGroupByHandle(this.props.match.params.handle);
   }
@@ -20,8 +28,10 @@ class Wall extends Component {
   }
 
   joinGroup(addMemberData){
-    //console.log(this.props.group);
+    const {show} = this.state;
     this.props.addMember(addMemberData);
+    this.setState({show: !show})
+    //window.location.reload();
   }
 
   render() {
@@ -55,6 +65,7 @@ class Wall extends Component {
       if (groupownerId===currentuserId){
         groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
       }
+      console.log(group);
       
       WallContent = (
         <div>
@@ -70,9 +81,9 @@ class Wall extends Component {
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Events</Link>
-                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
+                  <Link className="nav-item nav-link" to={`/groupmembers/${group.handle}`}>Members</Link>
                   {groupSetting}
-                  {joinMem}
+                  {this.state.show && joinMem}
                 </div>
               </div>
             </nav>

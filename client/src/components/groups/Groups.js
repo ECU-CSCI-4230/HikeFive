@@ -12,7 +12,7 @@ class Groups extends Component {
 
     render() {
         const { groups, loading } = this.props.group;
-        console.log(this.props.group);
+        //console.log(this.props.group);
         let groupItems;
 
         if (groups === null || loading) {

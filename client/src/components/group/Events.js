@@ -52,9 +52,9 @@ class Events extends Component {
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link active" to={`/groupevents/${group.handle}`}>Events</Link>
-                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>Members</Link>
+                  <Link className="nav-item nav-link" to={`/groupmembers/${group.handle}`}>Members</Link>
                   {groupSetting}
-                  ]
+                  
                     </div>
                   </div>
                 </nav>

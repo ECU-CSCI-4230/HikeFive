@@ -10,6 +10,7 @@ const validateTripInput = require('../../validation/trip');
 
 // Load Group Model
 const Group = require('../../models/Group');
+const Profile = require('../../models/Profile');
 
 
 // @route   GET api/group/all
@@ -396,7 +397,7 @@ router.post(
     //userId, groupHandle
     Group.findOne({ handle: req.body.groupHandle }).then(group => {
     const userID = {ids: req.body.userId};
-    
+
     if(group.ownerid == req.body.userId)
     {console.log("member already exists");return res.status(400);}
     var arrayLength = group.teammember.length;
@@ -415,24 +416,27 @@ router.post(
   }
 );
 
-/*
-// Get all profiles
-export const getProfiles = () => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get('/api/profile/all')
-    .then(res =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: null
-      })
-    );
-};
-*/
+// @route   GET api/group/members
+// @desc    Get group members
+// @access  Public
+router.post('/members', (req, res) => {
+  //console.log(req.body.ids);
+  Profile.find({_id: {$in: ["5ca56bba5abf24403868f699","5ca56bca5abf24403868f69a"]}}).then(users=>{
+    console.log(users)
+  });
+  /*
+  Profile.find()
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'There are no profiles';
+        return res.status(404).json(errors);
+      }
+
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
+    */
+});
+
 module.exports = router;

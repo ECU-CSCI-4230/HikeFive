@@ -8,7 +8,8 @@ import {
   CALENDAR_LOADING,
   GET_EVENT,
   SET_CURRENT_GROUP,
-  ADD_MEMBER
+  ADD_MEMBER,
+  GET_MEMBER
 } from './types';
 
 
@@ -323,7 +324,7 @@ export const deleteGroup = (id, history) => dispatch => {
   }
 };
 
-// Profile loading
+// group loading
 export const setGroupLoading = () => {
   return {
     type: GROUP_LOADING
@@ -341,4 +342,24 @@ export const addMember = (userID) => dispatch =>{
               payload: null
           })
       );
+};
+
+
+// Get group members
+export const getMembers = (pass) => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .post('/api/group/members',pass)
+    .then(res =>
+      dispatch({
+        type: GET_MEMBER,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_MEMBER,
+        payload: null
+      })
+    );
 };

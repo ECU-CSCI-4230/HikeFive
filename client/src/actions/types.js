@@ -20,3 +20,4 @@ export const GROUP_LOADING = 'GROUP_LOADING';
 export const CALENDAR_LOADING = 'CALENDAR_LOADING';
 export const GET_EVENT = 'GET_EVENT';
 export const ADD_MEMBER = 'ADD_GROUP_MEMBER';
+export const GET_MEMBER = 'GET_GROUP_MEMBER';

@@ -50,6 +50,7 @@ import EditTrips from './components/group/Edit-Trips';
 import EditEvents from './components/group/Edit-Events';
 import AddGroupTrip from './components/group/AddTrip.js';
 import AddGroupEvent from './components/group/AddEvent.js';
+import GroupMembers from './components/group/Members.js';
 import MatchForm from './components/matchmaking/MatchForm.js';
 
 import Notifications from './components/dashboard/Notifications';
@@ -139,6 +140,10 @@ class App extends Component {
                 <PrivateRoute exact path="/groupabout/:handle" component={GroupAbout} />
               </Switch>
 
+              <Switch>
+                <PrivateRoute exact path="/groupmembers/:handle" component={GroupMembers} />
+              </Switch>
+              
               <Switch>
                 <PrivateRoute exact path="/groupsettings/:handle" component={GroupSettings} />
               </Switch>

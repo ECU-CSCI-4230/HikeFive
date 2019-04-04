@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import GroupHeader from './GroupHeader';
-import GroupAbout from './GroupAbout';
 import Spinner from '../common/Spinner';
-import { getGroupByHandle } from '../../actions/groupActions';
+import GroupMembers from './GroupMembers';
+import {getGroupByHandle } from '../../actions/groupActions';
 
-class About extends Component {
+class Members extends Component {
   componentDidMount() {
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
@@ -35,9 +35,8 @@ class About extends Component {
       let groupSetting;
 
       if (groupownerId===currentuserId){
-        groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
+        groupSetting = (<Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>);
       }
-
 
         groupContent = (
         <div>
@@ -49,22 +48,24 @@ class About extends Component {
               <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                   <Link className="nav-item nav-link" to={`/groupwall/${group.handle}`}>Wall</Link>
-                  <Link className="nav-item nav-link active" to={`/groupabout/${group.handle}`}>About</Link>
+                  <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                   <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Events</Link>
-                  <Link className="nav-item nav-link" to={`/groupmembers/${group.handle}`}>Members</Link>
+                  <Link className="nav-item nav-link active" to={`/groupmembers/${group.handle}`}>Members</Link>
                   {groupSetting}
-                  
                 </div>
               </div>
             </nav>
             <br/>
-          <GroupAbout group={group} />
+
+          <div/>
+          Testing~~
         </div>
       );
     }
-
+    //<GroupMembers group={group} />
+    
     return (
       <div className="group">
         <div className="container">
@@ -77,7 +78,7 @@ class About extends Component {
   }
 }
 
-About.propTypes = {
+Members.propTypes = {
     group: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
 };
@@ -87,4 +88,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(About);
+export default connect(mapStateToProps, { getGroupByHandle })(Members);
