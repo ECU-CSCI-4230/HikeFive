@@ -22,7 +22,7 @@ class Settings extends Component {
     const { user } = this.props.auth;
     //console.log(group);
     let dashboardContent;
-    console.log(this.props.match.params.handle);
+    //console.log(this.props.match.params.handle);
 
     if (group === null || loading) {
       dashboardContent = <Spinner />;

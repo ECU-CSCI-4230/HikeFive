@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GroupHeader from './GroupHeader';
-import GroupTrips from './GroupTrips';
+import GroupTripsCantDelete from './GroupTripsCantDelete';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
@@ -59,7 +59,7 @@ class Trips extends Component {
                   </div>
                 </nav>
                 <br/>
-                <GroupTrips group={group} />
+                <GroupTripsCantDelete group={group} />
             </div>
             );
         }
