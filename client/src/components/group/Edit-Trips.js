@@ -13,6 +13,7 @@ class EditTrip extends Component {
 
     render() {
         const { group, loading } = this.props.group;
+        //console.log(this.props.group);
         let TripContent;
         if (group === null || loading) {
             TripContent = <Spinner />;

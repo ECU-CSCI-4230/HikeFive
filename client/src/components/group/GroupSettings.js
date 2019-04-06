@@ -20,14 +20,13 @@ class Settings extends Component {
   render() {
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
-    //console.log(group);
     let dashboardContent;
-    //console.log(this.props.match.params.handle);
+
 
     if (group === null || loading) {
       dashboardContent = <Spinner />;
     } else {
-      //console.log(group._id);
+
       if (Object.keys(group).length > 0) {
         const groupownerId = group.ownerid;
         const currentuserId = user.id;

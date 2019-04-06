@@ -31,11 +31,10 @@ class Wall extends Component {
     const {show} = this.state;
     this.props.addMember(addMemberData);
     this.setState({show: !show})
-    //window.location.reload();
   }
 
   render() {
-    //console.log(this.props);
+    //console.log(this.props.group);
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
     let WallContent;
@@ -65,7 +64,6 @@ class Wall extends Component {
       if (groupownerId===currentuserId){
         groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
       }
-      console.log(group);
       
       WallContent = (
         <div>

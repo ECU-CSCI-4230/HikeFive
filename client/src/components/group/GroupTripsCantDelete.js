@@ -6,6 +6,8 @@ import Moment from 'react-moment';
 class GroupTripsCantDelete extends Component {
   
   render() {
+    console.log(this.props.group);
+    
     const tripItems = this.props.group.trip.map(trp => (
       <li key={trp._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4 >{trp.name}</h4>

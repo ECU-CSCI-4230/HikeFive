@@ -22,6 +22,8 @@ class Trips extends Component {
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
 
+    console.log(this.props);
+
     let TripsContent;
 
     if (group === null || loading) {

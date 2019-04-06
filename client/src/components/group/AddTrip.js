@@ -60,6 +60,7 @@ class AddTrip extends Component {
   render() {
     const { group } = this.props.group;
 
+
     // Select options for difficulty
     const diffOptions = [
       { label: '* Difficulty Level', value: 0 },

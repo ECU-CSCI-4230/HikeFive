@@ -44,7 +44,7 @@ class AddEvent extends Component {
     const eventData = {
       handle: this.state.handle,
       name: this.state.name,
-      start: this.state.date,
+      start: this.state.start,
       end: this.state.end,
       location: this.state.location,
       description: this.state.description,
@@ -59,9 +59,9 @@ class AddEvent extends Component {
 
   render() {
     const { group } = this.props.group;
-
+    
     return (
-      <div className="add-trip">
+      <div className="add-event">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -100,7 +100,7 @@ class AddEvent extends Component {
                 <TextFieldGroup
                   placeholder="* Description"
                   name="description"
-                  value={this.state.info}
+                  value={this.state.description}
                   onChange={this.onChange}
                 />
                 <input

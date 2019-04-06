@@ -87,7 +87,6 @@ export const getGroups = () => dispatch => {
 
 // Add Trip
 export const addTrip = (tripData, history) => dispatch => {
-  //{console.log(tripData.handle)}
   axios
     .post('/api/group/trips', tripData)
     .then(res => history.push(`/groupsettings/${tripData.handle}`))
@@ -133,9 +132,9 @@ export const deleteTrip = (group, id) => dispatch => {
 
 
 // Delete Event
-export const deleteEvent = id => dispatch => {
+export const deleteEvent = (group, id) => dispatch => {
   axios
-    .delete(`/api/group/events/${id}`)
+    .delete(`/api/group/events/${id}`, { params: { handle: group.handle } })
     .then(res =>
       dispatch({
         type: GET_GROUP,
@@ -279,11 +278,11 @@ export const matchGroupsClimber = matchData => dispatch => {
 
 
 
-//retrieve specific event
+// retrieve specific event
 export const getEvent = (handle, event_id) => dispatch => {
   dispatch(setCalendarLoading());
   axios
-      .get(`/api/group/event/${event_id}`)
+      .get(`/api/group/events/${event_id}`)
       .then(res =>
           dispatch({
               type: GET_EVENT,

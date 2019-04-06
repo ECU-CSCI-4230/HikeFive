@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
-import Event from '../group/GroupEvents';
+import GroupEvents from '../group/GroupEvents';
 
 class EditEvent extends Component {
     componentDidMount() {
@@ -13,6 +13,7 @@ class EditEvent extends Component {
 
     render() {
         const { group, loading } = this.props.group;
+        //console.log(this.props.group);
         let EventContent;
         if (group === null || loading) {
             EventContent = <Spinner />;
@@ -31,7 +32,7 @@ class EditEvent extends Component {
                         </div>
                         <div className="col-md-12 text-center">
                         </div><br />
-                        <Event events={group.events} />
+                         <GroupEvents group={group}/>
                     </div>
                 );
             }

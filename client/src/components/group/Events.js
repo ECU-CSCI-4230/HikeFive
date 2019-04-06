@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GroupHeader from './GroupHeader';
-import GroupEvents from './GroupEvents';
+import GroupEventsCantDelete from './GroupEventsCantDelete';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
@@ -21,6 +21,8 @@ class Events extends Component {
 
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
+
+    console.log(this.props);
 
     let EventsContent;
 
@@ -59,7 +61,7 @@ class Events extends Component {
                   </div>
                 </nav>
                 <br/>
-                <GroupEvents events={group.events} />
+                <GroupEventsCantDelete group={group} />
             </div>
             );
         }

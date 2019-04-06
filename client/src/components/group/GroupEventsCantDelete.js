@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import { deleteEvent } from '../../actions/groupActions';
 
-class Event extends Component {
-    onDeleteClick(id) {
-        this.props.deleteEvent(id);
-      }
-  
-    render() {
+class GroupEventsCantDelete extends Component {
 
-    const eventItems = this.props.events.map(evt => (
+  render() {
+    console.log(this.props.group);
+
+    const eventItems = this.props.group.events.map(evt => (
       <li key={evt._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4>{evt.name}</h4>
         <p>
@@ -31,19 +28,11 @@ class Event extends Component {
           About:
         </p>
         <p>
-          {evt.info === '' ? null : (
+          {evt.description === '' ? null : (
             <span>
-              {evt.info}
+              {evt.description}
             </span>
           )}
-        </p>
-        <p>
-          <button
-            onClick={this.onDeleteClick.bind(this, evt._id)}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
         </p>
       </li>
     ));
@@ -64,8 +53,6 @@ class Event extends Component {
     );
   }
 }
-Event.propTypes = {
-    deleteEvent: PropTypes.func.isRequired
-  };
-  
-export default connect(null, { deleteEvent })(Event);
+
+
+export default GroupEventsCantDelete;

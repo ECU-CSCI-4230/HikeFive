@@ -171,24 +171,6 @@ router.get('/handle/:handle', (req, res) => {
 });
 
 
-// @route   GET api/group/event/:event_id
-// @desc    Get specific event for group
-// @access  Public
-
-router.get('/event/:event_id', (req, res) => {
-  const errors = {};
-
-  Group.find({ _id: req.params.id }, { events: { $elemMatch: { _id: req.params.event_id } } })
-    .then(event => {
-      if (!event) {
-        errors.noevent = 'There is no event matching query';
-        res.status(404).json(errors);
-      }
-    })
-    .catch(err => res.status(404).json(err));
-});
-
-
 
 // @route   POST api/group
 // @desc    Create group 
@@ -291,31 +273,6 @@ router.post(
 
 
 
-// @route   DELETE api/group/events/:event_id
-// @desc    Delete event from group
-// @access  Private
-router.delete(
-  '/events/:event_id',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Group.findOne({ handle: req.params.handle})
-      .then(group => {
-        // Get remove index
-        const removeIndex = group.events
-          .map(item => item.id)
-          .indexOf(req.params.events_id);
-
-        // Splice out of array
-        group.events.splice(removeIndex, 1);
-
-        // Save
-        group.save().then(group => res.json(group));
-      })
-      .catch(err => res.status(404).json(err));
-  }
-);
-
-
 // @route   POST api/group/trips
 // @desc    Add trip to group
 // @access  Private
@@ -348,7 +305,41 @@ router.post(
   }
 );
 
-// @route   DELETE api/profile/trips/:trip_id
+// @route   POST api/group/events
+// @desc    Add event to group
+// @access  Private
+router.post(
+  '/events',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateEventInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    Group.findOne({ handle: req.body.handle }).then(group => {
+      const newEvent = {
+        name: req.body.name,
+        start: req.body.start,
+        end: req.body.end,
+        location: req.body.location,
+        description: req.body.description,
+      };
+
+      // Add to trip array
+      group.events.unshift(newEvent);
+
+      group.save().then(group => res.json(group));
+    });
+  }
+);
+
+
+
+// @route   DELETE api/group/trips/:trip_id
 // @desc    Delete trip from group
 // @access  Private
 router.delete(
@@ -364,6 +355,30 @@ router.delete(
 
         // Splice out of array
         group.trip.splice(removeIndex, 1);
+
+        // Save
+        group.save().then(group => res.json(group));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route   DELETE api/group/events/:event_id
+// @desc    Delete event from group
+// @access  Private
+router.delete(
+  '/events/:event_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Group.findOne({ handle: req.query.handle })
+      .then(group => {
+        // Get remove index
+        const removeIndex = group.events
+          .map(item => item.id)
+          .indexOf(req.params.events_id);
+
+        // Splice out of array
+        group.events.splice(removeIndex, 1);
 
         // Save
         group.save().then(group => res.json(group));
