@@ -160,6 +160,13 @@ img {
   border-image-slice: 1;
 }
 
+/* this is for the date that has an event */
+.calendar .body .event {
+  border-left: 10px solid transparent;
+  border-image: linear-gradient(45deg, #1a8fff 0%,#e54e16 40%);
+  border-image-slice: 1;
+}
+
 .calendar .body .row {
   border-bottom: 1px solid var(--border-color);
 }
@@ -208,4 +215,17 @@ img {
   flex-grow: 0;
   flex-basis: calc(100%/7);
   width: calc(100%/7);
+}
+
+.popup_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 5s ease-in-out;
+  overflow: scroll;
 }

@@ -13,7 +13,7 @@ class EditEvent extends Component {
 
     render() {
         const { group, loading } = this.props.group;
-        //console.log(this.props.group);
+        
         let EventContent;
         if (group === null || loading) {
             EventContent = <Spinner />;

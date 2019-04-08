@@ -18,8 +18,6 @@ class EventCalendar extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.handle);
-    console.log(this.props.group);
     const { group, loading } = this.props.group;
     const { user } = this.props.auth;
 
