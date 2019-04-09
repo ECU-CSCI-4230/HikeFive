@@ -1,11 +1,25 @@
-import React from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import GroupHeader from './GroupHeader';
+import Spinner from '../common/Spinner';
+import { getGroupByHandle, getEvent } from '../../actions/groupActions';
+import { Link } from 'react-router-dom';
+import Popup from './Popup';
+
 import dateFns from "date-fns";
 
 class Calendar extends React.Component {
-  state = {
-    currentMonth: new Date(),
-    selectedDate: new Date()
-  };
+
+  constructor() {
+    super();
+    this.state = {
+      showPopup: false,
+      currentMonth: new Date(),
+      selectedDate: new Date()
+    };
+  }
+
 
   renderHeader() {
     const dateFormat = "MMMM YYYY";
@@ -90,9 +104,9 @@ class Calendar extends React.Component {
 
   onDateClick = day => {
     this.setState({
-      selectedDate: day
+      selectedDate: day,
+      showPopup: !this.state.showPopup
     });
-    alert('Testing this');
   };
 
   nextMonth = () => {
@@ -108,14 +122,40 @@ class Calendar extends React.Component {
   };
 
   render() {
+    const { group } = this.props.group;
+    const { events } = this.props.group.group.events;
+    console.log(this.props.group);
+    console.log(this.props.group.group.events[0]);
+    console.log(this.props.getEvent("5ca9619693e312295026a644"));
+
+
     return (
       <div className="calendar">
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}
+
+        {this.state.showPopup ? 
+          <Popup
+            closePopup={this.onDateClick.bind(this)}
+          />
+          : null
+        }
       </div>
+
+
     );
   }
 }
 
-export default Calendar;
+Calendar.propTypes = {
+  getGroupByHandle: PropTypes.func.isRequired,
+  getEvent: PropTypes.func.isRequired,
+  group: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    group: state.group
+});
+
+export default connect(mapStateToProps, { getGroupByHandle, getEvent})(Calendar);

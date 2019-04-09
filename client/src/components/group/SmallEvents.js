@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 
-class GroupEventsCantDelete extends Component {
+class SmallEvents extends Component {
 
   render() {
 
@@ -40,7 +40,6 @@ class GroupEventsCantDelete extends Component {
       <div className="row">
         <div className="col-md-12">
         <div className="card card-body bg-light mb-3">
-          <h3 className="text-center text-secondary">Events</h3>
           {eventItems.length > 0 ? (
             <ul className="list-group list-group-flush">{eventItems}</ul>
           ) : (
@@ -54,4 +53,4 @@ class GroupEventsCantDelete extends Component {
 }
 
 
-export default GroupEventsCantDelete;
+export default SmallEvents;

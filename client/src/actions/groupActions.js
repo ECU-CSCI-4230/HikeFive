@@ -279,10 +279,10 @@ export const matchGroupsClimber = matchData => dispatch => {
 
 
 // retrieve specific event
-export const getEvent = (handle, event_id) => dispatch => {
+export const getEvent = (event_id) => dispatch => {
   dispatch(setCalendarLoading());
   axios
-      .get(`/api/group/events/${event_id}`)
+      .post('/api/group/events',event_id)
       .then(res =>
           dispatch({
               type: GET_EVENT,

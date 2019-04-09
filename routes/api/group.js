@@ -338,6 +338,30 @@ router.post(
   }
 );
 
+/*
+
+// @route   GET api/group/events/:start
+// @desc    Get event by start
+// @access  Public
+
+router.get('/events/:event_start', (req, res) => {
+  const errors = {};
+
+  Group.findOne({ start: req.params.start })
+    .then(event => {
+      if (!event) {
+        errors.noevent = 'There is no event for this starting date';
+        res.status(404).json(errors);
+      }
+
+      res.json(event);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+*/
+
+
 
 
 // @route   DELETE api/group/trips/:trip_id
@@ -403,6 +427,29 @@ router.delete(
     });
   }
 );
+
+
+// @route   GET api/group/events/:event_id
+// @desc    Get event by id
+// @access  Public
+
+router.get('/events', (req, res) => {
+  const errors = {};
+
+  Group.findOne({ event_id : req.params.event_id})
+    .then(event => {
+      if (!event) {
+        errors.noevent = 'There is no event for this id';
+        res.status(404).json(errors);
+      }
+
+      res.json(event);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
+
 
 // @route   POST api/group/addmember
 // @desc    Join group

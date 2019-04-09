@@ -24,8 +24,6 @@ class Events extends Component {
     const {profile} = this.props.profile;
     const { user } = this.props.auth;
 
-    console.log(this.props);
-
     let EventsContent;
 
     if (group && profile === null || loading) {
