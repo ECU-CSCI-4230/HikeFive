@@ -60,7 +60,7 @@ class Members extends Component {
             <br/>
 
           <div/>
-          Testing~~
+          <GroupMembers group={group}/>
         </div>
       );
     }

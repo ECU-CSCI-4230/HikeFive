@@ -6,6 +6,7 @@ import Spinner from '../common/Spinner';
 import { addMember, getGroupByHandle } from '../../actions/groupActions';
 import GroupFeed from './GroupFeed';
 import { Link } from 'react-router-dom';
+import {getCurrentProfile} from '../../actions/profileActions';
 
 class Wall extends Component {
 
@@ -18,6 +19,7 @@ class Wall extends Component {
 
 
   componentDidMount() {
+      this.props.getCurrentProfile();
       this.props.getGroupByHandle(this.props.match.params.handle);
   }
 
@@ -36,14 +38,16 @@ class Wall extends Component {
   render() {
     //console.log(this.props.group);
     const { group, loading } = this.props.group;
+    const {profile} = this.props.profile;
     const { user } = this.props.auth;
     let WallContent;
 
-    if ((group && user) === null || loading) {
+    if ((group && profile) === null || loading) {
       WallContent = <Spinner />;
     } else {
+      //console.log(profile);
       const groupownerId = group.ownerid;
-      const currentuserId = user.id;
+      const currentuserId = profile._id;
       const addMemberData = {userId:currentuserId,groupHandle:group.handle};
       var hideornot = false;
 
@@ -106,12 +110,14 @@ class Wall extends Component {
 Wall.propTypes = {
   auth: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired,
-  addMember: PropTypes.func.isRequired
+  addMember: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
+    profile: state.profile,
     group: state.group,
 });
 
-export default connect(mapStateToProps, { addMember,getGroupByHandle })(Wall);
+export default connect(mapStateToProps, { addMember,getGroupByHandle,getCurrentProfile })(Wall);

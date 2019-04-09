@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import { getGroupByHandle, deleteGroup } from '../../actions/groupActions';
 import Spinner from '../common/Spinner';
 import GroupHeader from './GroupHeader';
+import {getCurrentProfile} from '../../actions/profileActions';
 
 class Settings extends Component {
 
   componentDidMount() {
+    this.props.getCurrentProfile();
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
 
@@ -19,17 +21,18 @@ class Settings extends Component {
 
   render() {
     const { group, loading } = this.props.group;
+    const {profile} = this.props.profile;
     const { user } = this.props.auth;
     let dashboardContent;
 
 
-    if (group === null || loading) {
+    if (group && profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
 
       if (Object.keys(group).length > 0) {
         const groupownerId = group.ownerid;
-        const currentuserId = user.id;
+        const currentuserId = profile._id;
   
         if (groupownerId===currentuserId){
         dashboardContent = (
@@ -158,15 +161,17 @@ Settings.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   deleteGroup: PropTypes.func.isRequired,
-  group: PropTypes.object.isRequired
+  group: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   group: state.group,
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle, deleteGroup })(
+export default connect(mapStateToProps, { getGroupByHandle, deleteGroup,getCurrentProfile })(
   Settings
 );
 

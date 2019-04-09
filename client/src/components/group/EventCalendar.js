@@ -6,9 +6,11 @@ import Calendar from './Calendar';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
+import {getCurrentProfile} from '../../actions/profileActions';
 
 class EventCalendar extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
   componentWillReceiveProps(nextProps) {
@@ -21,18 +23,19 @@ class EventCalendar extends Component {
     console.log(this.props.match.params.handle);
     console.log(this.props.group);
     const { group, loading } = this.props.group;
+    const {profile} = this.props.profile;
     const { user } = this.props.auth;
 
     let CalendarContent;
 
-    if (group === null || loading) {
+    if (group && profile === null || loading) {
         CalendarContent = <Spinner />;
     } 
     else {
         if (Object.keys(group).length > 0) {
 
           const groupownerId = group.ownerid;
-          const currentuserId = user.id;
+          const currentuserId = profile._id;
     
           let groupSetting;
     
@@ -82,12 +85,14 @@ class EventCalendar extends Component {
 EventCalendar.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  group: PropTypes.object.isRequired
+  group: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     group: state.group,
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(EventCalendar);
+export default connect(mapStateToProps, { getGroupByHandle,getCurrentProfile })(EventCalendar);

@@ -49,7 +49,7 @@ class CreateGroup extends Component {
   onSubmit(e) {
     e.preventDefault();
     const {profile} = this.props.profile;
-    //console.log(profile.user._id);
+    //console.log(profile._id);
 
     const groupData = {
       handle: this.state.handle,
@@ -66,7 +66,7 @@ class CreateGroup extends Component {
       facebook: this.state.facebook,
       youtube: this.state.youtube,
       instagram: this.state.instagram,
-      ownerid: profile.user._id
+      ownerid: profile._id
     };
     this.props.createGroup(groupData, this.props.history);
     //this.props.history.push(`/groupwall/${groupData.handle}`);

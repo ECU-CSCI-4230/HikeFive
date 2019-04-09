@@ -11,6 +11,7 @@ const validateTripInput = require('../../validation/trip');
 // Load Group Model
 const Group = require('../../models/Group');
 const Profile = require('../../models/Profile');
+const User = require('../../models/User');
 
 
 // @route   GET api/group/all
@@ -435,8 +436,8 @@ router.post(
 // @desc    Get group members
 // @access  Public
 router.post('/members', (req, res) => {
-  //console.log(req.body.ids);
-  Profile.find({_id: {$in: ["5ca56bba5abf24403868f699","5ca56bca5abf24403868f69a"]}}).then(users=>{
+  console.log(req.body.ids);
+  Profile.find({_id: {$in: ["5c915b089d24b032d8f59299","5c9154f0416bc437447befa6"]}}).then(users=>{
     console.log(users)
   });
   /*

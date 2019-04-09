@@ -6,9 +6,11 @@ import GroupEventsCantDelete from './GroupEventsCantDelete';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
+import {getCurrentProfile} from '../../actions/profileActions';
 
 class Events extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
   componentWillReceiveProps(nextProps) {
@@ -18,21 +20,21 @@ class Events extends Component {
   }
 
   render() {
-
     const { group, loading } = this.props.group;
+    const {profile} = this.props.profile;
     const { user } = this.props.auth;
 
     console.log(this.props);
 
     let EventsContent;
 
-    if (group === null || loading) {
+    if (group && profile === null || loading) {
         EventsContent = <Spinner />;
     } 
     else {
         if (Object.keys(group).length > 0) {
           const groupownerId = group.ownerid;
-          const currentuserId = user.id;
+          const currentuserId = profile._id;
     
           let groupSetting;
     
@@ -82,12 +84,14 @@ class Events extends Component {
 Events.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  group: PropTypes.object.isRequired
+  group: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     group: state.group,
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Events);
+export default connect(mapStateToProps, { getGroupByHandle ,getCurrentProfile})(Events);
