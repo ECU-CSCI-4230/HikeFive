@@ -6,9 +6,11 @@ import GroupTripsCantDelete from './GroupTripsCantDelete';
 import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
+import {getCurrentProfile} from '../../actions/profileActions';
 
 class Trips extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
   componentWillReceiveProps(nextProps) {
@@ -20,17 +22,18 @@ class Trips extends Component {
   render() {
     //console.log(this.props.match.params.handle);
     const { group, loading } = this.props.group;
+    const {profile} = this.props.profile;
     const { user } = this.props.auth;
 
     let TripsContent;
 
-    if (group === null || loading) {
+    if (group && profile === null || loading) {
         TripsContent = <Spinner />;
     } 
     else {
         if (Object.keys(group).length > 0) {
           const groupownerId = group.ownerid;
-          const currentuserId = user.id;
+          const currentuserId = profile._id;
     
           let groupSetting;
     
@@ -80,12 +83,14 @@ class Trips extends Component {
 Trips.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  group: PropTypes.object.isRequired
+  group: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     group: state.group,
+    profile: state.profile,
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Trips);
+export default connect(mapStateToProps, { getGroupByHandle,getCurrentProfile })(Trips);

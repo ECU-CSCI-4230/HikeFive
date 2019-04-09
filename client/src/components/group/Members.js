@@ -6,9 +6,11 @@ import GroupHeader from './GroupHeader';
 import Spinner from '../common/Spinner';
 import GroupMembers from './GroupMembers';
 import {getGroupByHandle } from '../../actions/groupActions';
+import {getCurrentProfile} from '../../actions/profileActions';
 
 class Members extends Component {
   componentDidMount() {
+    this.props.getCurrentProfile();
     this.props.getGroupByHandle(this.props.match.params.handle);
 }
 
@@ -22,15 +24,18 @@ class Members extends Component {
     //console.log(this.props.match.params.handle);
     //console.log(this.props.group);
     const { group, loading } = this.props.group;
+    const {profile} = this.props.profile;
     const { user } = this.props.auth;
 
     let groupContent;
 
-    if (group === null || loading) {
+    if (group&& profile === null || loading) {
         groupContent = <Spinner />;
     } else {
       const groupownerId = group.ownerid;
-      const currentuserId = user.id;
+      const currentuserId = profile._id;
+      console.log(groupownerId);
+      console.log(currentuserId);
 
       let groupSetting;
 
@@ -80,12 +85,14 @@ class Members extends Component {
 
 Members.propTypes = {
     group: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   group: state.group,
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getGroupByHandle })(Members);
+export default connect(mapStateToProps, { getGroupByHandle, getCurrentProfile})(Members);
