@@ -45,7 +45,7 @@ class Wall extends Component {
     if ((group && profile) === null || loading) {
       WallContent = <Spinner />;
     } else {
-      //console.log(profile);
+      //console.log(group);
       const groupownerId = group.ownerid;
       const currentuserId = profile._id;
       const addMemberData = {userId:currentuserId,groupHandle:group.handle};

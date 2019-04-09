@@ -483,10 +483,19 @@ router.post(
 // @desc    Get group members
 // @access  Public
 router.post('/members', (req, res) => {
-  console.log(req.body.ids);
-  Profile.find({_id: {$in: ["5c915b089d24b032d8f59299","5c9154f0416bc437447befa6"]}}).then(users=>{
-    console.log(users)
-  });
+  //console.log(req.body.ids);
+  //["5ca56bca5abf24403868f69a","5c9154f0416bc437447befa6"]
+  Profile.find({_id: {$in: req.body.ids}})
+  .populate('user', ['name', 'avatar'])
+  .then(members=>{
+    if (!members) {
+      errors.nogroup = 'There are no members';
+      return res.status(404).json(errors);
+    }
+    //console.log(members);
+    res.json(members);
+  })
+  .catch(err => res.status(404).json(err));
   /*
   Profile.find()
     .populate('user', ['name', 'avatar'])

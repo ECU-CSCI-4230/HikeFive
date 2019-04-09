@@ -149,11 +149,12 @@ export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/profile/all')
-    .then(res =>
+    .then(res =>{
+      //console.log(res.data);
       dispatch({
         type: GET_PROFILES,
         payload: res.data
-      })
+      })}
     )
     .catch(err =>
       dispatch({

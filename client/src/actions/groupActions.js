@@ -9,7 +9,8 @@ import {
   GET_EVENT,
   SET_CURRENT_GROUP,
   ADD_MEMBER,
-  GET_MEMBER
+  GET_MEMBERS,
+  MEMBER_LOADING
 } from './types';
 
 
@@ -330,6 +331,13 @@ export const setGroupLoading = () => {
   };
 };
 
+// members loading
+export const setMemberLoading = () => {
+  return {
+    type: MEMBER_LOADING
+  };
+};
+
 
 // Add Members
 export const addMember = (userID) => dispatch =>{
@@ -346,18 +354,19 @@ export const addMember = (userID) => dispatch =>{
 
 // Get group members
 export const getMembers = (pass) => dispatch => {
-  dispatch(setGroupLoading());
+  dispatch(setMemberLoading());
   axios
     .post('/api/group/members',pass)
-    .then(res =>
+    .then(res =>{
+      //console.log(res.data);
       dispatch({
-        type: GET_MEMBER,
+        type: GET_MEMBERS,
         payload: res.data
-      })
+      })}
     )
     .catch(err =>
       dispatch({
-        type: GET_MEMBER,
+        type: GET_MEMBERS,
         payload: null
       })
     );

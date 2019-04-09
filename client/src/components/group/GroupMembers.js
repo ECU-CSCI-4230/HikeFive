@@ -11,6 +11,7 @@ class GroupMembers extends Component {
     const arrayLength = group.teammember.length;
     var array = [];
 
+    array.push(group.ownerid);
     for (var i = 0; i < arrayLength; i++) {
         array.push(group.teammember[i].ids);
     }
@@ -20,7 +21,7 @@ class GroupMembers extends Component {
   }
 
   render() {
-    /*
+    //console.log(this.props);
     const { members, loading } = this.props.member;
     let profileItems;
 
@@ -28,17 +29,16 @@ class GroupMembers extends Component {
       profileItems = <Spinner />;
     } else {
       if (members.length > 0) {
-        profileItems = members.map(profile => (
-          <ProfileItem key={profile._id} profile={profile} />
+        profileItems = members.map(member => (
+          <ProfileItem key={member._id} profile={member} />
         ));
       } else {
         profileItems = <h4>No Members found...</h4>;
       }
     }
-    */
 
-    /*
-    <div className="profiles">
+    return (
+      <div className="profiles">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -51,9 +51,6 @@ class GroupMembers extends Component {
           </div>
         </div>
       </div>
-    */
-    return (
-      <div>TESTING ~~~</div>
     );
   }
 }
