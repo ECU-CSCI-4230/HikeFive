@@ -5,7 +5,6 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SelectListGroup from '../common/SelectListGroup';
 import { addEvent, getGroupByHandle } from '../../actions/groupActions';
 
 class AddEvent extends Component {

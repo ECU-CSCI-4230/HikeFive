@@ -429,15 +429,17 @@ router.delete(
 );
 
 
-// @route   GET api/group/events/:event_id
+// @route   GET api/group/events
 // @desc    Get event by id
 // @access  Public
 
 router.get('/events', (req, res) => {
-  const errors = {};
-
-  Group.findOne({ event_id : req.params.event_id})
-    .then(event => {
+  //console.log("SERVER SIDE OF EVENTS");
+  //console.log(req.query.eventid);
+  //{events: {$elemMatch: {name:"NewEvent"}}}
+  Group.find({events: {$elemMatch: {name:"NewEvent"}}}).then(event => {
+      //console.log("IT WORKS");
+      console.log(event[0].events);
       if (!event) {
         errors.noevent = 'There is no event for this id';
         res.status(404).json(errors);
@@ -445,6 +447,7 @@ router.get('/events', (req, res) => {
 
       res.json(event);
     })
+
     .catch(err => res.status(404).json(err));
 });
 
@@ -485,6 +488,7 @@ router.post(
 router.post('/members', (req, res) => {
   //console.log(req.body.ids);
   //["5ca56bca5abf24403868f69a","5c9154f0416bc437447befa6"]
+  console.log("THIS IS MEMBERS");
   Profile.find({_id: {$in: req.body.ids}})
   .populate('user', ['name', 'avatar'])
   .then(members=>{

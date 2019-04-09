@@ -281,9 +281,14 @@ export const matchGroupsClimber = matchData => dispatch => {
 
 // retrieve specific event
 export const getEvent = (event_id) => dispatch => {
+  console.log(event_id);
   dispatch(setCalendarLoading());
   axios
-      .post('/api/group/events',event_id)
+      .get('/api/group/events',{
+        params:{
+          eventid: event_id.eventid
+        }
+      })
       .then(res =>
           dispatch({
               type: GET_EVENT,

@@ -125,8 +125,9 @@ class Calendar extends React.Component {
     const { group } = this.props.group;
     const { events } = this.props.group.group.events;
     console.log(this.props.group);
-    console.log(this.props.group.group.events[0]);
-    console.log(this.props.getEvent("5ca9619693e312295026a644"));
+    //console.log(this.props.group.group.events[0]);
+    const p = {eventid : "5cad047ca8ed52a3251f1d11"};
+    this.props.getEvent(p);
 
 
     return (
