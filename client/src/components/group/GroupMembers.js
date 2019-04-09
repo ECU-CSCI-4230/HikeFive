@@ -42,10 +42,6 @@ class GroupMembers extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Hikers</h1>
-              <p className="lead text-center">
-                List of all registered Users with a Profile
-              </p>
               {profileItems}
             </div>
           </div>
