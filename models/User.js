@@ -7,6 +7,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  profile_avatar:{
+    type: String
+  },
   email: {
     type: String,
     required: true

@@ -39,7 +39,8 @@ router.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        create_profile: req.body.created
+        create_profile: req.body.created,
+        profile_avatar: ''
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -70,6 +71,21 @@ router.post('/updateFirst', (req, res) => {
             console.log("Something wrong when updating first!");
         }
   }
+)});
+
+// @route POST api/users/updateAvatar
+// @desc  update avatar field
+// @access  Public
+router.post('/updateAvatar', (req, res) => {
+  User.findOneAndUpdate(
+    { email: req.body.email},
+    { $set: {profile_avatar: req.body.profile_avatar}},
+    { new: true},
+    (err, doc) => {
+      if (err) {
+          console.log("Something wrong when updating avatar!");
+      }
+}
 )});
 
 // @route   GET api/users/login

@@ -8,6 +8,7 @@ import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile, getCurrentProfile } from '../../actions/profileActions';
 import isEmpty from '../../validation/is-empty';
+import { updateAvatar } from '../../actions/authActions';
 
 class EditProfile extends Component {
   constructor(props) {
@@ -100,6 +101,14 @@ class EditProfile extends Component {
       instagram: this.state.instagram
     };
     this.props.createProfile(profileData, this.props.history);
+
+
+    const avatarData = {
+      email: this.state.email,
+      profile_avatar: profileData.avatar
+    };
+
+    this.props.updateAvatar(avatarData);
   }
 
   onChange(e) {
@@ -280,6 +289,7 @@ class EditProfile extends Component {
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
+  updateAvatar: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -289,6 +299,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+export default connect(mapStateToProps, { createProfile, getCurrentProfile, updateAvatar })(
   withRouter(EditProfile)
 );

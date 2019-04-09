@@ -2,7 +2,10 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
-import { GET_ERRORS, SET_CURRENT_USER} from './types';
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER
+} from './types';
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -23,7 +26,9 @@ export const loginUser = userData => dispatch => {
     .post('/api/users/login', userData)
     .then(res => {
       // Save to localStorage
-      const { token } = res.data;
+      const {
+        token
+      } = res.data;
       // Set token to ls
       localStorage.setItem('jwtToken', token);
       localStorage.setItem('first', res.data.first);
@@ -44,7 +49,12 @@ export const loginUser = userData => dispatch => {
 
 export const updateFirst = userData => dispatch => {
   axios
-  .post('/api/users/updateFirst',userData)
+    .post('/api/users/updateFirst', userData)
+}
+
+export const updateAvatar = avatarData => dispatch => {
+  axios
+    .post('/api/users/updateAvatar', avatarData)
 }
 /*
 export const getProfileCreted = userData => dispatch => {
@@ -78,7 +88,7 @@ export const getProfileCreted = userData => dispatch => {
 */
 
 // Set logged in user
-export const setCurrentUser = decoded=> {
+export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
     payload: decoded
