@@ -134,27 +134,32 @@ class Calendar extends React.Component {
     var eventLength = this.props.group.group.events.length;
 
     let eventsContent;
+    const eventArray=[];
 
     for(let i=0; i <eventLength; i++)
     {
       const startEvent = format(this.props.group.group.events[i].start, 'MM/DD/YYYY');
       const nowDate = format(selectedDate,'MM/DD/YYYY');
-      //console.log(startEvent);
-      //console.log(nowDate);
+
       var result = compareAsc(
           startEvent,
           nowDate
       );
       if(result === 0)
       {
-        console.log("there is an event today");
-        eventsContent = <NowEvent evt={this.props.group.group.events[i]} />;
-      }
-      if(!isValid(selectedDate))
-      {
-        eventsContent = <p>There is no events for this date</p>;
+        eventArray.push(this.props.group.group.events[i]);
       }
     }
+    var eventL = eventArray.length;
+    if(eventL > 0)
+    {
+      eventsContent= eventArray.map(evt => (<NowEvent evt={evt}/>));
+    }
+    else
+    {
+      eventsContent = <div className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">There is no events for this date</div>;
+    }
+
 
     return (
       <div className="calendar">
