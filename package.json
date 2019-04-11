@@ -29,6 +29,7 @@
     "react": "^16.8.4",
     "react-big-calendar": "^0.20.3",
     "react-big-scheduler": "^0.2.6",
+    "react-country-region-selector": "^1.4.3",
     "react-dom": "^16.8.4",
     "react-slot": "^0.1.2",
     "react-tackle-box": "^2.1.0",

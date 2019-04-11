@@ -150,9 +150,6 @@ export const deleteEvent = (group, id) => dispatch => {
     );
 };
 
-
-
-
 // Search groups
 export const searchGroups = query => dispatch => {
   dispatch(setGroupLoading());
@@ -173,11 +170,11 @@ export const searchGroups = query => dispatch => {
 };
 
 
-// Match groups
-export const matchGroups = matchData => dispatch => {
+// matchGroupsCombo
+export const matchGroupsCombo = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
-    .get(`/api/group/match`, {
+    .get(`/api/group/matchCombo`, {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax
@@ -197,17 +194,14 @@ export const matchGroups = matchData => dispatch => {
     );
 };
 
-// Match groups
-export const matchGroupsCombo = matchData => dispatch => {
+// matchGroupsTravelCamp
+export const matchGroupsTravelCamp = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
-    .get(`/api/group/matchCombo`, {
+    .get(`/api/group/matchTravelCamp`, {
       params: {
         skillMin: matchData.skillMin, 
-        skillMax: matchData.skillMax,
-        camp: matchData.camp,
-        climber: matchData.climber,
-        travel: matchData.travel
+        skillMax: matchData.skillMax
       }
     }) 
     .then(res =>
@@ -224,16 +218,14 @@ export const matchGroupsCombo = matchData => dispatch => {
     );
 };
 
-// Match groups
-export const matchGroupsCamper = matchData => dispatch => {
+// matchGroupsTravelClimb
+export const matchGroupsTravelClimb = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
-    .get(`/api/group/matchCamper`, {
+    .get(`/api/group/matchTravelClimb`, {
       params: {
         skillMin: matchData.skillMin, 
-        skillMax: matchData.skillMax,
-        camp: matchData.camp,
-        travel: matchData.travel
+        skillMax: matchData.skillMax
       }
     }) 
     .then(res =>
@@ -250,16 +242,114 @@ export const matchGroupsCamper = matchData => dispatch => {
     );
 };
 
-// Match groups
-export const matchGroupsClimber = matchData => dispatch => {
+// matchGroupsTravel
+export const matchGroupsTravel = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
-    .get(`/api/group/matchClimber`, {
+    .get(`/api/group/matchTravel`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+// matchGroupsCampClimb
+export const matchGroupsCampClimb = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/matchCampClimb`, {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
-        climber: matchData.climber,
-        travel: matchData.travel
+        country: matchData.country
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+// matchGroupsCamp
+export const matchGroupsCamp = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/matchCamp`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax,
+        country: matchData.country
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+// matchGroupsClimb
+export const matchGroupsClimb = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/matchClimb`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax,
+        country: matchData.country
+      }
+    }) 
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+};
+
+// matchGroups
+export const matchGroups = matchData => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/match`, {
+      params: {
+        skillMin: matchData.skillMin, 
+        skillMax: matchData.skillMax,
+        country: matchData.country
       }
     }) 
     .then(res =>

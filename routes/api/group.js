@@ -57,27 +57,6 @@ router.get('/search/:query', (req, res) => {
 });
 
 
-// @route   GET api/group/match
-// @desc    Get all matching groups
-// @access  Public
-
-router.get('/match', (req, res) => {
-  const errors = {};
-
-  Group.find({
-    $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }]
-  })
-    .then(groups => {
-      if (!groups) {
-        errors.nogroup = 'No groups were found';
-        res.status(404).json(errors);
-      }
-      //console.log(groups);
-      res.json(groups);
-    })
-    .catch(err => res.status(404).json(err));
-});
-
 // @route   GET api/group/matchCombo
 // @desc    Get all matching groups
 // @access  Public
@@ -89,6 +68,7 @@ router.get('/matchCombo', (req, res) => {
     $and: [
       { climber: 'Yes' },
       { camp: 'Yes' },
+      { travel: 'Yes' },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -103,16 +83,17 @@ router.get('/matchCombo', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/group/matchCamper
+// @route   GET api/group/matchTravelCamp
 // @desc    Get all matching groups
 // @access  Public
 
-router.get('/matchCamper', (req, res) => {
+router.get('/matchTravelCamp', (req, res) => {
   const errors = {};
 
   Group.find({
     $and: [
       { camp: 'Yes' },
+      { travel: 'Yes' },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -127,16 +108,17 @@ router.get('/matchCamper', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/group/matchClimber
+// @route   GET api/group/matchTravelClimb
 // @desc    Get all matching groups
 // @access  Public
 
-router.get('/matchClimber', (req, res) => {
+router.get('/matchTravelClimb', (req, res) => {
   const errors = {};
 
   Group.find({
     $and: [
       { climber: 'Yes' },
+      { travel: 'Yes' },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -150,6 +132,133 @@ router.get('/matchClimber', (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
+
+// @route   GET api/group/matchTravel
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchTravel', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
+
+// @route   GET api/group/matchCampClimb
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchCampClimb', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchCamp
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchCamp', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchClimb
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/matchClimb', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { climber: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/match
+// @desc    Get all matching groups
+// @access  Public
+
+router.get('/match', (req, res) => {
+  const errors = {};
+
+  Group.find({
+    $and: [
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(groups => {
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log(groups);
+      res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 
 
 // @route   GET api/group/handle/:handle
@@ -437,16 +546,16 @@ router.get('/events', (req, res) => {
   //console.log("SERVER SIDE OF EVENTS");
   //console.log(req.query.eventid);
   //{events: {$elemMatch: {name:"NewEvent"}}}
-  Group.find({events: {$elemMatch: {name:"NewEvent"}}}).then(event => {
-      //console.log("IT WORKS");
-      console.log(event[0].events);
-      if (!event) {
-        errors.noevent = 'There is no event for this id';
-        res.status(404).json(errors);
-      }
+  Group.find({ events: { $elemMatch: { name: "NewEvent" } } }).then(event => {
+    //console.log("IT WORKS");
+    console.log(event[0].events);
+    if (!event) {
+      errors.noevent = 'There is no event for this id';
+      res.status(404).json(errors);
+    }
 
-      res.json(event);
-    })
+    res.json(event);
+  })
 
     .catch(err => res.status(404).json(err));
 });
@@ -462,22 +571,20 @@ router.post(
   (req, res) => {
     //userId, groupHandle
     Group.findOne({ handle: req.body.groupHandle }).then(group => {
-    const userID = {ids: req.body.userId};
+      const userID = { ids: req.body.userId };
 
-    if(group.ownerid == req.body.userId)
-    {console.log("member already exists");return res.status(400);}
-    var arrayLength = group.teammember.length;
-    for (var i = 0; i < arrayLength; i++) {
-      if(group.teammember[i].ids == req.body.userId)
-      {
-        console.log("member already exists"); 
-        return res.status(400);
+      if (group.ownerid == req.body.userId) { console.log("member already exists"); return res.status(400); }
+      var arrayLength = group.teammember.length;
+      for (var i = 0; i < arrayLength; i++) {
+        if (group.teammember[i].ids == req.body.userId) {
+          console.log("member already exists");
+          return res.status(400);
+        }
       }
-    }
 
-    // Add to teammember array
-    group.teammember.unshift(userID);
-    group.save();
+      // Add to teammember array
+      group.teammember.unshift(userID);
+      group.save();
     });
   }
 );
@@ -489,17 +596,17 @@ router.post('/members', (req, res) => {
   //console.log(req.body.ids);
   //["5ca56bca5abf24403868f69a","5c9154f0416bc437447befa6"]
   console.log("THIS IS MEMBERS");
-  Profile.find({_id: {$in: req.body.ids}})
-  .populate('user', ['name', 'avatar'])
-  .then(members=>{
-    if (!members) {
-      errors.nogroup = 'There are no members';
-      return res.status(404).json(errors);
-    }
-    //console.log(members);
-    res.json(members);
-  })
-  .catch(err => res.status(404).json(err));
+  Profile.find({ _id: { $in: req.body.ids } })
+    .populate('user', ['name', 'avatar'])
+    .then(members => {
+      if (!members) {
+        errors.nogroup = 'There are no members';
+        return res.status(404).json(errors);
+      }
+      //console.log(members);
+      res.json(members);
+    })
+    .catch(err => res.status(404).json(err));
   /*
   Profile.find()
     .populate('user', ['name', 'avatar'])

@@ -22,6 +22,10 @@ module.exports = function validateGroupInput(data) {
     errors.zip = 'zip field is required';
   }
 
+  if (Validator.isEmpty(data.country)) {
+    errors.country = 'zip field is required';
+  }
+
   if (Validator.isEmpty(data.skillstatus)) {
     errors.skillstatus = 'skill level field is required';
   }

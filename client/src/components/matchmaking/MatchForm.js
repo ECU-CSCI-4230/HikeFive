@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { getCurrentProfile } from '../../actions/profileActions';
-import { matchGroups, matchGroupsCombo, matchGroupsCamper, matchGroupsClimber } from '../../actions/groupActions';
 
 class MatchForm extends Component {
   constructor(props) {
@@ -16,8 +15,6 @@ class MatchForm extends Component {
       travel: '',
       camp: '',
       climber: '',
-      group: '',
-      destination: '',
       errors: {}
     };
 
@@ -38,8 +35,7 @@ class MatchForm extends Component {
       // Set component fields state
       this.setState({
         handle: profile.handle,
-        gender: profile.gender,
-        zip: profile.zip
+        country: profile.country
       });
     }
   }
@@ -54,14 +50,13 @@ class MatchForm extends Component {
       travel: this.state.travel,
       camp: this.state.camp,
       climber: this.state.climber,
-      destination: this.state.destination,
       handle: this.state.handle,
-      gender: this.state.gender,
-      zip: this.state.zip
+      country: this.state.country
     };
-
-    //this.props.matchGroups(matchData); //group match
-    //this.props.matchMake(matchData, this.props.history); //Profile match
+    this.props.history.push({
+      pathname: "/matches", 
+      data: matchData
+    });
   }
 
   onChange(e) {
@@ -141,16 +136,6 @@ class MatchForm extends Component {
                     error={errors.travel}
                   />
                 </div>
-                <div>
-                  <h4 className="text-center">If Yes, Where do you want to go? (Country, Landmark, City)</h4>
-                <TextFieldGroup
-                  placeholder="destination"
-                  name="destination"
-                  value={this.state.destination}
-                  onChange={this.onChange}
-                  error={errors.destination}
-                />
-                </div>
 
                 <div>
                   <h4 className="text-center">Are you looking for a camping trip?</h4>
@@ -201,6 +186,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { matchGroups, matchGroupsCamper, matchGroupsClimber, matchGroupsCombo, getCurrentProfile })(
+export default connect(mapStateToProps, { getCurrentProfile })(
   withRouter(MatchForm)
 );

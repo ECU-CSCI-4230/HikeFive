@@ -18,12 +18,12 @@ module.exports = function validateProfileInput(data) {
     errors.handle = 'Profile handle is required';
   }
 
-  if (Validator.isEmpty(data.gender)) {
-    errors.gender = 'gender field is required';
-  }
-
   if (Validator.isEmpty(data.zip)) {
     errors.zip = 'zip field is required';
+  }
+
+  if (Validator.isEmpty(data.country)) {
+    errors.country = 'zip field is required';
   }
 
   if (Validator.isEmpty(data.skillstatus)) {

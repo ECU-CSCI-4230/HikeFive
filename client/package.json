@@ -12,6 +12,7 @@
     "react": "^16.8.4",
     "react-big-calendar": "^0.20.3",
     "react-big-scheduler": "^0.2.6",
+    "react-country-region-selector": "^1.4.3",
     "react-dom": "^16.8.4",
     "react-moment": "^0.7.0",
     "react-redux": "^5.0.7",

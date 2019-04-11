@@ -155,21 +155,11 @@ router.post(
     if (req.body.zip) profileFields.zip = req.body.zip;
     if (req.body.avatar) profileFields.avatar = req.body.avatar;
     if (req.body.background) profileFields.background = req.body.background;
-    if (req.body.gender) profileFields.gender = req.body.gender;
+    if (req.body.country) profileFields.country = req.body.country;
     if (req.body.skillstatus) profileFields.skillstatus = req.body.skillstatus;
-    //DELETE LINE BELOW
-    if (req.body.priortrip) profileFields.priortrip = req.body.priortrip;
     if (req.body.climber) profileFields.climber = req.body.climber;
-    //DELETE LINE BELOW
-    if (req.body.criminal) profileFields.criminal = req.body.criminal;
     if (req.body.travel) profileFields.travel = req.body.travel;
-    //DELETE LINE BELOW
-    if (req.body.purchase) profileFields.purchase = req.body.purchase;
-    //DELETE LINE BELOW
-    if (req.body.overnight) profileFields.overnight = req.body.overnight;
     if (req.body.camp) profileFields.camp = req.body.camp;
-    //DELETE LINE BELOW
-    if (req.body.time) profileFields.time = req.body.time;
     if (req.body.bio) profileFields.bio = req.body.bio;
 
     // Social

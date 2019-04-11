@@ -23,6 +23,9 @@ const GroupSchema = new Schema({
   zip: {
     type: String
   },
+  country: {
+    type: String
+  },
   skillstatus: {
     type: String,
     required: true

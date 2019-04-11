@@ -18,10 +18,10 @@ const ProfileSchema = new Schema({
   background: {
     type: String
   },
-  gender: {
+  zip: {
     type: String
   },
-  zip: {
+  country: {
     type: String
   },
   skillstatus: {
