@@ -170,8 +170,8 @@ export const searchGroups = query => dispatch => {
 };
 
 
-// matchGroupsCombo
-export const matchGroupsCombo = matchData => dispatch => {
+// matchGCombo - Travel, Camp, and Climb
+export const matchGCombo = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchCombo`, {
@@ -194,8 +194,8 @@ export const matchGroupsCombo = matchData => dispatch => {
     );
 };
 
-// matchGroupsTravelCamp
-export const matchGroupsTravelCamp = matchData => dispatch => {
+// matchGTC - Travel and Camp
+export const matchGTC = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchTravelCamp`, {
@@ -218,8 +218,8 @@ export const matchGroupsTravelCamp = matchData => dispatch => {
     );
 };
 
-// matchGroupsTravelClimb
-export const matchGroupsTravelClimb = matchData => dispatch => {
+// matchGTCL - Travel and Climb
+export const matchGTCL = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchTravelClimb`, {
@@ -242,8 +242,8 @@ export const matchGroupsTravelClimb = matchData => dispatch => {
     );
 };
 
-// matchGroupsTravel
-export const matchGroupsTravel = matchData => dispatch => {
+// matchGT - Travel
+export const matchGT = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchTravel`, {
@@ -266,8 +266,8 @@ export const matchGroupsTravel = matchData => dispatch => {
     );
 };
 
-// matchGroupsCampClimb
-export const matchGroupsCampClimb = matchData => dispatch => {
+// matchGCC - Camp and Climb
+export const matchGCC = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchCampClimb`, {
@@ -291,8 +291,8 @@ export const matchGroupsCampClimb = matchData => dispatch => {
     );
 };
 
-// matchGroupsCamp
-export const matchGroupsCamp = matchData => dispatch => {
+// matchGC- Camp
+export const matchGC = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchCamp`, {
@@ -316,8 +316,8 @@ export const matchGroupsCamp = matchData => dispatch => {
     );
 };
 
-// matchGroupsClimb
-export const matchGroupsClimb = matchData => dispatch => {
+// matchGCL - Climb
+export const matchGCL = matchData => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchClimb`, {

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { getCurrentProfile } from '../../actions/profileActions';
+import { addMatchData } from '../../actions/profileActions';
 
 class MatchForm extends Component {
   constructor(props) {
@@ -32,9 +33,7 @@ class MatchForm extends Component {
     }
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
-      // Set component fields state
       this.setState({
-        handle: profile.handle,
         country: profile.country
       });
     }
@@ -50,13 +49,9 @@ class MatchForm extends Component {
       travel: this.state.travel,
       camp: this.state.camp,
       climber: this.state.climber,
-      handle: this.state.handle,
       country: this.state.country
     };
-    this.props.history.push({
-      pathname: "/matches", 
-      data: matchData
-    });
+    this.props.addMatchData(matchData, this.props.history);
   }
 
   onChange(e) {
@@ -82,8 +77,6 @@ class MatchForm extends Component {
       { label: 'No', value: 'No' }
     ];
 
-    //Need to do trigger other options 
-    //Check that all fields are working correctly
 
     //Need to add a form option that asks when they want to travel but this requires a lot of other features to work
     return (
@@ -177,6 +170,7 @@ class MatchForm extends Component {
 
 MatchForm.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  addMatchData: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -186,6 +180,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(
+export default connect(mapStateToProps, { getCurrentProfile, addMatchData })(
   withRouter(MatchForm)
 );

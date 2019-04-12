@@ -165,7 +165,6 @@ router.get('/matchTravel', (req, res) => {
 
 router.get('/matchCampClimb', (req, res) => {
   const errors = {};
-
   Group.find({
     $and: [
       { climber: 'Yes' },
@@ -304,6 +303,7 @@ router.post(
     if (req.body.zip) groupFields.zip = req.body.zip;
     if (req.body.skillstatus) groupFields.skillstatus = req.body.skillstatus;
     if (req.body.climber) groupFields.climber = req.body.climber;
+    if (req.body.country) groupFields.country = req.body.country;
     if (req.body.travel) groupFields.travel = req.body.travel;
     if (req.body.camp) groupFields.camp = req.body.camp;
     if (req.body.bio) groupFields.bio = req.body.bio;
@@ -356,6 +356,7 @@ router.post(
     if (req.body.avatar) groupFields.avatar = req.body.avatar;
     if (req.body.background) groupFields.background = req.body.background;
     if (req.body.zip) groupFields.zip = req.body.zip;
+    if (req.body.country) groupFields.country = req.body.country;
     if (req.body.skillstatus) groupFields.skillstatus = req.body.skillstatus;
     if (req.body.climber) groupFields.climber = req.body.climber;
     if (req.body.travel) groupFields.travel = req.body.travel;

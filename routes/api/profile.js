@@ -7,6 +7,7 @@ const passport = require('passport');
 const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
 const validateTripInput = require('../../validation/trip');
+const validateMatchInput = require('../../validation/matchData');
 
 // Load Profile Model
 const Profile = require('../../models/Profile');
@@ -94,18 +95,18 @@ router.get('/handle/:handle', (req, res) => {
 router.get('/:query', (req, res) => {
   const errors = {};
 
-  User.find( {name: { '$regex': req.params.query, '$options': "ix" } } ) 
-  .then(users => {
-    Profile.find( { $or: [ { user: {'$in': users } }, { handle: new RegExp(req.params.query, 'i') } ] } )
-    .populate('user', ['name', 'avatar'])
-    .then( profiles => {
-      if (!profiles) {
-        errors.noprofile = 'No profiles were found';
-        res.status(404).json(errors);
-      }
-      res.json(profiles);
-    })
-    .catch(err => res.status(404).json(err));
+  User.find({ name: { '$regex': req.params.query, '$options': "ix" } })
+    .then(users => {
+      Profile.find({ $or: [{ user: { '$in': users } }, { handle: new RegExp(req.params.query, 'i') }] })
+        .populate('user', ['name', 'avatar'])
+        .then(profiles => {
+          if (!profiles) {
+            errors.noprofile = 'No profiles were found';
+            res.status(404).json(errors);
+          }
+          res.json(profiles);
+        })
+        .catch(err => res.status(404).json(err));
     })
     .catch(err => res.status(404).json(err));
 });
@@ -227,6 +228,278 @@ router.post(
 
       profile.save().then(profile => res.json(profile));
     });
+  }
+);
+
+
+
+
+
+
+
+
+
+
+// @route   GET api/profile/matchCombo
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchCombo', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/matchTravelCamp
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchTravelCamp', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { camp: 'Yes' },
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/matchTravelClimb
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchTravelClimb', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/matchTravel
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchTravel', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
+
+// @route   GET api/profile/matchCampClimb
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchCampClimb', (req, res) => {
+  console.log('here')
+  const errors = {};
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      console.log(profiles);
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/matchCamp
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchCamp', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/matchClimb
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchClimb', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/match
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/match', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
+// @route   GET api/profile/matchTest
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchTest', (req, res) => {
+  console.log('here')
+  const errors = {};
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: '5' } }, { skillstatus: { $gte: '3' } }] }
+    ]
+  })
+    .then(profiles => {
+      console.log(profiles);
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      //console.log(profiles);
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+
+
+// @route   POST api/profile/matchData
+// @desc    Add matchData to profile
+// @access  Private
+router.post(
+  '/matchData',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateMatchInput(req.body);
+
+    //Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOneAndUpdate(
+      { user: req.user.id },
+      {
+        $set: {
+          "match.skillMin": req.body.skillMin,
+          "match.skillMax": req.body.skillMax,
+          "match.travel": req.body.travel,
+          "match.camp": req.body.camp,
+          "match.climber": req.body.climber,
+          "match.country": req.body.country
+        }
+      }
+    ).then(profile => res.json(profile));
   }
 );
 

@@ -63,6 +63,26 @@ const ProfileSchema = new Schema({
       type: String,
     }
   }],
+  match: {
+    skillMin: {
+      type: String
+    },
+    skillMax: {
+      type: String
+    },
+    travel: {
+      type: String
+    },
+    camp: {
+      type: String
+    },
+    climber: {
+      type: String
+    },
+    country: {
+      type: String
+    }
+  },
   social: {
     youtube: {
       type: String

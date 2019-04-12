@@ -14,7 +14,7 @@ module.exports = function validateTripInput(data) {
   }
 
   if (Validator.isEmpty(data.date)) {
-    errors.date = 'Name field is required';
+    errors.date = 'Date field is required';
   }
 
   if (Validator.isEmpty(data.location)) {
