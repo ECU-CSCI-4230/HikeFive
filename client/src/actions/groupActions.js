@@ -367,11 +367,11 @@ export const matchGroups = matchData => dispatch => {
 };
 
 
-
+/*
 
 // retrieve specific event
 export const getEvent = (event_id) => dispatch => {
-  console.log(event_id);
+  //console.log(event_id);
   dispatch(setCalendarLoading());
   axios
       .get('/api/group/events',{
@@ -393,6 +393,7 @@ export const getEvent = (event_id) => dispatch => {
       );
 };
 
+*/
 
 
 // Calendar Loading

@@ -3,22 +3,23 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GroupHeader from './GroupHeader';
 import Spinner from '../common/Spinner';
-import { getGroupByHandle, getEvent } from '../../actions/groupActions';
+import { getGroupByHandle } from '../../actions/groupActions';
 import { Link } from 'react-router-dom';
 import Popup from './Popup';
+import {format,compareAsc} from 'date-fns';
+import NowEvent from './NowEvent';
+import isValid from 'date-fns/is_valid'
 
 import dateFns from "date-fns";
 
 class Calendar extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      showPopup: false,
+  state = {
+      //showPopup: false,
       currentMonth: new Date(),
-      selectedDate: new Date()
-    };
-  }
+      selectedDate: new Date(),
+      storedId: ''
+  }; 
 
 
   renderHeader() {
@@ -58,7 +59,7 @@ class Calendar extends React.Component {
     return <div className="days row">{days}</div>;
   }
 
-  renderCells() {
+   renderCells() {
     const { currentMonth, selectedDate } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
@@ -105,9 +106,10 @@ class Calendar extends React.Component {
   onDateClick = day => {
     this.setState({
       selectedDate: day,
-      showPopup: !this.state.showPopup
+      //showPopup: !this.state.showPopup
     });
   };
+
 
   nextMonth = () => {
     this.setState({
@@ -124,10 +126,39 @@ class Calendar extends React.Component {
   render() {
     const { group } = this.props.group;
     const { events } = this.props.group.group.events;
-    console.log(this.props.group);
-    //console.log(this.props.group.group.events[0]);
-    const p = {eventid : "5cad047ca8ed52a3251f1d11"};
-    this.props.getEvent(p);
+
+    //const p = {eventid : "5cad047ca8ed52a3251f1d11"};
+    //this.props.getEvent(p);
+
+    const { currentMonth, selectedDate } = this.state;
+    var eventLength = this.props.group.group.events.length;
+
+    let eventsContent;
+    const eventArray=[];
+
+    for(let i=0; i <eventLength; i++)
+    {
+      const startEvent = format(this.props.group.group.events[i].start, 'MM/DD/YYYY');
+      const nowDate = format(selectedDate,'MM/DD/YYYY');
+
+      var result = compareAsc(
+          startEvent,
+          nowDate
+      );
+      if(result === 0)
+      {
+        eventArray.push(this.props.group.group.events[i]);
+      }
+    }
+    var eventL = eventArray.length;
+    if(eventL > 0)
+    {
+      eventsContent= eventArray.map(evt => (<NowEvent evt={evt}/>));
+    }
+    else
+    {
+      eventsContent = <div className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">There is no events for this date</div>;
+    }
 
 
     return (
@@ -135,16 +166,8 @@ class Calendar extends React.Component {
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}
-
-        {this.state.showPopup ? 
-          <Popup
-            closePopup={this.onDateClick.bind(this)}
-          />
-          : null
-        }
+        {eventsContent}
       </div>
-
-
     );
   }
 }
@@ -159,4 +182,4 @@ const mapStateToProps = state => ({
     group: state.group
 });
 
-export default connect(mapStateToProps, { getGroupByHandle, getEvent})(Calendar);
+export default connect(mapStateToProps, { getGroupByHandle })(Calendar);

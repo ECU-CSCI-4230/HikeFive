@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteEvent } from '../../actions/groupActions';
 
+
 class GroupEvents extends Component {
   onDeleteClick(id) {
     this.props.deleteEvent(this.props.group, id);
