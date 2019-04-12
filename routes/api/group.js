@@ -83,6 +83,32 @@ router.get('/matchCombo', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+// @route   GET api/group/matchPCombo
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchPCombo', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 // @route   GET api/group/matchTravelCamp
 // @desc    Get all matching groups
 // @access  Public
@@ -104,6 +130,31 @@ router.get('/matchTravelCamp', (req, res) => {
       }
       //console.log(groups);
       res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchPTravelCamp
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchPTravelCamp', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { camp: 'Yes' },
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
     })
     .catch(err => res.status(404).json(err));
 });
@@ -133,6 +184,31 @@ router.get('/matchTravelClimb', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+// @route   GET api/group/matchPTravelClimb
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchPTravelClimb', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofiles = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 // @route   GET api/group/matchTravel
 // @desc    Get all matching groups
 // @access  Public
@@ -157,7 +233,29 @@ router.get('/matchTravel', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+// @route   GET api/group/matchPTravel
+// @desc    Get all matching profiles
+// @access  Public
 
+router.get('/matchPTravel', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { travel: 'Yes' },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
 
 // @route   GET api/group/matchCampClimb
 // @desc    Get all matching groups
@@ -180,6 +278,31 @@ router.get('/matchCampClimb', (req, res) => {
       }
       //console.log(groups);
       res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchPCampClimb
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchPCampClimb', (req, res) => {
+  const errors = {};
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
     })
     .catch(err => res.status(404).json(err));
 });
@@ -209,6 +332,31 @@ router.get('/matchCamp', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+// @route   GET api/group/matchPCamp
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchPCamp', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { camp: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 // @route   GET api/group/matchClimb
 // @desc    Get all matching groups
 // @access  Public
@@ -230,6 +378,31 @@ router.get('/matchClimb', (req, res) => {
       }
       //console.log(groups);
       res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/group/matchPClimb
+// @desc    Get all matching profiles
+// @access  Public
+
+router.get('/matchPClimb', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { climber: 'Yes' },
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
     })
     .catch(err => res.status(404).json(err));
 });
@@ -258,7 +431,29 @@ router.get('/match', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+// @route   GET api/group/matchP
+// @desc    Get all matching profiles
+// @access  Public
 
+router.get('/matchP', (req, res) => {
+  const errors = {};
+
+  Profile.find({
+    $and: [
+      { country: req.query.country },
+      { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
+    ]
+  })
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'No profiles were found';
+        res.status(404).json(errors);
+      }
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
 
 // @route   GET api/group/handle/:handle
 // @desc    Get group by handle
@@ -278,8 +473,6 @@ router.get('/handle/:handle', (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
-
-
 
 // @route   POST api/group
 // @desc    Create group 
@@ -382,8 +575,6 @@ router.post(
   }
 );
 
-
-
 // @route   POST api/group/trips
 // @desc    Add trip to group
 // @access  Private
@@ -471,9 +662,6 @@ router.get('/events/:event_start', (req, res) => {
 
 */
 
-
-
-
 // @route   DELETE api/group/trips/:trip_id
 // @desc    Delete trip from group
 // @access  Private
@@ -522,9 +710,6 @@ router.delete(
   }
 );
 
-
-
-
 // @route   DELETE api/group
 // @desc    Delete group
 // @access  Private
@@ -537,7 +722,6 @@ router.delete(
     });
   }
 );
-
 
 // @route   GET api/group/events
 // @desc    Get event by id
@@ -560,9 +744,6 @@ router.get('/events', (req, res) => {
 
     .catch(err => res.status(404).json(err));
 });
-
-
-
 
 // @route   POST api/group/addmember
 // @desc    Join group

@@ -178,18 +178,11 @@ export const getProfiles = () => dispatch => {
     );
 };
 
-
-
-
-
-
-
-
 // matchPCombo - Travel, Camp, and Climb
 export const matchPCombo = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/matchCombo`, {
+    .get('/api/group/matchPCombo', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax
@@ -213,7 +206,7 @@ export const matchPCombo = matchData => dispatch => {
 export const matchPTC = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/matchTravelCamp`, {
+    .get('/api/group/matchPTravelCamp', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax
@@ -237,7 +230,7 @@ export const matchPTC = matchData => dispatch => {
 export const matchPTCL = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/matchTravelClimb`, {
+    .get('/api/group/matchPTravelClimb', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax
@@ -261,7 +254,7 @@ export const matchPTCL = matchData => dispatch => {
 export const matchPT = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/matchTravel`, {
+    .get('/api/group/matchPTravel', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax
@@ -285,7 +278,7 @@ export const matchPT = matchData => dispatch => {
 export const matchPCC = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get('/api/profile/matchCampClimb', {
+    .get('/api/group/matchPCampClimb', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
@@ -312,7 +305,7 @@ export const matchPCC = matchData => dispatch => {
 export const matchPC = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/matchCamp`, {
+    .get('/api/group/matchPCamp', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
@@ -337,7 +330,7 @@ export const matchPC = matchData => dispatch => {
 export const matchPCL = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/matchClimb`, {
+    .get('/api/group/matchPClimb', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
@@ -362,7 +355,7 @@ export const matchPCL = matchData => dispatch => {
 export const matchProfiles = matchData => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/match`, {
+    .get('/api/group/matchP', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
@@ -382,32 +375,6 @@ export const matchProfiles = matchData => dispatch => {
       })
     );
 };
-
-// matchTest - FOR TESTING ONLY
-export const matchTest = matchData => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get('/api/profile/matchTest')
-    .then(res => {
-      console.log(res.data);
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data
-      })
-    }
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: null
-      })
-    );
-};
-
-
-
-
-
 
 // Delete account & profile
 export const deleteAccount = () => dispatch => {

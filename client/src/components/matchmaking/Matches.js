@@ -7,7 +7,7 @@ import ProfileItem from '../profiles/ProfileItem';
 import GroupItem from '../groups/GroupItem';
 import { getCurrentProfile } from '../../actions/profileActions';
 import { matchGCombo, matchGTC, matchGTCL, matchGT, matchGCC, matchGC, matchGCL, matchGroups } from '../../actions/groupActions';
-import { matchTest, matchPCombo, matchPTC, matchPTCL, matchPT, matchPCC, matchPC, matchPCL, matchProfiles } from '../../actions/profileActions';
+import { matchPCombo, matchPTC, matchPTCL, matchPT, matchPCC, matchPC, matchPCL, matchProfiles } from '../../actions/profileActions';
 
 
 class Matches extends Component {
@@ -71,8 +71,7 @@ class Matches extends Component {
                     if (this.state.climber === 'Yes') {
                         console.log('Call matchGCC()');
                         this.props.matchGCC(this.state);
-                        this.props.matchTest(this.state);
-                        //this.props.matchPCC(this.state);
+                        this.props.matchPCC(this.state);
                     }
                     else {
                         console.log('Call matchGC()');
@@ -96,9 +95,9 @@ class Matches extends Component {
 
     render() {
         const { groups, loading } = this.props.group;
+        const { profile } = this.props.profile;
         const { profiles } = this.props.profile;
         const { errors } = this.state;
-        const { profile } = this.props.profile;
 
         let groupItems;
         let profileItems;
@@ -174,8 +173,7 @@ Matches.propTypes = {
     matchPC: PropTypes.func.isRequired,
     matchPCL: PropTypes.func.isRequired,
     matchProfiles: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired,
-    matchTest: PropTypes.func.isRequired
+    errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -184,4 +182,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, { matchTest, getCurrentProfile, matchGCombo, matchGTC, matchGTCL, matchGT, matchGCC, matchGC, matchGCL, matchGroups, matchPCombo, matchPTC, matchPTCL, matchPT, matchPCC, matchPC, matchPCL, matchProfiles })(Matches);
+export default connect(mapStateToProps, {  getCurrentProfile, matchGCombo, matchGTC, matchGTCL, matchGT, matchGCC, matchGC, matchGCL, matchGroups, matchPCombo, matchPTC, matchPTCL, matchPT, matchPCC, matchPC, matchPCL, matchProfiles })(Matches);
