@@ -473,7 +473,6 @@ export const searchBelongGroups = query => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/groupBelong/${query}`)
-    /*
     .then(res =>
       dispatch({
         type: GET_GROUPS,
@@ -486,5 +485,5 @@ export const searchBelongGroups = query => dispatch => {
         payload: null
       })
     );
-    */
+    
 };

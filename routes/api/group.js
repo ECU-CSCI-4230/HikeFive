@@ -777,7 +777,7 @@ router.post(
 router.post('/members', (req, res) => {
   //console.log(req.body.ids);
   //["5ca56bca5abf24403868f69a","5c9154f0416bc437447befa6"]
-  console.log("THIS IS MEMBERS");
+  //console.log("THIS IS MEMBERS");
   Profile.find({ _id: { $in: req.body.ids } })
     .populate('user', ['name', 'avatar'])
     .then(members => {
@@ -810,23 +810,20 @@ router.post('/members', (req, res) => {
 
 router.get('/groupBelong/:query', (req, res) => {
   const errors = {};
-  console.log(req.params.query);
-  
+  //console.log(req.params.query);
   Group.find({
     $or: [
       { ownerid: req.params.query},
-      { handle: new RegExp(req.params.query, 'i') }
+      {teammember: {$elemMatch: {ids:req.params.query}}}
     ]
   })
     .then(groups => {
-      console.log(groups);
+      //console.log(groups)
       if (!groups) {
         errors.nogroup = 'No groups were found';
         res.status(404).json(errors);
       }
-      //console.log('success');
-      //console.log(profiles);
-      //res.json(groups);
+      res.json(groups);
     })
     .catch(err => res.status(404).json(err));
     

@@ -9,7 +9,7 @@ class Groups extends Component {
     componentDidMount() {
         //console.log(this.props.match.params.id);
         this.props.searchBelongGroups(this.props.match.params.id);
-        this.props.getGroups();
+        //this.props.getGroups();
     }
 
     render() {
@@ -34,9 +34,9 @@ class Groups extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                            <h1 className="display-4 text-center">Hiking Groups</h1>
+                            <h1 className="display-4 text-center">Joined Groups</h1>
                             <p className="lead text-center">
-                                List of all Current Hiking Groups
+                                List of Joined Groups
               </p>
                             {groupItems}
                         </div>
