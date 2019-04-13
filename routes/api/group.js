@@ -623,4 +623,32 @@ router.post('/members', (req, res) => {
     */
 });
 
+// @route   GET api/group/groupBelong/:query
+// @desc    Get all groups where user belong to
+// @access  Public
+
+router.get('/groupBelong/:query', (req, res) => {
+  const errors = {};
+  console.log(req.params.query);
+  
+  Group.find({
+    $or: [
+      { ownerid: req.params.query},
+      { handle: new RegExp(req.params.query, 'i') }
+    ]
+  })
+    .then(groups => {
+      console.log(groups);
+      if (!groups) {
+        errors.nogroup = 'No groups were found';
+        res.status(404).json(errors);
+      }
+      //console.log('success');
+      //console.log(profiles);
+      //res.json(groups);
+    })
+    .catch(err => res.status(404).json(err));
+    
+});
+
 module.exports = router;

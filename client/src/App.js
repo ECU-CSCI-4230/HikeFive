@@ -44,6 +44,7 @@ import GroupEvents from './components/group/Events';
 import CreateGroup from './components/create-group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
 import GroupsLanding from './components/groups/GroupsLanding';
+import UserGroups from './components/groups/UserGroups';
 import SearchP from './components/search/searchP';
 import SearchGroups from './components/search/searchGroups';
 
@@ -114,6 +115,9 @@ class App extends Component {
 
               <Switch>
                 <PrivateRoute exact path="/groups-landing" component={GroupsLanding} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/mygroups/:id" component={UserGroups} />
               </Switch>
 
               <Switch>

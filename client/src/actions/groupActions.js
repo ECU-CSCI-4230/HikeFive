@@ -467,3 +467,24 @@ export const getMembers = (pass) => dispatch => {
       })
     );
 };
+
+// Search belong groups
+export const searchBelongGroups = query => dispatch => {
+  dispatch(setGroupLoading());
+  axios
+    .get(`/api/group/groupBelong/${query}`)
+    /*
+    .then(res =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_GROUPS,
+        payload: null
+      })
+    );
+    */
+};
