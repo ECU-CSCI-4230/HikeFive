@@ -22,7 +22,6 @@ class Events extends Component {
   render() {
     const { group, loading } = this.props.group;
     const {profile} = this.props.profile;
-    const { user } = this.props.auth;
 
     let EventsContent;
 

@@ -23,7 +23,6 @@ class Trips extends Component {
     //console.log(this.props.match.params.handle);
     const { group, loading } = this.props.group;
     const {profile} = this.props.profile;
-    const { user } = this.props.auth;
 
     let TripsContent;
 
@@ -82,15 +81,13 @@ class Trips extends Component {
 
 Trips.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     group: state.group,
-    profile: state.profile,
-    auth: state.auth
+    profile: state.profile
 });
 
 export default connect(mapStateToProps, { getGroupByHandle,getCurrentProfile })(Trips);

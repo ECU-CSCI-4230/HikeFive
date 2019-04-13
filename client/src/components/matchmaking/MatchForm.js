@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { getCurrentProfile } from '../../actions/profileActions';
 import { addMatchData } from '../../actions/profileActions';
@@ -51,7 +50,9 @@ class MatchForm extends Component {
       climber: this.state.climber,
       country: this.state.country
     };
-    this.props.addMatchData(matchData, this.props.history);
+    if (this.state.skillMin !== '' && this.state.skillMax !== '' && this.state.travel !== '' && this.state.camp !== '' && this.state.climber !== '') {
+      this.props.addMatchData(matchData, this.props.history);
+    }
   }
 
   onChange(e) {
@@ -62,8 +63,18 @@ class MatchForm extends Component {
     const { errors } = this.state;
 
     // Select options for status
-    const Skilloptions = [
-      { label: '* Select', value: 0 },
+    const MinSkilloptions = [
+      { label: '* Minimum Skill Level', value: 0 },
+      { label: '1', value: 1 },
+      { label: '2', value: 2 },
+      { label: '3', value: 3 },
+      { label: '4', value: 4 },
+      { label: '5', value: 5 }
+    ];
+
+    // Select options for status
+    const MaxSkilloptions = [
+      { label: '* Maximum Skill Level', value: 0 },
       { label: '1', value: 1 },
       { label: '2', value: 2 },
       { label: '3', value: 3 },
@@ -77,22 +88,17 @@ class MatchForm extends Component {
       { label: 'No', value: 'No' }
     ];
 
-
-    //Need to add a form option that asks when they want to travel but this requires a lot of other features to work
     return (
       <div className="match-form">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/dashboard`} className="btn btn-secondary">
-                Go Back
-              </Link>
               <h1 className="display-4 text-center">Matchmaking Form</h1>
-              <small className="d-block pb-3">* = required fields</small>
+              <h5 className="d-block pb-3 text-center">* denotes a required field</h5>
 
               <form onSubmit={this.onSubmit}>
                 <div className="text-center">
-                  <h4 className="text-center">What skill level are you looking for?</h4>
+                  <h5 className="text-center">What skill level are you looking for?</h5>
                   <div className="row">
                     <div className="col-6 ">
                       <SelectListGroup
@@ -100,9 +106,8 @@ class MatchForm extends Component {
                         name="skillMin"
                         value={this.state.skillMin}
                         onChange={this.onChange}
-                        options={Skilloptions}
+                        options={MinSkilloptions}
                         error={errors.skillMin}
-                        info="*Minimum Skill Level?"
                       />
                     </div>
                     <div className="col-6">
@@ -111,15 +116,14 @@ class MatchForm extends Component {
                         name="skillMax"
                         value={this.state.skillMax}
                         onChange={this.onChange}
-                        options={Skilloptions}
+                        options={MaxSkilloptions}
                         error={errors.skillMax}
-                        info="*Maximum Skill Level?"
                       />
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-center">Are you looking to Travel?</h4>
+                  <h5 className="text-center">Are you looking to Travel?</h5>
                   <SelectListGroup
                     placeholder="travel"
                     name="travel"
@@ -131,7 +135,7 @@ class MatchForm extends Component {
                 </div>
 
                 <div>
-                  <h4 className="text-center">Are you looking for a camping trip?</h4>
+                  <h5 className="text-center">Are you looking for a camping trip?</h5>
                   <SelectListGroup
                     placeholder="camp"
                     name="camp"
@@ -142,7 +146,7 @@ class MatchForm extends Component {
                   />
                 </div>
                 <div>
-                  <h4 className="text-center">Do you want to go climbing?</h4>
+                  <h5 className="text-center">Do you want to go climbing?</h5>
                   <SelectListGroup
                     placeholder="climber"
                     name="climber"
@@ -152,7 +156,6 @@ class MatchForm extends Component {
                     error={errors.climber}
                   />
                 </div>
-
                 <input
                   type="submit"
                   value="Submit"
@@ -162,11 +165,11 @@ class MatchForm extends Component {
             </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }
 }
-
 
 MatchForm.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
@@ -180,6 +183,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, addMatchData })(
-  withRouter(MatchForm)
-);
+export default connect(mapStateToProps, { getCurrentProfile, addMatchData })(withRouter(MatchForm));

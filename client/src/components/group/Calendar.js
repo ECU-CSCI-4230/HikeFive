@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import GroupHeader from './GroupHeader';
-import Spinner from '../common/Spinner';
 import { getGroupByHandle } from '../../actions/groupActions';
-import { Link } from 'react-router-dom';
-import Popup from './Popup';
 import {format,compareAsc} from 'date-fns';
 import NowEvent from './NowEvent';
-import isValid from 'date-fns/is_valid'
 
 import dateFns from "date-fns";
 
 class Calendar extends React.Component {
 
   state = {
-      //showPopup: false,
       currentMonth: new Date(),
-      selectedDate: new Date(),
-      storedId: ''
+      selectedDate: new Date()
   }; 
 
 
@@ -124,13 +117,8 @@ class Calendar extends React.Component {
   };
 
   render() {
-    const { group } = this.props.group;
-    const { events } = this.props.group.group.events;
 
-    //const p = {eventid : "5cad047ca8ed52a3251f1d11"};
-    //this.props.getEvent(p);
-
-    const { currentMonth, selectedDate } = this.state;
+    const { selectedDate } = this.state;
     var eventLength = this.props.group.group.events.length;
 
     let eventsContent;

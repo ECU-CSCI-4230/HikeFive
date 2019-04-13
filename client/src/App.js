@@ -57,6 +57,7 @@ import AddGroupEvent from './components/group/AddEvent.js';
 import GroupMembers from './components/group/Members.js';
 import MatchForm from './components/matchmaking/MatchForm.js';
 import Matches from './components/matchmaking/Matches.js';
+import MatchLanding from './components/matchmaking/MatchLanding.js';
 
 import Notifications from './components/dashboard/Notifications';
 
@@ -235,6 +236,10 @@ class App extends Component {
 
               <Switch>
                 <PrivateRoute exact path="/matches" component={Matches}/>
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/matchmaking" component={MatchLanding}/>
               </Switch>
 
               <Switch>

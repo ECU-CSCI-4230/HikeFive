@@ -37,9 +37,9 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/match">
+          <Link className="nav-link" to="/matchmaking">
             {' '}
-            Match Making
+            Matchmaking
           </Link>
         </li>
         <li className="nav-item">
