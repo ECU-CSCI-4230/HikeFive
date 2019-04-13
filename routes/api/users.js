@@ -77,11 +77,13 @@ router.post('/updateFirst', (req, res) => {
 // @desc  update avatar field
 // @access  Public
 router.post('/updateAvatar', (req, res) => {
+  //console.log(req.body)
   User.findOneAndUpdate(
-    { email: req.body.email},
+    { _id: req.body.id},
     { $set: {profile_avatar: req.body.profile_avatar}},
     { new: true},
     (err, doc) => {
+      //console.log(doc)
       if (err) {
           console.log("Something wrong when updating avatar!");
       }

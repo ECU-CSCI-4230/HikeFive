@@ -106,10 +106,10 @@ class EditProfile extends Component {
 
 
     const avatarData = {
-      email: this.state.email,
+      id: this.props.profile.profile.user._id,
       profile_avatar: profileData.avatar
     };
-
+    //console.log(this.props.profile.profile.user._id);
     this.props.updateAvatar(avatarData);
   }
 
