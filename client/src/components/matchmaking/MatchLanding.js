@@ -43,7 +43,7 @@ class MatchLanding extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                            <h1 className="d-flex flex-wrap justify-content-center align-items-center display-5">Matchmaking</h1>
+                            <h1 className="text-center display-5 font-weight-light">Matchmaking</h1>
                             {landingContent}
                         </div>
                     </div>
