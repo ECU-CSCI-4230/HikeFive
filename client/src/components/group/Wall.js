@@ -39,7 +39,6 @@ class Wall extends Component {
     //console.log(this.props.group);
     const { group, loading } = this.props.group;
     const {profile} = this.props.profile;
-    const { user } = this.props.auth;
     let WallContent;
 
     if ((group && profile) === null || loading) {
@@ -108,14 +107,12 @@ class Wall extends Component {
 }
 
 Wall.propTypes = {
-  auth: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired,
   addMember: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
     profile: state.profile,
     group: state.group,
 });

@@ -22,7 +22,6 @@ class EventCalendar extends Component {
   render() {
     const { group, loading } = this.props.group;
     const {profile} = this.props.profile;
-    const { user } = this.props.auth;
 
     let CalendarContent;
 
@@ -82,14 +81,12 @@ class EventCalendar extends Component {
 
 EventCalendar.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   group: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     group: state.group,
-    auth: state.auth,
     profile: state.profile,
 });
 

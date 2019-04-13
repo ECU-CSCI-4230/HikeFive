@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
@@ -95,13 +95,6 @@ class PostItem extends React.Component {
 
   render() {
     const { post, auth, showActions} = this.props;
-    const showHide = {
-      'display': this.state.showStatus ? 'block' : 'none'
-    };
-
-    const showReplyForm = () => {
-      this.setState({showForm: true});
-    };
 
     var moment = require('moment');
     var fomatted_date = moment(post.date).format('LLL');

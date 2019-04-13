@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 
 class GroupEventsCantDelete extends Component {

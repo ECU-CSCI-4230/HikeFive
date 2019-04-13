@@ -22,7 +22,6 @@ class Settings extends Component {
   render() {
     const { group, loading } = this.props.group;
     const {profile} = this.props.profile;
-    const { user } = this.props.auth;
     let dashboardContent;
 
 
@@ -159,7 +158,6 @@ class Settings extends Component {
 
 Settings.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   deleteGroup: PropTypes.func.isRequired,
   group: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired
@@ -167,7 +165,6 @@ Settings.propTypes = {
 
 const mapStateToProps = state => ({
   group: state.group,
-  auth: state.auth,
   profile: state.profile,
 });
 
