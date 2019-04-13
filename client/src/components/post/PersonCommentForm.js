@@ -32,12 +32,11 @@ class PersonCommentForm extends Component {
 
     const { user } = this.props.auth;
     const { postId } = this.props;
-    const { profile } = this.props.profile;
 
     const newComment = {
       text: this.state.text,
       name: user.name,
-      avatar: profile.avatar
+      avatar: user.profile_avatar
     };
 
     this.props.addPersonalNEWComment(postId, newComment);
@@ -82,7 +81,6 @@ class PersonCommentForm extends Component {
 PersonCommentForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
@@ -90,7 +88,6 @@ PersonCommentForm.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile,
   errors: state.errors
 });
 

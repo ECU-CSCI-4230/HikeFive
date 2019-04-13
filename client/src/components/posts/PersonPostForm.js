@@ -27,15 +27,16 @@ class PersonPostForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
-    const { profile } = this.props.profile;
     
+
+
     const newPost = {
       text: this.state.text,
       handle: this.props.handle,
       name: user.name,
-      avatar: profile.avatar
+      avatar: user.profile_avatar
     };
-    //console.log(this.props.);
+    //console.log(this.props.auth);
     this.props.addPersonalPost(newPost);
     this.setState({ text: '' });
   }
@@ -76,13 +77,11 @@ class PersonPostForm extends Component {
 PersonPostForm.propTypes = {
   addPersonalPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile,
   errors: state.errors
 });
 
