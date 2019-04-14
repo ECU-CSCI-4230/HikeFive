@@ -8,6 +8,9 @@ class ProfileHeader extends Component {
 
     var profileBG;
 
+    // Check for an empty string when determining the BG image and
+    // use the default BG if it's an empty string.
+    
     if (typeof backgroundURL === 'undefined') {
       profileBG = {
         background: 'url(' + defaultBackground + ') no-repeat center center',
@@ -37,7 +40,7 @@ class ProfileHeader extends Component {
             <div className="row">
               <div className="d-flex justify-content-center col-4 col-md-3 m-auto">
                 <img
-                  className="w-75 h-75 rounded-circle"
+                  className="bgSize rounded-circle"
                   src={profile.avatar}
                   alt=""
                 />

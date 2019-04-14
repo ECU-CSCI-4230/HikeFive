@@ -17,6 +17,12 @@ img {
   width: 100%;
 }
 
+.bgSize
+{
+  height: 180px;
+  width: 180px;
+}
+
 .landing {
   position: relative;
   background: url('./img/showcase.jpg') no-repeat;
