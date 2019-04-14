@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import defaultBackground from '../../img/profile.jpg';
+import defaultAvatar from '../../img/defaultAvatar.jpg';
 
 class ProfileHeader extends Component {
   render() {
@@ -32,6 +33,17 @@ class ProfileHeader extends Component {
       position: 'relative',
     };
   }
+  
+  var profileAvatar;
+
+  if(typeof profile.avatar === 'undefined')
+  {
+    profileAvatar = defaultAvatar;
+  }
+  else
+  {
+    profileAvatar = profile.avatar;
+  }
 
     return (
       <div className="row">
@@ -41,7 +53,7 @@ class ProfileHeader extends Component {
               <div className="d-flex justify-content-center col-4 col-md-3 m-auto">
                 <img
                   className="bgSize rounded-circle"
-                  src={profile.avatar}
+                  src={profileAvatar}
                   alt=""
                 />
               </div>
