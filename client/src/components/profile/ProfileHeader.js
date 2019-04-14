@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
+import defaultBackground from '../../img/profile.jpg';
 
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
     const backgroundURL = profile.background;
 
+    var profileBG;
+
+    if (typeof backgroundURL === 'undefined') {
+      profileBG = {
+        background: 'url(' + defaultBackground + ') no-repeat center center',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        zIndex: '-1',
+        position: 'relative',
+        height: 300
+      };
+    }else{
+
     // Reference: The CSS class in App.css 'Wrapper' sets the user's profile background.
     // Reference: The CSS class in App.css 'Group-Wrapper' does the same thing, but for group bg pics.
 
-    const profileBG = {
+    profileBG = {
       background: 'url(' + backgroundURL + ') no-repeat center center',
       backgroundSize:'cover',
       zIndex: '-1',
       position: 'relative',
     };
+  }
 
     return (
       <div className="row">

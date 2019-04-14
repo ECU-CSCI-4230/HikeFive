@@ -63,7 +63,7 @@ img {
 /** Old CSS class for reference **/
 .wrapper {
   position: relative;
-  background: transparent  url('./img/profile.jpg') no-repeat center center;
+  background: transparent url('./img/profile.jpg') no-repeat center center;
   background-size: cover;
   background-color: LightGray;
   z-index: -1;
@@ -74,7 +74,7 @@ img {
 .group-wrapper {
   position: relative;
   height: 25vh;
-  background: transparent  url('./img/profile.jpg') no-repeat center center;
+  background: transparent url('./img/profile.jpg') no-repeat center center;
   background-size: cover;
   background-color: LightGray;
   z-index: -1;
@@ -156,14 +156,14 @@ img {
 
 .calendar .body .selected {
   border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #1a8fff 0%,#53cbf1 40%);
+  border-image: linear-gradient(45deg, #1a8fff 0%, #53cbf1 40%);
   border-image-slice: 1;
 }
 
 /* this is for the date that has an event */
 .calendar .body .event {
   border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #1a8fff 0%,#e54e16 40%);
+  border-image: linear-gradient(45deg, #1a8fff 0%, #e54e16 40%);
   border-image-slice: 1;
 }
 
@@ -206,7 +206,8 @@ img {
   letter-spacing: -.07em;
 }
 
-.calendar .body .cell:hover .bg, .calendar .body .selected .bg  {
+.calendar .body .cell:hover .bg,
+.calendar .body .selected .bg {
   opacity: 0.05;
   transition: .5s ease-in;
 }
