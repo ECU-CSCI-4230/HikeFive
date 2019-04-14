@@ -2,24 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getGroupByHandle } from '../../actions/groupActions';
-import {format,compareAsc} from 'date-fns';
+import { format, compareAsc } from 'date-fns';
 import NowEvent from './NowEvent';
-
 import dateFns from "date-fns";
 
 class Calendar extends React.Component {
-
   state = {
-      currentMonth: new Date(),
-      selectedDate: new Date()
-  }; 
-
+    currentMonth: new Date(),
+    selectedDate: new Date()
+  };
 
   renderHeader() {
     const dateFormat = "MMMM YYYY";
 
     return (
-      <div className="header row flex-middle">
+      <div className="header row  text-center flex-middle">
         <div className="col col-start">
           <div className="icon" onClick={this.prevMonth}>
             Previous Month
@@ -43,22 +40,20 @@ class Calendar extends React.Component {
 
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col col-center" key={i}>
+        <div className="col col-center text-center" key={i}>
           {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
         </div>
       );
     }
-
     return <div className="days row">{days}</div>;
   }
 
-   renderCells() {
+  renderCells() {
     const { currentMonth, selectedDate } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
     const endDate = dateFns.endOfWeek(monthEnd);
-
     const dateFormat = "D";
     const rows = [];
 
@@ -76,7 +71,7 @@ class Calendar extends React.Component {
               !dateFns.isSameMonth(day, monthStart)
                 ? "disabled"
                 : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-            }`}
+              }`}
             key={day}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
           >
@@ -99,10 +94,8 @@ class Calendar extends React.Component {
   onDateClick = day => {
     this.setState({
       selectedDate: day,
-      //showPopup: !this.state.showPopup
     });
   };
-
 
   nextMonth = () => {
     this.setState({
@@ -117,37 +110,32 @@ class Calendar extends React.Component {
   };
 
   render() {
-
     const { selectedDate } = this.state;
     var eventLength = this.props.group.group.events.length;
+    const eventArray = [];
 
     let eventsContent;
-    const eventArray=[];
 
-    for(let i=0; i <eventLength; i++)
-    {
+    for (let i = 0; i < eventLength; i++) {
       const startEvent = format(this.props.group.group.events[i].start, 'MM/DD/YYYY');
-      const nowDate = format(selectedDate,'MM/DD/YYYY');
+      const nowDate = format(selectedDate, 'MM/DD/YYYY');
 
       var result = compareAsc(
-          startEvent,
-          nowDate
+        startEvent,
+        nowDate
       );
-      if(result === 0)
-      {
+      if (result === 0) {
         eventArray.push(this.props.group.group.events[i]);
       }
     }
-    var eventL = eventArray.length;
-    if(eventL > 0)
-    {
-      eventsContent= eventArray.map(evt => (<NowEvent evt={evt}/>));
-    }
-    else
-    {
-      eventsContent = <div className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">There is no events for this date</div>;
-    }
 
+    var eventL = eventArray.length;
+
+    if (eventL > 0) {
+      eventsContent = eventArray.map(evt => (<NowEvent evt={evt} />));
+    } else {
+      eventsContent = <div className="d-flex list-group-item justify-content-center align-items-center flex-column bg-transparent border-0">There are no events for this date</div>;
+    }
 
     return (
       <div className="calendar">
@@ -162,12 +150,11 @@ class Calendar extends React.Component {
 
 Calendar.propTypes = {
   getGroupByHandle: PropTypes.func.isRequired,
-  getEvent: PropTypes.func.isRequired,
   group: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    group: state.group
+  group: state.group
 });
 
 export default connect(mapStateToProps, { getGroupByHandle })(Calendar);

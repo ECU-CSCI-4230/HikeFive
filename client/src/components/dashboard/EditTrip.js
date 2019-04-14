@@ -19,7 +19,7 @@ class EditTrip extends Component {
     let TripContent;
     if (profile === null || loading) {
       TripContent = <Spinner />;
-    } 
+    }
     else {
       if (Object.keys(profile).length > 0) {
         TripContent = (
@@ -31,9 +31,9 @@ class EditTrip extends Component {
               <div className="d-flex justify-content-start col">
                 <Link to="/add-trip" className="btn btn-secondary">Add Trip</Link>
               </div>
-            </div> 
-              <div className="col-md-12 text-center">
-            </div><br/>
+            </div>
+            <div className="col-md-12 text-center">
+            </div><br />
             <Trip trip={profile.trip} />
           </div>
         );
@@ -55,13 +55,11 @@ class EditTrip extends Component {
 EditTrip.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
+  profile: state.profile
 });
 
 export default connect(mapStateToProps, { getProfileByHandle, getCurrentProfile })(EditTrip);

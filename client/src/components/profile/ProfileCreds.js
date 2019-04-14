@@ -19,7 +19,7 @@ class ProfileCreds extends Component {
         <p>
           {trp.difficulty === '' ? null : (
             <span>
-                <a>Difficulty: {trp.difficulty}</a>
+              <a>Difficulty: {trp.difficulty}</a>
             </span>
           )}
         </p>
@@ -39,14 +39,14 @@ class ProfileCreds extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-        <div className="card card-body bg-light mb-3">
-          <h3 className="text-center text-dark">Trips/Hikes</h3>
-          {tripItems.length > 0 ? (
-            <ul className="list-group list-group-flush">{tripItems}</ul>
-          ) : (
-            <p className="d-flex flex-wrap justify-content-center align-items-center">No Trips Listed</p>
-          )}
-        </div>
+          <div className="card card-body bg-light mb-3">
+            <h3 className="text-center text-dark">Trips/Hikes</h3>
+            {tripItems.length > 0 ? (
+              <ul className="list-group list-group-flush">{tripItems}</ul>
+            ) : (
+                <p className="d-flex flex-wrap justify-content-center align-items-center">No Trips Listed</p>
+              )}
+          </div>
         </div>
       </div>
     );

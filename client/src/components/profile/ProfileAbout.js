@@ -15,14 +15,14 @@ class ProfileAbout extends Component {
               {isEmpty(profile.bio) ? (
                 <span className="d-flex flex-wrap justify-content-center align-items-center">No Bio</span>
               ) : (
-                <span className="d-flex flex-wrap justify-content-center align-items-center">{profile.bio}</span>
-              )}
+                  <span className="d-flex flex-wrap justify-content-center align-items-center">{profile.bio}</span>
+                )}
             </p>
             <hr />
             <div className="row">
               <div className="col-md">
                 <div className="d-flex flex-wrap justify-content-center align-items-center">
-                  Location: {profile.zip}<br></br>
+                  Location: {profile.country}<br></br>
                   Skill Level: {profile.skillstatus}
                 </div>
               </div>
@@ -48,14 +48,14 @@ class ProfileAbout extends Component {
               <div className="col-md">
                 <div className="d-flex flex-wrap justify-content-center align-items-center">
                   {isEmpty(profile.social && profile.social.instagram) ? null : (
-                      <a href={profile.social.instagram}>Instagram</a>
+                    <a href={profile.social.instagram}>Instagram</a>
                   )}<br></br>
                   {isEmpty(profile.social && profile.social.youtube) ? null : (
                     <a href={profile.social.youtube}>YouTube</a>
                   )}
                 </div>
               </div>
-            </div>     
+            </div>
           </div>
         </div>
       </div>

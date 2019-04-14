@@ -15,10 +15,10 @@ class EditTrip extends Component {
         const { group, loading } = this.props.group;
 
         let TripContent;
+        
         if (group === null || loading) {
             TripContent = <Spinner />;
-        }
-        else {
+        } else {
             if (Object.keys(group).length > 0) {
                 TripContent = (
                     <div>

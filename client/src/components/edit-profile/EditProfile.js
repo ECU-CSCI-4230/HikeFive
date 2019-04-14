@@ -43,7 +43,6 @@ class EditProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
@@ -104,12 +103,10 @@ class EditProfile extends Component {
     };
     this.props.createProfile(profileData, this.props.history);
 
-
     const avatarData = {
       id: this.props.profile.profile.user._id,
       profile_avatar: profileData.avatar
     };
-    //console.log(this.props.profile.profile.user._id);
     this.props.updateAvatar(avatarData);
   }
 
@@ -149,7 +146,6 @@ class EditProfile extends Component {
             onChange={this.onChange}
             error={errors.youtube}
           />
-
           <InputGroup
             placeholder="Instagram Page URL"
             name="instagram"
@@ -514,7 +510,6 @@ class EditProfile extends Component {
                   onChange={this.onChange}
                   error={errors.bio}
                 />
-
                 <div className="mb-3">
                   <button
                     type="button"

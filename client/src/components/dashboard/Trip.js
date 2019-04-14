@@ -5,11 +5,11 @@ import Moment from 'react-moment';
 import { deleteTrip } from '../../actions/profileActions';
 
 class Trip extends Component {
-    onDeleteClick(id) {
-        this.props.deleteTrip(id);
-      }
-  
-    render() {
+  onDeleteClick(id) {
+    this.props.deleteTrip(id);
+  }
+
+  render() {
     const tripItems = this.props.trip.map(trp => (
       <li key={trp._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4>{trp.name}</h4>
@@ -26,7 +26,7 @@ class Trip extends Component {
         <p>
           {trp.difficulty === '' ? null : (
             <span>
-                <a>Difficulty: {trp.difficulty}</a>
+              <a>Difficulty: {trp.difficulty}</a>
             </span>
           )}
         </p>
@@ -54,21 +54,21 @@ class Trip extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-        <div className="card card-body bg-light mb-3">
-          <h3 className="text-center text-secondary">Trips/Hikes</h3>
-          {tripItems.length > 0 ? (
-            <ul className="list-group list-group-flush">{tripItems}</ul>
-          ) : (
-            <p className="d-flex flex-wrap justify-content-center align-items-center">No Trips Listed</p>
-          )}
-        </div>
+          <div className="card card-body bg-light mb-3">
+            <h3 className="text-center text-secondary">Trips/Hikes</h3>
+            {tripItems.length > 0 ? (
+              <ul className="list-group list-group-flush">{tripItems}</ul>
+            ) : (
+                <p className="d-flex flex-wrap justify-content-center align-items-center">No Trips Listed</p>
+              )}
+          </div>
         </div>
       </div>
     );
   }
 }
 Trip.propTypes = {
-    deleteTrip: PropTypes.func.isRequired
-  };
-  
+  deleteTrip: PropTypes.func.isRequired
+};
+
 export default connect(null, { deleteTrip })(Trip);

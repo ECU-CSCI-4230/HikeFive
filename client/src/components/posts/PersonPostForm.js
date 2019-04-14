@@ -16,7 +16,6 @@ class PersonPostForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
@@ -27,8 +26,6 @@ class PersonPostForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
-    
-
 
     const newPost = {
       text: this.state.text,
@@ -36,7 +33,7 @@ class PersonPostForm extends Component {
       name: user.name,
       avatar: user.profile_avatar
     };
-    //console.log(this.props.auth);
+
     this.props.addPersonalPost(newPost);
     this.setState({ text: '' });
   }

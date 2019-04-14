@@ -6,7 +6,6 @@ module.exports = function validateProfileInput(data) {
 
   data.handle = !isEmpty(data.handle) ? data.handle : '';
   data.skillstatus = !isEmpty(data.skillstatus) ? data.skillstatus : '';
-
   data.status = !isEmpty(data.status) ? data.status : '';
   data.skills = !isEmpty(data.skills) ? data.skills : '';
 
@@ -23,7 +22,7 @@ module.exports = function validateProfileInput(data) {
   }
 
   if (Validator.isEmpty(data.country)) {
-    errors.country = 'zip field is required';
+    errors.country = 'country field is required';
   }
 
   if (Validator.isEmpty(data.skillstatus)) {

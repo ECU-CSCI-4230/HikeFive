@@ -38,7 +38,6 @@ class MatchForm extends Component {
     }
   }
 
-
   onSubmit(e) {
     e.preventDefault();
 
@@ -133,7 +132,6 @@ class MatchForm extends Component {
                     error={errors.travel}
                   />
                 </div>
-
                 <div>
                   <h5 className="text-center">Are you looking for a camping trip?</h5>
                   <SelectListGroup

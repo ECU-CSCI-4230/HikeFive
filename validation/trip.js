@@ -22,7 +22,7 @@ module.exports = function validateTripInput(data) {
   }
 
   if (Validator.isEmpty(data.description)) {
-    errors.fieldescriptiondofstudy = 'Descriptionfield is required';
+    errors.description = 'description is required';
   }
 
   return {

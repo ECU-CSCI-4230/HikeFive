@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
-import {clearCurrentProfile } from '../../actions/profileActions';
+import { clearCurrentProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
 
@@ -14,61 +14,52 @@ class Navbar extends Component {
   }
   onSearchClick = () => {
     var searchString = document.getElementById("query").value;
-    console.log(searchString);
     this.props.history.push(`/searchP/${searchString}`);
-    //window.location.replace(`/searchP/${searchString}`);
-    console.log('End of onSearchClick');
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
-    // What the user will see on the Navbar when they're logged in.
+    // Links for logged in user
     const authLinks = (
       <ul className="navbar-nav ml-auto ">
-        <form className="form-inline md-form mr-auto ">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query" />
-          <button className="btn btn-elegant btn-rounded btn-sm my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
+        <form className="form-inline">
+          <input className="form-control mr-2 mt-1 mb-1" type="search" placeholder="Search" aria-label="Search" id="query" />
+          <button className="btn btn-elegant btn-rounded btn-sm my-0 mt-1 mb-1" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
         </form>
         <li className="nav-item">
-          <Link className="nav-link" to="/groups-landing">
+          <Link className="nav-link mt-1 mb-1" to="/groups-landing">
             {' '}
             Groups
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/matchmaking">
+          <Link className="nav-link mt-1 mb-1" to="/matchmaking">
             {' '}
             Matchmaking
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/profiles">
-            {' '}
-            Users
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/feed">
+          <Link className="nav-link mt-1 mb-1" to="/feed">
             Feed
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
+          <Link className="nav-link mt-1 mb-1" to="/dashboard">
             Settings
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/my-profile">
+          <Link className="nav-link mt-1 mb-1" to="/my-profile">
             Profile
           </Link>
         </li>
-        
+
         <li className="nav-item">
           <a
             href=""
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
+            className="nav-link mt-1 mb-1"
           >
             {' '}
             Logout
@@ -76,17 +67,17 @@ class Navbar extends Component {
         </li>
       </ul>
     );
-    
-    // What the user will see on the Navbar when they're not logged in.
+
+    // Links when not logged in
     const guestLinks = (
       <ul className="navbar-nav ml-auto" >
         <li className="nav-item">
-          <Link className="nav-link" to="/register">
+          <Link className="nav-link mt-1 mb-1" to="/register">
             Sign Up
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/login">
+          <Link className="nav-link mt-1 mb-1" to="/login">
             Login
           </Link>
         </li>
@@ -96,7 +87,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
         <div className="container">
           <Link className="navbar-brand" to="/feed">
-            <img className="rounded-circle logo" src="https://i.imgur.com/gfra7Eh.jpg" title="source: imgur.com" alt=""/>{' '}
+            <img className="rounded-circle logo" src="https://i.imgur.com/gfra7Eh.jpg" title="source: imgur.com" alt="" />{' '}
             HikeFive
           </Link>
           <button
@@ -127,4 +118,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })
-(withRouter(Navbar));
+  (withRouter(Navbar));

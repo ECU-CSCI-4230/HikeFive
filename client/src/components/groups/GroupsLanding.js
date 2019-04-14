@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
-import { getCurrentProfile} from '../../actions/profileActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class Landing extends Component {
 
@@ -13,7 +13,6 @@ class Landing extends Component {
 
     onSearchClick = () => {
         var searchString = document.getElementById("query2").value;
-        console.log(searchString);
         if (searchString !== '') {
             this.props.history.push(`/searchGroups/${searchString}`);
         }
@@ -23,10 +22,9 @@ class Landing extends Component {
         const { profile, loading } = this.props.profile;
         let landingContent;
 
-        if (profile  === null || loading) {
+        if (profile === null || loading) {
             landingContent = <Spinner />;
         } else {
-            //console.log(profile._id);
             landingContent = (
                 <div>
                     <div className="btn-group-vertical d-flex flex-wrap justify-content-center align-items-center d-none d-md-none" role="group">
@@ -58,7 +56,7 @@ class Landing extends Component {
                                     <p className="card-text">Search all existing groups.</p>
                                     <form className="form-inline md-form mr-auto ">
                                         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query2" />
-                                        <button className="btn btn-secondary btn-rounded  my-0 d-none d-lg-block" type="submit"  onClick={this.onSearchClick.bind()}>Search</button>
+                                        <button className="btn btn-secondary btn-rounded  my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
                                     </form>
                                 </div>
                             </div>
@@ -73,7 +71,7 @@ class Landing extends Component {
                     </div>
                 </div>
             );
-    }
+        }
 
         return (
             <div className="group-landing">
@@ -99,6 +97,5 @@ const mapStateToProps = state => ({
     profile: state.profile
 });
 
-
-export default connect (mapStateToProps,{getCurrentProfile})(withRouter (Landing));
+export default connect(mapStateToProps, { getCurrentProfile })(withRouter(Landing));
 

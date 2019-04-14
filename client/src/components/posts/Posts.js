@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import PostForm from './PostForm';
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
@@ -14,6 +13,7 @@ class Posts extends Component {
 
   render() {
     const { posts, loading } = this.props.post;
+
     let postContent;
 
     if (posts === null || loading) {

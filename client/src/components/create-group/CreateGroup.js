@@ -50,7 +50,6 @@ class CreateGroup extends Component {
   onSubmit(e) {
     e.preventDefault();
     const { profile } = this.props.profile;
-    //console.log(profile._id);
 
     const groupData = {
       handle: this.state.handle,
@@ -71,8 +70,6 @@ class CreateGroup extends Component {
       ownerid: profile._id
     };
     this.props.createGroup(groupData, this.props.history);
-    //this.props.history.push(`/groupwall/${groupData.handle}`);
-    this.props.history.push(`/groupwall/${groupData.handle}`);
   }
 
   onChange(e) {
@@ -94,7 +91,6 @@ class CreateGroup extends Component {
             onChange={this.onChange}
             error={errors.twitter}
           />
-
           <InputGroup
             placeholder="Facebook Page URL"
             name="facebook"
@@ -103,7 +99,6 @@ class CreateGroup extends Component {
             onChange={this.onChange}
             error={errors.facebook}
           />
-
           <InputGroup
             placeholder="YouTube Channel URL"
             name="youtube"
@@ -112,7 +107,6 @@ class CreateGroup extends Component {
             onChange={this.onChange}
             error={errors.youtube}
           />
-
           <InputGroup
             placeholder="Instagram Page URL"
             name="instagram"
@@ -493,7 +487,6 @@ class CreateGroup extends Component {
                   onChange={this.onChange}
                   error={errors.bio}
                 />
-
                 <div className="mb-3">
                   <button
                     type="button"
@@ -508,8 +501,8 @@ class CreateGroup extends Component {
                   </button>{" "}
                   <span>Optional</span>
                 </div>
-                {socialInputs}
 
+                {socialInputs}
 
                 <input
                   type="submit"

@@ -6,12 +6,10 @@ class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
     const backgroundURL = profile.background;
-
     var profileBG;
 
     // Check for an empty string when determining the BG image and
     // use the default BG if it's an empty string.
-    
     if (typeof backgroundURL === 'undefined') {
       profileBG = {
         background: 'url(' + defaultBackground + ') no-repeat center center',
@@ -21,29 +19,25 @@ class ProfileHeader extends Component {
         position: 'relative',
         height: 300
       };
-    }else{
+    } else {
+      // Reference: The CSS class in App.css 'Wrapper' sets the user's profile background.
+      // Reference: The CSS class in App.css 'Group-Wrapper' does the same thing, but for group bg pics.
+      profileBG = {
+        background: 'url(' + backgroundURL + ') no-repeat center center',
+        backgroundSize: 'cover',
+        zIndex: '-1',
+        position: 'relative',
+      };
+    }
 
-    // Reference: The CSS class in App.css 'Wrapper' sets the user's profile background.
-    // Reference: The CSS class in App.css 'Group-Wrapper' does the same thing, but for group bg pics.
+    var profileAvatar;
 
-    profileBG = {
-      background: 'url(' + backgroundURL + ') no-repeat center center',
-      backgroundSize:'cover',
-      zIndex: '-1',
-      position: 'relative',
-    };
-  }
-  
-  var profileAvatar;
-
-  if(typeof profile.avatar === 'undefined')
-  {
-    profileAvatar = defaultAvatar;
-  }
-  else
-  {
-    profileAvatar = profile.avatar;
-  }
+    if (typeof profile.avatar === 'undefined') {
+      profileAvatar = defaultAvatar;
+    }
+    else {
+      profileAvatar = profile.avatar;
+    }
 
     return (
       <div className="row">

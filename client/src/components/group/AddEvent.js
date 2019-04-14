@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -24,12 +23,12 @@ class AddEvent extends Component {
   componentDidMount() {
     this.props.getGroupByHandle(this.props.match.params.handle);
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if(nextProps.group.group) {
+    if (nextProps.group.group) {
       this.setState({
         handle: nextProps.group.group.handle
       });
@@ -57,14 +56,14 @@ class AddEvent extends Component {
 
   render() {
     const { group } = this.props.group;
-    
+
     return (
       <div className="add-event">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/edit-events/${group.handle}`}className="btn btn-secondary">
-               Back
+              <Link to={`/edit-events/${group.handle}`} className="btn btn-secondary">
+                Back
               </Link>
               <h1 className="display-4 text-center">Add An Event</h1>
               <p className="lead text-center">

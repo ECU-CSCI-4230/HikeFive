@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePost, addLike, removeLike} from '../../actions/postActions';
+import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import CommentWindow from '../post/CommentWindow';
 import CommentFeed from '../post/CommentFeed';
 import CommentWindowForm from '../post/CommentWindowForm';
 import { getPost } from '../../actions/postActions';
 
-
 class PostItem extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -24,14 +22,12 @@ class PostItem extends React.Component {
   }
 
   updateLikes(id) {
-
     const { post } = this.props;
-    if(this.findUserLike(post.likes))
-    {
-      if(!this.state.updated) {
+    if (this.findUserLike(post.likes)) {
+      if (!this.state.updated) {
         post.likes.length = post.likes.length - 1;
         this.props.removeLike(id);
-        this.setState((props) => {
+        this.setState(() => {
           return {
             updated: false
           };
@@ -39,7 +35,7 @@ class PostItem extends React.Component {
       } else {
         post.likes.length = post.likes.length + 1;
         this.props.addLike(id);
-        this.setState((props) => {
+        this.setState(() => {
           return {
             updated: false
           };
@@ -47,34 +43,30 @@ class PostItem extends React.Component {
       }
     }
     else {
-      if(!this.state.updated) {
+      if (!this.state.updated) {
         post.likes.length = post.likes.length + 1;
         this.props.addLike(id);
-        this.setState((props) => {
-         return {
-           updated: true
+        this.setState(() => {
+          return {
+            updated: true
           };
         });
       } else {
         post.likes.length = post.likes.length - 1;
         this.props.removeLike(id);
-        this.setState((props) => {
+        this.setState(() => {
           return {
-          updated: false
+            updated: false
           };
         });
       }
     }
   }
 
-
-
   onCommentsClick() {
-    //e.preventDefault();
-    this.setState({showReply: !this.state.showReply})
+    this.setState({ showReply: !this.state.showReply })
   }
 
-  
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -88,34 +80,31 @@ class PostItem extends React.Component {
     }
   }
 
-  refreshPage(){ 
+  refreshPage() {
     window.location.reload();
   }
 
-
   render() {
-    const { post, auth, showActions} = this.props;
+    const { post, auth, showActions } = this.props;
 
     var moment = require('moment');
     var fomatted_date = moment(post.date).format('LLL');
 
     let commentsContent;
-    if(post.comments.length <= 3)
-    {
-        commentsContent = <CommentFeed postId={post._id} comments={post.comments} />;
+
+    if (post.comments.length <= 3) {
+      commentsContent = <CommentFeed postId={post._id} comments={post.comments} />;
     } else {
-        commentsContent = <CommentWindow postId={post._id} comments={post.comments} />;
+      commentsContent = <CommentWindow postId={post._id} comments={post.comments} />;
     }
 
-
     return (
-
       <div className="d-flex card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <a >
               <img
-                style={{width: '75px'}}
+                style={{ width: '75px' }}
                 className="rounded-circle d-none d-md-block center"
                 src={post.avatar}
                 alt=""
@@ -136,12 +125,10 @@ class PostItem extends React.Component {
                     Delete
                   </button>
                 ) : null} {" "}
-                </a> 
-
+                </a>
                 <Link to={`/post/${post._id}`} className="btn btn-sm btn-light mr-1">
-                 View
+                  View
                 </Link>
-
                 <button
                   onClick={this.updateLikes.bind(this, post._id)}
                   type="button"
@@ -154,22 +141,16 @@ class PostItem extends React.Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
-
-                  <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button> 
- 
-                  <button 
-                    onClick={this.onCommentsClick.bind(this, post._id)} 
-                    type="button"
-                    className="btn btn-sm btn-light mr-1"
-                    href='#'>Comments
+                <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button>
+                <button
+                  onClick={this.onCommentsClick.bind(this, post._id)}
+                  type="button"
+                  className="btn btn-sm btn-light mr-1"
+                  href='#'>Comments
                   </button>
-
-                  {this.state.showReply && commentsContent}
-                  {this.state.showReply && <CommentWindowForm postId={post._id} />}
-
-
+                {this.state.showReply && commentsContent}
+                {this.state.showReply && <CommentWindowForm postId={post._id} />}
                 <div class="blockquote-footer bottomcorner" >{fomatted_date}</div>
-                
               </span>
             ) : null}
           </div>
@@ -178,8 +159,6 @@ class PostItem extends React.Component {
     );
   }
 }
-
-
 
 PostItem.defaultProps = {
   showActions: true
@@ -194,10 +173,9 @@ PostItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
-
-export default connect(mapStateToProps, { deletePost, addLike, removeLike, getPost})(
+export default connect(mapStateToProps, { deletePost, addLike, removeLike, getPost })(
   PostItem
 );

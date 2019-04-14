@@ -6,9 +6,35 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
-  SET_CURRENT_USER,
-  SEARCH_HANDLES
+  SET_CURRENT_USER
 } from './types';
+
+//====================================================================================
+
+/*
+  FUNCTIONS:
+    - getCurrentProfile
+    - getProfileByHandle
+    - searchProfiles
+    - createProfile
+    - addTrip
+    - addMatchData
+    - deleteTrip
+    - getProfiles
+    - matchPCombo
+    - matchPTC
+    - matchPTCL
+    - matchPT
+    - matchPCC
+    - matchPC
+    - matchPCL
+    - matchProfiles
+    - deleteAccount
+    - setProfileLoading
+    - clearCurrentProfile
+*/
+
+//====================================================================================
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -21,7 +47,7 @@ export const getCurrentProfile = () => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILE,
         payload: {}
@@ -40,7 +66,7 @@ export const getProfileByHandle = handle => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILE,
         payload: null
@@ -50,7 +76,6 @@ export const getProfileByHandle = handle => dispatch => {
 
 // Search Profiles
 export const searchProfiles = query => dispatch => {
-  { console.log(query) }
   dispatch(setProfileLoading());
   axios
     .get(`/api/profile/${query}`)
@@ -60,7 +85,7 @@ export const searchProfiles = query => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -68,25 +93,11 @@ export const searchProfiles = query => dispatch => {
     );
 };
 
-
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => history.push('/dashboard'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-
-// Add experience
-export const addExperience = (expData, history) => dispatch => {
-  axios
-    .post('/api/profile/experience', expData)
-    .then(res => history.push('/dashboard'))
+    .then(history.push('/dashboard'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -99,7 +110,7 @@ export const addExperience = (expData, history) => dispatch => {
 export const addTrip = (tripData, history) => dispatch => {
   axios
     .post('/api/profile/trips', tripData)
-    .then(res => history.push('/EditTrip'))
+    .then(history.push('/EditTrip'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -108,33 +119,15 @@ export const addTrip = (tripData, history) => dispatch => {
     );
 };
 
-//Add the match data
+//Add match data
 export const addMatchData = (matchData, history) => dispatch => {
   axios
     .post(`/api/profile/matchData`, matchData)
-    .then(res => history.push(`/matches`))
-    .catch(err =>
+    .then( history.push(`/matches`))
+    .catch(_err =>
       dispatch({
         type: GET_ERRORS,
         payload: null
-      })
-    );
-};
-
-// Delete Experience
-export const deleteExperience = id => dispatch => {
-  axios
-    .delete(`/api/profile/experience/${id}`)
-    .then(res =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
       })
     );
 };
@@ -163,14 +156,13 @@ export const getProfiles = () => dispatch => {
   axios
     .get('/api/profile/all')
     .then(res => {
-      //console.log(res.data);
       dispatch({
         type: GET_PROFILES,
         payload: res.data
       })
     }
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -194,7 +186,7 @@ export const matchPCombo = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -218,7 +210,7 @@ export const matchPTC = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -242,7 +234,7 @@ export const matchPTCL = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -266,7 +258,7 @@ export const matchPT = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -286,14 +278,13 @@ export const matchPCC = matchData => dispatch => {
       }
     }) 
     .then(res => {
-      //console.log(res.data);
       dispatch({
         type: GET_PROFILES,
         payload: res.data
       })
     }
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -318,7 +309,7 @@ export const matchPC = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -343,7 +334,7 @@ export const matchPCL = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -368,7 +359,7 @@ export const matchProfiles = matchData => dispatch => {
         payload: res.data
       })
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_PROFILES,
         payload: null
@@ -381,7 +372,7 @@ export const deleteAccount = () => dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     axios
       .delete('/api/profile')
-      .then(res =>
+      .then(_res =>
         dispatch({
           type: SET_CURRENT_USER,
           payload: {}

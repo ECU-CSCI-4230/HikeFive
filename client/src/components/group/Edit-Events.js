@@ -13,8 +13,9 @@ class EditEvent extends Component {
 
     render() {
         const { group, loading } = this.props.group;
-        
+
         let EventContent;
+
         if (group === null || loading) {
             EventContent = <Spinner />;
         }
@@ -32,7 +33,7 @@ class EditEvent extends Component {
                         </div>
                         <div className="col-md-12 text-center">
                         </div><br />
-                         <GroupEvents group={group}/>
+                        <GroupEvents group={group} />
                     </div>
                 );
             }

@@ -96,7 +96,6 @@ class CreateProfile extends Component {
             onChange={this.onChange}
             error={errors.twitter}
           />
-
           <InputGroup
             placeholder="Facebook Page URL"
             name="facebook"
@@ -105,7 +104,6 @@ class CreateProfile extends Component {
             onChange={this.onChange}
             error={errors.facebook}
           />
-
           <InputGroup
             placeholder="YouTube Channel URL"
             name="youtube"
@@ -114,7 +112,6 @@ class CreateProfile extends Component {
             onChange={this.onChange}
             error={errors.youtube}
           />
-
           <InputGroup
             placeholder="Instagram Page URL"
             name="instagram"
@@ -407,7 +404,7 @@ class CreateProfile extends Component {
               </p>
               <h5 className="d-block pb-3">* denotes a required field</h5>
               <form onSubmit={this.onSubmit}>
-      <h6>Enter a unique handle for your profile</h6>
+                <h6>Enter a unique handle for your profile</h6>
                 <TextFieldGroup
                   placeholder="* Profile Handle"
                   name="handle"

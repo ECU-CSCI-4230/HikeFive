@@ -3,21 +3,17 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import defaultAvatar from '../../img/defaultAvatar.jpg';
 
-
 class ProfileItem extends Component {
   render() {
     const { profile } = this.props;
-
     var profileAvatar;
 
-  if(typeof profile.avatar === 'undefined')
-  {
-    profileAvatar = defaultAvatar;
-  }
-  else
-  {
-    profileAvatar = profile.avatar;
-  }
+    if (typeof profile.avatar === 'undefined') {
+      profileAvatar = defaultAvatar;
+    }
+    else {
+      profileAvatar = profile.avatar;
+    }
 
     return (
       <div className="card card-body bg-light mb-3">

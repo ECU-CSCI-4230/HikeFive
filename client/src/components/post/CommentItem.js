@@ -10,7 +10,6 @@ class CommentItem extends Component {
 
   render() {
     const { comment, postId, auth } = this.props;
-
     var moment = require('moment');
     var formatted_date = moment(comment.date).format('LLL');
 
@@ -20,7 +19,7 @@ class CommentItem extends Component {
           <div className="col-md-2">
             <a>
               <img
-                style={{width: '50px'}}
+                style={{ width: '50px' }}
                 className="rounded-circle d-none d-md-block center"
                 src={comment.avatar}
                 alt=""
@@ -36,7 +35,7 @@ class CommentItem extends Component {
                 type="button"
                 className="btn btn-sm btn-danger mr-1"
               >
-               Delete
+                Delete
               </button>
             ) : null}
           </div>

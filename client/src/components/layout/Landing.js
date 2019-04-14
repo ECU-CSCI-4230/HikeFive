@@ -20,9 +20,9 @@ class Landing extends Component {
                 <h1 className="display-3 mb-4">HikeFive</h1>
                 <p className="lead">
                   {' '}
-                  Welcome to HikeFive, a social media site built for hikers and climbers. <br/>
-                  You can join groups, create events, and most importantly meet new friends. <br/>
-                  Try out our matchmaking and let us do the hard work finding you a hiking or climbing buddy. 
+                  Welcome to HikeFive, a social media site built for hikers and climbers. <br />
+                  You can join groups, create events, and most importantly meet new friends. <br />
+                  Try out our matchmaking and let us do the hard work finding you a hiking or climbing buddy.
                 </p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-dark mr-2">

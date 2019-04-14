@@ -18,22 +18,20 @@ class myProfile extends Component {
     }
   }
 
-
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
+
     let profileContent;
 
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
-      console.log(profile);
-      // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
-          profileContent = (
-        <div>
-          <ProfileHeader profile={profile} />
-          <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
+        profileContent = (
+          <div>
+            <ProfileHeader profile={profile} />
+            <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
                 <span className="navbar-toggler-icon"></span>
               </button>
@@ -45,23 +43,22 @@ class myProfile extends Component {
                 </div>
               </div>
             </nav>
-            <br/>
-          <ProfileFeed profile={profile.handle} />
-        </div>
-          );
-    }else{
-        // User is logged in but has no profile
+            <br />
+            <ProfileFeed profile={profile.handle} />
+          </div>
+        );
+      } else {
         profileContent = (
-            <div>
-              <p className="lead text-muted">Welcome {user.name}</p>
-              <p>You have not yet setup a profile, please add some info</p>
-              <Link to="/create-profile" className="btn btn-lg btn-info">
-                Create Profile
+          <div>
+            <p className="lead text-muted">Welcome {user.name}</p>
+            <p>You have not yet setup a profile, click the button below to set up your profile now.</p>
+            <Link to="/create-profile" className="btn btn-lg btn-dark">
+              Create Profile
               </Link>
-            </div>
-          );
+          </div>
+        );
+      }
     }
-}
 
     return (
       <div className="profile">

@@ -79,7 +79,7 @@ class PersonCommentForm extends Component {
 }
 
 PersonCommentForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
+  addPersonalNEWComment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,

@@ -6,9 +6,9 @@ class CommentFeed extends Component {
   render() {
     const { comments, postId } = this.props;
 
-    return comments.slice(0,comments.length).reverse().map((comment,i) => (
-      <PersonCommentItem key={comment._id} comment={comment} postId={postId} /> 
-   ));
+    return comments.slice(0, comments.length).reverse().map((comment, i) => (
+      <PersonCommentItem key={comment._id} comment={comment} postId={postId} />
+    ));
   }
 }
 

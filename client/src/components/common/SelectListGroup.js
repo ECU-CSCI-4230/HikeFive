@@ -10,7 +10,7 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
   ));
   return (
     <div className="form-group">
-    {info && <small className="form-text text-muted">{info}</small>}
+      {info && <small className="form-text text-muted">{info}</small>}
       <select
         className={classnames('form-control form-control-lg', {
           'is-invalid': error

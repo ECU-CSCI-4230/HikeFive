@@ -6,7 +6,6 @@ const TextFieldGroup = ({
   name,
   placeholder,
   value,
-  label,
   error,
   info,
   type,
@@ -15,7 +14,7 @@ const TextFieldGroup = ({
 }) => {
   return (
     <div className="form-group">
-    {info && <small className="form-text text-muted">{info}</small>}
+      {info && <small className="form-text text-muted">{info}</small>}
       <input
         type={type}
         className={classnames('form-control form-control-lg', {

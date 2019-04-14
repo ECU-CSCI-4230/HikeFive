@@ -21,38 +21,37 @@ class Trips extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.handle);
     const { profile, loading } = this.props.profile;
 
     let TripsContent;
 
     if (profile === null || loading) {
-        TripsContent = <Spinner />;
-    } 
-    else {
-        if (Object.keys(profile).length > 0) {
-            TripsContent = (
-            <div>
-                <ProfileHeader profile={profile} />
-                <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
-                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-                  <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                    <div className="navbar-nav">
-                    <Link className="nav-item nav-link" to={`/wall/${profile.handle}`}>Wall</Link>
-                    <Link className="nav-item nav-link" to={`/about/${profile.handle}`}>About</Link>
-                    <Link className="nav-item nav-link active" to={`/trips/${profile.handle}`}>Trips</Link>
-                    </div>
-                  </div>
-                </nav>
-                <br/>
-                <ProfileCreds trip={profile.trip} />
-            </div>
-            );
-        }
+      TripsContent = <Spinner />;
     }
-    
+    else {
+      if (Object.keys(profile).length > 0) {
+        TripsContent = (
+          <div>
+            <ProfileHeader profile={profile} />
+            <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                <div className="navbar-nav">
+                  <Link className="nav-item nav-link" to={`/wall/${profile.handle}`}>Wall</Link>
+                  <Link className="nav-item nav-link" to={`/about/${profile.handle}`}>About</Link>
+                  <Link className="nav-item nav-link active" to={`/trips/${profile.handle}`}>Trips</Link>
+                </div>
+              </div>
+            </nav>
+            <br />
+            <ProfileCreds trip={profile.trip} />
+          </div>
+        );
+      }
+    }
+
     return (
       <div className="profile">
         <div className="container">

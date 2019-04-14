@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -23,7 +22,6 @@ class AddTrip extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -65,11 +63,11 @@ class AddTrip extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/EditTrip/" className="btn btn-secondary">
-               Back
+                Back
               </Link>
               <h1 className="display-4 text-center">Add A Trip</h1>
               <p className="lead text-center">
-                *All fields are required*
+                *Denotes a required field*
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup

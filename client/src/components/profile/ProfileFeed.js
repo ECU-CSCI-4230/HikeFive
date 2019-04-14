@@ -4,32 +4,33 @@ import PropTypes from 'prop-types';
 import PersonPostForm from '../posts/PersonPostForm';
 import PersonPostFeed from '../posts/PersonPostFeed';
 import Spinner from '../common/Spinner';
-import {getPersonalPosts } from '../../actions/postActions';
+import { getPersonalPosts } from '../../actions/postActions';
 
 
 class ProfileFeed extends Component {
-    componentDidMount() {
-        this.props.getPersonalPosts(this.props.profile);
-      }
+  componentDidMount() {
+    this.props.getPersonalPosts(this.props.profile);
+  }
 
   render() {
     const { posts, loading } = this.props.post;
     const handle = this.props.profile;
+
     let postContent;
 
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      postContent = <PersonPostFeed handle = {handle} posts={posts} />;
+      postContent = <PersonPostFeed handle={handle} posts={posts} />;
     }
 
     return (
       <div className="personfeed">
-          <div className="row">
-            <div className="col-md-12">
-              <PersonPostForm handle = {handle}/>
-              {postContent}
-            </div>
+        <div className="row">
+          <div className="col-md-12">
+            <PersonPostForm handle={handle} />
+            {postContent}
+          </div>
         </div>
       </div>
     );
@@ -37,12 +38,12 @@ class ProfileFeed extends Component {
 }
 
 ProfileFeed.propTypes = {
-    getPersonalPosts: PropTypes.func.isRequired,
-    post: PropTypes.object.isRequired
-  };
+  getPersonalPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
+};
 
-  const mapStateToProps = state => ({
-    post: state.post
-  });
+const mapStateToProps = state => ({
+  post: state.post
+});
 
-export default connect(mapStateToProps, {getPersonalPosts})(ProfileFeed);
+export default connect(mapStateToProps, { getPersonalPosts })(ProfileFeed);

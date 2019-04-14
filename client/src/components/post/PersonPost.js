@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import PersonPostItem from '../posts/PersonPostItem';
 import PersonCommentForm from './PersonCommentForm';
 import PersonCommentFeed from './PersonCommentFeed';
@@ -16,10 +15,11 @@ class PersonPost extends Component {
 
   render() {
     const { post, loading } = this.props.post;
-    let postContent;
-    const currenturl =window.location.href;
+    const currenturl = window.location.href;
     const splitUrl = currenturl.split("/");
-    const backToFeedUrl = "Wall"+"/"+splitUrl[4];
+    const backToFeedUrl = "Wall" + "/" + splitUrl[4];
+
+    let postContent;
 
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
@@ -43,8 +43,8 @@ class PersonPost extends Component {
                 data-width="100%"
                 data-numposts="10"
                 data-order-by="reverse_time">
-            </div>
-              <Link to={`/${backToFeedUrl}`}className="btn btn-light mb-3">
+              </div>
+              <Link to={`/${backToFeedUrl}`} className="btn btn-light mb-3">
                 Back To Wall
               </Link>
               {postContent}

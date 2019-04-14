@@ -35,27 +35,27 @@ class GroupAbout extends Component {
               </div>
             </div>
             <div className="row">
-                <div className="col-md">
-                  <div className="d-flex flex-wrap justify-content-center align-items-center">
-                    {isEmpty(group.social && group.social.facebook) ? null : (
-                      <a href={group.social.facebook}>Facebook</a>
-                    )}<br></br>
-                    {isEmpty(group.social && group.social.twitter) ? null : (
-                      <a href={group.social.twitter}>Twitter</a>
-                    )}
-                  </div>
-                </div>
-                <div className="col-md">
-                  <div className="d-flex flex-wrap justify-content-center align-items-center">
-                    {isEmpty(group.social && group.social.instagram) ? null : (
-                      <a href={group.social.instagram}>Instagram</a>
-                    )}<br></br>
-                    {isEmpty(group.social && group.social.youtube) ? null : (
-                      <a href={group.social.youtube}>YouTube</a>
-                    )}
-                  </div>
+              <div className="col-md">
+                <div className="d-flex flex-wrap justify-content-center align-items-center">
+                  {isEmpty(group.social && group.social.facebook) ? null : (
+                    <a href={group.social.facebook}>Facebook</a>
+                  )}<br></br>
+                  {isEmpty(group.social && group.social.twitter) ? null : (
+                    <a href={group.social.twitter}>Twitter</a>
+                  )}
                 </div>
               </div>
+              <div className="col-md">
+                <div className="d-flex flex-wrap justify-content-center align-items-center">
+                  {isEmpty(group.social && group.social.instagram) ? null : (
+                    <a href={group.social.instagram}>Instagram</a>
+                  )}<br></br>
+                  {isEmpty(group.social && group.social.youtube) ? null : (
+                    <a href={group.social.youtube}>YouTube</a>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

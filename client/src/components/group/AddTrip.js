@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -26,12 +25,12 @@ class AddTrip extends Component {
   componentDidMount() {
     this.props.getGroupByHandle(this.props.match.params.handle);
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if(nextProps.group.group) {
+    if (nextProps.group.group) {
       this.setState({
         handle: nextProps.group.group.handle
       });
@@ -49,7 +48,6 @@ class AddTrip extends Component {
       description: this.state.description,
       difficulty: this.state.difficulty,
     };
-
     this.props.addTrip(tripData, this.props.history);
   }
 
@@ -60,8 +58,6 @@ class AddTrip extends Component {
   render() {
     const { group } = this.props.group;
 
-
-    // Select options for difficulty
     const diffOptions = [
       { label: '* Difficulty Level', value: 0 },
       { label: '1', value: 1 },
@@ -76,8 +72,8 @@ class AddTrip extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/edit-trips/${group.handle}`}className="btn btn-secondary">
-               Back
+              <Link to={`/edit-trips/${group.handle}`} className="btn btn-secondary">
+                Back
               </Link>
               <h1 className="display-4 text-center">Add A Trip</h1>
               <p className="lead text-center">

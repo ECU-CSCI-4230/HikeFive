@@ -13,16 +13,15 @@ class GroupMembers extends Component {
 
     array.push(group.ownerid);
     for (var i = 0; i < arrayLength; i++) {
-        array.push(group.teammember[i].ids);
+      array.push(group.teammember[i].ids);
     }
-    const pass = {ids: array}
-    
+    const pass = { ids: array }
     this.props.getMembers(pass);
   }
 
   render() {
-    //console.log(this.props);
     const { members, loading } = this.props.member;
+
     let profileItems;
 
     if (members === null || loading) {

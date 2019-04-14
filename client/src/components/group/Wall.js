@@ -6,21 +6,18 @@ import Spinner from '../common/Spinner';
 import { addMember, getGroupByHandle } from '../../actions/groupActions';
 import GroupFeed from './GroupFeed';
 import { Link } from 'react-router-dom';
-import {getCurrentProfile} from '../../actions/profileActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class Wall extends Component {
-
   constructor(props) {
     super(props)
     this.state = { show: true }
-
-    this.joinGroup= this.joinGroup.bind(this)
+    this.joinGroup = this.joinGroup.bind(this)
   }
 
-
   componentDidMount() {
-      this.props.getCurrentProfile();
-      this.props.getGroupByHandle(this.props.match.params.handle);
+    this.props.getCurrentProfile();
+    this.props.getGroupByHandle(this.props.match.params.handle);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,49 +26,51 @@ class Wall extends Component {
     }
   }
 
-  joinGroup(addMemberData){
-    const {show} = this.state;
+  joinGroup(addMemberData) {
+    const { show } = this.state;
     this.props.addMember(addMemberData);
-    this.setState({show: !show})
+    this.setState({ show: !show })
   }
 
   render() {
-    //console.log(this.props.group);
     const { group, loading } = this.props.group;
-    const {profile} = this.props.profile;
+    const { profile } = this.props.profile;
+
     let WallContent;
 
     if ((group && profile) === null || loading) {
       WallContent = <Spinner />;
     } else {
-      //console.log(group);
-      const groupownerId = group.ownerid;
-      const currentuserId = profile._id;
-      const addMemberData = {userId:currentuserId,groupHandle:group.handle};
-      var hideornot = false;
+      if (group !== null) {
+        const groupownerId = group.ownerid;
+        const currentuserId = profile._id;
+        const addMemberData = { userId: currentuserId, groupHandle: group.handle };
+        var hideornot = false;
 
-      let groupSetting;
-      let joinMem;
-      if(group.ownerid == currentuserId){hideornot = true}
-      const arrayLength = group.teammember.length;
-      for (var i = 0; i < arrayLength; i++) {
-        if(group.teammember[i].ids == currentuserId){hideornot = true}
-      }
-      if (hideornot == false){
-        joinMem = <button className="btn btn-dark" onClick={() => this.joinGroup(addMemberData) }> Join Group </button>
-      }
-      else{
-        joinMem = null;
-      }
+        let groupSetting;
+        let joinMem;
 
-      if (groupownerId===currentuserId){
-        groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
-      }
-      
-      WallContent = (
-        <div>
-          <GroupHeader group={group} />
-          <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
+        if (group.ownerid == currentuserId) { hideornot = true }
+
+        const arrayLength = group.teammember.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          if (group.teammember[i].ids == currentuserId) { hideornot = true }
+        }
+        if (hideornot == false) {
+          joinMem = <button className="btn btn-dark" onClick={() => this.joinGroup(addMemberData)}> Join Group </button>
+        }
+        else {
+          joinMem = null;
+        }
+        if (groupownerId === currentuserId) {
+          groupSetting = <Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>;
+        }
+
+        WallContent = (
+          <div>
+            <GroupHeader group={group} />
+            <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
                 <span className="navbar-toggler-icon"></span>
               </button>
@@ -81,17 +80,17 @@ class Wall extends Component {
                   <Link className="nav-item nav-link" to={`/groupabout/${group.handle}`}>About</Link>
                   <Link className="nav-item nav-link" to={`/grouptrips/${group.handle}`}>Trips</Link>
                   <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
-                  <Link className="nav-item nav-link" to={`/groupevents/${group.handle}`}>Events</Link>
                   <Link className="nav-item nav-link" to={`/groupmembers/${group.handle}`}>Members</Link>
                   {groupSetting}
                   {this.state.show && joinMem}
                 </div>
               </div>
             </nav>
-            <br/>
+            <br />
             <GroupFeed group={group.handle} />
-        </div>
-      );
+          </div>
+        );
+      }
     }
 
     return (
@@ -113,8 +112,8 @@ Wall.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    profile: state.profile,
-    group: state.group,
+  profile: state.profile,
+  group: state.group,
 });
 
-export default connect(mapStateToProps, { addMember,getGroupByHandle,getCurrentProfile })(Wall);
+export default connect(mapStateToProps, { addMember, getGroupByHandle, getCurrentProfile })(Wall);

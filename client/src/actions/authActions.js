@@ -7,11 +7,26 @@ import {
   SET_CURRENT_USER
 } from './types';
 
+
+//====================================================================================
+
+/*
+  FUNCTIONS:
+    - registerUser
+    - loginUser
+    - updateFirst
+    - updateAvatar
+    - setCurrentUser
+    - logoutUser
+*/
+
+//====================================================================================
+
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
-    .then(res => history.push('/login'))
+    .then(_res => history.push('/login'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -47,45 +62,17 @@ export const loginUser = userData => dispatch => {
     );
 };
 
-export const updateFirst = userData => dispatch => {
+//Used to change status when user creates profile
+export const updateFirst = userData => _dispatch => {
   axios
     .post('/api/users/updateFirst', userData)
 }
 
-export const updateAvatar = avatarData => dispatch => {
+//Update the users avatar
+export const updateAvatar = avatarData => _dispatch => {
   axios
     .post('/api/users/updateAvatar', avatarData)
 }
-/*
-export const getProfileCreted = userData => dispatch => {
-  axios
-    .post('/api/users/login', userData)
-    .then(res => {
-      //console.log(res.data.first);
-      const r = {"first": res.data.first};
-      //console.log(r);
-      // Save to localStorage
-      //const { token } = res.data;
-      // Set token to ls
-      //localStorage.setItem('jwtToken', token);
-      // Set token to Auth header
-      //setAuthToken(token);
-      // Decode token to get user data
-      //const decoded = jwt_decode(token);
-      // Set current user
-      dispatch({
-        type: CHECK_PRO, 
-        payload:r
-      });
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-*/
 
 // Set logged in user
 export const setCurrentUser = decoded => {
@@ -104,3 +91,5 @@ export const logoutUser = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+
+//====================================================================================

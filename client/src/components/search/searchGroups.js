@@ -20,8 +20,8 @@ class Search extends Component {
     }
 
     render() {
-        console.log(this.props.match.params.searchString);
         const { groups, loading } = this.props.group;
+
         let searchItems;
         let searchForm;
 
@@ -34,7 +34,7 @@ class Search extends Component {
                 <br />
             </div>
         );
-        if (this.props.match.params.searchString === ' '){
+        if (this.props.match.params.searchString === ' ') {
             searchItems = null;
         }
         else if (groups === null || loading) {
@@ -46,7 +46,7 @@ class Search extends Component {
                 ));
             }
             else {
-                searchItems = <h4>No profiles found...</h4>;
+                searchItems = <h4>No Groups Found...</h4>;
             }
         }
 
@@ -70,7 +70,6 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-    searchProfiles: PropTypes.func.isRequired,
     searchGroups: PropTypes.func.isRequired,
     group: PropTypes.object.isRequired
 };

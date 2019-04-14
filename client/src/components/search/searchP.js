@@ -15,32 +15,36 @@ class Search extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.searchString); //Search String
     const { profiles, loading } = this.props.profile;
     const { groups } = this.props.group;
 
-    let searchItems;
+    let profileItems;
     let groupItems;
-    
+
     if (profiles === null || groups === null || loading) {
-      searchItems = <Spinner />;
+      profileItems = <Spinner />;
     } else {
-      console.log(groups);
-      if (profiles.length > 0 || groups.length >0) {
+      if (profiles.length > 0 || groups.length > 0) {
         if (profiles.length > 0) {
-          searchItems = profiles.map(profile => (
+          profileItems = profiles.map(profile => (
             <ProfileItem key={profile._id} profile={profile} />
           ));
+        }
+        else {
+          profileItems = <h4 className="text-center">No profiles found...</h4>;
         }
         if (groups.length > 0) {
           groupItems = groups.map(group => (
             <GroupItem key={group._id} group={group} />
           ));
         }
+        else {
+          groupItems = <h4 className="text-center">No Groups found...</h4>;
+        }
       }
       else {
-        searchItems = <h4>No profiles found...</h4>;
-        //groupItems = <h4>No Groups found...</h4>;
+        profileItems = <h4 className="text-center">No profiles found...</h4>;
+        groupItems = <h4 className="text-center">No Groups found...</h4>;
       }
     }
 
@@ -51,24 +55,20 @@ class Search extends Component {
             <div className="col-md-12">
               <h1 className="display-4 text-center">Search Results</h1>
               <p className="lead text-center">
-               Searched For: {this.props.match.params.searchString}
+                Searched For: {this.props.match.params.searchString}
               </p>
-
               <ul className="nav nav-pills justify-content-center" id="searchResults" role="tablist">
                 <li className="nav-item nav-li active">
-                  <a className="nav-link text-white tab-color active" id="user-tab" data-toggle="pill" href="#users" role= "tab" aria-controls="users" aria-selected="true">Users</a>
+                  <a className="nav-link text-white tab-color active" id="user-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
                 </li>
                 <li className="nav-item nav-li">
-                  <a className="nav-link text-white tab-color" id="group-tab" data-toggle="pill" href="#groups" role= "tab" aria-controls="groups" aria-selected="false">Groups</a>
+                  <a className="nav-link text-white tab-color" id="group-tab" data-toggle="pill" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
                 </li>
               </ul>
-
               <div className="tab-content" id="searchResultsContent">
-                <div className="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="user-tab"> <br/>{ searchItems}</div>
-                <div className="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="group-tab">< br/> {groupItems}</div>
+                <div className="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="user-tab"> <br />{profileItems}</div>
+                <div className="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="group-tab">< br /> {groupItems}</div>
               </div>
-
-
             </div>
           </div>
         </div>

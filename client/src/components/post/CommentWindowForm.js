@@ -27,7 +27,6 @@ class CommentWindowForm extends Component {
     }
   }
 
-
   onSubmit(e) {
     e.preventDefault();
 
@@ -48,7 +47,6 @@ class CommentWindowForm extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
 
   render() {
     const { errors } = this.state;
@@ -82,7 +80,7 @@ class CommentWindowForm extends Component {
 }
 
 CommentWindowForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,

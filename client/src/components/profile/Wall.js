@@ -20,7 +20,6 @@ class Wall extends Component {
     }
   }
 
-
   render() {
     const { profile, loading } = this.props.profile;
     let WallContent;
@@ -28,25 +27,23 @@ class Wall extends Component {
     if (profile === null || loading) {
       WallContent = <Spinner />;
     } else {
-      console.log(profile._id);
-      console.log(this.props);
       WallContent = (
         <div>
           <ProfileHeader profile={profile} />
           <nav className="d-flex justify-content-center navbar navbar-expand-sm navbar-dark bg-dark">
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                <div className="navbar-nav">
-                  <Link className="nav-item nav-link active" to={`/wall/${profile.handle}`}>Wall</Link>
-                  <Link className="nav-item nav-link" to={`/about/${profile.handle}`}>About</Link>
-                  <Link className="nav-item nav-link" to={`/trips/${profile.handle}`}>Trips</Link>
-                </div>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+              <div className="navbar-nav">
+                <Link className="nav-item nav-link active" to={`/wall/${profile.handle}`}>Wall</Link>
+                <Link className="nav-item nav-link" to={`/about/${profile.handle}`}>About</Link>
+                <Link className="nav-item nav-link" to={`/trips/${profile.handle}`}>Trips</Link>
               </div>
-            </nav>
-            <br/>
-            <ProfileFeed profile={profile.handle} />
+            </div>
+          </nav>
+          <br />
+          <ProfileFeed profile={profile.handle} />
         </div>
       );
     }

@@ -6,60 +6,68 @@ import { setCurrentUser, logoutUser } from './actions/authActions';
 import { clearCurrentProfile } from './actions/profileActions';
 import { Provider } from 'react-redux';
 import store from './store';
+import './App.css';
 import PrivateRoute from './components/common/PrivateRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+
+//===================================Public Routes=============================================//
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Dashboard from './components/dashboard/Dashboard';
-import CreateProfile from './components/create-profile/CreateProfile';
-import EditProfile from './components/edit-profile/EditProfile';
-import AddExperience from './components/add-credentials/AddExperience';
-import AddTrip from './components/add-credentials/AddTrip';
-import Profiles from './components/profiles/Profiles';
-import Groups from './components/groups/Groups';
-import Group from './components/group/Group';
-import Profile from './components/profile/Profile';
-import Posts from './components/posts/Posts';
-import Post from './components/post/Post';
-import personPost from './components/post/PersonPost';
 import NotFound from './components/not-found/NotFound';
-import personfeed from './components/posts/PersonPosts';
-import Forgot from './components/dashboard/Forgot';
-import EditTrip from './components/dashboard/EditTrip';
-import Trip from './components/dashboard/Trip';
-import './App.css';
+
+
+//====================================Private Routes=============================================//
+
+//User and Profile Components
 import myProfile from './components/profile/myProfile';
 import About from './components/profile/About';
 import Trips from './components/profile/Trips';
 import Wall from './components/profile/Wall';
 
+import AddTrip from './components/add-credentials/AddTrip';
+import EditTrip from './components/dashboard/EditTrip';
+import Trip from './components/dashboard/Trip';
+import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/create-profile/CreateProfile';
+import EditProfile from './components/edit-profile/EditProfile';
+import Forgot from './components/dashboard/Forgot';
+
+//Group Components
 import GroupWall from './components/group/Wall';
 import GroupAbout from './components/group/About';
 import GroupSettings from './components/group/GroupSettings';
 import EventCalendar from './components/group/EventCalendar';
 import GroupTrips from './components/group/Trips';
-import GroupEvents from './components/group/Events';
 import CreateGroup from './components/create-group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
+import EditTrips from './components/group/Edit-Trips';
+import EditEvents from './components/group/Edit-Events';
+import AddGroupTrip from './components/group/AddTrip.js';
+import AddGroupEvent from './components/group/AddEvent.js';
+import GroupMembers from './components/group/Members.js';
+
+//Groups Components
 import GroupsLanding from './components/groups/GroupsLanding';
 import UserGroups from './components/groups/UserGroups';
+
+//Post components
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
+import personPost from './components/post/PersonPost';
+import personfeed from './components/posts/PersonPosts';
+
+//Search Components
 import SearchP from './components/search/searchP';
 import SearchGroups from './components/search/searchGroups';
 
-import EditTrips from './components/group/Edit-Trips';
-import EditEvents from './components/group/Edit-Events';
-
-import AddGroupTrip from './components/group/AddTrip.js';
-import AddGroupEvent from './components/group/AddEvent.js';
-
-import GroupMembers from './components/group/Members.js';
+//Matchmaking Components
 import MatchForm from './components/matchmaking/MatchForm.js';
 import Matches from './components/matchmaking/Matches.js';
 import MatchLanding from './components/matchmaking/MatchLanding.js';
 
-import Notifications from './components/dashboard/Notifications';
+//=================================================================================//
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -81,6 +89,7 @@ if (localStorage.jwtToken) {
     window.location.href = '/login';
   }
 }
+//=================================================================================//
 
 class App extends Component {
   render() {
@@ -91,13 +100,22 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="main-container container">
+
+              {/**************Public Routes************/}
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/groups" component={Groups} />
-              <Route exact path="/profile/:handle" component={Profile} />
-              <Route exact path="/group/:handle" component={Group} />
-              
+
+              {/**************Private Routes************/}
+
+
+
+
+
+
+
+
+
+
               <Switch>
                 <PrivateRoute exact path="/personfeed/:handle" component={personfeed} />
               </Switch>
@@ -107,7 +125,7 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/post/:handle/:id" component={personPost}/>
+                <PrivateRoute exact path="/post/:handle/:id" component={personPost} />
               </Switch>
 
               <Switch>
@@ -122,11 +140,11 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/searchP/:searchString" component={SearchP}/>
+                <PrivateRoute exact path="/searchP/:searchString" component={SearchP} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/searchGroups/:searchString" component={SearchGroups}/>
+                <PrivateRoute exact path="/searchGroups/:searchString" component={SearchGroups} />
               </Switch>
 
               <Switch>
@@ -152,7 +170,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/groupmembers/:handle" component={GroupMembers} />
               </Switch>
-              
+
               <Switch>
                 <PrivateRoute exact path="/groupsettings/:handle" component={GroupSettings} />
               </Switch>
@@ -163,10 +181,6 @@ class App extends Component {
 
               <Switch>
                 <PrivateRoute exact path="/grouptrips/:handle" component={GroupTrips} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/groupevents/:handle" component={GroupEvents} />
               </Switch>
 
               <Switch>
@@ -190,23 +204,19 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/edit-profile" component={EditProfile}/>
+                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/add-experience" component={AddExperience}/>
+                <PrivateRoute exact path="/add-trip" component={AddTrip} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/add-trip" component={AddTrip}/>
-              </Switch>
-  
-              <Switch>
-                <PrivateRoute exact path="/addTrip/:handle" component={AddGroupTrip}/>
+                <PrivateRoute exact path="/addTrip/:handle" component={AddGroupTrip} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/addEvent/:handle" component={AddGroupEvent}/>
+                <PrivateRoute exact path="/addEvent/:handle" component={AddGroupEvent} />
               </Switch>
 
               <Switch>
@@ -218,32 +228,28 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                  <PrivateRoute exact path="/EditTrip" component={EditTrip} />
+                <PrivateRoute exact path="/EditTrip" component={EditTrip} />
               </Switch>
 
 
               <Switch>
-                  <PrivateRoute exact path="/Trip" component={Trip} />
+                <PrivateRoute exact path="/Trip" component={Trip} />
               </Switch>
 
               <Switch>
-                  <PrivateRoute exact path="/Forgot" component={Forgot} />
+                <PrivateRoute exact path="/Forgot" component={Forgot} />
               </Switch>
 
               <Switch>
-                  <PrivateRoute exact path="/match" component={MatchForm} />
+                <PrivateRoute exact path="/match" component={MatchForm} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/matches" component={Matches}/>
+                <PrivateRoute exact path="/matches" component={Matches} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/matchmaking" component={MatchLanding}/>
-              </Switch>
-
-              <Switch>
-                  <PrivateRoute exact path="/Notifications" component={Notifications} />
+                <PrivateRoute exact path="/matchmaking" component={MatchLanding} />
               </Switch>
 
               <Route exact path="/not-found" component={NotFound} />

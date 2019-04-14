@@ -16,7 +16,6 @@ class PersonCommentWindowForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-
   componentWillReceiveProps(newProps) {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
@@ -75,7 +74,7 @@ class PersonCommentWindowForm extends Component {
 }
 
 PersonCommentWindowForm.propTypes = {
-  addPost: PropTypes.func.isRequired,
+  addPersonalComment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired

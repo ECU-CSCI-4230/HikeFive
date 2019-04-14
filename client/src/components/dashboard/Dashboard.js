@@ -10,11 +10,8 @@ class Dashboard extends Component {
     this.props.getCurrentProfile();
   }
 
-  onDeleteClick(e) {
+  onDeleteClick() {
     this.props.deleteAccount();
-  }
-  onChangePassword(e) {
-    this.props.changePassword();
   }
 
   render() {
@@ -63,9 +60,9 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            <br/>
+            <br />
             <div className="card-deck d-flex justify-content-center">
-            <div className="card bg-light text-center" >
+              <div className="card bg-light text-center" >
                 <div className="card-body">
                   <h5 className="card-title">Change Password</h5>
                   <p className="card-text">Use this to change your password.</p>

@@ -3,21 +3,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner';
 import GroupItem from './GroupItem';
-import { getGroups,searchBelongGroups } from '../../actions/groupActions';
+import { searchBelongGroups } from '../../actions/groupActions';
 
 class Groups extends Component {
     componentDidMount() {
-        //console.log(this.props.match.params.id);
         this.props.searchBelongGroups(this.props.match.params.id);
-        //this.props.getGroups();
     }
 
     render() {
         const { groups, loading } = this.props.group;
-        //console.log(this.props.group);
         let groupItems;
 
-        if (groups  === null || loading) {
+        if (groups === null || loading) {
             groupItems = <Spinner />;
         } else {
             if (groups.length > 0) {
@@ -37,7 +34,7 @@ class Groups extends Component {
                             <h1 className="display-4 text-center">Joined Groups</h1>
                             <p className="lead text-center">
                                 List of Joined Groups
-              </p>
+                            </p>
                             {groupItems}
                         </div>
                     </div>
@@ -48,7 +45,6 @@ class Groups extends Component {
 }
 
 Groups.propTypes = {
-    getGroups: PropTypes.func.isRequired,
     searchBelongGroups: PropTypes.func.isRequired,
     group: PropTypes.object.isRequired
 };
@@ -57,4 +53,4 @@ const mapStateToProps = state => ({
     group: state.group
 });
 
-export default connect(mapStateToProps, { getGroups,searchBelongGroups })(Groups);
+export default connect(mapStateToProps, { searchBelongGroups })(Groups);

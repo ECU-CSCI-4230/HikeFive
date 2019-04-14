@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { deletePersonalPost, addPersonalLike, removePersonalLike} from '../../actions/postActions';
+import { deletePersonalPost, addPersonalLike, removePersonalLike } from '../../actions/postActions';
 import PersonCommentWindow from '../post/PersonCommentWindow';
 import PersonCommentFeed from '../post/PersonCommentFeed';
 import PersonCommentWindowForm from '../post/PersonCommentWindowForm';
 
-
-
 class PersonPostItem extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -24,14 +21,12 @@ class PersonPostItem extends React.Component {
   }
 
   updateLikes(id) {
-
     const { post } = this.props;
-    if(this.findUserLike(post.likes))
-    {
-      if(!this.state.updated) {
+    if (this.findUserLike(post.likes)) {
+      if (!this.state.updated) {
         post.likes.length = post.likes.length - 1;
         this.props.removePersonalLike(id);
-        this.setState((props) => {
+        this.setState(() => {
           return {
             updated: false
           };
@@ -39,7 +34,7 @@ class PersonPostItem extends React.Component {
       } else {
         this.props.addPersonalLike(id);
         post.likes.length = post.likes.length + 1;
-        this.setState((props) => {
+        this.setState(() => {
           return {
             updated: false
           };
@@ -47,39 +42,36 @@ class PersonPostItem extends React.Component {
       }
     }
     else {
-      if(!this.state.updated) {
+      if (!this.state.updated) {
         post.likes.length = post.likes.length + 1;
         this.props.addPersonalLike(id);
-        this.setState((props) => {
-         return {
-           updated: true
+        this.setState(() => {
+          return {
+            updated: true
           };
         });
       } else {
         this.props.removePersonalLike(id);
         post.likes.length = post.likes.length - 1;
-        this.setState((props) => {
+        this.setState(() => {
           return {
-          updated: false
+            updated: false
           };
         });
       }
     }
   }
 
-
   onCommentsClick() {
-    //e.preventDefault();
-    this.setState({showReply: !this.state.showReply})
+    this.setState({ showReply: !this.state.showReply })
   }
 
-  
   onDeleteClick(id) {
     this.props.deletePersonalPost(id);
   }
 
-  onLikeClick(id,handle) {
-    const object = {uid: id,uhandle: handle};
+  onLikeClick(id, handle) {
+    const object = { uid: id, uhandle: handle };
     this.props.addPersonalLike(object);
   }
 
@@ -92,41 +84,31 @@ class PersonPostItem extends React.Component {
     }
   }
 
-  refreshPage(){ 
+  refreshPage() {
     window.location.reload();
   }
 
   render() {
     const { post, auth, showActions } = this.props;
     const handle = this.props.handle;
-  
-    const showHide = {
-      'display': this.state.showStatus ? 'block' : 'none'
-    };
-
-    const showReplyForm = () => {
-      this.setState({showForm: true});
-    };
-
     var moment = require('moment');
     var fomatted_date = moment(post.date).format('LLL');
 
     let commentsContent;
-    if(post.comments.length <= 3)
-    {
-        commentsContent = <PersonCommentFeed postId={post._id} comments={post.comments} />;
+
+    if (post.comments.length <= 3) {
+      commentsContent = <PersonCommentFeed postId={post._id} comments={post.comments} />;
     } else {
-        commentsContent = <PersonCommentWindow postId={post._id} comments={post.comments} />;
+      commentsContent = <PersonCommentWindow postId={post._id} comments={post.comments} />;
     }
 
     return (
-
       <div className="d-flex card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <a>
               <img
-                style={{width: '75px'}}
+                style={{ width: '75px' }}
                 className="rounded-circle d-none d-md-block center"
                 src={post.avatar}
                 alt=""
@@ -146,14 +128,12 @@ class PersonPostItem extends React.Component {
                     Delete
                   </button>
                 ) : null} {" "}
-                </a> 
-
+                </a>
                 <Link to={`/post/${handle}/${post._id}`} className="btn btn-sm btn-light mr-1">
                   View
                 </Link>
-
                 <button
-                  onClick={this.updateLikes.bind(this, post._id,handle)}
+                  onClick={this.updateLikes.bind(this, post._id, handle)}
                   type="button"
                   className="btn btn-sm btn-light mr-1"
                 >
@@ -163,22 +143,16 @@ class PersonPostItem extends React.Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
-
-                <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button> 
-
-
-                  <button 
-                    onClick={this.onCommentsClick.bind(this, post._id)} 
-                    type="button"
-                    className="btn btn-sm btn-light mr-1"
-                    href='#'>Comments
+                <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button>
+                <button
+                  onClick={this.onCommentsClick.bind(this, post._id)}
+                  type="button"
+                  className="btn btn-sm btn-light mr-1"
+                  href='#'>Comments
                   </button>
-
-                  {this.state.showReply && commentsContent}
-                  {this.state.showReply && <PersonCommentWindowForm postId={post._id} />}                 
-
+                {this.state.showReply && commentsContent}
+                {this.state.showReply && <PersonCommentWindowForm postId={post._id} />}
                 <div className="blockquote-footer bottomcorner" >{fomatted_date}</div>
-                
               </span>
             ) : null}
           </div>
@@ -188,7 +162,6 @@ class PersonPostItem extends React.Component {
   }
 }
 
-
 PersonPostItem.defaultProps = {
   showActions: true
 };
@@ -196,7 +169,7 @@ PersonPostItem.defaultProps = {
 PersonPostItem.propTypes = {
   deletePersonalPost: PropTypes.func.isRequired,
   addPersonalLike: PropTypes.func.isRequired,
-  removerPersonalLike: PropTypes.func.isRequired,
+  removePersonalLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
@@ -207,9 +180,7 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-//React.render(<CommentWindow />, document.getElementById('app'))
-
-export default connect(mapStateToProps, {deletePersonalPost, addPersonalLike, removePersonalLike})(
+export default connect(mapStateToProps, { deletePersonalPost, addPersonalLike, removePersonalLike })(
   PersonPostItem
 );
 

@@ -62,7 +62,6 @@ class EditGroup extends Component {
       group.youtube = !isEmpty(group.social.youtube) ? group.social.youtube : '';
       group.instagram = !isEmpty(group.social.instagram) ? group.social.instagram : '';
 
-
       // Set component fields state
       this.setState({
         handle: group.handle,
@@ -81,7 +80,6 @@ class EditGroup extends Component {
         youtube: group.youtube,
         instagram: group.instagram
       });
-
     }
   }
 
@@ -105,7 +103,6 @@ class EditGroup extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     };
-
     this.props.editGroup(groupData, this.props.history);
   }
 
@@ -145,7 +142,6 @@ class EditGroup extends Component {
             onChange={this.onChange}
             error={errors.youtube}
           />
-
           <InputGroup
             placeholder="Instagram Page URL"
             name="instagram"
@@ -169,7 +165,7 @@ class EditGroup extends Component {
     ];
 
     const CountryOptions = [
-      { label: '* Select', value: 0},
+      { label: '* Select', value: 0 },
       { label: 'Afghanistan', value: 'AF' },
       { label: 'Åland Islands', value: 'AX' },
       { label: 'Albania', value: 'AL' },
