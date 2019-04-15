@@ -14,7 +14,7 @@ class Trip extends Component {
       <li key={trp._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4>{trp.name}</h4>
         <p>
-          <a>Date: <Moment format="MM/YY">{trp.date}</Moment> </a>
+          <a target="_blank">Date: <Moment format="MM/YY">{trp.date}</Moment> </a>
         </p>
         <p>
           {trp.location === '' ? null : (

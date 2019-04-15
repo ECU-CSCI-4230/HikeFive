@@ -143,7 +143,7 @@ class PersonPostItem extends React.Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
-                <button type="button" type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button>
+                <button type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button>
                 <button
                   onClick={this.onCommentsClick.bind(this, post._id)}
                   type="button"

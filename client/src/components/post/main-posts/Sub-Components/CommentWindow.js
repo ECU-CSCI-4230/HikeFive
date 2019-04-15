@@ -32,14 +32,14 @@ class CommentWindow extends Component {
           <CommentItem key={comment._id} comment={comment} postId={postId} />
         )}
         <p>
-          <a className="btn btn-light mr-1" onClick={this.showMore} >
+          <button className="btn btn-light mr-1" onClick={this.showMore} >
             {this.state.expanded ? (
               <span>Show less</span>
             ) : (
                 <span>Show more</span>
               )
             }
-          </a>
+          </button>
         </p>
       </div>);
   }

@@ -166,12 +166,6 @@ img {
   border-image-slice: 1;
 }
 
-/* this is for the date that has an event */
-.calendar .body .event {
-  border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #1a8fff 0%, #e54e16 40%);
-  border-image-slice: 1;
-}
 
 .calendar .body .row {
   border-bottom: 1px solid var(--border-color);

@@ -25,7 +25,7 @@ class Trips extends Component {
 
     let TripsContent;
 
-    if (group && profile === null || loading) {
+    if ((group && profile === null) || loading) {
       TripsContent = <Spinner />;
     }
     else {

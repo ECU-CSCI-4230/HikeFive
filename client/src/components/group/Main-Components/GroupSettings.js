@@ -24,7 +24,7 @@ class Settings extends Component {
 
     let settingsContent;
 
-    if (group && profile === null || loading) {
+    if ((group && profile === null) || loading) {
       settingsContent = <Spinner />;
     } else {
       if (group !== null) {

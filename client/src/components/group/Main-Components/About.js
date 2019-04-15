@@ -26,7 +26,7 @@ class About extends Component {
 
     let groupContent;
 
-    if (group && profile === null || loading) {
+    if ((group && profile === null) || loading) {
       groupContent = <Spinner />;
     } else {
       if (group !== null) {

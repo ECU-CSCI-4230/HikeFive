@@ -50,14 +50,14 @@ class Wall extends Component {
         let groupSetting;
         let joinMem;
 
-        if (group.ownerid == currentuserId) { hideornot = true }
+        if (group.ownerid === currentuserId) { hideornot = true }
 
         const arrayLength = group.teammember.length;
 
         for (var i = 0; i < arrayLength; i++) {
-          if (group.teammember[i].ids == currentuserId) { hideornot = true }
+          if (group.teammember[i].ids === currentuserId) { hideornot = true }
         }
-        if (hideornot == false) {
+        if (hideornot === false) {
           joinMem = <button className="btn btn-dark" onClick={() => this.joinGroup(addMemberData)}> Join Group </button>
         }
         else {

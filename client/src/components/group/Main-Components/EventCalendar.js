@@ -25,7 +25,7 @@ class EventCalendar extends Component {
 
     let CalendarContent;
 
-    if (group && profile === null || loading) {
+    if ((group && profile === null) || loading) {
       CalendarContent = <Spinner />;
     } else {
       if (group !== null) {

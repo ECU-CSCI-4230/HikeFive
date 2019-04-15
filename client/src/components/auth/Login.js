@@ -26,7 +26,7 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     const first = localStorage.getItem("first");
     if (nextProps.auth.isAuthenticated) {
-      if (first == "false") {
+      if (first === "false") {
         this.props.history.push({
           pathname: '/create-profile',
           state: { email: this.state.email }
