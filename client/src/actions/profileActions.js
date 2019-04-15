@@ -97,7 +97,7 @@ export const searchProfiles = query => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(history.push('/dashboard'))
+    .then(history.push('/feed'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -110,7 +110,7 @@ export const createProfile = (profileData, history) => dispatch => {
 export const addTrip = (tripData, history) => dispatch => {
   axios
     .post('/api/profile/trips', tripData)
-    .then(history.push('/EditTrip'))
+    .then(history.push('/edit-trips'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

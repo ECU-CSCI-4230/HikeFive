@@ -177,9 +177,6 @@ export const searchGroups = query => dispatch => {
     );
 };
 
-
-
-
 // matchGCombo - Travel, Camp, and Climb
 export const matchGCombo = matchData => dispatch => {
   dispatch(setGroupLoading());

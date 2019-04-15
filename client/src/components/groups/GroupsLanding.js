@@ -14,7 +14,7 @@ class Landing extends Component {
     onSearchClick = () => {
         var searchString = document.getElementById("query2").value;
         if (searchString !== '') {
-            this.props.history.push(`/searchGroups/${searchString}`);
+            this.props.history.push(`/search-groups/${searchString}`);
         }
     }
 

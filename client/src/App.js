@@ -21,45 +21,43 @@ import NotFound from './components/not-found/NotFound';
 //====================================Private Routes=============================================//
 
 //User and Profile Components
-import myProfile from './components/profile/myProfile';
-import About from './components/profile/About';
-import Trips from './components/profile/Trips';
-import Wall from './components/profile/Wall';
-
-import AddTrip from './components/add-credentials/AddTrip';
-import EditTrip from './components/dashboard/EditTrip';
-import Trip from './components/dashboard/Trip';
-import Dashboard from './components/dashboard/Dashboard';
-import CreateProfile from './components/create-profile/CreateProfile';
-import EditProfile from './components/edit-profile/EditProfile';
-import Forgot from './components/dashboard/Forgot';
+import UserProfile from './components/profile/Main-Components/UserProfile';
+import About from './components/profile/Main-Components/About';
+import Trips from './components/profile/Main-Components/Trips';
+import Wall from './components/profile/Main-Components/Wall';
+import CreateProfile from './components/profile/CreateProfile';
+import EditProfile from './components/profile/EditProfile';
+import Settings from './components/user-settings/Settings';
+import ChangePassword from './components/user-settings/ChangePassword';
+import AddTrip from './components/user-settings/AddTrip';
+import EditTrips from './components/user-settings/EditTrips';
 
 //Group Components
-import GroupWall from './components/group/Wall';
-import GroupAbout from './components/group/About';
-import GroupSettings from './components/group/GroupSettings';
-import EventCalendar from './components/group/EventCalendar';
-import GroupTrips from './components/group/Trips';
-import CreateGroup from './components/create-group/CreateGroup';
+import GroupAbout from './components/group/Main-Components/About';
+import GroupMembers from './components/group/Main-Components/Members';
+import GroupSettings from './components/group/Main-Components/GroupSettings';
+import GroupTrips from './components/group/Main-Components/Trips';
+import GroupWall from './components/group/Main-Components/Wall';
+import EventCalendar from './components/group/Main-Components/EventCalendar';
+import CreateGroup from './components/group/CreateGroup';
 import EditGroup from './components/group/EditGroup';
-import EditTrips from './components/group/Edit-Trips';
-import EditEvents from './components/group/Edit-Events';
-import AddGroupTrip from './components/group/AddTrip.js';
-import AddGroupEvent from './components/group/AddEvent.js';
-import GroupMembers from './components/group/Members.js';
+import EditGroupTrips from './components/group/Settings-Components/Edit-Trips';
+import EditEvents from './components/group/Settings-Components/Edit-Events';
+import AddGroupTrip from './components/group/Settings-Components/AddTrip';
+import AddGroupEvent from './components/group/Settings-Components/AddEvent';
 
 //Groups Components
 import GroupsLanding from './components/groups/GroupsLanding';
 import UserGroups from './components/groups/UserGroups';
 
 //Post components
-import Posts from './components/posts/Posts';
-import Post from './components/post/Post';
-import personPost from './components/post/PersonPost';
-import personfeed from './components/posts/PersonPosts';
+import Posts from './components/post/main-posts/Posts';
+import Post from './components/post/main-posts/Post';
+import PersonPost from './components/post/user-posts/PersonPost';
+import Personfeed from './components/post/user-posts/PersonPosts';
 
 //Search Components
-import SearchP from './components/search/searchP';
+import Search from './components/search/search';
 import SearchGroups from './components/search/searchGroups';
 
 //Matchmaking Components
@@ -106,45 +104,21 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
 
               {/**************Private Routes************/}
-
-
-
-
-
-
-
-
-
-
+              {/* User and Profile Routes */}
               <Switch>
-                <PrivateRoute exact path="/personfeed/:handle" component={personfeed} />
+                <PrivateRoute exact path="/profile" component={UserProfile} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/edit-group/:handle" component={EditGroup} />
+                <PrivateRoute exact path="/about/:handle" component={About} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/post/:handle/:id" component={personPost} />
+                <PrivateRoute exact path="/trips/:handle" component={Trips} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/groups-landing" component={GroupsLanding} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/mygroups/:id" component={UserGroups} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/searchP/:searchString" component={SearchP} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/searchGroups/:searchString" component={SearchGroups} />
+                <PrivateRoute exact path="/wall/:handle" component={Wall} />
               </Switch>
 
               <Switch>
@@ -152,17 +126,27 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/create-group" component={CreateGroup} />
+                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/my-profile" component={myProfile} />
+                <PrivateRoute exact path="/user-settings" component={Settings} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/about/:handle" component={About} />
+                <PrivateRoute exact path="/change-password" component={ChangePassword} />
               </Switch>
 
+              <Switch>
+                <PrivateRoute exact path="/edit-trips" component={EditTrips} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/add-trip" component={AddTrip} />
+              </Switch>
+
+
+              {/* Group Routes */}
               <Switch>
                 <PrivateRoute exact path="/groupabout/:handle" component={GroupAbout} />
               </Switch>
@@ -176,15 +160,7 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/trips/:handle" component={Trips} />
-              </Switch>
-
-              <Switch>
                 <PrivateRoute exact path="/grouptrips/:handle" component={GroupTrips} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/wall/:handle" component={Wall} />
               </Switch>
 
               <Switch>
@@ -196,19 +172,19 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/edit-trips/:handle" component={EditTrips} />
+                <PrivateRoute exact path="/create-group" component={CreateGroup} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/edit-group/:handle" component={EditGroup} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/edit-trips/:handle" component={EditGroupTrips} />
               </Switch>
 
               <Switch>
                 <PrivateRoute exact path="/edit-events/:handle" component={EditEvents} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-              </Switch>
-
-              <Switch>
-                <PrivateRoute exact path="/add-trip" component={AddTrip} />
               </Switch>
 
               <Switch>
@@ -219,6 +195,18 @@ class App extends Component {
                 <PrivateRoute exact path="/addEvent/:handle" component={AddGroupEvent} />
               </Switch>
 
+
+              {/* Groups Routes */}
+              <Switch>
+                <PrivateRoute exact path="/groups-landing" component={GroupsLanding} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/mygroups/:id" component={UserGroups} />
+              </Switch>
+
+
+              {/* Post Routes */}
               <Switch>
                 <PrivateRoute exact path="/feed" component={Posts} />
               </Switch>
@@ -228,18 +216,25 @@ class App extends Component {
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/EditTrip" component={EditTrip} />
-              </Switch>
-
-
-              <Switch>
-                <PrivateRoute exact path="/Trip" component={Trip} />
+                <PrivateRoute exact path="/post/:handle/:id" component={PersonPost} />
               </Switch>
 
               <Switch>
-                <PrivateRoute exact path="/Forgot" component={Forgot} />
+                <PrivateRoute exact path="/personfeed/:handle" component={Personfeed} />
               </Switch>
 
+
+              {/* Search Routes */}
+              <Switch>
+                <PrivateRoute exact path="/search/:searchString" component={Search} />
+              </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/search-groups/:searchString" component={SearchGroups} />
+              </Switch>
+
+
+              {/* Matchmaking Routes */}
               <Switch>
                 <PrivateRoute exact path="/match" component={MatchForm} />
               </Switch>
@@ -252,6 +247,8 @@ class App extends Component {
                 <PrivateRoute exact path="/matchmaking" component={MatchLanding} />
               </Switch>
 
+
+              {/* Default Route if no other is found */}
               <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />

@@ -14,7 +14,7 @@ class Navbar extends Component {
   }
   onSearchClick = () => {
     var searchString = document.getElementById("query").value;
-    this.props.history.push(`/searchP/${searchString}`);
+    this.props.history.push(`/search/${searchString}`);
   }
 
   render() {
@@ -45,12 +45,12 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link mt-1 mb-1" to="/dashboard">
+          <Link className="nav-link mt-1 mb-1" to="/user-settings">
             Settings
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link mt-1 mb-1" to="/my-profile">
+          <Link className="nav-link mt-1 mb-1" to="/profile">
             Profile
           </Link>
         </li>
