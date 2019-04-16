@@ -49,7 +49,7 @@ class Calendar extends React.Component {
   }
 
   renderCells() {
-    const { currentMonth, selectedDate } = this.state;
+    const { currentMonth } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
@@ -110,9 +110,7 @@ class Calendar extends React.Component {
   };
 
   hasEventOnDay (day) {
-    const events = this.props.group.group.events;
     var eventLength = this.props.group.group.events.length;
-    var boolean = "no";
     for (let i = 0; i < eventLength; i++) {
       const startEvent = format(this.props.group.group.events[i].start, 'MM/DD/YYYY');
       const nowDate = format(day, 'MM/DD/YYYY');
@@ -163,7 +161,6 @@ class Calendar extends React.Component {
         {this.renderDays()}
         {this.renderCells()}
         {eventsContent}
-        {this.hasEventOnDay()}
       </div>
     );
   }
