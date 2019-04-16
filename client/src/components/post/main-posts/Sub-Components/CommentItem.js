@@ -18,15 +18,13 @@ class CommentItem extends Component {
       <div className="card card-body border-light mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a>
               <img
                 style={{ width: '50px' }}
                 className="rounded-circle d-none d-md-block center"
                 src={comment.avatar}
                 alt=""
               />
-            </a>
-            <a className="d-flex justify-content-center">{comment.name}</a>
+            <p className="d-flex justify-content-center">{comment.name}</p>
           </div>
           <div className="col-md-10">
             <p className="lead">{comment.text}</p>

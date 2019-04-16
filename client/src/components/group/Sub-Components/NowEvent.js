@@ -7,7 +7,7 @@ class NowEvent extends Component {
 		const { evt } = this.props;
 
 		return (
-			<li key={evt._id} className="list-group-item text-center border-0 bg-transparent justify-content-center align-items-center flex-column ">
+			<li key={evt._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
 				<h4>{evt.name}</h4>
 				<p>
 					Start: <Moment format="MM/DD/YY">{evt.start}</Moment> 
