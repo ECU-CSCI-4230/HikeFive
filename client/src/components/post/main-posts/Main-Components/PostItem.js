@@ -102,15 +102,13 @@ class PostItem extends React.Component {
       <div className="d-flex card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a >
               <img
                 style={{ width: '75px' }}
                 className="rounded-circle d-none d-md-block center"
                 src={post.avatar}
                 alt=""
               />
-            </a>
-            <a className="d-flex justify-content-center">{post.name}</a>
+            <p className="d-flex justify-content-center">{post.name}</p>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>

@@ -4,6 +4,7 @@ import defaultBackground from '../../../img/profile.jpg';
 
 
 class GroupHeader extends Component {
+
   render() {
     const { group } = this.props;
     const backgroundURL = group.background;
