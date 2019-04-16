@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
+import defaultAvatar from '../../../img/defaultGroupAvatar.jpg';
+
 
 class GroupHeader extends Component {
   render() {
     const { group } = this.props;
     const backgroundURL = group.background;
+
+    var groupAvatar;
+
+    if (typeof group.avatar === 'undefined') {
+      groupAvatar = defaultAvatar;
+      console.log("it works");
+      console.log(groupAvatar);
+    }
+    else {
+      groupAvatar = group.avatar;
+    }
 
     // Reference: The CSS class in App.css 'Wrapper' sets the user's profile background.
     // Reference: The CSS class in App.css 'Group-Wrapper' does the same thing, but for group bg pics.
@@ -23,7 +36,7 @@ class GroupHeader extends Component {
               <div className="text-center col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
-                  src={group.avatar}
+                  src={groupAvatar}
                   alt=""
                 />
               </div>
