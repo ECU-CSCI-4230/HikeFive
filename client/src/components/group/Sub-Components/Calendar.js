@@ -70,7 +70,7 @@ class Calendar extends React.Component {
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart)
                 ? "disabled"
-                : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+                : this.hasEventOnDay(day) ? "selected" : ""
               }`}
             key={day}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
@@ -109,6 +109,25 @@ class Calendar extends React.Component {
     });
   };
 
+  hasEventOnDay (day) {
+    const events = this.props.group.group.events;
+    var eventLength = this.props.group.group.events.length;
+    var boolean = "no";
+    for (let i = 0; i < eventLength; i++) {
+      const startEvent = format(this.props.group.group.events[i].start, 'MM/DD/YYYY');
+      const nowDate = format(day, 'MM/DD/YYYY');
+
+      var result = compareAsc(
+        startEvent,
+        nowDate
+      );
+      if (result === 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   render() {
     const { selectedDate } = this.state;
     var eventLength = this.props.group.group.events.length;
@@ -134,8 +153,9 @@ class Calendar extends React.Component {
     if (eventL > 0) {
       eventsContent = eventArray.map(evt => (<NowEvent evt={evt} />));
     } else {
-      eventsContent = <div className="d-flex list-group-item justify-content-center align-items-center flex-column bg-transparent border-0">There are no events for this date</div>;
+      eventsContent = <div className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">There is no event for this date</div>;
     }
+
 
     return (
       <div className="calendar">
@@ -143,6 +163,7 @@ class Calendar extends React.Component {
         {this.renderDays()}
         {this.renderCells()}
         {eventsContent}
+        {this.hasEventOnDay()}
       </div>
     );
   }
