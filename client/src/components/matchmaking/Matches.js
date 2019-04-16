@@ -105,7 +105,10 @@ class Matches extends Component {
             profileItems = <Spinner />;
         }
         else {
-            if (profiles !== null) {
+            if (profiles === null || loading) {
+                profileItems = <Spinner />;
+            }
+            else if (profiles !== null) {
                 profileItems = profiles.map(profile => (
                     <ProfileItem key={profile._id} profile={profile} />
                 ));

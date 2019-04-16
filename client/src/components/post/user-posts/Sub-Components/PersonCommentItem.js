@@ -6,6 +6,7 @@ import { deletePersonaNEWComment } from '../../../../actions/postActions';
 class PersonCommentItem extends Component {
   onDeleteClick(postId, commentId) {
     this.props.deletePersonaNEWComment(postId, commentId);
+    window.location.reload();
   }
 
   render() {

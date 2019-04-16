@@ -14,14 +14,14 @@ class PersonPost extends Component {
   }
 
   render() {
-    const { post, loading } = this.props.post;
+    const { post } = this.props.post;
     const currenturl = window.location.href;
     const splitUrl = currenturl.split("/");
     const backToFeedUrl = "Wall" + "/" + splitUrl[4];
 
     let postContent;
 
-    if (post === null || loading || Object.keys(post).length === 0) {
+    if (post === null || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
       postContent = (

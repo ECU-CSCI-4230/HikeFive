@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../../../common/TextAreaFieldGroup';
 import { addComment } from '../../../../actions/postActions';
 import { getCurrentProfile } from '../../../../actions/profileActions';
+import { withRouter } from 'react-router-dom';
 
 class CommentWindowForm extends Component {
   constructor(props) {
@@ -31,8 +32,8 @@ class CommentWindowForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
-    const { postId } = this.props;
     const { profile } = this.props.profile;
+    const { postId } = this.props;
 
     const newComment = {
       text: this.state.text,
@@ -42,6 +43,7 @@ class CommentWindowForm extends Component {
 
     this.props.addComment(postId, newComment);
     this.setState({ text: '' });
+    this.props.history.push(`/feed`);
   }
 
   onChange(e) {
@@ -94,4 +96,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addComment, getCurrentProfile })(CommentWindowForm);
+export default connect(mapStateToProps, { addComment, getCurrentProfile })(withRouter(CommentWindowForm));

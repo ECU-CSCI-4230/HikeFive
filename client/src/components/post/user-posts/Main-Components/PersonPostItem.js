@@ -151,7 +151,7 @@ class PersonPostItem extends React.Component {
                   href='#'>Comments
                   </button>
                 {this.state.showReply && commentsContent}
-                {this.state.showReply && <PersonCommentWindowForm postId={post._id} />}
+                {this.state.showReply && <PersonCommentWindowForm postId={post._id} handle={handle} />}
                 <div className="blockquote-footer bottomcorner" >{fomatted_date}</div>
               </span>
             ) : null}

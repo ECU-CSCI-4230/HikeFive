@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../../../common/TextAreaFieldGroup';
 import { addPersonalComment } from '../../../../actions/postActions';
+import { withRouter } from 'react-router-dom';
 
 class PersonCommentWindowForm extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class PersonCommentWindowForm extends Component {
 
     const { user } = this.props.auth;
     const { postId } = this.props;
+    const { handle } = this.props;
     
     const newComment = {
       text: this.state.text,
@@ -36,6 +38,7 @@ class PersonCommentWindowForm extends Component {
 
     this.props.addPersonalComment(postId, newComment);
     this.setState({ text: '' });
+    this.props.history.push(`/post/${handle}/${postId}`);
   }
 
   onChange(e) {
@@ -77,7 +80,8 @@ PersonCommentWindowForm.propTypes = {
   addPersonalComment: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  handle: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -85,4 +89,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPersonalComment })(PersonCommentWindowForm);
+export default connect(mapStateToProps, { addPersonalComment })(withRouter(PersonCommentWindowForm));
