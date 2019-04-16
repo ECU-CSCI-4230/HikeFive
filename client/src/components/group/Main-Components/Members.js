@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom';
 import GroupHeader from '../Sub-Components/GroupHeader';
 import Spinner from '../../common/Spinner';
 import GroupMembers from '../Sub-Components/GroupMembers';
-import { getGroupByHandle } from '../../../actions/groupActions';
+import { addMember, getGroupByHandle } from '../../../actions/groupActions';
 import { getCurrentProfile } from '../../../actions/profileActions';
 
 class Members extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { show: true }
+    this.joinGroup = this.joinGroup.bind(this)
+  }
+
   componentDidMount() {
     this.props.getCurrentProfile();
     this.props.getGroupByHandle(this.props.match.params.handle);
@@ -18,6 +24,12 @@ class Members extends Component {
     if (nextProps.group.group === null && this.props.group.loading) {
       this.props.history.push('/not-found');
     }
+  }
+
+  joinGroup(addMemberData) {
+    const { show } = this.state;
+    this.props.addMember(addMemberData);
+    this.setState({ show: !show })
   }
 
   render() {
@@ -32,8 +44,24 @@ class Members extends Component {
       if (group !== null) {
         const groupownerId = group.ownerid;
         const currentuserId = profile._id;
+        const addMemberData = { userId: currentuserId, groupHandle: group.handle };
+        var hideornot = false;
 
         let groupSetting;
+        let joinMem;
+
+        if (group.ownerid === currentuserId) { hideornot = true }
+        const arrayLength = group.teammember.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          if (group.teammember[i].ids === currentuserId) { hideornot = true }
+        }
+        if (hideornot === false) {
+          joinMem = <button className="btn btn-dark" onClick={() => this.joinGroup(addMemberData)}> Join Group </button>
+        }
+        else {
+          joinMem = null;
+        }
 
         if (groupownerId === currentuserId) {
           groupSetting = (<Link className="nav-item nav-link" to={`/groupsettings/${group.handle}`}>Settings</Link>);
@@ -78,6 +106,7 @@ class Members extends Component {
 
 Members.propTypes = {
   group: PropTypes.object.isRequired,
+  addMember: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   getGroupByHandle: PropTypes.func.isRequired
 };
@@ -87,4 +116,4 @@ const mapStateToProps = state => ({
   group: state.group
 });
 
-export default connect(mapStateToProps, { getGroupByHandle, getCurrentProfile })(Members);
+export default connect(mapStateToProps, { addMember, getGroupByHandle, getCurrentProfile })(Members);

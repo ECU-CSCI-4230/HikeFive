@@ -14,8 +14,11 @@ class Navbar extends Component {
   }
   onSearchClick = () => {
     var searchString = document.getElementById("query").value;
-    this.props.history.push(`/search/${searchString}`);
+    if (searchString !== '') {
+      this.props.history.push(`/search/${searchString}`);
+    }
   }
+
 
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -116,4 +119,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile }) (withRouter(Navbar));
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(withRouter(Navbar));

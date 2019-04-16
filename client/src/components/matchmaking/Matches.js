@@ -7,7 +7,7 @@ import GroupItem from '../groups/GroupItem';
 import { getCurrentProfile } from '../../actions/profileActions';
 import { matchGCombo, matchGTC, matchGTCL, matchGT, matchGCC, matchGC, matchGCL, matchGroups } from '../../actions/groupActions';
 import { matchPCombo, matchPTC, matchPTCL, matchPT, matchPCC, matchPC, matchPCL, matchProfiles } from '../../actions/profileActions';
-
+import isEmpty from '../../validation/is-empty';
 
 class Matches extends Component {
     constructor(props) {
@@ -22,24 +22,20 @@ class Matches extends Component {
         this.props.getCurrentProfile();
     }
 
-    static getDerivedStateFromProps(nextProps) {
-        if (nextProps.profile.profile) {
-            return {
-                country: nextProps.profile.profile.match.country,
-                skillMin: nextProps.profile.profile.match.skillMin,
-                skillMax: nextProps.profile.profile.match.skillMax,
-                travel: nextProps.profile.profile.match.travel,
-                camp: nextProps.profile.profile.match.camp,
-                climber: nextProps.profile.profile.match.climber
-            };
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
         }
-        else return null;
-    }
+        if (nextProps.profile.profile) {
+            const profile = nextProps.profile.profile;
+            if (profile.match) {
+                profile.match.country = !isEmpty(profile.match.country) ? profile.match.country : '';
+                profile.match.skillMin = !isEmpty(profile.match.skillMin) ? profile.match.skillMin : '';
+                profile.match.skillMax = !isEmpty(profile.match.skillMax) ? profile.match.skillMax : '';
+                profile.match.travel = !isEmpty(profile.match.travel) ? profile.match.travel : '';
+                profile.match.camp = !isEmpty(profile.match.camp) ? profile.match.camp : '';
+                profile.match.climber = !isEmpty(profile.match.climber) ? profile.match.climber : '';
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.profile.profile) {
-            if (prevProps.profile.profile !== this.props.profile.profile) {
-                const profile = prevProps.profile.profile;
                 this.setState({
                     country: profile.match.country,
                     skillMin: profile.match.skillMin,

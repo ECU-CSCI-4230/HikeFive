@@ -46,7 +46,7 @@ class Search extends Component {
                 ));
             }
             else {
-                searchItems = <h4>No Groups Found...</h4>;
+                searchItems = <h4 className="text-center">No Groups Found...</h4>;
             }
         }
 
