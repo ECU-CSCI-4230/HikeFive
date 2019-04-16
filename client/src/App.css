@@ -217,16 +217,3 @@ img {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
-
-.popup_inner {
-  position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: 25%;
-  margin: auto;
-  background: #fff;
-  border-radius: 5px;
-  transition: all 5s ease-in-out;
-  overflow: scroll;
-}

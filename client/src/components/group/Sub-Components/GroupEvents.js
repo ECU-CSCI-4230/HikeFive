@@ -14,15 +14,15 @@ class GroupEvents extends Component {
       <li key={evt._id} className="d-flex list-group-item justify-content-center align-items-center flex-column bg-light">
         <h4>{evt.name}</h4>
         <p>
-          <a>Start: <Moment format="MM/DD/YY">{evt.start}</Moment> </a>
+          Start: <Moment format="MM/DD/YY">{evt.start}</Moment> 
         </p>
         <p>
-          <a>End: <Moment format="MM/DD/YY">{evt.end}</Moment> </a>
+          End: <Moment format="MM/DD/YY">{evt.end}</Moment> 
         </p>
         <p>
           {evt.location === '' ? null : (
             <span>
-              <a>Location: {evt.location} </a>
+              Location: {evt.location} 
             </span>
           )}
         </p>

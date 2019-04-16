@@ -119,7 +119,7 @@ class PersonPostItem extends React.Component {
             <p className="lead">{post.text}</p>
             {showActions ? (
               <span>
-                <a>{post.user === auth.user.id ? (
+                {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
                     type="button"
@@ -128,7 +128,7 @@ class PersonPostItem extends React.Component {
                     Delete
                   </button>
                 ) : null} {" "}
-                </a>
+                
                 <Link to={`/post/${handle}/${post._id}`} className="btn btn-sm btn-light mr-1">
                   View
                 </Link>
