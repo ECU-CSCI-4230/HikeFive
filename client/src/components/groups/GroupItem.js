@@ -11,8 +11,6 @@ class GroupItem extends Component {
 
     if (typeof group.avatar === 'undefined') {
       groupAvatar = defaultAvatar;
-      console.log("it works");
-      console.log(groupAvatar);
     }
     else {
       groupAvatar = group.avatar;

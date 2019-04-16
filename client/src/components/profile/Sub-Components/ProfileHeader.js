@@ -31,7 +31,7 @@ class ProfileHeader extends Component {
     }
 
     var profileAvatar;
-
+    console.log(profile.avatar);
     if (typeof profile.avatar === 'undefined') {
       profileAvatar = defaultAvatar;
     }
