@@ -63,7 +63,7 @@ class MatchForm extends Component {
 
     // Select options for status
     const MinSkilloptions = [
-      { label: '* Minimum Skill Level', value: 0 },
+      { label: '* Minimum', value: 0 },
       { label: '1', value: 1 },
       { label: '2', value: 2 },
       { label: '3', value: 3 },
@@ -73,7 +73,7 @@ class MatchForm extends Component {
 
     // Select options for status
     const MaxSkilloptions = [
-      { label: '* Maximum Skill Level', value: 0 },
+      { label: '* Maximum', value: 0 },
       { label: '1', value: 1 },
       { label: '2', value: 2 },
       { label: '3', value: 3 },
@@ -92,7 +92,8 @@ class MatchForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Matchmaking Form</h1>
+              <h1 className="display-4 text-center d-none d-sm-block">Matchmaking Form</h1>
+              <h1 className="font-weight-light text-center d-block d-sm-none">Matchmaking Form</h1>
               <h5 className="d-block pb-3 text-center">* denotes a required field</h5>
 
               <form onSubmit={this.onSubmit}>
@@ -157,7 +158,7 @@ class MatchForm extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-secondary btn-block mt-4"
+                  className="btn btn-dark btn-block mt-4"
                 />
               </form>
             </div>

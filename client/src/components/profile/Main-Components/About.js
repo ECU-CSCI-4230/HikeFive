@@ -56,6 +56,7 @@ class About extends Component {
             <div className="col-md-12">{AboutContent}</div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

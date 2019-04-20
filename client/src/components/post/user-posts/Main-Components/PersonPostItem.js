@@ -17,7 +17,6 @@ class PersonPostItem extends React.Component {
     }
     this.updateLikes = this.updateLikes.bind(this);
     this.findUserLike = this.findUserLike.bind(this);
-    this.refreshPage = this.refreshPage.bind(this);
   }
 
   updateLikes(id) {
@@ -84,15 +83,12 @@ class PersonPostItem extends React.Component {
     }
   }
 
-  refreshPage() {
-    window.location.reload();
-  }
-
   render() {
     const { post, auth, showActions } = this.props;
     const handle = this.props.handle;
     var moment = require('moment');
-    var fomatted_date = moment(post.date).format('LLL');
+    var formatted_date = moment(post.date).format('LLL');
+    var short_date = moment(post.date).format('LT');
 
     let commentsContent;
 
@@ -107,18 +103,20 @@ class PersonPostItem extends React.Component {
         <div className="row">
           <div className="col-md-2">
 
-              <img
-                style={{ width: '75px' }}
-                className="rounded-circle d-none d-md-block center"
-                src={post.avatar}
-                alt=""
-              />
+            <img
+              style={{ width: '75px' }}
+              className="rounded-circle d-none d-md-block center"
+              src={post.avatar}
+              alt=""
+            />
             <p className="d-flex justify-content-center">{post.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{post.text}</p>
+            <p className="lead d-none d-sm-block">{post.text}</p>
+            <p className="lead d-block d-sm-none text-center">{post.text}</p>
             {showActions ? (
-              <span>
+              <div>
+              <span className="row">
                 {post.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, post._id)}
@@ -128,7 +126,7 @@ class PersonPostItem extends React.Component {
                     Delete
                   </button>
                 ) : null} {" "}
-                
+
                 <Link to={`/post/${handle}/${post._id}`} className="btn btn-sm btn-light mr-1">
                   View
                 </Link>
@@ -143,17 +141,18 @@ class PersonPostItem extends React.Component {
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
-                <button type="button" onClick={this.refreshPage.bind(this)} className="btn btn-sm btn-light mr-1"> <span>Refresh</span> </button>
                 <button
                   onClick={this.onCommentsClick.bind(this, post._id)}
                   type="button"
-                  className="btn btn-sm btn-light mr-1"
-                  href='#'>Comments
+                  className="btn btn-sm btn-light mr-1 d-none d-sm-block">
+                  Comments
                   </button>
+                  </span>
                 {this.state.showReply && commentsContent}
                 {this.state.showReply && <PersonCommentWindowForm postId={post._id} handle={handle} />}
-                <div className="blockquote-footer bottomcorner" >{fomatted_date}</div>
-              </span>
+                <div className="blockquote-footer bottomcorner d-none d-sm-block" >{formatted_date}</div>
+                <div className="blockquote-footer bottomcorner d-block d-sm-none" >{short_date}</div>
+              </div>
             ) : null}
           </div>
         </div>

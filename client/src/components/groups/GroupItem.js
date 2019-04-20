@@ -19,10 +19,10 @@ class GroupItem extends Component {
     return (
       <div className="card card-body bg-light mb-3">
         <div className="row">
-          <div className="col-2">
+          <div className="col-2 d-none d-sm-block">
             <img src={groupAvatar} alt="" className="rounded-circle" />
           </div>
-          <div className="col-lg-6 col-md-4 col-8">
+          <div className="col">
             <h3>{group.name}</h3>
             <Link to={`/groupwall/${group.handle}`} className="btn btn-dark">
               View Group

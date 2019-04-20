@@ -39,6 +39,7 @@ class Groups extends Component {
                         </div>
                     </div>
                 </div>
+                <br />
             </div>
         );
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PersonPostItem from './Main-Components/PersonPostItem';
 import PersonCommentForm from './Main-Components/PersonCommentForm';
@@ -15,9 +14,6 @@ class PersonPost extends Component {
 
   render() {
     const { post } = this.props.post;
-    const currenturl = window.location.href;
-    const splitUrl = currenturl.split("/");
-    const backToFeedUrl = "Wall" + "/" + splitUrl[4];
 
     let postContent;
 
@@ -44,9 +40,6 @@ class PersonPost extends Component {
                 data-numposts="10"
                 data-order-by="reverse_time">
               </div>
-              <Link to={`/${backToFeedUrl}`} className="btn btn-light mb-3">
-                Back To Wall
-              </Link>
               {postContent}
             </div>
           </div>

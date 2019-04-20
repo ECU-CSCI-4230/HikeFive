@@ -42,7 +42,7 @@ class Post extends Component {
                 data-numposts="10"
                 data-order-by="reverse_time">
               </div>
-              <Link to="/feed" className="btn btn-light mb-3">
+              <Link to="/feed" className="btn btn-dark mb-3">
                 Back To Feed
               </Link>
               {postContent}

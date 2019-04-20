@@ -18,6 +18,13 @@ class Landing extends Component {
         }
     }
 
+    onSearchClick2 = () => {
+        var searchString = document.getElementById("query3").value;
+        if (searchString !== '') {
+            this.props.history.push(`/search-groups/${searchString}`);
+        }
+    }
+
     render() {
         const { profile, loading } = this.props.profile;
         let landingContent;
@@ -27,36 +34,87 @@ class Landing extends Component {
         } else {
             landingContent = (
                 <div>
-                    <div className="btn-group-vertical d-flex flex-wrap justify-content-center align-items-center d-none d-md-none" role="group">
-                        <Link to="/create-group" className="btn btn-light">
-                            <i className=" text-dark mr-1" /> Create A Group
-                        </Link>
+                    <div className="d-block d-sm-none" role="group">
                         <br />
-                        <Link to="#" className="btn btn-light">
-                            <i className=" text-dark mr-1" /> Search Groups
-                        </Link>
-                        <br />
-                        <Link to="/mygroups/" className="btn btn-light">
-                            <i className=" text-dark mr-1" /> My Groups
-                        </Link>
+                        <div className="card-deck d-flex justify-content-center mb-2">
+                            <div className="card bg-light text-center" >
+                                <div className="card-body">
+                                    <h5 className="text-center">Create A New Group</h5>
+                                    <Link to="/create-group" className="btn btn-dark">Create</Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-deck d-flex justify-content-center mb-2">
+                            <div className="card bg-light text-center" >
+                                <div className="card-body">
+                                    <h5 className="text-center">Search For A Group</h5>
+                                    <form className="form justify-content-center md-form mr-auto ">
+                                        <input className="form-control mb-2" type="search" placeholder="Search" aria-label="Search" id="query3" />
+                                        <button className="btn btn-dark btn-rounded" type="submit" onClick={this.onSearchClick2.bind()}>Search</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-deck d-flex justify-content-center mb-2">
+                            <div className="card bg-light text-center" >
+                                <div className="card-body">
+                                    <h5 className="text-center">View Your Groups</h5>
+                                    <Link to={`/mygroups/${profile._id}`} className="btn btn-dark">View</Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="d-none d-md-block " role="group">
+
+                    <div className="d-none d-sm-block d-lg-none" role="group">
+                        <br />
+                        <div className="card-deck d-flex justify-content-center mb-4">
+                            <div className="card bg-light text-center" >
+                                <div className="card-body">
+                                    <h5 className="text-center">Create A New Group</h5>
+                                    <Link to="/create-group" className="btn btn-dark">Create</Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-deck d-flex justify-content-center mb-4">
+                            <div className="card bg-light text-center" >
+                                <div className="card-body">
+                                    <h5 className="text-center">Search For A Group</h5>
+                                    <form className="form justify-content-center md-form mr-auto ">
+                                        <input className="form-control mb-2" type="search" placeholder="Search" aria-label="Search" id="query3" />
+                                        <button className="btn btn-dark btn-rounded" type="submit" onClick={this.onSearchClick2.bind()}>Search</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card-deck d-flex justify-content-center mb-4">
+                            <div className="card bg-light text-center" >
+                                <div className="card-body">
+                                    <h5 className="text-center">View Your Groups</h5>
+                                    <Link to={`/mygroups/${profile._id}`} className="btn btn-dark">View</Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="d-none d-lg-block " role="group">
                         <br />
                         <div className="card-deck d-flex justify-content-center">
                             <div className="card bg-light text-center" >
                                 <div className="card-body">
                                     <h5 className="card-title">Create A Group</h5>
                                     <p className="card-text">Use this to create a new group.</p>
-                                    <Link to="/create-group" className="btn btn-secondary">Create</Link>
+                                    <Link to="/create-group" className="btn btn-dark">Create</Link>
                                 </div>
                             </div>
                             <div className="card bg-light text-center" >
                                 <div className="card-body">
                                     <h5 className="card-title">Search Groups</h5>
                                     <p className="card-text">Search all existing groups.</p>
-                                    <form className="form-inline md-form mr-auto ">
-                                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query2" />
-                                        <button className="btn btn-secondary btn-rounded  my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
+                                    <form className="form">
+                                        <input className="form-control mb-2" type="search" placeholder="Search" aria-label="Search" id="query2" />
+                                        <button className="btn btn-dark btn-rounded" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
                                     </form>
                                 </div>
                             </div>
@@ -64,7 +122,7 @@ class Landing extends Component {
                                 <div className="card-body">
                                     <h5 className="card-title">My Groups</h5>
                                     <p className="card-text">See all the groups you are a member of</p>
-                                    <Link to={`/mygroups/${profile._id}`} className="btn btn-secondary">View</Link>
+                                    <Link to={`/mygroups/${profile._id}`} className="btn btn-dark">View</Link>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +141,7 @@ class Landing extends Component {
                         </div>
                     </div>
                 </div>
+                <br />
             </div>
         );
     }

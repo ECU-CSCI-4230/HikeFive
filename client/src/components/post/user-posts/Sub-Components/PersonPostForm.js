@@ -60,9 +60,14 @@ class PersonPostForm extends Component {
                   error={errors.text}
                 />
               </div>
-              <button type="submit" className="btn btn-dark">
+              <button type="submit" className="btn btn-dark d-none d-sm-block">
                 Post
               </button>
+              <div className="d-block d-sm-none justify-content-center text-center">
+                <button type="submit" className="btn btn-dark">
+                  Post
+              </button>
+              </div>
             </form>
           </div>
         </div>

@@ -432,7 +432,7 @@ class EditProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/user-settings`} className="btn btn-secondary">
+              <Link to={`/user-settings`} className="btn btn-dark">
                 Go Back
             </Link>
               <h1 className="display-4 text-center">Edit Profile</h1>
@@ -528,7 +528,7 @@ class EditProfile extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-secondary btn-block mt-4"
+                  className="btn btn-dark btn-block mt-4"
                 />
               </form>
             </div>

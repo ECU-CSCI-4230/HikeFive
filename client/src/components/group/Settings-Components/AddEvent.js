@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import TextFieldGroup from '../../common/TextFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -21,7 +21,7 @@ class AddEvent extends Component {
   }
 
   componentDidMount() {
-    this.props.getGroupByHandle(this.props.match.params.handle);
+      this.props.getGroupByHandle(this.props.match.params.handle);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,16 +55,12 @@ class AddEvent extends Component {
   }
 
   render() {
-    const { group } = this.props.group;
-
     return (
       <div className="add-event">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/edit-events/${group.handle}`} className="btn btn-secondary">
-                Back
-              </Link>
+
               <h1 className="display-4 text-center">Add An Event</h1>
               <p className="lead text-center">
                 *All fields are required*
@@ -103,12 +99,13 @@ class AddEvent extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-secondary btn-block mt-4"
+                  className="btn btn-dark btn-block mt-4"
                 />
               </form>
             </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

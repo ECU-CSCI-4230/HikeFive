@@ -7,30 +7,38 @@ class MatchLanding extends Component {
         let landingContent;
         landingContent = (
             <div>
-                <div className="btn-group-vertical d-flex flex-wrap justify-content-center align-items-center d-none d-md-none" role="group">
-                    <Link to="/match" className="btn btn-light">
-                        <i className=" text-dark mr-1" /> Find New Matches
-                    </Link>
+                <div className="d-block d-sm-none" role="group">
                     <br />
-                    <Link to="/matches" className="btn btn-light">
-                        <i className=" text-dark mr-1" /> Review Matches
-                    </Link>
+                    <div className="card-deck d-flex justify-content-center">
+                        <div className="card bg-light text-center" >
+                            <div className="card-body">
+                                <h5 className="text-center">Find New Matches</h5>
+                                <Link to="/match" className="btn btn-dark">Continue</Link>
+                            </div>
+                        </div>
+                        <div className="card bg-light text-center" >
+                            <div className="card-body">
+                                <h5 className="text-center">Review Matches</h5>
+                                <Link to="/matches" className="btn btn-dark">Review</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="d-none d-md-block " role="group">
+                <div className="d-none d-sm-block " role="group">
                     <br />
                     <div className="card-deck d-flex justify-content-center">
                         <div className="card bg-light text-center" >
                             <div className="card-body">
                                 <h5 className="card-title">Find New Matches</h5>
                                 <p className="card-text">This will take you to the Match-Making form.</p>
-                                <Link to="/match" className="btn btn-secondary">Continue</Link>
+                                <Link to="/match" className="btn btn-dark">Continue</Link>
                             </div>
                         </div>
                         <div className="card bg-light text-center" >
                             <div className="card-body">
                                 <h5 className="card-title">Review Matches</h5>
                                 <p className="card-text">This will show the matches from your last search</p>
-                                <Link to="/matches" className="btn btn-secondary">View</Link>
+                                <Link to="/matches" className="btn btn-dark">View</Link>
                             </div>
                         </div>
                     </div>

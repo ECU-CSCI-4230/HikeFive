@@ -92,6 +92,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

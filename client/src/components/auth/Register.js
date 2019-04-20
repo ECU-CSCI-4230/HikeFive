@@ -13,6 +13,7 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
+      create_profile: false,
       errors: {}
     };
 
@@ -44,7 +45,7 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2,
-      created: false
+      create_profile: false
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -95,11 +96,12 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-                <input type="submit" className="btn btn-secondary btn-block mt-4" />
+                <input type="submit" className="btn btn-dark btn-block mt-4" />
               </form>
             </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

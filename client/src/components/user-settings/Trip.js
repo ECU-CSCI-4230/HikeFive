@@ -55,7 +55,7 @@ class Trip extends Component {
       <div className="row">
         <div className="col-md-12">
           <div className="card card-body bg-light mb-3">
-            <h3 className="text-center text-secondary">Trips/Hikes</h3>
+            <h3 className="text-center">Trips/Hikes</h3>
             {tripItems.length > 0 ? (
               <ul className="list-group list-group-flush">{tripItems}</ul>
             ) : (

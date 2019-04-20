@@ -31,7 +31,7 @@ class GroupHeader extends Component {
         backgroundPosition: 'center',
         zIndex: '-1',
         position: 'relative',
-        height: 400
+        height: 250
       };
     } else {
       // Reference: The CSS class in App.css 'Wrapper' sets the user's profile background.
@@ -41,6 +41,7 @@ class GroupHeader extends Component {
         backgroundSize: 'cover',
         zIndex: '-1',
         position: 'relative',
+        height: 250
       };
     }
 
@@ -49,16 +50,17 @@ class GroupHeader extends Component {
         <div className="col-md-12">
           <div className="card card-body mb-3" style={groupBG}>
             <div className="row">
-              <div className="text-center col-4 col-md-3 m-auto">
+              <div className="text-center col m-auto">
                 <img
-                  className="rounded-circle"
+                  className="bgSize rounded-circle"
                   src={groupAvatar}
                   alt=""
                 />
               </div>
             </div>
             <div className="text-center text-white">
-              <h1 className="display-4 text-center">{group.name}</h1>
+            <h2 className="text-center font-weight-light d-block d-sm-none">{group.name}</h2>
+              <h1 className="display-4 text-center d-none d-sm-block">{group.name}</h1>
             </div>
           </div>
         </div>

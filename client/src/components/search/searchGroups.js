@@ -14,8 +14,9 @@ class Search extends Component {
 
     onSearchClick = () => {
         var searchString = document.getElementById("query3").value;
+        console.log(searchString);
         if (searchString !== '') {
-            this.props.history.push(`/searchGroups/${searchString}`);
+            this.props.history.push(`/search-groups/${searchString}`);
         }
     }
 
@@ -28,8 +29,8 @@ class Search extends Component {
         searchForm = (
             <div >
                 <form className="form-inline md-form mr-auto justify-content-center ">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query3" />
-                    <button className="btn btn-elegant btn-secondary  my-0 d-none d-lg-block" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
+                    <input className="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" id="query3" />
+                    <button className="btn btn-elegant btn-dark mb-2" type="submit" onClick={this.onSearchClick.bind()}>Search</button>
                 </form>
                 <br />
             </div>
@@ -64,6 +65,7 @@ class Search extends Component {
                         </div>
                     </div>
                 </div>
+                <br />
             </div>
         );
     }

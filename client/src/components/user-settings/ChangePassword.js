@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
-import { loginUser,getProfileCreted } from '../../actions/authActions';
-import { createProfile, getCurrentProfile } from '../../actions/profileActions';
-
 
 class Forgot extends Component{
 
@@ -77,8 +71,6 @@ class Forgot extends Component{
 }
 
 Forgot.propTypes = {
-	getCurrentProfile: PropTypes.func.isRequired,
-	profile: PropTypes.func.isRequired,
 	errors: PropTypes.func.isRequired,
 };
 

@@ -13,22 +13,24 @@ class PersonCommentItem extends Component {
     const { comment, postId, auth } = this.props;
     var moment = require('moment');
     var formatted_date = moment(comment.date).format('LLL');
+    var short_date = moment(comment.date).format('LT');
 
     return (
       <div className="card card-body border-light mb-3">
         <div className="row">
           <div className="col-md-2">
-              <img
-                className="rounded-circle d-none d-md-block center"
-                style={{ width: '50px' }}
-                src={comment.avatar}
-                alt=""
-              />
+            <img
+              className="rounded-circle d-none d-md-block center"
+              style={{ width: '50px' }}
+              src={comment.avatar}
+              alt=""
+            />
 
             <p className="d-flex justify-content-center">{comment.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{comment.text}</p>
+            <p className="lead d-block d-sm-none text-center">{comment.text}</p>
+            <p className="lead d-none d-sm-block">{comment.text}</p>
             {comment.user === auth.user.id ? (
               <button
                 onClick={this.onDeleteClick.bind(this, postId, comment._id)}
@@ -39,7 +41,8 @@ class PersonCommentItem extends Component {
               </button>
             ) : null}
           </div>
-          <div className="blockquote-footer bottomcorner" >{formatted_date}</div>
+          <div class="blockquote-footer bottomcorner d-none d-sm-block" >{formatted_date}</div>
+          <div class="blockquote-footer bottomcorner d-block d-sm-none" >{short_date}</div>
         </div>
       </div>
     );

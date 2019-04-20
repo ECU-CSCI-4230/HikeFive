@@ -132,16 +132,18 @@ class Matches extends Component {
                             <h1 className="display-4 text-center">Matches</h1>
                             <h4 className="text-center">Click the button below to show potential matches.</h4>
                             <div className="text-center justify-content-center">
-                                <button className="text-center btn btn-dark btn-lg btn-rounded my-2 mb-4" type="submit" onClick={this.getMatches.bind()}>Show Matches</button>
+                                <button className="text-center btn btn-dark btn-lg btn-rounded mb-4" type="submit" onClick={this.getMatches.bind()}>Matches</button>
                             </div>
                             <div className="container align-content-center justify-content-center text-center">
-                                <ul className="nav nav-pills text-center nav-justified justify-content-center" id="searchResults" role="tablist">
+                                <ul className="row nav nav-pills text-center nav-justified justify-content-center" id="searchResults" role="tablist">
                                     <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
                                     <li className="nav-item nav-li active text-center">
-                                        <a className="nav-link text-white tab-color mb-2" id="user-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="true">Matching Users</a>
+                                        <a className="nav-link text-white tab-color mb-2 d-none d-sm-block" id="user-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="true">Matching Users</a>
+                                        <a className="nav-link text-white tab-color mb-2 d-block d-sm-none" id="user-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
                                     </li>
                                     <li className="nav-item nav-li text-center">
-                                        <a className="nav-link text-white tab-color mb-2" id="group-tab" data-toggle="pill" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Matching Groups</a>
+                                        <a className="nav-link text-white tab-color mb-2 d-none d-sm-block" id="group-tab" data-toggle="pill" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Matching Groups</a>
+                                        <a className="nav-link text-white tab-color mb-2 d-block d-sm-none" id="group-tab" data-toggle="pill" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
                                     </li>
                                 </ul>
                             </div>

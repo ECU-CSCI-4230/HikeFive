@@ -99,6 +99,7 @@ class About extends Component {
             <div className="col-md-12">{groupContent}</div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

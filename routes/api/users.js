@@ -112,7 +112,7 @@ router.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        create_profile: req.body.created,
+        create_profile: req.body.create_profile,
         profile_avatar: ''
       });
       bcrypt.genSalt(10, (_err, salt) => {

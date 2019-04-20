@@ -17,7 +17,7 @@ class ProfileHeader extends Component {
         backgroundPosition: 'center',
         zIndex: '-1',
         position: 'relative',
-        height: 300
+        height: 250
       };
     } else {
       // Reference: The CSS class in App.css 'Wrapper' sets the user's profile background.
@@ -27,11 +27,11 @@ class ProfileHeader extends Component {
         backgroundSize: 'cover',
         zIndex: '-1',
         position: 'relative',
+        height: 250
       };
     }
 
     var profileAvatar;
-    console.log(profile.avatar);
     if (typeof profile.avatar === 'undefined') {
       profileAvatar = defaultAvatar;
     }
@@ -53,7 +53,8 @@ class ProfileHeader extends Component {
               </div>
             </div>
             <div className="text-center text-white">
-              <h1 className="display-4 text-center">{profile.user.name}</h1>
+              <h2 className="text-center font-weight-light d-block d-sm-none">{profile.user.name}</h2>
+              <h1 className="display-4 text-center d-none d-sm-block">{profile.user.name}</h1>
             </div>
           </div>
         </div>

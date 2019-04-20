@@ -25,10 +25,10 @@ class EditEvent extends Component {
                     <div>
                         <div className="row">
                             <div className="d-flex justify-content-end col">
-                                <Link to={`/groupsettings/${group.handle}`} className="btn btn-secondary">Go Back</Link>
+                                <Link to={`/groupsettings/${group.handle}`} className="btn btn-dark">Go Back</Link>
                             </div>
                             <div className="d-flex justify-content-start col">
-                                <Link to={`/addEvent/${group.handle}`} className="btn btn-secondary">Add Event</Link>
+                                <Link to={`/addEvent/${group.handle}`} className="btn btn-dark">Add Event</Link>
                             </div>
                         </div>
                         <div className="col-md-12 text-center">
@@ -46,6 +46,7 @@ class EditEvent extends Component {
                         <div className="col-md-12">{EventContent}</div>
                     </div>
                 </div>
+                <br />
             </div>
         );
     }

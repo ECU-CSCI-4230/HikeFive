@@ -24,10 +24,10 @@ class EditTrip extends Component {
                     <div>
                         <div className="row">
                             <div className="d-flex justify-content-end col">
-                                <Link to={`/groupsettings/${group.handle}`} className="btn btn-secondary">Go Back</Link>
+                                <Link to={`/groupsettings/${group.handle}`} className="btn btn-dark">Go Back</Link>
                             </div>
                             <div className="d-flex justify-content-start col">
-                                <Link to={`/addTrip/${group.handle}`} className="btn btn-secondary">Add Trip</Link>
+                                <Link to={`/addTrip/${group.handle}`} className="btn btn-dark">Add Trip</Link>
                             </div>
                         </div>
                         <div className="col-md-12 text-center">
@@ -45,6 +45,7 @@ class EditTrip extends Component {
                         <div className="col-md-12">{TripContent}</div>
                     </div>
                 </div>
+                <br />
             </div>
         );
     }

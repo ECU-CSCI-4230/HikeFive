@@ -59,6 +59,7 @@ class Trips extends Component {
             <div className="col-md-12">{TripsContent}</div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

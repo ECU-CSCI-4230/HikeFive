@@ -67,6 +67,7 @@ class UserProfile extends Component {
             <div className="col-md-12">{profileContent}</div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

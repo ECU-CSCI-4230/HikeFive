@@ -54,7 +54,7 @@ class PostForm extends Component {
       <div className="post-form mb-3">
         <div className="card card-info">
           <div className="card-header bg-dark text-white">Say Something...</div>
-          <div className="card-body">
+          <div className="card-body text-center">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
@@ -65,9 +65,14 @@ class PostForm extends Component {
                   error={errors.text}
                 />
               </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
+              <button type="submit" className="btn btn-dark d-none d-sm-block">
+                Post
               </button>
+              <div className="d-block d-sm-none justify-content-center text-center">
+              <button type="submit" className="btn btn-dark">
+                Post
+              </button>
+              </div>
             </form>
           </div>
         </div>

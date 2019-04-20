@@ -62,7 +62,7 @@ class AddTrip extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/edit-trips/" className="btn btn-secondary">
+              <Link to="/edit-trips/" className="btn btn-dark">
                 Back
               </Link>
               <h1 className="display-4 text-center">Add A Trip</h1>
@@ -104,12 +104,13 @@ class AddTrip extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-secondary btn-block mt-4"
+                  className="btn btn-dark btn-block mt-4"
                 />
               </form>
             </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

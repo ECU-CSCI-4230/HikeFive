@@ -83,7 +83,7 @@ class Trips extends Component {
                     <Link className="nav-item nav-link" to={`/groupCalendar/${group.handle}`}>Calendar</Link>
                     <Link className="nav-item nav-link" to={`/groupmembers/${group.handle}`}>Members</Link>
                     {groupSetting}
-
+                    {this.state.show && joinMem}
                   </div>
                 </div>
               </nav>
@@ -102,6 +102,7 @@ class Trips extends Component {
             <div className="col-md-12">{TripsContent}</div>
           </div>
         </div>
+        <br />
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import TextFieldGroup from '../../common/TextFieldGroup';
 import TextAreaFieldGroup from '../../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
@@ -56,8 +56,6 @@ class AddTrip extends Component {
   }
 
   render() {
-    const { group } = this.props.group;
-
     const diffOptions = [
       { label: '* Difficulty Level', value: 0 },
       { label: '1', value: 1 },
@@ -72,9 +70,6 @@ class AddTrip extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/edit-trips/${group.handle}`} className="btn btn-secondary">
-                Back
-              </Link>
               <h1 className="display-4 text-center">Add A Trip</h1>
               <p className="lead text-center">
                 *All fields are required*
@@ -114,12 +109,13 @@ class AddTrip extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-secondary btn-block mt-4"
+                  className="btn btn-dark btn-block mt-4"
                 />
               </form>
             </div>
           </div>
         </div>
+        <br />
       </div>
     );
   }
