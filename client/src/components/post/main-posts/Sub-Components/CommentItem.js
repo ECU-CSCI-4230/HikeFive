@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteNEWComment } from '../../../../actions/postActions';
+import { deleteComment } from '../../../../actions/postActions';
+import defaultAvatar from '../../../../img/defaultAvatar.jpg';
 
 class CommentItem extends Component {
   onDeleteClick(postId, commentId) {
-    this.props.deleteNEWComment(postId, commentId);
+    this.props.deleteComment(postId, commentId);
     window.location.reload();
   }
 
@@ -13,7 +14,13 @@ class CommentItem extends Component {
     const { comment, postId, auth } = this.props;
     var moment = require('moment');
     var formatted_date = moment(comment.date).format('LLL');
+    var commentAvatar;
 
+    if(comment.avatar === ''){
+      commentAvatar = defaultAvatar;
+    }else {
+      commentAvatar = comment.avatar;
+    }
     return (
       <div className="card card-body border-light mb-3">
         <div className="row">
@@ -21,7 +28,7 @@ class CommentItem extends Component {
               <img
                 style={{ width: '50px' }}
                 className="rounded-circle d-none d-md-block center"
-                src={comment.avatar}
+                src={commentAvatar}
                 alt=""
               />
             <p className="d-flex justify-content-center">{comment.name}</p>
@@ -38,7 +45,7 @@ class CommentItem extends Component {
               </button>
             ) : null}
           </div>
-          <div class="blockquote-footer bottomcorner" >{formatted_date}</div>
+          <div className="blockquote-footer bottomcorner" >{formatted_date}</div>
         </div>
       </div>
     );
@@ -46,7 +53,7 @@ class CommentItem extends Component {
 }
 
 CommentItem.propTypes = {
-  deleteNEWComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
@@ -56,4 +63,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deleteNEWComment })(CommentItem);
+export default connect(mapStateToProps, { deleteComment })(CommentItem);

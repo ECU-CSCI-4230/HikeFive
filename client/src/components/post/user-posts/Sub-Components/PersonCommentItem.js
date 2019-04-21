@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deletePersonaNEWComment } from '../../../../actions/postActions';
+import { deletePersonalComment } from '../../../../actions/postActions';
+import defaultAvatar from '../../../../img/defaultAvatar.jpg';
 
 class PersonCommentItem extends Component {
   onDeleteClick(postId, commentId) {
-    this.props.deletePersonaNEWComment(postId, commentId);
+    this.props.deletePersonalComment(postId, commentId);
     window.location.reload();
   }
 
@@ -14,6 +15,13 @@ class PersonCommentItem extends Component {
     var moment = require('moment');
     var formatted_date = moment(comment.date).format('LLL');
     var short_date = moment(comment.date).format('LT');
+    var commentAvatar;
+
+    if(comment.avatar === ''){
+      commentAvatar = defaultAvatar;
+    }else {
+      commentAvatar = comment.avatar;
+    }
 
     return (
       <div className="card card-body border-light mb-3">
@@ -22,7 +30,7 @@ class PersonCommentItem extends Component {
             <img
               className="rounded-circle d-none d-md-block center"
               style={{ width: '50px' }}
-              src={comment.avatar}
+              src={commentAvatar}
               alt=""
             />
 
@@ -41,8 +49,8 @@ class PersonCommentItem extends Component {
               </button>
             ) : null}
           </div>
-          <div class="blockquote-footer bottomcorner d-none d-sm-block" >{formatted_date}</div>
-          <div class="blockquote-footer bottomcorner d-block d-sm-none" >{short_date}</div>
+          <div className="blockquote-footer bottomcorner d-none d-sm-block" >{formatted_date}</div>
+          <div className="blockquote-footer bottomcorner d-block d-sm-none" >{short_date}</div>
         </div>
       </div>
     );
@@ -50,7 +58,7 @@ class PersonCommentItem extends Component {
 }
 
 PersonCommentItem.propTypes = {
-  deletePersonaNEWComment: PropTypes.func.isRequired,
+  deletePersonalComment: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
@@ -62,4 +70,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { deletePersonaNEWComment })(PersonCommentItem);
+export default connect(mapStateToProps, { deletePersonalComment })(PersonCommentItem);

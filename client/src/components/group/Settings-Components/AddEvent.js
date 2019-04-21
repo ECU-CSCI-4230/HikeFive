@@ -13,7 +13,8 @@ class AddEvent extends Component {
       start: '',
       end: '',
       location: '',
-      description: ''
+      description: '',
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -55,6 +56,7 @@ class AddEvent extends Component {
   }
 
   render() {
+    const { errors } = this.state;
     return (
       <div className="add-event">
         <div className="container">
@@ -71,30 +73,35 @@ class AddEvent extends Component {
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
+                  error={errors.name}
                 />
                 <TextFieldGroup
                   placeholder="* Start of Event MM/DD/YYYY"
                   name="start"
                   value={this.state.start}
                   onChange={this.onChange}
+                  error={errors.start}
                 />
                 <TextFieldGroup
                   placeholder="* End of Event MM/DD/YYYY"
                   name="end"
                   value={this.state.end}
                   onChange={this.onChange}
+                  error={errors.end}
                 />
                 <TextFieldGroup
                   placeholder="* Location"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
+                  error={errors.location}
                 />
                 <TextFieldGroup
                   placeholder="* Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
+                  error={errors.description}
                 />
                 <input
                   type="submit"

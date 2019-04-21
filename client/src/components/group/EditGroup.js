@@ -446,7 +446,7 @@ class EditGroup extends Component {
                 />
                 <h6>Enter the URL image address for the group picture</h6>
                 <TextFieldGroup
-                  placeholder="* Enter an URL Image Address"
+                  placeholder="Enter an URL Image Address"
                   name="avatar"
                   value={this.state.avatar}
                   onChange={this.onChange}
@@ -454,7 +454,7 @@ class EditGroup extends Component {
                 />
                 <h6>Enter the URL image address for the group background</h6>
                 <TextFieldGroup
-                  placeholder="* Enter an URL Image Address"
+                  placeholder="Enter an URL Image Address"
                   name="background"
                   value={this.state.background}
                   onChange={this.onChange}

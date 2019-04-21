@@ -7,6 +7,7 @@ import { deletePersonalPost, addPersonalLike, removePersonalLike } from '../../.
 import PersonCommentWindow from '../Sub-Components/PersonCommentWindow';
 import PersonCommentFeed from './PersonCommentFeed';
 import PersonCommentWindowForm from '../Sub-Components/PersonCommentWindowForm';
+import defaultAvatar from '../../../../img/defaultAvatar.jpg';
 
 class PersonPostItem extends React.Component {
   constructor() {
@@ -89,6 +90,7 @@ class PersonPostItem extends React.Component {
     var moment = require('moment');
     var formatted_date = moment(post.date).format('LLL');
     var short_date = moment(post.date).format('LT');
+    var postAvatar;
 
     let commentsContent;
 
@@ -96,6 +98,12 @@ class PersonPostItem extends React.Component {
       commentsContent = <PersonCommentFeed postId={post._id} comments={post.comments} />;
     } else {
       commentsContent = <PersonCommentWindow postId={post._id} comments={post.comments} />;
+    }
+
+    if(post.avatar === ''){
+      postAvatar = defaultAvatar;
+    }else {
+      postAvatar = post.avatar;
     }
 
     return (
@@ -106,7 +114,7 @@ class PersonPostItem extends React.Component {
             <img
               style={{ width: '75px' }}
               className="rounded-circle d-none d-md-block center"
-              src={post.avatar}
+              src={postAvatar}
               alt=""
             />
             <p className="d-flex justify-content-center">{post.name}</p>

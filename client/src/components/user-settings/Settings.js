@@ -49,14 +49,14 @@ class Dashboard extends Component {
                 <div className="card-body">
                   <h5 className="card-title">Edit Profile</h5>
                   <p className="card-text">Use this to edit your profile information.</p>
-                  <Link to="/edit-profile" className="btn btn-secondary">Edit Profile</Link>
+                  <Link to="/edit-profile" className="btn btn-dark">Edit Profile</Link>
                 </div>
               </div>
               <div className="card bg-light text-center" >
                 <div className="card-body">
                   <h5 className="card-title">Edit Trips</h5>
                   <p className="card-text">Use this to edit your trips information.</p>
-                  <Link to="/edit-trips" className="btn btn-secondary">Edit Trips</Link>
+                  <Link to="/edit-trips" className="btn btn-dark">Edit Trips</Link>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@ class Dashboard extends Component {
                 <div className="card-body">
                   <h5 className="card-title">Change Password</h5>
                   <p className="card-text">Use this to change your password.</p>
-                  <Link to="/change-password" className="btn btn-secondary">Change Password</Link>
+                  <Link to="/change-password" className="btn btn-dark">Change Password</Link>
                 </div>
               </div>
               <div className="card bg-light text-center" >

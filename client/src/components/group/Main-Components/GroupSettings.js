@@ -78,14 +78,14 @@ class Settings extends Component {
                         <div className="card-body">
                           <h5 className="card-title">Edit Group</h5>
                           <p className="card-text">Use this to edit the group information.</p>
-                          <Link to={`/edit-group/${group.handle}`} className="btn btn-secondary">Edit Group</Link>
+                          <Link to={`/edit-group/${group.handle}`} className="btn btn-dark">Edit Group</Link>
                         </div>
                       </div>
                       <div className="card bg-light text-center" >
                         <div className="card-body">
                           <h5 className="card-title">Edit Trips</h5>
                           <p className="card-text">Use this to edit the group trips information.</p>
-                          <Link to={`/edit-trips/${group.handle}`} className="btn btn-secondary">Edit Trips</Link>
+                          <Link to={`/edit-trips/${group.handle}`} className="btn btn-dark">Edit Trips</Link>
                         </div>
                       </div>
                     </div>
@@ -95,7 +95,7 @@ class Settings extends Component {
                         <div className="card-body">
                           <h5 className="card-title">Edit Events</h5>
                           <p className="card-text">Use this to edit the group events information.</p>
-                          <Link to={`/edit-events/${group.handle}`} className="btn btn-secondary">Edit Events</Link>
+                          <Link to={`/edit-events/${group.handle}`} className="btn btn-dark">Edit Events</Link>
                         </div>
                       </div>
                       <div className="card bg-light text-center" >

@@ -1,5 +1,6 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
+const moment = require('moment');
 
 module.exports = function validateTripInput(data) {
   let errors = {};
@@ -15,6 +16,8 @@ module.exports = function validateTripInput(data) {
 
   if (Validator.isEmpty(data.date)) {
     errors.date = 'Date field is required';
+  }else if (!moment(data.date, "MM/DD/YYYY").isValid()) {
+    errors.date = 'Invalid Date';
   }
 
   if (Validator.isEmpty(data.location)) {
@@ -22,7 +25,15 @@ module.exports = function validateTripInput(data) {
   }
 
   if (Validator.isEmpty(data.description)) {
-    errors.description = 'description is required';
+    errors.description = 'Description is required';
+  }
+
+  if (Validator.isEmpty(data.difficulty)) {
+    errors.difficulty = 'Difficulty is required';
+  }
+
+  if (Validator.equals(data.difficulty, '0')) {
+    errors.difficulty = 'Difficulty is required';
   }
 
   return {

@@ -74,11 +74,11 @@ export const createGroup = (groupData, history) => dispatch => {
         payload: res.data
       })
     )
-    .then(history.push('/groups-landing'))
-    .catch(_err =>
+    .then(_res => history.push('/groups-landing'))
+    .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: null
+        payload: err.response.data
       })
     );
 };
@@ -87,7 +87,7 @@ export const createGroup = (groupData, history) => dispatch => {
 export const editGroup = (groupData, history) => dispatch => {
   axios
     .post('/api/group/edit', groupData)
-    .then(history.push(`/groupsettings/${groupData.handle}`))
+    .then(_res => history.push(`/groupsettings/${groupData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -100,7 +100,7 @@ export const editGroup = (groupData, history) => dispatch => {
 export const addTrip = (tripData, history) => dispatch => {
   axios
     .post('/api/group/trips', tripData)
-    .then(history.push(`/groupsettings/${tripData.handle}`))
+    .then(_res => history.push(`/groupsettings/${tripData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -113,7 +113,7 @@ export const addTrip = (tripData, history) => dispatch => {
 export const addEvent = (eventData, history) => dispatch => {
   axios
     .post('/api/group/events', eventData)
-    .then(history.push(`/groupsettings/${eventData.handle}`))
+    .then(_res => history.push(`/groupsettings/${eventData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

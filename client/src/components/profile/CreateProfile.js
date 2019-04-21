@@ -414,7 +414,7 @@ class CreateProfile extends Component {
                 />
                 <h6>What is your zip code?</h6>
                 <TextFieldGroup
-                  placeholder=""
+                  placeholder="*Postal Code"
                   name="zip"
                   value={this.state.zip}
                   onChange={this.onChange}

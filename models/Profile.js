@@ -19,10 +19,12 @@ const ProfileSchema = new Schema({
     type: String
   },
   zip: {
-    type: String
+    type: String,
+    required: true
   },
   country: {
-    type: String
+    type: String,
+    required: true
   },
   skillstatus: {
     type: String,

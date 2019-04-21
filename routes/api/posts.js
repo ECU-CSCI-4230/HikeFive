@@ -98,11 +98,17 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
+    if(req.body.avatar){
+      var avatarItem = req.body.avatar;
+    }
+    else {
+      var avatarItem = '';
+    }
     const newPost = new PersonPost({
       text: req.body.text,
       handle: req.body.handle,
       name: req.body.name,
-      avatar: req.body.avatar,
+      avatar: avatarItem,
       user: req.user.id
     });
     newPost.save().then(post => res.json(post));
@@ -187,12 +193,18 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
+    if(req.body.avatar){
+      var avatarItem = req.body.avatar;
+    }
+    else {
+      var avatarItem = '';
+    }
     PersonPost.findById(req.params.id)
       .then(post => {
         const newComment = {
           text: req.body.text,
           name: req.body.name,
-          avatar: req.body.avatar,
+          avatar: avatarItem,
           user: req.user.id
         };
         // Add to comments array
@@ -281,12 +293,18 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
+    if(req.body.avatar){
+      var avatarItem = req.body.avatar;
+    }
+    else {
+      var avatarItem = '';
+    }
     Post.findById(req.params.id)
       .then(post => {
         const newComment = {
           text: req.body.text,
           name: req.body.name,
-          avatar: req.body.avatar,
+          avatar: avatarItem,
           user: req.user.id
         };
         // Add to comments array
@@ -311,10 +329,16 @@ router.post(
       // If any errors, send 400 with errors object
       return res.status(400).json(errors);
     }
+    if(req.body.avatar){
+      var avatarItem = req.body.avatar;
+    }
+    else {
+      var avatarItem = '';
+    }
     const newPost = new Post({
       text: req.body.text,
       name: req.body.name,
-      avatar: req.body.avatar,
+      avatar: avatarItem,
       user: req.user.id
     });
     newPost.save().then(post => res.json(post));

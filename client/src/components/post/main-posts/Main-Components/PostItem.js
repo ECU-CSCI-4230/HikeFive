@@ -8,6 +8,7 @@ import CommentWindow from '../Sub-Components/CommentWindow';
 import CommentFeed from '../Sub-Components/CommentFeed';
 import CommentWindowForm from '../Sub-Components/CommentWindowForm';
 import { getPost } from '../../../../actions/postActions';
+import defaultAvatar from '../../../../img/defaultAvatar.jpg';
 
 class PostItem extends React.Component {
   constructor() {
@@ -84,6 +85,7 @@ class PostItem extends React.Component {
     var moment = require('moment');
     var fomatted_date = moment(post.date).format('LLL');
     var short_date = moment(post.date).format('LT');
+    var postAvatar;
 
     let commentsContent;
 
@@ -93,6 +95,12 @@ class PostItem extends React.Component {
       commentsContent = <CommentWindow postId={post._id} comments={post.comments} />;
     }
 
+    if(post.avatar === ''){
+      postAvatar = defaultAvatar;
+    }else {
+      postAvatar = post.avatar;
+    }
+
     return (
       <div className="d-flex card card-body mb-3">
         <div className="row">
@@ -100,7 +108,7 @@ class PostItem extends React.Component {
             <img
               style={{ width: '75px' }}
               className="rounded-circle d-none d-md-block center"
-              src={post.avatar}
+              src={postAvatar}
               alt=""
             />
             <p className="d-flex justify-content-center">{post.name}</p>

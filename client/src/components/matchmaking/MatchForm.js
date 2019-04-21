@@ -49,9 +49,7 @@ class MatchForm extends Component {
       climber: this.state.climber,
       country: this.state.country
     };
-    if (this.state.skillMin !== '' && this.state.skillMax !== '' && this.state.travel !== '' && this.state.camp !== '' && this.state.climber !== '') {
-      this.props.addMatchData(matchData, this.props.history);
-    }
+    this.props.addMatchData(matchData, this.props.history);
   }
 
   onChange(e) {

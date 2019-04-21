@@ -527,8 +527,10 @@ router.post(
     const groupFields = {};
     if (req.body.handle) groupFields.handle = req.body.handle;
     if (req.body.name) groupFields.name = req.body.name;
-    if (req.body.avatar) groupFields.avatar = req.body.avatar;
-    if (req.body.background) groupFields.background = req.body.background;
+    if (req.body.avatar) { groupFields.avatar = req.body.avatar; }
+    else { groupFields.avatar = ''; }
+    if (req.body.background) { groupFields.background = req.body.background; }
+    else { groupFields.background = ''; }
     if (req.body.zip) groupFields.zip = req.body.zip;
     if (req.body.skillstatus) groupFields.skillstatus = req.body.skillstatus;
     if (req.body.climber) groupFields.climber = req.body.climber;
@@ -549,13 +551,10 @@ router.post(
         errors.handle = 'That handle already exists';
         res.status(400).json(errors);
       }
-      // Save Group
-      const temp = new Group(groupFields);
-      temp.save((error) => {
-        if (error) {
-          console.log('Error has occurred while saving group');
-        }
-      });
+      else {
+        // Save Group
+        new Group(groupFields).save().then(group => res.json(group));
+      }
     });
   }
 );
@@ -576,8 +575,10 @@ router.post(
     const groupFields = {};
     if (req.body.handle) groupFields.handle = req.body.handle;
     if (req.body.name) groupFields.name = req.body.name;
-    if (req.body.avatar) groupFields.avatar = req.body.avatar;
-    if (req.body.background) groupFields.background = req.body.background;
+    if (req.body.avatar) { groupFields.avatar = req.body.avatar; }
+    else { groupFields.avatar = ''; }
+    if (req.body.background) { groupFields.background = req.body.background; }
+    else { groupFields.background = ''; }
     if (req.body.zip) groupFields.zip = req.body.zip;
     if (req.body.country) groupFields.country = req.body.country;
     if (req.body.skillstatus) groupFields.skillstatus = req.body.skillstatus;

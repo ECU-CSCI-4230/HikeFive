@@ -1,5 +1,6 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
+const moment = require('moment');
 
 module.exports = function validateEventInput(data) {
   let errors = {};
@@ -14,15 +15,23 @@ module.exports = function validateEventInput(data) {
   }
 
   if (Validator.isEmpty(data.start)) {
-    errors.start = 'Start field is required';
+    errors.start = 'Start date is required';
+  }else if (!moment(data.start, "MM/DD/YYYY").isValid()) {
+    errors.start = 'Invalid Date';
   }
 
   if (Validator.isEmpty(data.end)) {
-    errors.end = 'End field is required';
+    errors.end = 'End date is required';
+  }else if (!moment(data.end, "MM/DD/YYYY").isValid()) {
+    errors.end = 'Invalid Date';
   }
 
   if (Validator.isEmpty(data.location)) {
     errors.location = 'Location field is required';
+  }
+
+  if (Validator.isEmpty(data.description)) {
+    errors.description = 'Description is required';
   }
 
   return {

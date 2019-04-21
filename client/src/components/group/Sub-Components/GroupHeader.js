@@ -12,7 +12,7 @@ class GroupHeader extends Component {
     var groupAvatar;
     var groupBG;
 
-    if (typeof group.avatar === 'undefined') {
+    if (group.avatar === '') {
       groupAvatar = defaultAvatar;
     }
     else {
@@ -24,7 +24,7 @@ class GroupHeader extends Component {
 
     // Check for an empty string when determining the BG image and
     // use the default BG if it's an empty string.
-    if (typeof backgroundURL === 'undefined') {
+    if (backgroundURL === '') {
       groupBG = {
         background: 'url(' + defaultBackground + ') no-repeat center center',
         backgroundSize: 'cover',

@@ -202,23 +202,6 @@ export const addPersonalNEWComment = (postId, commentData) => dispatch => {
     );
 };
 
-// Delete Comment
-export const deletePersonaNEWComment = (postId, commentId) => dispatch => {
-  axios
-    .delete(`/api/posts/comment/personal/${postId}/${commentId}`)
-    .then(res =>
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
 
 // Add Post
 export const addPost = postData => dispatch => {
@@ -367,24 +350,6 @@ export const addNEWComment = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
     .post(`/api/posts/comment/${postId}`, commentData)
-    .then(res =>
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-
-// Delete Nonrefresh Comment
-export const deleteNEWComment = (postId, commentId) => dispatch => {
-  axios
-    .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res =>
       dispatch({
         type: GET_POST,

@@ -8,7 +8,7 @@ class ProfileItem extends Component {
     const { profile } = this.props;
     var profileAvatar;
 
-    if (typeof profile.avatar === 'undefined') {
+    if (profile.avatar === '') {
       profileAvatar = defaultAvatar;
     }
     else {

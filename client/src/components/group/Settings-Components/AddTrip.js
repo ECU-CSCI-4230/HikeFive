@@ -15,7 +15,8 @@ class AddTrip extends Component {
       date: '',
       location: '',
       description: '',
-      difficulty: ''
+      difficulty: '',
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -56,6 +57,8 @@ class AddTrip extends Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     const diffOptions = [
       { label: '* Difficulty Level', value: 0 },
       { label: '1', value: 1 },
@@ -80,24 +83,28 @@ class AddTrip extends Component {
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
+                  error={errors.name}
                 />
                 <TextFieldGroup
                   placeholder="* Date of trip MM/DD/YYYY"
                   name="date"
                   value={this.state.date}
                   onChange={this.onChange}
+                  error={errors.date}
                 />
                 <TextFieldGroup
                   placeholder="* Location"
                   name="location"
                   value={this.state.location}
                   onChange={this.onChange}
+                  error={errors.location}
                 />
                 <TextAreaFieldGroup
                   placeholder="* Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
+                  error={errors.description}
                 />
                 <SelectListGroup
                   placeholder="* Difficulty"
@@ -105,6 +112,7 @@ class AddTrip extends Component {
                   value={this.state.difficulty}
                   onChange={this.onChange}
                   options={diffOptions}
+                  error={errors.difficulty}
                 />
                 <input
                   type="submit"

@@ -9,7 +9,7 @@ class GroupItem extends Component {
 
     var groupAvatar;
 
-    if (typeof group.avatar === 'undefined') {
+    if (group.avatar === '') {
       groupAvatar = defaultAvatar;
     }
     else {

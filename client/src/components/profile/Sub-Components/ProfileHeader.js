@@ -10,7 +10,7 @@ class ProfileHeader extends Component {
 
     // Check for an empty string when determining the BG image and
     // use the default BG if it's an empty string.
-    if (typeof backgroundURL === 'undefined') {
+    if (backgroundURL === '') {
       profileBG = {
         background: 'url(' + defaultBackground + ') no-repeat center center',
         backgroundSize: 'cover',
@@ -32,7 +32,7 @@ class ProfileHeader extends Component {
     }
 
     var profileAvatar;
-    if (typeof profile.avatar === 'undefined') {
+    if (profile.avatar === '') {
       profileAvatar = defaultAvatar;
     }
     else {

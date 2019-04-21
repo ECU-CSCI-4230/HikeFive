@@ -151,8 +151,10 @@ router.post(
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.zip) profileFields.zip = req.body.zip;
-    if (req.body.avatar) profileFields.avatar = req.body.avatar;
-    if (req.body.background) profileFields.background = req.body.background;
+    if (req.body.avatar) { profileFields.avatar = req.body.avatar; }
+    else { profileFields.avatar = ''; }
+    if (req.body.background) { profileFields.background = req.body.background; }
+    else { profileFields.background = ''; }
     if (req.body.country) profileFields.country = req.body.country;
     if (req.body.skillstatus) profileFields.skillstatus = req.body.skillstatus;
     if (req.body.climber) profileFields.climber = req.body.climber;
