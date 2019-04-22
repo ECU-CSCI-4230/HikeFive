@@ -5,6 +5,7 @@ import PostForm from './Sub-Components/PostForm';
 import PostFeed from './Main-Components/PostFeed';
 import Spinner from '../../common/Spinner';
 import { getPosts } from '../../../actions/postActions';
+import { withRouter } from 'react-router-dom';
 
 class Posts extends Component {
   componentDidMount() {
@@ -47,4 +48,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts })(withRouter(Posts));

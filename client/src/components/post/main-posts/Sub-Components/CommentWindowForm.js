@@ -43,7 +43,10 @@ class CommentWindowForm extends Component {
 
     this.props.addComment(postId, newComment);
     this.setState({ text: '' });
-    this.props.history.push(`/feed`);
+    this.props.history.push({
+      pathname: `/post/${postId}`, 
+      state: { reload: 0 }
+    });
   }
 
   onChange(e) {

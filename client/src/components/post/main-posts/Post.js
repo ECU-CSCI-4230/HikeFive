@@ -11,6 +11,15 @@ import { getPost } from '../../../actions/postActions';
 class Post extends Component {
   componentDidMount() {
     this.props.getPost(this.props.match.params.id);
+    if (this.props.location.state) {
+      if (this.props.location.state.reload === 0) {
+        window.location.reload();
+        this.props.history.push({
+          pathname: `/post/${this.props.match.params.id}`,
+          state: { reload: 1 }
+        });
+      }
+    }
   }
 
   render() {
