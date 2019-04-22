@@ -100,7 +100,7 @@ export const editGroup = (groupData, history) => dispatch => {
 export const addTrip = (tripData, history) => dispatch => {
   axios
     .post('/api/group/trips', tripData)
-    .then(_res => history.push(`/groupsettings/${tripData.handle}`))
+    .then(_res => history.push(`/edit-trips/${tripData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -113,7 +113,7 @@ export const addTrip = (tripData, history) => dispatch => {
 export const addEvent = (eventData, history) => dispatch => {
   axios
     .post('/api/group/events', eventData)
-    .then(_res => history.push(`/groupsettings/${eventData.handle}`))
+    .then(_res => history.push(`/edit-events/${eventData.handle}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

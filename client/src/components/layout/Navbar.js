@@ -35,14 +35,14 @@ class Navbar extends Component {
             <input className="form-control mt-1 mb-1" type="search" placeholder="Search" aria-label="Search" id="query" />
           </form>
           <li className="nav-item">
-            <Link className="nav-link text-light mt-1 mb-1" to="/groups-landing">
-              {' '}
-              Groups
+            <Link className="nav-link text-light mt-1 mb-1" to="/feed">
+              Home
           </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-light mt-1 mb-1" to="/feed">
-              Home
+            <Link className="nav-link text-light mt-1 mb-1" to="/groups-landing">
+              {' '}
+              Groups
           </Link>
           </li>
 
