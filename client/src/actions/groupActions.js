@@ -178,13 +178,14 @@ export const searchGroups = query => dispatch => {
 };
 
 // matchGCombo - Travel, Camp, and Climb
-export const matchGCombo = matchData => dispatch => {
+export const matchGCombo = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchCombo`, {
       params: {
         skillMin: matchData.skillMin,
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        uid: userId
       }
     })
     .then(res =>
@@ -202,13 +203,14 @@ export const matchGCombo = matchData => dispatch => {
 };
 
 // matchGTC - Travel and Camp
-export const matchGTC = matchData => dispatch => {
+export const matchGTC = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchTravelCamp`, {
       params: {
         skillMin: matchData.skillMin,
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        uid: userId
       }
     })
     .then(res =>
@@ -226,13 +228,14 @@ export const matchGTC = matchData => dispatch => {
 };
 
 // matchGTCL - Travel and Climb
-export const matchGTCL = matchData => dispatch => {
+export const matchGTCL = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchTravelClimb`, {
       params: {
         skillMin: matchData.skillMin,
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        uid: userId
       }
     })
     .then(res =>
@@ -250,13 +253,14 @@ export const matchGTCL = matchData => dispatch => {
 };
 
 // matchGT - Travel
-export const matchGT = matchData => dispatch => {
+export const matchGT = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchTravel`, {
       params: {
         skillMin: matchData.skillMin,
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        uid: userId
       }
     })
     .then(res =>
@@ -274,14 +278,15 @@ export const matchGT = matchData => dispatch => {
 };
 
 // matchGCC - Camp and Climb
-export const matchGCC = matchData => dispatch => {
+export const matchGCC = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchCampClimb`, {
       params: {
         skillMin: matchData.skillMin,
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        uid: userId
       }
     })
     .then(res =>
@@ -299,14 +304,15 @@ export const matchGCC = matchData => dispatch => {
 };
 
 // matchGC- Camp
-export const matchGC = matchData => dispatch => {
+export const matchGC = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchCamp`, {
       params: {
         skillMin: matchData.skillMin,
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        uid: userId
       }
     })
     .then(res =>
@@ -324,14 +330,15 @@ export const matchGC = matchData => dispatch => {
 };
 
 // matchGCL - Climb
-export const matchGCL = matchData => dispatch => {
+export const matchGCL = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/matchClimb`, {
       params: {
         skillMin: matchData.skillMin,
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        uid: userId
       }
     })
     .then(res =>
@@ -349,14 +356,15 @@ export const matchGCL = matchData => dispatch => {
 };
 
 // matchGroups
-export const matchGroups = matchData => dispatch => {
+export const matchGroups = (matchData, userId) => dispatch => {
   dispatch(setGroupLoading());
   axios
     .get(`/api/group/match`, {
       params: {
         skillMin: matchData.skillMin,
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        uid: userId
       }
     })
     .then(res =>

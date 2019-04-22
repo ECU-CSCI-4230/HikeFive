@@ -171,13 +171,14 @@ export const getProfiles = () => dispatch => {
 };
 
 // matchPCombo - Travel, Camp, and Climb
-export const matchPCombo = matchData => dispatch => {
+export const matchPCombo = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPCombo', {
       params: {
         skillMin: matchData.skillMin, 
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        handle: userHandle
       }
     }) 
     .then(res =>
@@ -195,13 +196,14 @@ export const matchPCombo = matchData => dispatch => {
 };
 
 // matchPTC - Travel and Camp
-export const matchPTC = matchData => dispatch => {
+export const matchPTC = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPTravelCamp', {
       params: {
         skillMin: matchData.skillMin, 
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        handle: userHandle
       }
     }) 
     .then(res =>
@@ -219,13 +221,14 @@ export const matchPTC = matchData => dispatch => {
 };
 
 // matchPTCL - Travel and Climb
-export const matchPTCL = matchData => dispatch => {
+export const matchPTCL = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPTravelClimb', {
       params: {
         skillMin: matchData.skillMin, 
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        handle: userHandle
       }
     }) 
     .then(res =>
@@ -243,13 +246,14 @@ export const matchPTCL = matchData => dispatch => {
 };
 
 // matchPT - Travel
-export const matchPT = matchData => dispatch => {
+export const matchPT = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPTravel', {
       params: {
         skillMin: matchData.skillMin, 
-        skillMax: matchData.skillMax
+        skillMax: matchData.skillMax,
+        handle: userHandle
       }
     }) 
     .then(res =>
@@ -267,14 +271,15 @@ export const matchPT = matchData => dispatch => {
 };
 
 // matchPCC - Camp and Climb
-export const matchPCC = matchData => dispatch => {
+export const matchPCC = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPCampClimb', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        handle: userHandle
       }
     }) 
     .then(res => {
@@ -293,14 +298,15 @@ export const matchPCC = matchData => dispatch => {
 };
 
 // matchPC- Camp
-export const matchPC = matchData => dispatch => {
+export const matchPC = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPCamp', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        handle: userHandle
       }
     }) 
     .then(res =>
@@ -318,14 +324,15 @@ export const matchPC = matchData => dispatch => {
 };
 
 // matchPCL - Climb
-export const matchPCL = matchData => dispatch => {
+export const matchPCL = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchPClimb', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        handle: userHandle
       }
     }) 
     .then(res =>
@@ -343,14 +350,15 @@ export const matchPCL = matchData => dispatch => {
 };
 
 // matchProfiles
-export const matchProfiles = matchData => dispatch => {
+export const matchProfiles = (matchData, userHandle) => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/api/group/matchP', {
       params: {
         skillMin: matchData.skillMin, 
         skillMax: matchData.skillMax,
-        country: matchData.country
+        country: matchData.country,
+        handle: userHandle
       }
     }) 
     .then(res =>

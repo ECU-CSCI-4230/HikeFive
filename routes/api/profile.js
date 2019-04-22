@@ -84,12 +84,14 @@ router.get('/handle/:handle', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
+//User.find({ name: { '$regex': req.params.query, '$options': "ix" } })
+
 // @route   GET api/profile/:query
 // @desc    Get all profiles that match search string
 // @access  Public
 router.get('/:query', (req, res) => {
   const errors = {};
-  User.find({ name: { '$regex': req.params.query, '$options': "ix" } })
+  User.find({ name: new RegExp(req.params.query, 'ix') })
     .then(users => {
       Profile.find({ $or: [{ user: { '$in': users } }, { handle: new RegExp(req.params.query, 'i') }] })
         .populate('user', ['name', 'avatar'])

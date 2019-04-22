@@ -138,6 +138,7 @@ router.get('/matchCombo', (req, res) => {
       { climber: 'Yes' },
       { camp: 'Yes' },
       { travel: 'Yes' },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -160,6 +161,7 @@ router.get('/matchTravelCamp', (req, res) => {
     $and: [
       { camp: 'Yes' },
       { travel: 'Yes' },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -182,6 +184,7 @@ router.get('/matchTravelClimb', (req, res) => {
     $and: [
       { climber: 'Yes' },
       { travel: 'Yes' },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -203,6 +206,7 @@ router.get('/matchTravel', (req, res) => {
   Group.find({
     $and: [
       { travel: 'Yes' },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -225,6 +229,7 @@ router.get('/matchCampClimb', (req, res) => {
     $and: [
       { climber: 'Yes' },
       { camp: 'Yes' },
+      { ownerid: { $ne: req.query.uid } },
       { country: req.query.country },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
@@ -248,6 +253,7 @@ router.get('/matchCamp', (req, res) => {
     $and: [
       { camp: 'Yes' },
       { country: req.query.country },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -270,6 +276,7 @@ router.get('/matchClimb', (req, res) => {
     $and: [
       { climber: 'Yes' },
       { country: req.query.country },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -291,6 +298,7 @@ router.get('/match', (req, res) => {
   Group.find({
     $and: [
       { country: req.query.country },
+      { ownerid: { $ne: req.query.uid } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -327,6 +335,7 @@ router.get('/matchPCombo', (req, res) => {
       { climber: 'Yes' },
       { camp: 'Yes' },
       { travel: 'Yes' },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -350,6 +359,7 @@ router.get('/matchPTravelCamp', (req, res) => {
     $and: [
       { camp: 'Yes' },
       { travel: 'Yes' },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -373,6 +383,7 @@ router.get('/matchPTravelClimb', (req, res) => {
     $and: [
       { climber: 'Yes' },
       { travel: 'Yes' },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -395,6 +406,7 @@ router.get('/matchPTravel', (req, res) => {
   Profile.find({
     $and: [
       { travel: 'Yes' },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -419,6 +431,7 @@ router.get('/matchPCampClimb', (req, res) => {
       { climber: 'Yes' },
       { camp: 'Yes' },
       { country: req.query.country },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -442,6 +455,7 @@ router.get('/matchPCamp', (req, res) => {
     $and: [
       { camp: 'Yes' },
       { country: req.query.country },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -465,6 +479,7 @@ router.get('/matchPClimb', (req, res) => {
     $and: [
       { climber: 'Yes' },
       { country: req.query.country },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })
@@ -487,6 +502,7 @@ router.get('/matchP', (req, res) => {
   Profile.find({
     $and: [
       { country: req.query.country },
+      { handle: { $ne: req.query.handle } },
       { $and: [{ skillstatus: { $lte: req.query.skillMax } }, { skillstatus: { $gte: req.query.skillMin } }] }
     ]
   })

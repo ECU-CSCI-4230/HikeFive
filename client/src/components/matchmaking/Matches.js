@@ -14,7 +14,6 @@ class Matches extends Component {
         super(props);
         this.state = {
         };
-
         this.getMatches = this.getMatches.bind(this);
     }
 
@@ -53,41 +52,41 @@ class Matches extends Component {
             if (this.state.travel === 'Yes') {
                 if (this.state.camp === 'Yes') {
                     if (this.state.climber === 'Yes') {
-                        this.props.matchGCombo(this.state);
-                        this.props.matchPCombo(this.state);
+                        this.props.matchGCombo(this.state, this.props.profile.profile.user._id);
+                        this.props.matchPCombo(this.state, this.props.profile.profile.handle);
                     }
                     else {
-                        this.props.matchGTC(this.state);
-                        this.props.matchPTC(this.state);
+                        this.props.matchGTC(this.state, this.props.profile.profile.user._id);
+                        this.props.matchPTC(this.state, this.props.profile.profile.handle);
                     }
                 }
                 else if (this.state.climber === 'Yes') {
-                    this.props.matchGTCL(this.state);
-                    this.props.matchPTCL(this.state);
+                    this.props.matchGTCL(this.state, this.props.profile.profile.user._id);
+                    this.props.matchPTCL(this.state, this.props.profile.profile.handle);
                 }
                 else {
-                    this.props.matchGT(this.state);
-                    this.props.matchPT(this.state);
+                    this.props.matchGT(this.state, this.props.profile.profile.user._id);
+                    this.props.matchPT(this.state, this.props.profile.profile.handle);
                 }
             }
             else {
                 if (this.state.camp === 'Yes') {
                     if (this.state.climber === 'Yes') {
-                        this.props.matchGCC(this.state);
-                        this.props.matchPCC(this.state);
+                        this.props.matchGCC(this.state, this.props.profile.profile.user._id);
+                        this.props.matchPCC(this.state, this.props.profile.profile.handle);
                     }
                     else {
-                        this.props.matchGC(this.state);
-                        this.props.matchPC(this.state);
+                        this.props.matchGC(this.state, this.props.profile.profile.user._id);
+                        this.props.matchPC(this.state, this.props.profile.profile.handle);
                     }
                 }
                 else if (this.state.climber === 'Yes') {
-                    this.props.matchGCL(this.state);
-                    this.props.matchPCL(this.state);
+                    this.props.matchGCL(this.state, this.props.profile.profile.user._id);
+                    this.props.matchPCL(this.state, this.props.profile.profile.handle);
                 }
                 else {
-                    this.props.matchGroups(this.state);
-                    this.props.matchProfiles(this.state);
+                    this.props.matchGroups(this.state, this.props.profile.profile.user._id);
+                    this.props.matchProfiles(this.state, this.props.profile.profile.handle);
                 }
             }
         }
