@@ -6,10 +6,20 @@ import PersonCommentForm from './Main-Components/PersonCommentForm';
 import PersonCommentFeed from './Main-Components/PersonCommentFeed';
 import Spinner from '../../common/Spinner';
 import { getPersonalPost } from '../../../actions/postActions';
+import { withRouter } from 'react-router-dom';
 
 class PersonPost extends Component {
   componentDidMount() {
     this.props.getPersonalPost(this.props.match.params.id);
+    if (this.props.location.state) {
+      if (this.props.location.state.reload === 0) {
+        window.location.reload();
+        this.props.history.push({
+          pathname: `/post/${this.props.match.params.handle}/${this.props.match.params.id}`,
+          state: { reload: 1 }
+        });
+      }
+    }
   }
 
   render() {
@@ -58,4 +68,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getPersonalPost })(PersonPost);
+export default connect(mapStateToProps, { getPersonalPost })(withRouter(PersonPost));
