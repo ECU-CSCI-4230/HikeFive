@@ -34,6 +34,7 @@ class CommentWindowForm extends Component {
     const { user } = this.props.auth;
     const { profile } = this.props.profile;
     const { postId } = this.props;
+    const { errors } = this.state;
 
     const newComment = {
       text: this.state.text,
@@ -43,10 +44,17 @@ class CommentWindowForm extends Component {
 
     this.props.addComment(postId, newComment);
     this.setState({ text: '' });
-    this.props.history.push({
-      pathname: `/post/${postId}`, 
-      state: { reload: 0 }
-    });
+    if(this.state.errors.length == 0)
+    { 
+      //console.log("there is no error");
+      this.props.history.push({
+        pathname: `/post/${postId}`, 
+        state: { reload: 0 }
+      });  
+    }
+    else {
+      //console.log("there is some error");
+    }
   }
 
   onChange(e) {
@@ -55,6 +63,7 @@ class CommentWindowForm extends Component {
 
   render() {
     const { errors } = this.state;
+    console.log(this.state);
 
     return (
       <div className="post-form mb-3">
