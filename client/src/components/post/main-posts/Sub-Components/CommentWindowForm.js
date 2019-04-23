@@ -46,14 +46,10 @@ class CommentWindowForm extends Component {
     this.setState({ text: '' });
     if(this.state.errors.length == 0)
     { 
-      //console.log("there is no error");
       this.props.history.push({
         pathname: `/post/${postId}`, 
         state: { reload: 0 }
       });  
-    }
-    else {
-      //console.log("there is some error");
     }
   }
 
@@ -63,7 +59,6 @@ class CommentWindowForm extends Component {
 
   render() {
     const { errors } = this.state;
-    console.log(this.state);
 
     return (
       <div className="post-form mb-3">
