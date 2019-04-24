@@ -53,12 +53,12 @@ class PostForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-dark text-white">Say Something...</div>
+          <div className="card-header bg-dark text-white">Create a post</div>
           <div className="card-body text-center">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  placeholder="Create a post"
+                  placeholder="Say something..."
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange}
