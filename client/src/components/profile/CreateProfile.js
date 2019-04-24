@@ -43,6 +43,7 @@ class CreateProfile extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const {user} = this.props.auth;
 
     const profileData = {
       handle: this.state.handle,
@@ -62,12 +63,13 @@ class CreateProfile extends Component {
     };
 
     const updatedFirst = {
-      email: this.props.location.state.email,
+      //email: this.props.location.state.email,
+      email: user.email,
       first: true
     };
 
     const avatarData = {
-      email: this.props.location.state.email,
+      email: user.email,
       profile_avatar: profileData.avatar
     };
 
@@ -515,10 +517,12 @@ class CreateProfile extends Component {
 }
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
   profile: state.profile,
+  auth: state.auth,
   errors: state.errors
 });
 export default connect(mapStateToProps, { createProfile, updateFirst, updateAvatar })(
