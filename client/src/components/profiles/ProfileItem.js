@@ -18,8 +18,11 @@ class ProfileItem extends Component {
     return (
       <div className="card card-body bg-light mb-3">
         <div className="row">
-          <div className="col-2 d-none d-sm-block">
-            <img src={profileAvatar} alt="" className="rounded-circle" />
+          <div className="col-2 align-content-center text-center d-none d-md-block">
+            <img src={profileAvatar} alt="" className="rounded-circle text-center avatar" />
+          </div>
+          <div className="col-2 align-content-center text-center d-none d-sm-block d-md-none">
+            <img src={profileAvatar} alt="" className="rounded-circle text-center avatar2" />
           </div>
           <div className="col">
             <h3>{profile.user.name}</h3>

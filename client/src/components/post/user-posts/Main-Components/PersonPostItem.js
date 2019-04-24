@@ -110,14 +110,19 @@ class PersonPostItem extends React.Component {
       <div className="d-flex card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-
-            <img
-              style={{ width: '75px' }}
-              className="rounded-circle d-none d-md-block center"
+          <img
+              style={{ width: '50px', height: '50px' }}
+              className="rounded-circle  d-none d-sm-block d-md-none center"
               src={postAvatar}
               alt=""
             />
-            <p className="d-flex justify-content-center">{post.name}</p>
+            <img
+              style={{ width: '75px', height: '75px' }}
+              className="rounded-circle  d-none d-md-block center"
+              src={postAvatar}
+              alt=""
+            />
+            <p className="d-flex text-center justify-content-center">{post.name}</p>
           </div>
           <div className="col-md-10">
             <p className="lead d-none d-sm-block">{post.text}</p>

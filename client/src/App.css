@@ -2,6 +2,16 @@ img {
   width: 100%;
 }
 
+.avatar {
+  width: 100px;
+  height: 100px;
+}
+
+.avatar2 {
+  width: 60px;
+  height: 60px;
+}
+
 .search-button{
   z-index: -1;
   width: 0px;

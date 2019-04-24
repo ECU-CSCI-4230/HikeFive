@@ -32,8 +32,44 @@ class Calendar extends React.Component {
     );
   }
 
+  renderHeaderMobile() {
+    const dateFormat = "MMM YY";
+
+    return (
+      <div className="header row  text-center flex-middle">
+        <div className="col col-start">
+          <div className="icon" onClick={this.prevMonth}>
+            Prev
+          </div>
+        </div>
+        <div className="col col-center">
+          <span>{dateFns.format(this.state.currentMonth, dateFormat)}</span>
+        </div>
+        <div className="col col-end" onClick={this.nextMonth}>
+          <div className="icon">Next</div>
+        </div>
+      </div>
+    );
+  }
+
   renderDays() {
     const dateFormat = "dddd";
+    const days = [];
+
+    let startDate = dateFns.startOfWeek(this.state.currentMonth);
+
+    for (let i = 0; i < 7; i++) {
+      days.push(
+        <div className="col col-center text-center" key={i}>
+          {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+        </div>
+      );
+    }
+    return <div className="days row">{days}</div>;
+  }
+
+  renderDaysMobile() {
+    const dateFormat = "dd";
     const days = [];
 
     let startDate = dateFns.startOfWeek(this.state.currentMonth);
@@ -109,7 +145,7 @@ class Calendar extends React.Component {
     });
   };
 
-  hasEventOnDay (day) {
+  hasEventOnDay(day) {
     var eventLength = this.props.group.group.events.length;
     for (let i = 0; i < eventLength; i++) {
       const startEvent = format(this.props.group.group.events[i].start, 'MM/DD/YYYY');
@@ -157,9 +193,16 @@ class Calendar extends React.Component {
 
     return (
       <div className="calendar">
-        {this.renderHeader()}
-        {this.renderDays()}
-        {this.renderCells()}
+        <div className="d-block d-md-none">
+          {this.renderHeaderMobile()}
+          {this.renderDaysMobile()}
+          {this.renderCells()}
+        </div>
+        <div className="d-none d-md-block">
+          {this.renderHeader()}
+          {this.renderDays()}
+          {this.renderCells()}
+        </div>
         {eventsContent}
       </div>
     );

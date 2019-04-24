@@ -19,8 +19,11 @@ class GroupItem extends Component {
     return (
       <div className="card card-body bg-light mb-3">
         <div className="row">
-          <div className="col-2 d-none d-sm-block">
-            <img src={groupAvatar} alt="" className="rounded-circle" />
+          <div className="col-2 align-content-center text-center d-none d-md-block">
+            <img src={groupAvatar} alt="" className="rounded-circle avatar" />
+          </div>
+          <div className="col-2 align-content-center text-center d-none d-sm-block d-md-none">
+            <img src={groupAvatar} alt="" className="rounded-circle avatar2" />
           </div>
           <div className="col">
             <h3>{group.name}</h3>
