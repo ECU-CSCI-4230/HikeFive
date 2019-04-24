@@ -41,7 +41,7 @@ class PersonCommentWindowForm extends Component {
     if(this.state.text != '')
     { 
       this.props.history.push({
-        pathname: `/post/${postId}`, 
+        pathname: `/post/${handle}/${postId}`,
         state: { reload: 0 }
       });  
     }
