@@ -18,18 +18,29 @@ class Navbar extends Component {
       this.props.history.push(`/search/${searchString}`);
     }
   }
-componentWillReceiveProps(nextProps) {
+
+  /*
+  componentWillReceiveProps(nextProps) {
   if(nextProps.auth.user !== null){
+    console.log(nextProps);
     if(!nextProps.auth.user.create_profile){
       this.props.history.push('/create-profile');
     }
   }
-}
+}*/
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
     let authLinks;
+
+    if(user.create_profile !== null && user.create_profile !== undefined){
+      console.log(user.create_profile);
+      if(!user.create_profile){
+        console.log(user.create_profile);
+        this.props.history.push('/create-profile');
+      }
+    }
 
     authLinks = (
       <ul className="navbar-nav ml-auto ">
