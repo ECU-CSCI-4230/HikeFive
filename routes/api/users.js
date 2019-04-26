@@ -31,14 +31,26 @@ router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+    User.findOne({ _id: req.user.id })
+    .then(user => {
+      if(!user) {
+        errors.nouser = "There was no user found";
+        return res.status.apply(404).json(errors);
+      }
+      res.json(user);
+    })
+    .catch(err => res.status(404).json(err));
+  }
+);
+
+/*
     res.json({
       id: req.user.id,
       name: req.user.name,
       profile_avatar: req.user.profile_avatar,
       email: req.user.email
     });
-  }
-);
+*/
 
 //====================================================================================
 
@@ -112,7 +124,7 @@ router.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        create_profile: req.body.create_profile,
+        create_profile: false,
         profile_avatar: ''
       });
       bcrypt.genSalt(10, (_err, salt) => {

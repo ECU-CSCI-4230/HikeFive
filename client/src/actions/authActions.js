@@ -4,7 +4,8 @@ import jwt_decode from 'jwt-decode';
 
 import {
   GET_ERRORS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  GET_USER
 } from './types';
 
 
@@ -21,6 +22,23 @@ import {
 */
 
 //====================================================================================
+
+// Register User
+export const getCurrentUser = () => dispatch => {
+  axios
+    .get('/api/users/current')
+    .then(res =>
+      dispatch({
+        type: GET_USER,
+        payload: res.data
+      }))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {

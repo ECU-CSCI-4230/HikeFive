@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
+import { loginUser, getCurrentUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
@@ -24,17 +24,9 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const first = localStorage.getItem("first");
+    nextProps.getCurrentUser();
     if (nextProps.auth.isAuthenticated) {
-      if (first === "false") {
-        this.props.history.push({
-          pathname: '/create-profile',
-          state: { email: this.state.email }
-        })
-      }
-      else {
         this.props.history.push('/feed');
-      }
     }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -97,6 +89,7 @@ class Login extends Component {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  getCurrentUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -108,4 +101,4 @@ const mapStateToProps = state => ({
   first: state.first
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, getCurrentUser })(Login);

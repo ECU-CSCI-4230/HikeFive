@@ -70,6 +70,7 @@ class CreateProfile extends Component {
 
     const avatarData = {
       email: user.email,
+      //email: this.props.location.state.email,
       profile_avatar: profileData.avatar
     };
 

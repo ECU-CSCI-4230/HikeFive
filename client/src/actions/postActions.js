@@ -322,10 +322,10 @@ export const addComment = (postId, commentData) => dispatch => {
     .then(_res =>
       dispatch(getPost())
     )
-    .catch(err =>
+    .catch(_err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: null
       })
     );
 };
