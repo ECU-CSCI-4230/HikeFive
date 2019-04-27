@@ -1,7 +1,7 @@
 {
-  "name": "devconnector",
+  "name": "hikefive",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "Social network for hikers",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Isaiah Binford",
+  "author": "Isaiah Binford, Madison O'Quinn, Oliver Chen, Zhai Xinshuang",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
